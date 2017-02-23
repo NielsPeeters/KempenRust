@@ -1,6 +1,6 @@
 <?php
 
-class Persoon_model extends CI_Model {
+class Pension_model extends CI_Model {
 
     function __construct() {
         parent::__construct();
@@ -8,28 +8,28 @@ class Persoon_model extends CI_Model {
 
     function get($id) {
         $this->db->where('id', $id);
-        $query = $this->db->get('faciliteit');
-        return $query->row();                 // genereert een faciliteit object
+        $query = $this->db->get('pension');
+        return $query->row();                 // genereert een pension object
     }
 
     function getAll() {
-        $query = $this->db->get('faciliteit');  // genereert SELECT * FROM persoon
-        return $query->result();             // een array met faciliteit-objecten
+        $query = $this->db->get('pension');  // genereert SELECT * FROM persoon
+        return $query->result();             // een array met pension-objecten
     }
 
-    function insert($faciliteit) {
-        $this->db->insert('faciliteit', $faciliteit);
+    function insert($pension) {
+        $this->db->insert('pension', $pension);
         return $this->db->insert_id();
     }
 
-    function update($faciliteit) {
-        $this->db->where('id', $faciliteit->id);
-        $this->db->update('faciliteit', $faciliteit);
+    function update($pension) {
+        $this->db->where('id', $pension->id);
+        $this->db->update('pension', $pension);
     }
 
     function delete($id) {
         $this->db->where('id', $id);
-        $this->db->delete('faciliteit');
+        $this->db->delete('pension');
     }
 
 }

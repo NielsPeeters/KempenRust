@@ -1,6 +1,6 @@
 <?php
 
-class Persoon_model extends CI_Model {
+class TypeKamer_model extends CI_Model {
 
     function __construct() {
         parent::__construct();
@@ -18,12 +18,12 @@ class Persoon_model extends CI_Model {
     }
 
     function insert($typekamer) {
-        $this->db->insert('typekamer', $typekamer);
+        $this->db->insert('typekamer', $prijs);
         return $this->db->insert_id();
     }
 
     function update($typekamer) {
-        $this->db->where('id', $typekamer->id);
+        $this->db->where('id', $prijs->id);
         $this->db->update('typekamer', $typekamer);
     }
 
