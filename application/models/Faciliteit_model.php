@@ -17,14 +17,14 @@ class Faciliteit_model extends CI_Model {
         return $query->result();             // een array met faciliteit-objecten
     }
 
-    function insert($faciliteiten) {
-        $this->db->insert('faciliteit', $faciliteiten);
+    function insert($faciliteit) {
+        $this->db->insert('faciliteit', $faciliteit);
         return $this->db->insert_id();
     }
 
     function update($extra) {
         $this->db->where('id', $faciliteiten->id);
-        $this->db->update('faciliteit', $faciliteiten);
+        $this->db->update('faciliteit', $faciliteit);
     }
 
     function delete($id) {
