@@ -14,9 +14,9 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-            $data['title']  = 'Lessen';
+            $data['title']  = 'Hotel Kempenrust';
             $data['nobox'] = true;      // geen extra rand rond hoofdmenu
-            $data['auteur']="Team05";
+            $data['user'] = $this->authex->getUserInfo();
 
             //map/arangementen is tijdelijke frontpage
             $partials = array('header' => 'main_header', 'content' => 'map/arangementen', 'footer' => 'main_footer');
