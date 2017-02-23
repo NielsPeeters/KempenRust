@@ -39,7 +39,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-           <div><?php echo image('images/logo.PNG');?></div>
+           <div><?php echo image('logo.PNG');?></div>
            <ul class="nav navbar-nav">
                 <button>
                     <?php echo anchor('/home/index', 'Home', 'class="btn btn-default"'); ?>
