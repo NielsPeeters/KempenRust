@@ -17,8 +17,9 @@ class Home extends CI_Controller {
             $data['title']  = 'Lessen';
             $data['nobox'] = true;      // geen extra rand rond hoofdmenu
             $data['auteur']="Team05";
-            
-            $partials = array('header' => 'main_header', 'content' => 'main_menu');
+
+            //map/arangementen is tijdelijke frontpage
+            $partials = array('header' => 'main_header', 'content' => 'map/arangementen', 'footer' => 'main_footer');
             $this->template->load('main_master', $partials, $data);
 	}
 
