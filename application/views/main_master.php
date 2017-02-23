@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CodeIgniter & Bootstrap</title>
+    <title>Hotel Kempenrust</title>
 
     <!-- Bootstrap Core CSS -->
     <?php echo stylesheet("bootstrap.css"); ?>
@@ -54,7 +54,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Menu</a>
+                        <a href="#"><?php anchor('/test/index','Test') ?></a>
                     </li>
                     <li>
                         <a href="#">Menu</a>
@@ -114,6 +114,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
+                    <p>Auteur : <?php echo $auteur; ?></p>
                     <p>Hotel Kempenrust</p>
                     <p>Opdrachtgever: Kristine Mangelschots</p> 
                     <p>Team 05</p>
