@@ -76,9 +76,7 @@
 
         <!-- Footer -->
         <footer>
-<<<<<<< HEAD
             <?php echo $footer; ?>
-=======
             <div class="row">
                 <div class="col-lg-12">
                     <p>Hotel Kempenrust</p>
@@ -89,9 +87,7 @@
                     </p>
                 </div>
             </div>
->>>>>>> css bestanden toegevoegd en nav veranderd
         </footer>
-
     </div>
     <!-- /.container -->
 
