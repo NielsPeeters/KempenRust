@@ -1,6 +1,6 @@
 <?php
 
-class typepersoon_model extends CI_Model {
+class TypePersoon_model extends CI_Model {
 
     function __construct()
     {
