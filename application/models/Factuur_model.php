@@ -8,12 +8,12 @@ class Factuur_model extends CI_Model {
     function get($id) {
         $this->db->where('id', $id);
         $query = $this->db->get('factuur');
-        return $query->row();                 // genereert een extras object
+        return $query->row();                 // genereert een factuur object
     }
 
     function getAll() {
         $query = $this->db->get('factuur');  // genereert SELECT * FROM persoon
-        return $query->result();             // een array met extras-objecten
+        return $query->result();             // een array met factuur-objecten
     }
 
     function insert($factuur) {
