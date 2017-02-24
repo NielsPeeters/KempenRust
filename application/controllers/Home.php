@@ -14,12 +14,13 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-            $data['title']  = 'Hotel Kempenrust';
+            $data['title']  = 'Dit is de $data[\'title\'] = "xxx"';
             $data['nobox'] = true;      // geen extra rand rond hoofdmenu
+            $data['author'] = 'Niels Peeters';
             $data['user'] = $this->authex->getUserInfo();
 
-            //map/arangementen is tijdelijke frontpage
-            $partials = array('header' => 'main_header', 'content' => 'map/arangementen', 'footer' => 'main_footer');
+            //main_content moet vervangen worden naar map/arangementen bij finale afwerking!
+            $partials = array('navbar' => 'main_navbar', 'content' => 'main_content', 'footer' => 'main_footer');
             $this->template->load('main_master', $partials, $data);
 	}
 

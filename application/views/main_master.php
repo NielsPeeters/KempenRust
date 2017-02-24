@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CodeIgniter & Bootstrap</title>
+    <title>Hotel Kempenrust</title>
 
     <!-- Bootstrap Core CSS -->
     <?php echo stylesheet("bootstrap.css"); ?>
@@ -36,38 +36,21 @@
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-           <div><?php echo image('logo.PNG');?></div>
-           <ul class="nav navbar-nav">
-                <button>
-                    <?php echo anchor('/home/index', 'Home', 'class="btn btn-default"'); ?>
-                </button>
-               <button>
-                   <?php echo anchor('/home/aanmelden', 'Aanmelden', 'class="btn btn-default"');?>
-               </button>
-            </ul>
-        </div>
-    </nav>
+    <?php echo $navbar ?>
     
-    <!-- Page Content -->
+    <!-- Page Container -->
     <div class="container">
 
-        <!-- Jumbotron Header -->
+        <!-- Page Title -->
         <header class="jumbotron hero-spacer">
-            <?php echo $header; ?>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1><?php echo $title; ?></h1>
+                </div>
+            </div>
         </header>
 
-        <hr>
-        
-        <div class="row">
-            <div class="col-lg-12">
-                <h3><?php echo $title; ?></h3>
-            </div>
-        </div>
-        
-        <!-- Page Features -->
+        <!-- Page Content -->
         <?php if (isset($nobox)) { ?>
             <div class="row text-center">
                 <?php echo $content; ?>
