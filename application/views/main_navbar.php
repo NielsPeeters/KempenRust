@@ -8,13 +8,14 @@
 
                 if ($user == null) { // niet aangemeld
                     echo '<li>' . anchor('/home/aanmelden', 'Aanmelden') . '</li>';
+                    echo '<li>' . anchor('/persoon/nieuw', 'Registreer') . '</li>';
                 } else { // wel aangemeld
                     echo '<li>' . anchor ('home/afmelden', 'Afmelden') . '</li>';
                     switch ($user->level) {
                         case 1: // gewone geregistreerde gebruiker
                             echo '<li>' . anchor('/home/aanmelden', 'Aanmelden') . '</li>';
                             break;
-                        case 5: // administrator
+                        case 3: // administrator
                             echo '<li>' . anchor('/home/aanmelden', 'Aanmelden') . '</li>';
                             break;
                     }

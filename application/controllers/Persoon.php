@@ -104,8 +104,9 @@ class Persoon extends CI_Controller {
                 //redirect('persoon/nieuw');
                 $data['persoon']= $persoon;
                 $data['title']= 'Registeer';
-                $data['auteur'] = 'Laenen Nathalie';
-                $partials = array('header' => 'main_header', 'content' => 'map/registreer');
+                $data['author'] = 'Laenen Nathalie';
+                $data['user'] = $this->authex->getUserInfo();
+                $partials = array('navbar' => 'main_navbar','content' => 'map/registreer','footer'=>'main_footer');
                 $this->template->load('main_master', $partials, $data);
 
             } else {
@@ -121,8 +122,9 @@ class Persoon extends CI_Controller {
         $data['title'] = 'Registreer';
         $data['persoon']= $this->getEmptyPersoon();
         $data['emailVrij']="vrij";
-        $data['auteur'] = 'Laenen Nathalie';
-        $partials = array('header' => 'main_header','content' => 'map/registreer');
+        $data['author'] = 'Laenen Nathalie';
+        $data['user'] = $this->authex->getUserInfo();
+        $partials = array('navbar' => 'main_navbar','content' => 'map/registreer','footer'=>'main_footer');
         $this->template->load('main_master', $partials, $data);
     }
 
