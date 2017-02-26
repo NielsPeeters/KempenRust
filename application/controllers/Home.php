@@ -26,10 +26,16 @@ class Home extends CI_Controller {
 
 	function aanmelden()
     {
-        $email = "werknemer@werknemer.be";
-        $password = "werknemer";
-        $this->authex->login($email, $password);
-        redirect("home/index");
+        $email = $this->input->post('email');
+        $wachtwoord = $this->input->post('wachtwoord');
+        $this->authex->login($email, $wachtwoord);
+        if ($this->authex->loggedIn())
+        {
+            redirect("home/index");
+        } else{
+
+        }
+
     }
 
     function afmelden()

@@ -64,5 +64,8 @@ echo form_open('persoon/registreer', $attributes);
     <button type="submit" data-id="' . $persoon->id . '" class="btn">Opslaan</button>
     <?php echo anchor('/home/index', '<p  id="annuleren" class="btn btn-warning">Annuleren</p>'); ?>
 
+    <?php
+        echo form_close();
+    ?>
 </div>
 
