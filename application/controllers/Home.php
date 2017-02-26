@@ -24,6 +24,20 @@ class Home extends CI_Controller {
             $this->template->load('main_master', $partials, $data);
 	}
 
+	function aanmelden()
+    {
+        $email = "werknemer@werknemer.be";
+        $password = "werknemer";
+        $this->authex->login($email, $password);
+        redirect("home/index");
+    }
+
+    function afmelden()
+    {
+        $this->authex->logout();
+        redirect("home/index");
+
+    }
     
 
 }

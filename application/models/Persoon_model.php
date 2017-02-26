@@ -50,6 +50,17 @@ class Persoon_model extends CI_Model {
         }
     }
 
+    function getAccount($email, $password)
+    {
+        $this->db->where('email', $email);
+        $this->db->where('wachtwoord', $password);
+        $query = $this->db->get('persoon');
+        if($query->num_rows() == 1) {
+            return $query->row();
+        }else{
+            return false;
+        }                 // genereert een persoon object
+    }
 
 }
 
