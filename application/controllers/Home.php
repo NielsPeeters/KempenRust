@@ -14,6 +14,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+	        //Laad de thuis pagina
             $data['title']  = 'Dit is de $data[\'title\'] = "xxx"';
             $data['nobox'] = true;      // geen extra rand rond hoofdmenu
             $data['author'] = 'Niels Peeters';
@@ -26,6 +27,7 @@ class Home extends CI_Controller {
 
 	function aanmelden()
     {
+        //Haalt post gegevens op en gebruikt deze om de gebruiker aan te melden en in de sessie variabelen te zetten.
         $email = $this->input->post('email');
         $wachtwoord = $this->input->post('wachtwoord');
         $this->authex->login($email, $wachtwoord);
@@ -33,13 +35,28 @@ class Home extends CI_Controller {
         {
             redirect("home/index");
         } else{
-
+            redirect("home/login");
         }
 
     }
 
+    function getAjaxLogin()
+    {
+        //Beantwoord de het ajax aanmeld venster van de navigatiebalk.
+        $email = $this->input->post('email');
+        $wachtwoord = $this->input->post('wachtwoord');
+        $this->load->model('Persoon_model');
+
+        if($this->Persoon_model->getAccount($email, $wachtwoord) != null){
+            echo true;
+        } else{
+            echo false;
+        }
+    }
+
     function afmelden()
     {
+        //Meld een reeds aangemelde gebruiker uit en stuurt de gebruiker terug naar de begin pagina.
         $this->authex->logout();
         redirect("home/index");
 
