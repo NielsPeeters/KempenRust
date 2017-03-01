@@ -16,7 +16,7 @@ class Kamertype extends CI_Controller {
         $data['author'] = 'Tim Van de Voorde';
         $data['user'] = $this->authex->getUserInfo();
         
-
+           //model inladen
         $this->load->model('Typekamer_model');
         $data['types'] = $this->Typekamer_model->getAll();
 
