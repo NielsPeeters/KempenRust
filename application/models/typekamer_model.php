@@ -13,18 +13,18 @@ class typekamer_model extends CI_Model {
     }
 
     function getAll() {
-        $query = $this->db->get('kamerType');  // genereert SELECT * FROM persoon
+        $query = $this->db->get('kamerType');  // genereert SELECT * FROM persoon 
         return $query->result();             // een array met kamertype-objecten
     }
 
-    function insert($typeKamer) {
-        $this->db->insert('kamerType', $prijs);
+    function insert($type) {
+        $this->db->insert('kamerType', $type);
         return $this->db->insert_id();
     }
 
-    function update($typeKamer) {
+    function update($type) {
         $this->db->where('id', $prijs->id);
-        $this->db->update('kamerType', $typeKamer);
+        $this->db->update('kamerType', $type);
     }
 
     function delete($id) {

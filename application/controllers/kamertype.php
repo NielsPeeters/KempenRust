@@ -25,8 +25,8 @@ class kamertype extends CI_Controller {
     }
     
     public function overzicht() {
-        $this->load->model('typeKamer_model');
-        $data['types'] = $this->typeKamer_model->getAll();
+        $this->load->model('typekamer_model');
+        $data['types'] = $this->typekamer_model->getAll();
 
         $this->load->view('admin/kamertype/kamertype_lijst', $data);
     }
@@ -35,11 +35,11 @@ class kamertype extends CI_Controller {
         $kamertype->id = $this->input->post('id');
         $kamertype->omschrijving = $this->input->post('omschrijving');
 
-        $this->load->model('typeKamer_model');
+        $this->load->model('typekamer_model');
         if ($kamertype->id == 0) {
-            $id = $this->typeKamer_model->insert($kamertype);
+            $id = $this->typekamer_model->insert($kamertype);
         } else {
-            $this->typeKamer_model->update($kamertype);
+            $this->typekamer_model->update($kamertype);
         }
 
         echo $id;
