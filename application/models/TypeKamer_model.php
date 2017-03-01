@@ -1,6 +1,6 @@
 <?php
 
-class typekamer_model extends CI_Model {
+class typeKamer_model extends CI_Model {
 
     function __construct() {
         parent::__construct();
@@ -8,28 +8,28 @@ class typekamer_model extends CI_Model {
 
     function get($id) {
         $this->db->where('id', $id);
-        $query = $this->db->get('kamerType');
+        $query = $this->db->get('typeKamer');
         return $query->row();                 // genereert een kamertype object
     }
 
     function getAll() {
-        $query = $this->db->get('kamerType');  // genereert SELECT * FROM persoon
+        $query = $this->db->get('typeKamer');  // genereert SELECT * FROM persoon
         return $query->result();             // een array met kamertype-objecten
     }
 
     function insert($typeKamer) {
-        $this->db->insert('kamerType', $prijs);
+        $this->db->insert('typeKamer', $prijs);
         return $this->db->insert_id();
     }
 
     function update($typeKamer) {
         $this->db->where('id', $prijs->id);
-        $this->db->update('kamerType', $typeKamer);
+        $this->db->update('typeKamer', $typeKamer);
     }
 
     function delete($id) {
         $this->db->where('id', $id);
-        $this->db->delete('kamerType');
+        $this->db->delete('typeKamer');
     }
 
 }
