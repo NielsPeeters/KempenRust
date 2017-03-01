@@ -19,6 +19,7 @@
             <ul class="nav navbar-nav">
                 <?php // iedereen
                 echo '<li>' . anchor('/home/index', 'Index') . '</li>';
+                echo '<li>' . anchor('/kamertype/index', 'Kamertype') . '</li>';
                 echo '<li>' . anchor('#', 'iedereen') . '</li>';
                 if ($user == null) { // niet aangemeld
                 } else { // wel aangemeld
