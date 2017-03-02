@@ -9,6 +9,11 @@ class TypePersoon_model extends CI_Model {
 
     function get($id)
     {
+        /**
+        *Geeft het typepersoon object terug dat bij het id hoort.
+        *\param id het id van het te halen typepersoon object
+        *\return een typepersoon object
+        */
       $this->db->where('id', $id);
       $query = $this->db->get('typePersoon');
       return $query->row();                         // genereert een typepersoon object
@@ -16,24 +21,41 @@ class TypePersoon_model extends CI_Model {
 
     function getAll()
     {
+        /**
+        *Geeft een array terug met alle typepersoon objecten.
+        *\return een array met typepersoon objecten
+        */
         $query = $this->db->get('typePersoon');	    // genereert SELECT * FROM typepersoon
         return $query->result();                    // een array met typepersoon-objecten
     }
 
     function insert($typepersoon)
     {
+        /**
+        *Insert een typepersoon object in de database.
+        *\param typepersoon een typepersoon object
+        *\return een typepersoon object
+        */
         $this->db->insert('typePersoon', $typepersoon);
         return $this->db->insert_id();
     }
 
     function update($typepersoon)
     {
+         /**
+        *Update een typepersoon object in de database.
+        *\param kamertype een typepersoon object
+        */
         $this->db->where('id', $typepersoon->id);
         $this->db->update('typePersoon', $typepersoon);
     }
 
     function delete($id)
     {
+        /**
+        * verwijderd het typepersoon object dat bij het id hoort uit de database
+        * \param id het id van de geselecteerde typepersoon
+        */
         $this->db->where('id', $id);
         $this->db->delete('typePersoon');
     }

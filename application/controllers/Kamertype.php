@@ -20,8 +20,8 @@ class Kamertype extends CI_Controller {
         $data['author'] = 'Van de Voorde Tim';
         $data['user'] = $this->authex->getUserInfo();
 
-        $this->load->model('kamertype_model');
-        $data['types'] = $this->kamertype_model->getAll();
+        $this->load->model('kamerType_model');
+        $data['types'] = $this->kamerType_model->getAll();
 
         $partials = array('navbar' => 'main_navbar', 'content' => 'admin/kamertype/kamertype_beheren', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data);
@@ -33,8 +33,8 @@ class Kamertype extends CI_Controller {
         */
         $kamerTypeId = $this->input->get('$kamerTypeId');
         
-        $this->load->model('kamertype_model');
-        $data['types'] = $this->kamertype_model->getAll();
+        $this->load->model('kamerType_model');
+        $data['types'] = $this->kamerType_model->getAll();
         
         $this->load->view("admin/kamertype/ajax_kamertype", $data);
     }
@@ -44,12 +44,12 @@ class Kamertype extends CI_Controller {
         * verwijderdt een kamertype object als hieraan geen kamers verbonden zijn
         */
         $id = $this->input->get('id');
-        $this->load->model('kamertype_model');
-        $result = $this->kamertype_model->getAllByType($id);
+        $this->load->model('kamerType_model');
+        $result = $this->kamerType_model->getAllByType($id);
         $size = count($result);
         if ($size==0){
-            $this->load->model('kamertype_model');
-            $this->kamertype_model->delete($id);
+            $this->load->model('kamerType_model');
+            $this->kamerType_model->delete($id);
             echo 0;
         }
         else {echo 1;}
@@ -65,11 +65,11 @@ class Kamertype extends CI_Controller {
         $object->id = $this->input->post('id');
         $object->omschrijving = $this->input->post('omschrijving');
        
-        $this->load->model('kamertype_model');
+        $this->load->model('kamerType_model');
         if ($object->id == 0) {
-            $this->kamer_model->insert($object);
+            $this->kamerType_model->insert($object);
         } else {
-            $this->kamer_model->update($object);
+            $this->kamerType_model->update($object);
         }
         echo 0;
     }
@@ -78,8 +78,8 @@ class Kamertype extends CI_Controller {
         /**
         * haalt kamertypes terug op
         */
-        $this->load->model('kamertype_model');
-        $data['types']= $this->kamertype_model->getAll();
+        $this->load->model('kamerType_model');
+        $data['types']= $this->kamerType_model->getAll();
         $this->load->view('admin/kamertype/ajax_kamertype', $data);
     }
 }

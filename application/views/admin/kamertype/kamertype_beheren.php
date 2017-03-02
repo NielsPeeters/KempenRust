@@ -181,7 +181,7 @@ foreach($types as $type){
               </div>
               <div class="modal-body">
                   <p>
-                      Je kan dit kamertype niet verwijderen omdat er nog boekingen aan verbonden zijn.
+                      Je kan dit kamertype niet verwijderen omdat er nog kamers aan verbonden zijn.
                   </p>
                 
                   </p>
