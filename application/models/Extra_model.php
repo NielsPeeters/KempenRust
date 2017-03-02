@@ -53,6 +53,12 @@ class Extra_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete('extra');
     }
+    
+    function getAllByFaciliteit($faciliteitId) {
+        $this->db->where('faciliteitId', $faciliteitId);
+        $query = $this->db->get('extra');
+        return $query->result();
+    }
 
 }
 

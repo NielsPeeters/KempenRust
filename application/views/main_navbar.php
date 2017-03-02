@@ -33,6 +33,7 @@
                             echo '<li>' . anchor('#', 'eigenaar') . '</li>';
                             echo '<li>' . anchor('/kamer/index', 'Kamers beheren') . '</li>';
                             echo '<li>' . anchor('/kamertype/index', 'Kamertypes beheren') . '</li>';
+                            echo '<li>' . anchor('/faciliteit/index', 'Faciliteiten beheren') . '</li>';
                             break;
                     }
                 }
