@@ -26,17 +26,17 @@ echo form_open('persoon/registreer', $attributes);
 
 <div class="form-group">
     <label for="naam" class="control-label">Naam</label>
-    <?php echo form_input(array('pattern'=>'[a-zA-Z]+','name' => 'naam', 'id' => 'naam', 'value' => $persoon->naam, 'class' => 'form-control', 'placeholder' => 'Naam', 'required' => 'required')); ?>
+    <?php echo form_input(array('type'=>'text','name' => 'naam', 'id' => 'naam', 'value' => $persoon->naam, 'class' => 'form-control', 'placeholder' => 'Naam', 'required' => 'required')); ?>
 </div>
 
 <div class="form-group">
     <label for="voornaam" class="control-label">Voornaam</label>
-    <?php echo form_input(array('pattern'=>'[a-zA-Z]+','name' => 'voornaam', 'id' => 'voornaam', 'value' => $persoon->voornaam, 'class' => 'form-control', 'placeholder' => 'Voornaam', 'required' => 'required')); ?>
+    <?php echo form_input(array('type'=>'text','name' => 'voornaam', 'id' => 'voornaam', 'value' => $persoon->voornaam, 'class' => 'form-control', 'placeholder' => 'Voornaam', 'required' => 'required')); ?>
 </div>
 
 <div class="form-group">
     <label for="gemeente" class="control-label">Gemeente</label>
-    <?php echo form_input(array('pattern'=>'[a-zA-Z]+','name' => 'gemeente', 'id' => 'gemeente', 'value' => $persoon->gemeente, 'class' => 'form-control', 'placeholder' => 'gemeente', 'required' => 'required')); ?>
+    <?php echo form_input(array('type'=>'text','name' => 'gemeente', 'id' => 'gemeente', 'value' => $persoon->gemeente, 'class' => 'form-control', 'placeholder' => 'gemeente', 'required' => 'required')); ?>
 </div>
 
 <div class="form-group">
@@ -92,8 +92,10 @@ echo form_open('persoon/registreer', $attributes);
 <div class="form-group">
     <?php echo form_input(array('type' => 'hidden', 'name' => 'id', 'id' => 'id', 'value' => $persoon->id, 'class' => 'form-control', 'placeholder' => 'id')) ?>
 
-    <button type="submit" data-id="' . $persoon->id . '" class="btn">Opslaan</button>
-    <?php echo anchor('/home/index', '<p  id="annuleren" class="btn btn-warning">Annuleren</p>'); 
+   
+    <?php echo anchor('/home/index', '<p  id="annuleren" class="btn btn-secondary">Annuleren</p>'); ?>
+     <button type="submit" data-id="' . $persoon->id . '" class="btn btn-primary">Opslaan</button>
+        <?php
         echo form_close();
     ?>
 </div>
