@@ -26,8 +26,8 @@
     <div class="help-block with-errors"></div>
     
 
-    <button type="submit" data-id="' . $kamer->id . '" class="btn opslaan">Opslaan</button>
-    <button type="button" data-id="' . $kamer->id . '" class="btn verwijder">Verwijderen</button>
-    <button type="reset" data-id="' . $kamer->id . '" class="btn reset">Annuleren</button>
+    <button type="submit" data-id="' . $type->id . '" class="btn opslaan">Opslaan</button>
+    <button type="button" data-id="' . $type->id . '" class="btn verwijder">Verwijderen</button>
+    <button type="reset" data-id="' . $type->id . '" class="btn reset">Annuleren</button>
 </div>
 </form>
