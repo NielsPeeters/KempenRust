@@ -1,14 +1,14 @@
+
 <script>
 /**
 * \file
 */
-        function haalFaciliteit(faciliteitId) 
+        function haalFaciliteit (faciliteitId) 
         {
             /**
-            * \file
-            * haalt het kamertype object op dat behoort tot het meegegeven id
-            * \param kamerTypeId het id van het geselecteerde kamertype
-            * \return de geselecteerde kamertype in een panel
+            * haalt het kamer object op dat behoort tot het meegegeven id
+            * \param kamerId het id van de geselecteerde kamer
+            * de geselecteerde kamer wordt weergeven in een panel
             */
           $.ajax({type : "GET",
             url : site_url + "/faciliteit/haalFaciliteit",
@@ -18,9 +18,9 @@
                 $("#resultaat").html(result);
                 // click aan opslaan en verwijderen hangen als die er zijn
                 attach_click();
-                // Geef de verwijder knop van het modalvenster het id van de te verwijderen kamertype mee
-                //resultaat = $(result).find("#id").attr("value");
-                //$("#kamertypeid").html(resultaat);
+                // Geef de verwijder knop van het modalvenster het id van de te verwijderen kamer mee
+                resultaat = $(result).find("#id").attr("value");
+                $("#kamerId").html(resultaat);
              
             },
             error: function (xhr, status, error) {
@@ -32,20 +32,20 @@
         function verwijderFaciliteit(id) 
         {
             /**
-            * Verwijderd het kamertype die behoort tot het meegegeven id
-            * \param id het id van de te verwijderen kamertype als int
-            * \return een leeg kamertype object als het kamertype verwijderd kon worden, anders geef een foutmelding
+            * Verwijderd te kamer die behoort tot het meegegeven id
+            * \param id het id van de te verwijderen kamer als int
+            * een leeg kamer object genereren als de kamer verwijderd kan worden, anders geef een foutmelding
             */
             $.ajax({type: "GET",
-                url: site_url + "/kamertype/verwijderFaciliteit",
+                url: site_url + "/faciliteit/verwijderFaciliteit",
                 data: {id: id},
                 dataType: "json",
                 success: function (result) {
-                    if(result===0){
+                    if(result==0){
                         location.reload();
                     }
                     else{
-                        $("#verwijderfout").modal('show');
+                        $("#verwijderFout").modal('show');
                     }
                 },
                 error: function (xhr, status, error) {
@@ -57,14 +57,13 @@
         function schrijfFaciliteit()
         {
             /**
-            * Update of insert een kamertypeobject
-            * \param id het id van het te verwijderen kamertype als int
-            * \return een melding dat de gegevens succesvol zijn opgeslagen
+            * Update of insert een kamerobject
+            * \param id het id van de te verwijderen kamer als int
             */
             var dataString = $("#JqAjaxForm").serialize();
             console.log(dataString) 
             $.ajax({type: "POST",
-                url: site_url + "/faciliteit/schrijfJSONObject",
+                url: site_url + "/faciliteit/schrijfFaciliteit",
                 data: dataString,
                 dataType: "json",
                 success: function (result) {
@@ -77,20 +76,20 @@
         }
 
         function attach_click() {
-          $("#opslaan").click(function (e) {
-            e.preventDefault();
-            schrijfKamertype();
-          });
-
           $(".verwijder").click(function (e) {
+              /**
+              *Bij het klikken op verwijder wordt het verwijder modal getoont
+              */
             e.preventDefault();
             var id = $(this).data('id');
             $('#verwijderModal').modal('show');
           });
 
-          $(".opslaan").click(function(e){
-            
-            schrijfKamertype();
+          $(".opslaan").click(function(){
+            /**
+              *Bij het klikken op opslaan wordt het kamer object opgeslagen
+              */
+            schrijfFaciliteit();
         })
         }
 
@@ -98,16 +97,25 @@
         $("#panel").hide();
 
         $("#faciliteit").change(function() {
+            /**
+            *Bij het veranderen van de geselecteerde kamer, veranderdt de info in het panel
+            */
             haalFaciliteit($(this).val());
         });
 
         $(".delete").click(function (e) {
+            /**
+            *Bij het klikken op verwijder wordt het kamer object verwijderdt
+            */
             e.preventDefault();
-            var id = $("#faciliteitid").html();
+            var id = $("#faciliteitId").html();
             verwijderFaciliteit(id);
         });
 
-        $("#nieuw").click(function (e){
+        $("#nieuw").click(function (){
+            /**
+            *Bij het klikken op nieuw wordt een nieuw kamer object opgehaald
+            */
             haalFaciliteit(-1);
         });
     });
@@ -156,9 +164,9 @@ foreach($types as $type){
               </div>
               <div class="modal-body">
                   <p>
-                      Weet je zeker dat je dit kamertype wil verwijderen?
+                      Weet je zeker dat je deze faciliteit wil verwijderen?
                   </p>
-                  <p hidden id="kamertypeid">
+                  <p hidden id="kamerId">
                   </p>
               </div>
               <div class="modal-footer">
@@ -171,7 +179,7 @@ foreach($types as $type){
 
   </div>
 
-    <div class="modal fade" id="verwijderfout" role="dialog">
+    <div class="modal fade" id="verwijderFout" role="dialog">
       <div class="modal-dialog">
           <!-- Modal content-->
           <div class="modal-content">
@@ -181,7 +189,7 @@ foreach($types as $type){
               </div>
               <div class="modal-body">
                   <p>
-                      Je kan dit kamertype niet verwijderen omdat er nog kamers aan verbonden zijn.
+                      Je kan deze faciliteit niet verwijderen omdat er nog boekingen aan verbonden zijn.
                   </p>
                 
                   </p>
@@ -195,17 +203,8 @@ foreach($types as $type){
 
   </div>
 
-<?php
-
-echo "</tbody></table>";
-
-
-
-
-?>
-
+<?php echo "</tbody></table>";?>
 
 <p>
   <a id="terug" class="btn btn-secondary" href="javascript:history.go(-1);">Terug</a>
 </p>
-
