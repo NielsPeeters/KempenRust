@@ -29,12 +29,12 @@ class Kamertype extends CI_Controller {
 
     public function haalKamertype() {
         /**
-        * haalt een kamertype object en alle kamertypes op
+        * haalt een kamertype object op
         */
         $kamerTypeId = $this->input->get('$kamerTypeId');
         
         $this->load->model('kamerType_model');
-        $data['type'] = $this->kamerType_model->getAll();
+        $data['type'] = $this->kamerType_model->get($kamerTypeId);
         
         $this->load->view("admin/kamertype/ajax_kamertype", $data);
     }
