@@ -32,6 +32,7 @@
                             break;
                         case 3: // eigenaar
                             echo '<li>' . anchor('#', 'eigenaar') . '</li>';
+                            echo '<li>' . anchor('/kamer/index', 'Kamers beheren') . '</li>';
                             break;
                     }
                 }

@@ -93,35 +93,36 @@ class Persoon extends CI_Controller {
         $persoon->telefoon = $this->input->post('telefoon');
         $persoon->soort = "1";
         $wachtwoord = $this->input->post('wachtwoord');
-        $wachtwoord2 = $this->input->post('wachtwoord2');
-        if ($wachtwoord == $wachtwoord2) {
-            $persoon->wachtwoord=sha1($wachtwoord);
-            $persoon->id = $this->authex->register($persoon->email, $persoon);
-            $data['emailVrij']=$persoon->id;
-            if ($persoon->id == 0) {
+        $persoon->id = $this->authex->register($persoon->email, $persoon);
+        $persoon->wachtwoord=sha1($wachtwoord);
+        $this->emailVrij($persoon);
+    }
 
+        public function emailVrij($persoon){
+              if ($persoon->id == 0) {
                 //email adres is al in gebruik
-                //redirect('persoon/nieuw');
-                $data['persoon']= $persoon;
-                $data['title']= 'Registeer';
-                $data['author'] = 'Laenen Nathalie';
-                $data['user'] = $this->authex->getUserInfo();
-                $partials = array('navbar' => 'main_navbar','content' => 'map/registreer','footer'=>'main_footer');
-                $this->template->load('main_master', $partials, $data);
-
+                $emailVrij="0";
+                $this->naarRegistreer($persoon,$emailVrij);
             } else {
-
                 //user account aangemaakt
                 redirect('home/index');
-                
             }
-        } 
-    }
+        }
+
+        public function naarRegistreer($persoon,$emailVrij){
+            $data['emailVrij']=$emailVrij;
+            $data['persoon']= $persoon;
+            $data['title']= 'Registeer';
+            $data['author'] = 'Laenen Nathalie';
+            $data['user'] = $this->authex->getUserInfo();
+            $partials = array('navbar' => 'main_navbar','content' => 'map/registreer','footer'=>'main_footer');
+            $this->template->load('main_master', $partials, $data);
+        }
 
       public function nieuw() {
         $data['title'] = 'Registreer';
         $data['persoon']= $this->getEmptyPersoon();
-        $data['emailVrij']="vrij";
+        $data['emailVrij']="1"; //email niet in gebruik
         $data['author'] = 'Laenen Nathalie';
         $data['user'] = $this->authex->getUserInfo();
         $partials = array('navbar' => 'main_navbar','content' => 'map/registreer','footer'=>'main_footer');
