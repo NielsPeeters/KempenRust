@@ -1,23 +1,19 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.3/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script>
- $(document).ready(function(){
-    $('.opslaan').click(function(e){
-        /**
-        *Bij een klik op de opslaan knop wordt het form gevalideert.
-        */
-        $('#myForm').validator();
-    });
- });
 
-
-</script>
 <?php echo javascript("validator.js");?>
 
-<form name='myform' id='JqAjaxForm'>
+<?php
+echo javascript("validator.js");
+$attributes = array('name' => 'myform','data-toggle'=>'validator','role'=>'form');
+echo form_open('kamer/schrijfKamer', $attributes);
+?>
+
     <div class="form-group">
         <label for="naam" class="control-label">Naam</label>
-        <?php echo form_input(array('type'=>'text','name' => 'naam', 'id' => 'naam', 'value' => $kamer->naam, 'class' => 'form-control', 'placeholder' => 'Naam', 'required' => 'required'));?>
+        <?php echo form_input(array('data-match'=>'','type'=>'text','name' => 'naam','id' => 'naam', 'value' => $kamer->naam, 'class' => 'form-control', 'placeholder' => 'Naam', 'required' => 'required'));?>
+        
+        
     </div>
     </br>
 

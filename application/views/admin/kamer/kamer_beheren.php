@@ -53,27 +53,6 @@
             });
         }
 
-        function schrijfKamer()
-        {
-            /**
-            * Update of insert een kamerobject
-            * \param id het id van de te verwijderen kamer als int
-            */
-            var dataString = $("#JqAjaxForm").serialize();
-            console.log(dataString) 
-            $.ajax({type: "POST",
-                url: site_url + "/kamer/schrijfKamer",
-                data: dataString,
-                dataType: "json",
-                success: function (result) {
-                    //location.reload();
-                },
-                error: function (xhr, status, error) {
-                    alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
-                }
-            });
-        }
-
         function attach_click() {
           $(".verwijder").click(function (e) {
               /**
@@ -83,13 +62,6 @@
             var id = $(this).data('id');
             $('#verwijderModal').modal('show');
           });
-
-          $(".opslaan").click(function(){
-            /**
-              *Bij het klikken op opslaan wordt het kamer object opgeslagen
-              */
-            schrijfKamer();
-        })
         }
 
     $(document).ready(function(){
