@@ -14,6 +14,8 @@
             url : site_url + "/kamertype/haalKamertype",
             data : { kamerTypeId : kamerTypeId },
             success : function(result){
+                
+                console.log(result);
                 $("#panel").show();
                 $("#resultaat").html(result);
                 // click aan opslaan en verwijderen hangen als die er zijn
@@ -147,8 +149,10 @@ foreach($types as $type){
         <!--<div class="panel-heading">Details</div>-->
         <div class="panel-body">
          
-            <div id="resultaat"></div>
-        
+            <div id="resultaat">
+                
+            </div>
+      
         </div>
       </div>
     </div>
