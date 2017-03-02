@@ -33,7 +33,7 @@ class Kamertype extends CI_Controller {
          */
         $kamerTypeId = $this->input->get('$kamerTypeId');
 
-        if ($kamerId < 0) {
+        if ($kamerTypeId < 0) {
             $data['type'] = $this->getEmptyKamertype();
         } else {
             $this->load->model('kamertype_model');
