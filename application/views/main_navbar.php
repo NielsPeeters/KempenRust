@@ -84,7 +84,7 @@ if($user == null){
                         <?php echo form_input(array('type' => 'password', 'name' => 'wachtwoord', 'id' => 'wachtwoord', 'class' => 'form-control', 'placeholder' => 'Wachtwoord')); ?>
 
 
-                        <div id='error' class="alert alert-danger">Aanmelden mislukt, controleer jou aanmeld gegevens.</div>
+                        <div id='error' class="alert alert-danger">Aanmelden mislukt, controleer uw aanmeldgegevens.</div>
                         <hr/>
                         <?php
                             echo anchor('/persoon/nieuw', 'Nieuwe gebruiker') . '<br/>';
