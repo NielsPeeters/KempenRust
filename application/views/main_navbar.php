@@ -18,8 +18,7 @@
             <!-- Linkse navbar -->
             <ul class="nav navbar-nav">
                 <?php // iedereen
-                echo '<li>' . anchor('/home/index', 'Index') . '</li>';
-                echo '<li>' . anchor('/kamertype/index', 'Kamertype') . '</li>';
+                echo '<li>' . anchor('/home/index', 'Index') . '</li>';    
                 echo '<li>' . anchor('#', 'iedereen') . '</li>';
                 if ($user == null) { // niet aangemeld
                 } else { // wel aangemeld
@@ -33,6 +32,7 @@
                         case 3: // eigenaar
                             echo '<li>' . anchor('#', 'eigenaar') . '</li>';
                             echo '<li>' . anchor('/kamer/index', 'Kamers beheren') . '</li>';
+                            echo '<li>' . anchor('/kamertype/index', 'Kamertypes beheren') . '</li>';
                             break;
                     }
                 }

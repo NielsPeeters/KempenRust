@@ -18,7 +18,7 @@
                 $("#resultaat").html(result);
                 // click aan opslaan en verwijderen hangen als die er zijn
                 attach_click();
-                // Geef de verwijder knop van het modalvenster het id van de te verwijderen kamer mee
+                // Geef de verwijder knop van het modalvenster het id van de te verwijderen kamertype mee
                 resultaat = $(result).find("#id").attr("value");
                 $("#kamertypeid").html(resultaat);
              
@@ -158,7 +158,7 @@ foreach($types as $type){
                   <p>
                       Weet je zeker dat je dit kamertype wil verwijderen?
                   </p>
-                  <p hidden id="kamerid">
+                  <p hidden id="kamertypeid">
                   </p>
               </div>
               <div class="modal-footer">
