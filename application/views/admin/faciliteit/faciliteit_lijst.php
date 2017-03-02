@@ -3,13 +3,15 @@
     <thead>
         <tr>                                
             <th>Naam</th>
+            <th>Prijs</th>
             <th>Beheer</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($types as $type) { ?>
             <tr>
-                <td><?php echo $type->omschrijving ?></td>
+                <td><?php echo $type->naam ?></td>
+                <td><?php echo '€' + $type->prijs?></td>
                 <td>
                     <button data-toggle="tooltip" data-placement="bottom" title="Wijzigen" class="wijzigKamertype glyphicon glyphicon-pencil btn btn-primary" data-id="<?php echo $type->id ?>"></button>
                     <button data-toggle="tooltip" data-placement="bottom" title="Verwijderen" class="verwijderKamertype glyphicon glyphicon-trash btn btn-danger" data-id="<?php echo $type->id ?>"></button>                                 
@@ -19,3 +21,4 @@
     </tbody>
 </table>
 </div>
+

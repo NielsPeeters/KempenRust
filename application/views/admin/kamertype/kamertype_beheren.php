@@ -2,17 +2,17 @@
 /**
 * \file
 */
-        function haalKamer (kamerId) 
+        function haalKamertype (kamerTypeId) 
         {
             /**
             * \file
-            * haalt het kamer object op dat behoort tot het meegegeven id
-            * \param kamerId het id van de geselecteerde kamer
-            * \return de geselecteerde kamer in een panel
+            * haalt het kamertype object op dat behoort tot het meegegeven id
+            * \param kamerTypeId het id van het geselecteerde kamertype
+            * \return de geselecteerde kamertype in een panel
             */
           $.ajax({type : "GET",
-            url : site_url + "/kamer/haalKamer",
-            data : { kamerId : kamerId },
+            url : site_url + "/kamertype/haalKamertype",
+            data : { kamerTypeId : kamerTypeId },
             success : function(result){
                 $("#panel").show();
                 $("#resultaat").html(result);
@@ -20,7 +20,7 @@
                 attach_click();
                 // Geef de verwijder knop van het modalvenster het id van de te verwijderen kamer mee
                 resultaat = $(result).find("#id").attr("value");
-                $("#kamerid").html(resultaat);
+                $("#kamertypeid").html(resultaat);
              
             },
             error: function (xhr, status, error) {
@@ -29,15 +29,15 @@
           });
         }
 
-        function verwijderKamer(id) 
+        function verwijderKamertype(id) 
         {
             /**
-            * Verwijderd te kamer die behoort tot het meegegeven id
-            * \param id het id van de te verwijderen kamer als int
-            * \return een leeg kamer object als de kamer verwijderd kon worden, anders geef een foutmelding
+            * Verwijderd het kamertype die behoort tot het meegegeven id
+            * \param id het id van de te verwijderen kamertype als int
+            * \return een leeg kamertype object als het kamertype verwijderd kon worden, anders geef een foutmelding
             */
             $.ajax({type: "GET",
-                url: site_url + "/kamer/verwijderKamer",
+                url: site_url + "/kamertype/verwijderKamertype",
                 data: {id: id},
                 dataType: "json",
                 success: function (result) {
@@ -54,17 +54,17 @@
             });
         }
 
-        function schrijfKamer()
+        function schrijfKamertype()
         {
             /**
-            * Update of insert een kamerobject
-            * \param id het id van de te verwijderen kamer als int
+            * Update of insert een kamertypeobject
+            * \param id het id van het te verwijderen kamertype als int
             * \return een melding dat de gegevens succesvol zijn opgeslagen
             */
             var dataString = $("#JqAjaxForm").serialize();
             console.log(dataString) 
             $.ajax({type: "POST",
-                url: site_url + "/kamer/schrijfJSONObject",
+                url: site_url + "/kamertype/schrijfJSONObject",
                 data: dataString,
                 dataType: "json",
                 success: function (result) {
@@ -79,7 +79,7 @@
         function attach_click() {
           $("#opslaan").click(function (e) {
             e.preventDefault();
-            schrijfKamer();
+            schrijfKamertype();
           });
 
           $(".verwijder").click(function (e) {
@@ -90,25 +90,25 @@
 
           $(".opslaan").click(function(e){
             
-            schrijfKamer();
+            schrijfKamertype();
         })
         }
 
     $(document).ready(function(){
         $("#panel").hide();
 
-        $("#kamer").change(function() {
-            haalKamer($(this).val());
+        $("#kamertype").change(function() {
+            haalKamertype($(this).val());
         });
 
         $(".delete").click(function (e) {
             e.preventDefault();
-            var id = $("#kamerid").html();
-            verwijderKamer(id);
+            var id = $("#kamertypeid").html();
+            verwijderKamertype(id);
         });
 
         $("#nieuw").click(function (e){
-            haalKamer(-1);
+            haalKamertype(-1);
         });
     });
 </script>
@@ -116,8 +116,8 @@
 
 <?php 
 $options = array();
-foreach($kamers as $kamer){
-	$options[$kamer->id] ="$kamer->naam";
+foreach($types as $type){
+	$options[$type->id] ="$type->omschrijving";
 }
 ?>
 
@@ -126,10 +126,10 @@ foreach($kamers as $kamer){
     <div  class="col-lg-4" >
         <div id="reload">
         <p>
-            <?php echo form_dropdown('kamer', $options, '0', 'id="kamer" size="10" class="form-control"');?>
+            <?php echo form_dropdown('kamertype', $options, '0', 'id="kamertype" size="10" class="form-control"');?>
         </p>
         </div>
-        <p  id="nieuw" class="btn btn-primary">Nieuw</p>
+        <p  id="nieuw" class="btn btn-warning">Nieuw</p>
         </br></br>
     </div>
 
@@ -156,7 +156,7 @@ foreach($kamers as $kamer){
               </div>
               <div class="modal-body">
                   <p>
-                      Weet je zeker dat je deze kamer wil verwijderen?
+                      Weet je zeker dat je dit kamertype wil verwijderen?
                   </p>
                   <p hidden id="kamerid">
                   </p>
@@ -181,7 +181,7 @@ foreach($kamers as $kamer){
               </div>
               <div class="modal-body">
                   <p>
-                      Je kan deze kamer niet verwijderen omdat er nog boekingen aan verbonden zijn.
+                      Je kan dit kamertype niet verwijderen omdat er nog kamers aan verbonden zijn.
                   </p>
                 
                   </p>
@@ -206,5 +206,5 @@ echo "</tbody></table>";
 
 
 <p>
-  <a id="terug" class="btn btn-secondary" href="javascript:history.go(-1);">Terug</a>
+  <a id="terug" class="btn btn-warning" href="javascript:history.go(-1);">Terug</a>
 </p>

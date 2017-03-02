@@ -9,12 +9,12 @@ class Faciliteit_model extends CI_Model {
     function get($id) {
         $this->db->where('id', $id);
         $query = $this->db->get('faciliteit');
-        return $query->row();                 // genereert een faciliteit object
+        return $query->row();                 /**< genereert een faciliteit object */
     }
 
     function getAll() {
-        $query = $this->db->get('faciliteit');  // genereert SELECT * FROM persoon
-        return $query->result();             // een array met faciliteit-objecten
+        $query = $this->db->get('faciliteit');  /**< genereert SELECT * FROM persoon */
+        return $query->result();             /**< een array met faciliteit-objecten */
     }
 
     function insert($faciliteit) {
