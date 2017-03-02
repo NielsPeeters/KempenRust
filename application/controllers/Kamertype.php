@@ -17,16 +17,16 @@ class Kamertype extends CI_Controller {
         $data['user'] = $this->authex->getUserInfo();
         
            //model inladen
-        $this->load->model('Typekamer_model');
-        $data['types'] = $this->Typekamer_model->getAll();
+        $this->load->model('KamerType_model');
+        $data['types'] = $this->KamerType_model->getAll();
 
         $partials = array('navbar' => 'main_navbar', 'content' => 'admin/kamertype/kamertype_lijst', 'footer'=>'main_footer');
         $this->template->load('main_master', $partials, $data);
     }
     
     public function overzicht() {
-        $this->load->model('Typekamer_model');
-        $data['types'] = $this->Typekamer_model->getAll();
+        $this->load->model('KamerType_model');
+        $data['types'] = $this->KamerType_model->getAll();
 
         $this->load->view('admin/kamertype/kamertype_lijst', $data);
     }
@@ -35,11 +35,11 @@ class Kamertype extends CI_Controller {
         $kamertype->id = $this->input->post('id');
         $kamertype->omschrijving = $this->input->post('omschrijving');
 
-        $this->load->model('Typekamer_model');
+        $this->load->model('KamerType_model');
         if ($kamertype->id == 0) {
-            $id = $this->Typekamer_model->insert($kamertype);
+            $id = $this->KamerType_model->insert($kamertype);
         } else {
-            $this->Typekamer_model->update($kamertype);
+            $this->KamerType_model->update($kamertype);
         }
 
         echo $id;
@@ -47,16 +47,16 @@ class Kamertype extends CI_Controller {
     
      public function detail() {
         $id = $this->input->get('id');
-        $this->load->model('Typekamer_model');
-        $kamertype = $this->Typekamer_model->get($id);
+        $this->load->model('KamerType_model');
+        $kamertype = $this->KamerType_model->get($id);
         echo json_encode($kamertype);
     }
 
     public function delete() {
         $id = $this->input->post('id');
 
-        $this->load->model('Typekamer_model');
-        $deleted = $this->Typekamer_model->delete($id);
+        $this->load->model('KamerType_model');
+        $deleted = $this->KamerType_model->delete($id);
 
         echo $deleted;
     }
