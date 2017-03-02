@@ -3,6 +3,9 @@
 class Kamer_model extends CI_Model {
 
     function __construct() {
+         /**
+        * standaard model constructor
+        */
         parent::__construct();
     }
 

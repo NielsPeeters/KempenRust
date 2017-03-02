@@ -2,17 +2,17 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script>
  $(document).ready(function(){
-    $('.pause').click(function(e){
+    $('.opslaan').click(function(e){
+        /**
+        *Bij een klik op de opslaan knop wordt het form gevalideert.
+        */
         $('#myForm').validator();
     });
  });
 
 
 </script>
-<?php echo javascript("validator.js");
-//$attributes = array('name' => 'myform','id'=>'JqAjaxForm');
-//echo form_open('kamer/schrijfJSONObject', $attributes);
-?>
+<?php echo javascript("validator.js");?>
 
 <form name='myform' id='JqAjaxForm'>
     <div class="form-group">
@@ -22,8 +22,8 @@
     </br>
 
     <div class="form-group">
-        <label for="aantalpersonen" class="control-label">Maximum aantal personen</label>
-        <?php echo form_input(array('type' => 'number', 'name' => 'aantalpersonen', 'id' => 'aantalpersonen', 'value' => $kamer->aantalPersonen, 'class' => 'form-control', 'placeholder' => 'Aantalpersonen', 'required' => 'required'));?>
+        <label for="aantalPersonen" class="control-label">Maximum aantal personen</label>
+        <?php echo form_input(array('type' => 'number', 'name' => 'aantalPersonen', 'id' => 'aantalPersonen', 'value' => $kamer->aantalPersonen, 'class' => 'form-control', 'placeholder' => 'Max. aantal personen', 'required' => 'required'));?>
         </br>
     </div>
 
@@ -40,14 +40,14 @@
     </br>
 
     <div class="form-group">
-        <label for="kamertype" class="control-label">Kamer type</label>
-        <select name="kamertype" class="form-control">
+        <label for="kamerType" class="control-label">Kamer type</label>
+        <select name="kamerType" class="form-control">
         <?php
             $value = $kamer->kamerTypeId;
-            foreach ($kamertypes as $kamertype) {
-                $type = $kamertype->id; ?>
-                <option value=<?php echo $type; ?> <?php echo set_select('kamertype', $type, $type === $value);?>>
-                <?php echo $kamertype->omschrijving;?>
+            foreach ($kamerTypes as $kamerType) {
+                $type = $kamerType->id; ?>
+                <option value=<?php echo $type; ?> <?php echo set_select('kamerType', $type, $type === $value);?>>
+                <?php echo $kamerType->omschrijving;?>
                 </option>
             <?php }?>
         </select>  
@@ -58,9 +58,9 @@
 
     <div class="help-block with-errors"></div>
     
-
-    <button type="button" data-id="' . $kamer->id . '" class="btn btn-warning verwijder">Verwijderen</button>
     <?php echo anchor('/home/index', '<p  id="annuleren" class="btn btn-secondary">Annuleren</p>'); ?>
+    <button type="button" data-id="' . $kamer->id . '" class="btn btn-warning verwijder">Verwijderen</button>
+   
     <button type="submit" data-id="' . $kamer->id . '" class="btn btn-primary opslaan">Opslaan</button>
 
 </div>

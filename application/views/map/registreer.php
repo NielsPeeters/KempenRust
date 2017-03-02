@@ -7,6 +7,9 @@
     });
 
     function checkemailVrij(emailVrij) {
+        /**
+        *Gaat na of het opgegeven email adres vrij is, zo niet wordt een label weergegeven.
+        */
         if (emailVrij === "0") {
             $('#labelEmail').show();
             $("body, html").animate({scrollTop: $('#labelEmail').offset().top}, 600);

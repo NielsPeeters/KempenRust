@@ -5,10 +5,9 @@
         function haalKamer (kamerId) 
         {
             /**
-            * \file
             * haalt het kamer object op dat behoort tot het meegegeven id
             * \param kamerId het id van de geselecteerde kamer
-            * \return de geselecteerde kamer in een panel
+            * de geselecteerde kamer wordt weergeven in een panel
             */
           $.ajax({type : "GET",
             url : site_url + "/kamer/haalKamer",
@@ -20,7 +19,7 @@
                 attach_click();
                 // Geef de verwijder knop van het modalvenster het id van de te verwijderen kamer mee
                 resultaat = $(result).find("#id").attr("value");
-                $("#kamerid").html(resultaat);
+                $("#kamerId").html(resultaat);
              
             },
             error: function (xhr, status, error) {
@@ -34,7 +33,7 @@
             /**
             * Verwijderd te kamer die behoort tot het meegegeven id
             * \param id het id van de te verwijderen kamer als int
-            * \return een leeg kamer object als de kamer verwijderd kon worden, anders geef een foutmelding
+            * een leeg kamer object genereren als de kamer verwijderd kan worden, anders geef een foutmelding
             */
             $.ajax({type: "GET",
                 url: site_url + "/kamer/verwijderKamer",
@@ -45,7 +44,7 @@
                         location.reload();
                     }
                     else{
-                        $("#verwijderfout").modal('show');
+                        $("#verwijderFout").modal('show');
                     }
                 },
                 error: function (xhr, status, error) {
@@ -59,7 +58,6 @@
             /**
             * Update of insert een kamerobject
             * \param id het id van de te verwijderen kamer als int
-            * \return een melding dat de gegevens succesvol zijn opgeslagen
             */
             var dataString = $("#JqAjaxForm").serialize();
             console.log(dataString) 
@@ -77,19 +75,19 @@
         }
 
         function attach_click() {
-          $("#opslaan").click(function (e) {
-            e.preventDefault();
-            schrijfKamer();
-          });
-
           $(".verwijder").click(function (e) {
+              /**
+              *Bij het klikken op verwijder wordt het verwijder modal getoont
+              */
             e.preventDefault();
             var id = $(this).data('id');
             $('#verwijderModal').modal('show');
           });
 
-          $(".opslaan").click(function(e){
-            
+          $(".opslaan").click(function(){
+            /**
+              *Bij het klikken op opslaan wordt het kamer object opgeslagen
+              */
             schrijfKamer();
         })
         }
@@ -98,16 +96,25 @@
         $("#panel").hide();
 
         $("#kamer").change(function() {
+            /**
+            *Bij het veranderen van de geselecteerde kamer, veranderdt de info in het panel
+            */
             haalKamer($(this).val());
         });
 
         $(".delete").click(function (e) {
+            /**
+            *Bij het klikken op verwijder wordt het kamer object verwijderdt
+            */
             e.preventDefault();
-            var id = $("#kamerid").html();
+            var id = $("#kamerId").html();
             verwijderKamer(id);
         });
 
-        $("#nieuw").click(function (e){
+        $("#nieuw").click(function (){
+            /**
+            *Bij het klikken op nieuw wordt een nieuw kamer object opgehaald
+            */
             haalKamer(-1);
         });
     });
@@ -158,7 +165,7 @@ foreach($kamers as $kamer){
                   <p>
                       Weet je zeker dat je deze kamer wil verwijderen?
                   </p>
-                  <p hidden id="kamerid">
+                  <p hidden id="kamerId">
                   </p>
               </div>
               <div class="modal-footer">
@@ -171,7 +178,7 @@ foreach($kamers as $kamer){
 
   </div>
 
-    <div class="modal fade" id="verwijderfout" role="dialog">
+    <div class="modal fade" id="verwijderFout" role="dialog">
       <div class="modal-dialog">
           <!-- Modal content-->
           <div class="modal-content">
@@ -195,15 +202,7 @@ foreach($kamers as $kamer){
 
   </div>
 
-<?php
-
-echo "</tbody></table>";
-
-
-
-
-?>
-
+<?php echo "</tbody></table>";?>
 
 <p>
   <a id="terug" class="btn btn-secondary" href="javascript:history.go(-1);">Terug</a>
