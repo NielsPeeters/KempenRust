@@ -62,7 +62,7 @@
             var dataString = $("#JqAjaxForm").serialize();
             console.log(dataString) 
             $.ajax({type: "POST",
-                url: site_url + "/kamer/schrijfJSONObject",
+                url: site_url + "/kamer/schrijfKamer",
                 data: dataString,
                 dataType: "json",
                 success: function (result) {

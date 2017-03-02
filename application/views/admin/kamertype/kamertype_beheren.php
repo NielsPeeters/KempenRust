@@ -77,19 +77,19 @@
         }
 
         function attach_click() {
-          $("#opslaan").click(function (e) {
-            e.preventDefault();
-            schrijfKamertype();
-          });
-
           $(".verwijder").click(function (e) {
+              /**
+              *Bij het klikken op verwijder wordt het verwijder modal getoont
+              */
             e.preventDefault();
             var id = $(this).data('id');
             $('#verwijderModal').modal('show');
           });
 
-          $(".opslaan").click(function(e){
-            
+          $(".opslaan").click(function(){
+            /**
+              *Bij het klikken op opslaan wordt het kamertype object opgeslagen
+              */
             schrijfKamertype();
         })
         }
@@ -98,16 +98,25 @@
         $("#panel").hide();
 
         $("#kamertype").change(function() {
+            /**
+            *Bij het veranderen van de geselecteerde kamertype, veranderdt de info in het panel
+            */
             haalKamertype($(this).val());
         });
 
         $(".delete").click(function (e) {
+            /**
+            *Bij het klikken op verwijder wordt het kamertype object verwijderdt
+            */
             e.preventDefault();
             var id = $("#kamertypeid").html();
             verwijderKamertype(id);
         });
 
         $("#nieuw").click(function (e){
+             /**
+            *Bij het klikken op nieuw wordt een nieuw kamertype object opgehaald
+            */
             haalKamertype(-1);
         });
     });
