@@ -38,8 +38,8 @@ class Kamer extends CI_Controller {
             $this->load->model('kamer_model');
             $data['kamer'] = $this->kamer_model->getWithKamerType($kamerId);
             }
-        $this->load->model('kamertype_model');
-        $data['kamertypes'] = $this->kamertype_model->getall();
+        $this->load->model('kamerType_model');
+        $data['kamertypes'] = $this->kamerType_model->getall();
         
         $this->load->view("map/ajax_kamer", $data);
     }
