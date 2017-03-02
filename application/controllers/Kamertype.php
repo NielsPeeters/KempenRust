@@ -36,8 +36,8 @@ class Kamertype extends CI_Controller {
         if ($kamerTypeId < 0) {
             $data['type'] = $this->getEmptyKamertype();
         } else {
-            $this->load->model('kamertype_model');
-            $data['type'] = $this->kamertype_model->get($kamerTypeId);
+            $this->load->model('kamerType_model');
+            $data['type'] = $this->kamerType_model->get($kamerTypeId);
         }
 
         $this->load->view("admin/kamertype/ajax_kamertype", $data);
