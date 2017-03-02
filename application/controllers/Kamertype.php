@@ -11,53 +11,76 @@ class Kamertype extends CI_Controller {
         $this->load->library('email');
     }
     
-    public function index() {
+        public function index() {
+        /**
+        * Laadt de pagina waarop je kamertypes kan beheren
+        * geeft een array van kamertype objecten mee
+        */
         $data['title'] = 'Kamertypes beheren';
-        $data['author'] = 'Tim Van de Voorde';
+        $data['author'] = 'Van de Voorde Tim';
         $data['user'] = $this->authex->getUserInfo();
-        
-           //model inladen
-        $this->load->model('KamerType_model');
-        $data['types'] = $this->KamerType_model->getAll();
 
-        $partials = array('navbar' => 'main_navbar', 'content' => 'admin/kamertype/kamertype_lijst', 'footer'=>'main_footer');
+        $this->load->model('kamertype_model');
+        $data['types'] = $this->kamertype_model->getAll();
+
+        $partials = array('navbar' => 'main_navbar', 'content' => 'admin/kamertype/kamertype_beheren', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data);
     }
-    
-    public function overzicht() {
-        $this->load->model('KamerType_model');
-        $data['types'] = $this->KamerType_model->getAll();
 
-        $this->load->view('admin/kamertype/kamertype_lijst', $data);
+    public function haalKamertype() {
+        /**
+        * haalt een kamertype object en alle kamertypes op
+        */
+        $kamerTypeId = $this->input->get('$kamerTypeId');
+        
+        $this->load->model('kamertype_model');
+        $data['types'] = $this->kamertype_model->getAll();
+        
+        $this->load->view("admin/kamertype/ajax_kamertype", $data);
     }
-    
-    public function update() {
-        $kamertype->id = $this->input->post('id');
-        $kamertype->omschrijving = $this->input->post('omschrijving');
 
-        $this->load->model('KamerType_model');
-        if ($kamertype->id == 0) {
-            $id = $this->KamerType_model->insert($kamertype);
-        } else {
-            $this->KamerType_model->update($kamertype);
-        }
-
-        echo $id;
-    }
-    
-     public function detail() {
+    public function verwijderKamertype(){
+        /**
+        * verwijderdt een kamertype object als hieraan geen kamers verbonden zijn
+        */
         $id = $this->input->get('id');
-        $this->load->model('KamerType_model');
-        $kamertype = $this->KamerType_model->get($id);
-        echo json_encode($kamertype);
+        $this->load->model('kamertype_model');
+        $result = $this->kamertype_model->getAllByType($id);
+        $size = count($result);
+        if ($size==0){
+            $this->load->model('kamertype_model');
+            $this->kamertype_model->delete($id);
+            echo 0;
+        }
+        else {echo 1;}
+        
+        
     }
 
-    public function delete() {
-        $id = $this->input->post('id');
+    public function schrijfJSONObject(){
+        /**
+        * haalt de waarden van het kamertype object op en update of insert deze in de database
+        */
+        $object = new stdClass();
+        $object->id = $this->input->post('id');
+        $object->omschrijving = $this->input->post('omschrijving');
+       
+        $this->load->model('kamertype_model');
+        if ($object->id == 0) {
+            $this->kamer_model->insert($object);
+        } else {
+            $this->kamer_model->update($object);
+        }
+        echo 0;
+    }
 
-        $this->load->model('KamerType_model');
-        $deleted = $this->KamerType_model->delete($id);
-
-        echo $deleted;
+    public function haalKamertypes(){
+        /**
+        * haalt kamertypes terug op
+        */
+        $this->load->model('kamertype_model');
+        $data['types']= $this->kamertype_model->getAll();
+        $this->load->view('admin/kamertype/ajax_kamertype', $data);
     }
 }
+
