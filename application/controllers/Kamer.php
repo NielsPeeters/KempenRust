@@ -27,7 +27,7 @@ class Kamer extends CI_Controller {
             $this->load->model('kamer_model');
             $data['kamers'] = $this->kamer_model->getAll();
 
-            $partials = array('navbar' => 'main_navbar', 'content' => 'map/kamer_beheren', 'footer' => 'main_footer');
+            $partials = array('navbar' => 'main_navbar', 'content' => 'admin/kamer/kamer_beheren', 'footer' => 'main_footer');
             $this->template->load('main_master', $partials, $data);
         } else {
             redirect("/home/index");
@@ -49,7 +49,7 @@ class Kamer extends CI_Controller {
         $this->load->model('kamerType_model');
         $data['kamerTypes'] = $this->kamerType_model->getall();
         
-        $this->load->view("map/ajax_kamer", $data);
+        $this->load->view("admin/kamer/ajax_kamer", $data);
     }
 
     public function verwijderKamer(){
@@ -86,7 +86,7 @@ class Kamer extends CI_Controller {
         return $kamer;
     }
 
-    public function schrijfJSONObject(){
+    public function schrijfKamer(){
         /**
         * Haalt de waarden van het kamer object op en update of insert deze in de database
         */

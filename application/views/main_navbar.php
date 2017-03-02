@@ -28,9 +28,11 @@
                             break;
                         case 2: // werknemer
                             echo '<li>' . anchor('#', 'werknemer') . '</li>';
+                            echo '<li>' . anchor('/boeking/index', 'Boekingen beheren') . '</li>';
                             break;
                         case 3: // eigenaar
                             echo '<li>' . anchor('#', 'eigenaar') . '</li>';
+                            echo '<li>' . anchor('/boeking/index', 'Boekingen beheren') . '</li>';
                             echo '<li>' . anchor('/kamer/index', 'Kamers beheren') . '</li>';
                             echo '<li>' . anchor('/kamertype/index', 'Kamertypes beheren') . '</li>';
                             break;
