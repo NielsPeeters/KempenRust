@@ -129,7 +129,7 @@ foreach($kamers as $kamer){
             <?php echo form_dropdown('kamer', $options, '0', 'id="kamer" size="10" class="form-control"');?>
         </p>
         </div>
-        <p  id="nieuw" class="btn btn-warning">Nieuw</p>
+        <p  id="nieuw" class="btn btn-primary">Nieuw</p>
         </br></br>
     </div>
 
@@ -206,5 +206,5 @@ echo "</tbody></table>";
 
 
 <p>
-  <a id="terug" class="btn btn-warning" href="javascript:history.go(-1);">Terug</a>
+  <a id="terug" class="btn btn-secondary" href="javascript:history.go(-1);">Terug</a>
 </p>
