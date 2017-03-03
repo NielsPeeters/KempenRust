@@ -57,8 +57,8 @@ class Kamer extends CI_Controller {
         * Verwijderdt een kamer object als hieraan geen boekingen verbonden zijn
         */
         $id = $this->input->get('id');
-        $this->load->model('kamerboeking_model');
-        $result = $this->kamerboeking_model->getAllByKamer($id);
+        $this->load->model('kamerBoeking_model');
+        $result = $this->kamerBoeking_model->getAllByKamer($id);
         $size = count($result);
         if ($size==0){
             $this->load->model('kamer_model');
@@ -103,7 +103,7 @@ class Kamer extends CI_Controller {
         } else {
             $this->kamer_model->update($object);
         }
-        echo 0;
+        redirect('kamer/index');
     }
 
 

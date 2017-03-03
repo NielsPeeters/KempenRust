@@ -1,5 +1,5 @@
 <?php
-class KamerBoeking_model extends CI_Model {
+class kamerBoeking_model extends CI_Model {
 
     function __construct() {
         parent::__construct();
@@ -7,55 +7,55 @@ class KamerBoeking_model extends CI_Model {
 
     function get($id) {
         /**
-        *Geeft het kamerboeking object terug dat bij het id hoort.
-        *\param id het id van het te halen kamerboeking object
-        *\return een kamerboeking object
+        *Geeft het kamerBoeking object terug dat bij het id hoort.
+        *\param id het id van het te halen kamerBoeking object
+        *\return een kamerBoeking object
         */
         $this->db->where('id', $id);
-        $query = $this->db->get('kamerboeking');
-        return $query->row();                 // genereert een kamerboeking object
+        $query = $this->db->get('kamerBoeking');
+        return $query->row();                 // genereert een kamerBoeking object
     }
 
     function getAll() {
         /**
-        *Geeft een array terug met alle kamerboeking objecten.
-        *\return een array met kamerboeking objecten
+        *Geeft een array terug met alle kamerBoeking objecten.
+        *\return een array met kamerBoeking objecten
         */
-        $query = $this->db->get('kamerboeking');  // genereert SELECT * FROM kamerboeking
-        return $query->result();             // een array met kamerboeking-objecten
+        $query = $this->db->get('kamerBoeking');  // genereert SELECT * FROM kamerBoeking
+        return $query->result();             // een array met kamerBoeking-objecten
     }
 
-    function insert($kamerboeking) {
+    function insert($kamerBoeking) {
         /**
-        *Insert een kamerboeking object in de database.
-        *\param kamerboeking een kamerboeking object
-        *\return een kamerboeking object
+        *Insert een kamerBoeking object in de database.
+        *\param kamerBoeking een kamerBoeking object
+        *\return een kamerBoeking object
         */
-        $this->db->insert('kamerboeking', $kamerboeking);
+        $this->db->insert('kamerBoeking', $kamerBoeking);
         return $this->db->insert_id();
     }
 
-    function update($kamerboeking) {
+    function update($kamerBoeking) {
          /**
-        *Update een kamerboeking object in de database.
-        *\param kamerboeking een kamerboeking object
+        *Update een kamerBoeking object in de database.
+        *\param kamerBoeking een kamerBoeking object
         */
-        $this->db->where('id', $kamerboeking->id);
-        $this->db->update('kamerboeking', $kamerboeking);
+        $this->db->where('id', $kamerBoeking->id);
+        $this->db->update('kamerBoeking', $kamerBoeking);
     }
 
     function delete($id) {
         /**
-        * verwijderd het kamerboeking object dat bij het id hoort uit de database
-        * \param id het id van de geselecteerde kamerboeking
+        * verwijderd het kamerBoeking object dat bij het id hoort uit de database
+        * \param id het id van de geselecteerde kamerBoeking
         */
         $this->db->where('id', $id);
-        $this->db->delete('kamerboeking');
+        $this->db->delete('kamerBoeking');
     }
 
     function getAllByKamer($id) {
         $this->db->where('kamerId', $id);
-        $query = $this->db->get('kamerboeking');
+        $query = $this->db->get('kamerBoeking');
         return $query->result();
     }
 

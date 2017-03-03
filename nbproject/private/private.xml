@@ -2,6 +2,47 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/views/main_navbar.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/views/admin/kamertype/kamertype_beheren.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/config/autoload.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/models/Arrangement_model.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/assets/css/bootstrap-theme.css</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/models/Factuur_model.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/views/main_master.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/views/main_footer.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/models/Boeking_model.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/models/TypePersoon_model.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/config/database.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/models/KamerType_model.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/models/Menu_model.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/config/constants.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/views/map/registreer.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/controllers/Home.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/views/admin/kamertype/ajax_kamertype.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/models/Pension_model.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/index.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/controllers/Persoon.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/views/admin/faciliteit/ajax_faciliteit.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/models/Kamer_model.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/models/Extra_model.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/models/Prijs_model.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/models/Persoon_model.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/config/config.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/controllers/Kamer.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/models/KamerBoeking_model.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/index.html</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/views/main_content.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/system/core/Loader.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/models/Faciliteit_model.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/views/map/arangementen.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/assets/css/bootstrap.css</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/models/SoortPrijs_model.php</file>
+            <file>file:/C:/Users/Timvd/Documents/PHP-project/tmk1617_pro05/application/controllers/Kamertype.php</file>
+        </group>
+>>>>>>> a3c17fbe8dc517c9d614dc33492513d79aa88d20
     </open-files>
 </project-private>
