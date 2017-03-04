@@ -29,7 +29,7 @@ class Home extends CI_Controller {
     {
         //Haalt post gegevens op en gebruikt deze om de gebruiker aan te melden en in de sessie variabelen te zetten.
         $email = $this->input->post('email');
-        $wachtwoord = $this->input->post('wachtwoord');
+        $wachtwoord = sha1($this->input->post('wachtwoord'));
         $this->authex->login($email, $wachtwoord);
         if ($this->authex->loggedIn())
         {
@@ -44,7 +44,8 @@ class Home extends CI_Controller {
     {
         //Beantwoord de het ajax aanmeld venster van de navigatiebalk.
         $email = $this->input->post('email');
-        $wachtwoord = $this->input->post('wachtwoord');
+        $wachtwoord = sha1($this->input->post('wachtwoord'));
+
         $this->load->model('Persoon_model');
 
         if($this->Persoon_model->getAccount($email, $wachtwoord) != null){

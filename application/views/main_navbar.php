@@ -18,8 +18,6 @@
             <!-- Linkse navbar -->
             <ul class="nav navbar-nav">
                 <?php // iedereen
-                echo '<li>' . anchor('/home/index', 'Index') . '</li>';    
-                echo '<li>' . anchor('#', 'iedereen') . '</li>';
                 if ($user == null) { // niet aangemeld
                 } else { // wel aangemeld
                     switch ($user->soort) {
@@ -30,12 +28,37 @@
                             echo '<li>' . anchor('#', 'werknemer') . '</li>';
                             echo '<li>' . anchor('/boeking/index', 'Boekingen beheren') . '</li>';
                             break;
-                        case 3: // eigenaar
-                            echo '<li>' . anchor('#', 'eigenaar') . '</li>';
-                            echo '<li>' . anchor('/boeking/index', 'Boekingen beheren') . '</li>';
-                            echo '<li>' . anchor('/kamer/index', 'Kamers beheren') . '</li>';
-                            echo '<li>' . anchor('/kamertype/index', 'Kamertypes beheren') . '</li>';
-                            echo '<li>' . anchor('/faciliteit/index', 'Faciliteiten beheren') . '</li>';
+                        case 3: // eigenaar ?>
+                            <!-- Kamers Dropdown -->
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Kamers<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <?php
+                                    echo '<li>' . anchor('/kamer/index', 'Kamers beheren') . '</li>';
+                                    echo '<li>' . anchor('/kamertype/index', 'Kamertypes beheren') . '</li>';
+                                    ?>
+                                </ul>
+                            </li>
+                            <!-- Boekingen Dropdown -->
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Boekingen<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <?php
+                                    echo '<li>' . anchor('/boeking/index', 'Boekingen beheren') . '</li>';
+                                    ?>
+                                </ul>
+                            </li>
+                            <!-- Facilitijten Dropdown -->
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Faciliteiten<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <?php
+                                    echo '<li>' . anchor('/faciliteit/index', 'Faciliteiten beheren') . '</li>';
+                                    ?>
+                                </ul>
+                            </li>
+                            <?php
+
                             break;
                     }
                 }
@@ -68,10 +91,11 @@ if($user == null){
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"> Aanmelden Hotelkempenrust</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    <h3 class="modal-title"> Aanmelden Hotelkempenrust</h3>
+
                 </div>
                 <?php // Open Form
                 $attributes = array('name' => 'navForm', 'id' => 'navForm');
@@ -87,7 +111,11 @@ if($user == null){
                         <?php echo form_input(array('type' => 'password', 'name' => 'wachtwoord', 'id' => 'wachtwoord', 'class' => 'form-control', 'placeholder' => 'Wachtwoord')); ?>
 
 
-                        <div id='error' class="alert alert-danger">Aanmelden mislukt, controleer uw aanmeldgegevens.</div>
+                        <div id='error' class="alert alert-danger alert-dismissable">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            Aanmelden mislukt, controleer uw aanmeldgegevens.
+                        </div>
+
                         <hr/>
                         <?php
                             echo anchor('/persoon/nieuw', 'Nieuwe gebruiker') . '<br/>';

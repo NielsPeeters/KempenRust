@@ -17,7 +17,9 @@
     <?php echo stylesheet("heroic-features.css"); ?>
     <!-- Buttons CSS -->
     <?php echo stylesheet("buttons.css"); ?>
-    
+    <!-- Custom CSS -->
+    <?php echo stylesheet("Custom.css"); ?>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -37,18 +39,19 @@
 
 <body>
     <?php echo $navbar ?>
-    
+
+    <!-- Page Title -->
+    <header class="jumbotron jumbotron-fluid">
+        <div class="row">
+            <div class=" text-center">
+                <h1><?php echo $title; ?></h1>
+            </div>
+        </div>
+    </header>
     <!-- Page Container -->
     <div class="container">
 
-        <!-- Page Title -->
-        <header class="jumbotron hero-spacer">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1><?php echo $title; ?></h1>
-                </div>
-            </div>
-        </header>
+
 
         <!-- Page Content -->
         <?php if (isset($nobox)) { ?>
@@ -70,10 +73,10 @@
         <?php } ?>
         <!-- /.row -->
 
-        <hr>
+        <hr/>
 
         <!-- Footer -->
-        <footer>
+        <footer >
             <?php echo $footer; ?>
         </footer>
     </div>

@@ -1,0 +1,111 @@
+/*Navbar Opmaak*/
+nav.navbar{
+    margin: 0px;
+}
+
+nav.navbar-default{
+    border-color: #146e28;
+}
+nav.navbar-default a.navbar-brand{
+    color: #146e28;
+}
+nav.navbar-default a.navbar-brand:hover{
+    color: #146e28;
+    font-size: large;
+    padding:13px;
+    border-top: 2px solid #146e28;
+    border-bottom: 2px solid #146e28;
+
+}
+
+nav.navbar-default ul.navbar-nav > li > a:link{
+    color: #146e28;
+}
+nav.navbar-default ul.navbar-nav > li > a:visited{
+    color: #146e28;
+}
+nav.navbar-default ul.navbar-nav > li > a:hover{
+    color: #146e28;
+    font-size: large;
+    padding:13px;
+    border-top: 2px solid #146e28;
+    border-bottom: 2px solid #146e28;
+}
+nav.navbar-default ul.navbar-nav > li > a:active{
+    color: #146e28;
+    font-size: large;
+    padding:13px;
+    border-top: 2px solid #146e28;
+    border-bottom: 2px solid #146e28;
+}
+
+/*Dropdown*/
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{
+    color: #146e28;
+    font-size: large;
+    padding:13px;
+    border-top: 2px solid #146e28;
+    border-bottom: 2px solid #146e28;
+}
+
+.navbar-default button.navbar-toggle {
+   border-color: #146e28;
+}
+
+ul.dropdown-menu{
+    padding:0px;
+}
+ul.dropdown-menu > li > a{
+    color: #146e28;
+}
+ul.dropdown-menu > li > a:hover{
+    color: #146e28;
+    font-size: large;
+    padding:13px;
+    border-top: 2px solid #146e28;
+    border-bottom: 2px solid #146e28;
+}
+
+nav.navbar-fixed-top{
+    border-width:0 0 2px;
+}
+
+header.jumbotron {
+    padding: 0px;
+
+}
+header.jumbotron-fluid{
+    padding: 0px;
+    border-bottom: 2px solid #146e28;
+}
+
+body{
+    padding-top: 40px;
+}
+ /* Login modal*/
+#error{
+    margin:10px 0 10px 0;
+}
+/*Algemene content Opmaak*/
+div.thumbnail{
+    border-color: #146e28;
+}
+
+select.form-control{
+    border-color: #146e28;
+}
+
+*{
+    border-color: #146e28;
+}
+
+/*Footer Opmaak*/
+footer{
+    text-align: center;
+    background-color: #fff;
+}
+
+div > hr{
+    border-top:1px solid #146e28;
+    margin:3px;
+}

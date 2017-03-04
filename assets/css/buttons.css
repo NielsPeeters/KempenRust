@@ -18,3 +18,13 @@
     width: 24px;
     height: 24px;
 }
+
+.btn-primary{
+    background-color: #146e28;
+}
+.btn.btn-primary{
+    background-color: #146e28;
+}
+button.btn.btn-primary{
+    background-color: #146e28;
+}
