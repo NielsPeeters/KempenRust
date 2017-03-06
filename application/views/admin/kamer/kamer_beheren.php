@@ -62,6 +62,10 @@
             var id = $(this).data('id');
             $('#verwijderModal').modal('show');
           });
+
+          $(".annuleren").click(function(){
+            $("#panel").hide();
+          });
         }
 
     $(document).ready(function(){

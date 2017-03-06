@@ -54,9 +54,9 @@ echo form_open('kamer/schrijfKamer', $attributes);
 
     <div class="help-block with-errors"></div>
     
-    <?php echo anchor('/home/index', '<p  id="annuleren" class="btn btn-secondary">Annuleren</p>'); ?>
+    
+    <button type="button" class="btn btn-secondary annuleren">Annuleren</button>
     <button type="button" data-id="' . $kamer->id . '" class="btn btn-warning verwijder">Verwijderen</button>
-   
     <button type="submit" data-id="' . $kamer->id . '" class="btn btn-primary opslaan">Opslaan</button>
 
 </div>
