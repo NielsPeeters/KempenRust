@@ -14,7 +14,7 @@ echo javascript("validator.js");
 //$attributes = array('name' => 'myform','id'=>'JqAjaxForm');
 //echo form_open('kamertype/schrijfJSONObject', $attributes);
 ?>
-<?php var_dump($type) ?>
+
 <form name='myform' id='JqAjaxForm'>
     <div class="form-group">
         <label for="omschrijving" class="control-label">Omschrijving</label>
