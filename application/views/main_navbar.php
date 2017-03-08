@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
             </button>
             <?php // iedereen
-                echo  anchor('/home/index', 'HotelKempenrust','class="navbar-brand"');
+                echo  anchor('/home/index', image("logo.PNG",'class="navbar-brand-img"'),'class="navbar-brand"');
             ?>
 
         </div>

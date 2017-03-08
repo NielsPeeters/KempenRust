@@ -39,6 +39,9 @@ nav.navbar-default ul.navbar-nav > li > a:active{
     border-bottom: 2px solid #146e28;
 }
 
+.navbar-brand-img{
+    height:33px;
+}
 /*Dropdown*/
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{
     color: #146e28;
@@ -82,10 +85,12 @@ header.jumbotron-fluid{
 body{
     padding-top: 40px;
 }
- /* Login modal*/
+
+/* Login modal*/
 #error{
     margin:10px 0 10px 0;
 }
+
 /*Algemene content Opmaak*/
 div.thumbnail{
     border-color: #146e28;
@@ -95,17 +100,38 @@ select.form-control{
     border-color: #146e28;
 }
 
-*{
-    border-color: #146e28;
-}
-
-/*Footer Opmaak*/
-footer{
-    text-align: center;
-    background-color: #fff;
-}
-
 div > hr{
     border-top:1px solid #146e28;
     margin:3px;
 }
+
+*{
+    border-color: #146e28;
+}
+
+#header{
+    margin-top: 50px;
+}
+
+/*Footer Opmaak*/
+
+footer{
+    margin-bottom: 0px;
+    padding:5px;
+    text-align: left;
+    color: #146e28;
+    border-top: 2px solid #146e28;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height:70px;
+}
+
+html{ height:94.5%; }
+body{ min-height:100%; padding:0; margin:0; position:relative; }
+
+body::after{ content:''; display:block; height:100px; }
+.footer-Right{
+    text-align: right;
+}
+

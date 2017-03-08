@@ -17,7 +17,7 @@ class Home extends CI_Controller {
 	        //Laad de thuis pagina
             $data['title']  = 'Dit is de $data[\'title\'] = "xxx"';
             $data['nobox'] = true;      // geen extra rand rond hoofdmenu
-            $data['author'] = 'Niels Peeters';
+            $data['author'] = 'Peeters Niels';
             $data['user'] = $this->authex->getUserInfo();
 
             //main_content moet vervangen worden naar map/arangementen bij finale afwerking!

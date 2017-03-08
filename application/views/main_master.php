@@ -2,7 +2,6 @@
 <html lang="nl">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,11 +19,13 @@
     <!-- Custom CSS -->
     <?php echo stylesheet("Custom.css"); ?>
 
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
     <?php echo javascript("jquery-3.1.0.min.js"); ?>
@@ -34,53 +35,51 @@
         var site_url = '<?php echo site_url(); ?>';
         var base_url = '<?php echo base_url(); ?>';
     </script>
-
 </head>
 
 <body>
-    <?php echo $navbar ?>
+<?php echo $navbar ?>
 
-    <!-- Page Title -->
-    <header class="jumbotron jumbotron-fluid">
+<!-- Page Title -->
+<header class="jumbotron jumbotron-fluid">
+    <div id="header" class="container">
         <div class="row">
-            <div class=" text-center">
+            <div class="text-center">
                 <h1><?php echo $title; ?></h1>
             </div>
         </div>
-    </header>
-    <!-- Page Container -->
-    <div class="container">
+    </div>
+</header>
+<!-- Page Container -->
+<div class="container">
 
-
-
-        <!-- Page Content -->
-        <?php if (isset($nobox)) { ?>
-            <div class="row text-center">
-                <?php echo $content; ?>
-            </div>
-        <?php } else { ?>
-            <div class="row">
-                <div class="col-lg-12 hero-feature">
-                    <div class="thumbnail" style="padding: 20px">
-                        <div class="caption">
-                            <p>
-                                <?php echo $content; ?>
-                            </p>
-                        </div>
+    <!-- Page Content -->
+    <?php if (isset($nobox)) { ?>
+        <div class="row text-center">
+            <?php echo $content; ?>
+        </div>
+    <?php } else { ?>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="thumbnail" style="padding: 20px">
+                    <div class="caption">
+                        <p>
+                            <?php echo $content; ?>
+                        </p>
                     </div>
                 </div>
-            </div>        
-        <?php } ?>
-        <!-- /.row -->
+            </div>
+        </div>
+    <?php } ?>
+</div>
 
-        <hr/>
 
-        <!-- Footer -->
-        <footer >
-            <?php echo $footer; ?>
-        </footer>
-    </div>
-    <!-- /.container -->
+<!-- Footer -->
+<footer class="footer">
+    <?php echo $footer; ?>
+</footer>
+
+<!-- /.container -->
 
 </body>
 
