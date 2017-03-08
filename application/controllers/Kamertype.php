@@ -62,8 +62,8 @@ class Kamertype extends CI_Controller {
          * verwijderdt een kamertype object als hieraan geen kamers verbonden zijn
          */
         $id = $this->input->get('id');
-        $this->load->model('kamerType_model');
-        $result = $this->kamerType_model->getAllByType($id);
+        $this->load->model('kamer_model');
+        $result = $this->kamer_model->getAllByType($id);
         $size = count($result);
         if ($size == 0) {
             $this->load->model('kamerType_model');
