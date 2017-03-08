@@ -93,8 +93,8 @@ class Persoon extends CI_Controller {
         $persoon->telefoon = $this->input->post('telefoon');
         $persoon->soort = "1";
         $wachtwoord = $this->input->post('wachtwoord');
-        $persoon->id = $this->authex->register($persoon->email, $persoon);
         $persoon->wachtwoord=sha1($wachtwoord);
+        $persoon->id = $this->authex->register($persoon->email, $persoon);
         $this->emailVrij($persoon);
     }
 
