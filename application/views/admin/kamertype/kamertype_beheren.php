@@ -14,8 +14,6 @@
             url : site_url + "/kamertype/haalKamertype",
             data : { kamerTypeId : kamerTypeId },
             success : function(result){
-                
-                console.log(result);
                 $("#panel").show();
                 $("#resultaat").html(result);
                 // click aan opslaan en verwijderen hangen als die er zijn
@@ -86,6 +84,10 @@
             e.preventDefault();
             var id = $(this).data('id');
             $('#verwijderModal').modal('show');
+          });
+          
+           $(".annuleren").click(function(){
+            $("#panel").hide();
           });
 
           $(".opslaan").click(function(){

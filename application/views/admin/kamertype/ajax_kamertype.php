@@ -14,7 +14,7 @@ echo javascript("validator.js");
 //$attributes = array('name' => 'myform','id'=>'JqAjaxForm');
 //echo form_open('kamertype/schrijfJSONObject', $attributes);
 ?>
-<?php var_dump($type)?>
+<?php var_dump($type) ?>
 <form name='myform' id='JqAjaxForm'>
     <div class="form-group">
         <label for="omschrijving" class="control-label">Omschrijving</label>
@@ -26,9 +26,8 @@ echo javascript("validator.js");
 
     <div class="help-block with-errors"></div>
 
-
+    <button type="button" class="btn btn-secondary annuleren">Annuleren</button>
     <button type="button" data-id="' . $type->id . '" class="btn btn-warning verwijder">Verwijderen</button>
-    <?php echo anchor('/home/index', '<p  id="annuleren" class="btn btn-secondary">Annuleren</p>'); ?>
     <button type="submit" data-id="' . $type->id . '" class="btn btn-primary opslaan">Opslaan</button>
 </div>
 </form>
