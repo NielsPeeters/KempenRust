@@ -32,7 +32,7 @@ class kamerType_model extends CI_Model {
         *\param kamertype een kamertype object
         *\return een kamertype object
         */
-        $this->db->insert('kamerType', $prijs);
+        $this->db->insert('kamerType', $kamerType);
         return $this->db->insert_id();
     }
 
@@ -41,7 +41,7 @@ class kamerType_model extends CI_Model {
         *Update een kamertype object in de database.
         *\param kamertype een kamertype object
         */
-        $this->db->where('id', $prijs->id);
+        $this->db->where('id', $kamerType->id);
         $this->db->update('kamerType', $kamerType);
     }
 
