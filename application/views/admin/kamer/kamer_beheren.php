@@ -166,8 +166,6 @@ foreach($kamers as $kamer){
                   <p>
                       Je kan deze kamer niet verwijderen omdat er nog boekingen aan verbonden zijn.
                   </p>
-                
-                  </p>
               </div>
               <div class="modal-footer">
                   <button type="button" data-dismiss="modal" class="btn">Oke</button>

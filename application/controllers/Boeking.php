@@ -46,7 +46,8 @@ class Boeking extends CI_Controller {
             $this->load->model('boeking_model');
             $data['boeking']= $this->boeking_model->getBoekingWithAll($boekingId);
             }
-            
+        $this->load->model('kamerType_model');
+        $data['kamerTypes'] = $this->kamerType_model->getall();
         $this->load->model('arrangement_model');
         $data['arrangementen'] = $this->arrangement_model->getall();
 
