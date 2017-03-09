@@ -17,7 +17,7 @@ class Persoon extends CI_Controller {
         $this->load->model('persoon_model');
         $data['personen'] = $this->persoon_model->getAll();
 
-        $partials = array('header' => 'main_header', 'content' => 'map/persoon_lijst');
+        $partials = array('header' => 'main_header', 'content' => 'gebruiker/persoon_lijst');
         $this->template->load('main_master', $partials, $data);
     }
 
@@ -44,7 +44,7 @@ class Persoon extends CI_Controller {
         $data['persoon'] = $this->getEmptyPersoon();
         $data['title'] = 'Persoon toevoegen';
 
-        $partials = array('header' => 'main_header', 'content' => 'map/persoon_lijst');
+        $partials = array('header' => 'main_header', 'content' => 'gebruiker/persoon_lijst');
         $this->template->load('main_master', $partials, $data);
     }
 
@@ -53,7 +53,7 @@ class Persoon extends CI_Controller {
         $data['persoon'] = $this->persoon_model->update($id);
         $data['title'] = 'Persoon wijzigen';
 
-        $partials = array('header' => 'main_header', 'content' => 'map/persoon_lijst');
+        $partials = array('header' => 'main_header', 'content' => 'gebruiker/persoon_lijst');
         $this->template->load('main_master', $partials, $data);
     }
 
@@ -68,7 +68,7 @@ class Persoon extends CI_Controller {
       $persoonId = $this->input->get('persoonId');
       $this->load->model('persoon_model');
       $data['persoon']= $this->persoon_model->get($persoonId);
-      $this->load->view("map/ajax_persoon", $data);
+      $this->load->view("gebruiker/ajax_persoon", $data);
     }
 
     public function verwijderPersoon()
@@ -92,8 +92,7 @@ class Persoon extends CI_Controller {
         $persoon->postcode = $this->input->post('postcode');
         $persoon->telefoon = $this->input->post('telefoon');
         $persoon->soort = "1";
-        $wachtwoord = $this->input->post('wachtwoord');
-        $persoon->wachtwoord=sha1($wachtwoord);
+        $persoon->wachtwoord = sha1($this->input->post('wachtwoord'));
         $persoon->id = $this->authex->register($persoon->email, $persoon);
         $this->emailVrij($persoon);
     }
@@ -115,7 +114,7 @@ class Persoon extends CI_Controller {
             $data['title']= 'Registeer';
             $data['author'] = 'Laenen Nathalie';
             $data['user'] = $this->authex->getUserInfo();
-            $partials = array('navbar' => 'main_navbar','content' => 'map/registreer','footer'=>'main_footer');
+            $partials = array('navbar' => 'main_navbar','content' => 'gebruiker/registreer','footer'=>'main_footer');
             $this->template->load('main_master', $partials, $data);
         }
 
@@ -125,7 +124,7 @@ class Persoon extends CI_Controller {
         $data['emailVrij']="1"; //email niet in gebruik
         $data['author'] = 'Laenen Nathalie';
         $data['user'] = $this->authex->getUserInfo();
-        $partials = array('navbar' => 'main_navbar','content' => 'map/registreer','footer'=>'main_footer');
+        $partials = array('navbar' => 'main_navbar','content' => 'gebruiker/registreer','footer'=>'main_footer');
         $this->template->load('main_master', $partials, $data);
     }
 
