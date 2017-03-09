@@ -74,7 +74,7 @@
             /**
             *Bij het veranderen van de geselecteerde menu, verandert de info in het panel
             */
-            haalFaciliteit($(this).val());
+            haalMenu($(this).val());
         });
 
         $(".delete").click(function (e) {
