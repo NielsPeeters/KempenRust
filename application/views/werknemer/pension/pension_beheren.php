@@ -2,24 +2,24 @@
 /**
 * \file
 */
-        function haalboeking (boekingId) 
+        function haalPension (pensionId) 
         {
             /**
-            * haalt het boeking object op dat behoort tot het meegegeven id
-            * \param boekingId het id van de geselecteerde boeking
-            * de geselecteerde boeking wordt weergeven in een panel
+            * haalt het pension object op dat behoort tot het meegegeven id
+            * \param pensionId het id van de geselecteerde pension
+            * de geselecteerde pension wordt weergeven in een panel
             */
           $.ajax({type : "GET",
-            url : site_url + "/boeking/haalboeking",
-            data : { boekingId : boekingId },
+            url : site_url + "/pension/haalPension",
+            data : { pensionId : pensionId },
             success : function(result){
                 $("#panel").show();
                 $("#resultaat").html(result);
                 // click aan opslaan en verwijderen hangen als die er zijn
                 attach_click();
-                // Geef de verwijder knop van het modalvenster het id van de te verwijderen boeking mee
+                // Geef de verwijder knop van het modalvenster het id van de te verwijderen pension mee
                 resultaat = $(result).find("#id").attr("value");
-                $("#boekingId").html(resultaat);
+                $("#pensionId").html(resultaat);
              
             },
             error: function (xhr, status, error) {
@@ -28,23 +28,20 @@
           });
         }
 
-        function verwijderboeking(id) 
+        function verwijderPension(id) 
         {
             /**
-            * Verwijderd te boeking die behoort tot het meegegeven id
-            * \param id het id van de te verwijderen boeking als int
-            * een leeg boeking object genereren als de boeking verwijderd kan worden, anders geef een foutmelding
+            * Verwijderd te pension die behoort tot het meegegeven id
+            * \param id het id van de te verwijderen pension als int
+            * een leeg pension object genereren als de pension verwijderd kan worden, anders geef een foutmelding
             */
             $.ajax({type: "GET",
-                url: site_url + "/boeking/verwijderboeking",
+                url: site_url + "/pension/verwijderPension",
                 data: {id: id},
                 dataType: "json",
                 success: function (result) {
                     if(result==0){
                         location.reload();
-                    }
-                    else{
-                        $("#verwijderFout").modal('show');
                     }
                 },
                 error: function (xhr, status, error) {
@@ -52,8 +49,6 @@
                 }
             });
         }
-
-       
 
         function attach_click() {
           $(".verwijder").click(function (e) {
@@ -65,66 +60,63 @@
             $('#verwijderModal').modal('show');
           });
 
+          $(".annuleren").click(function(){
+            $("#panel").hide();
+          });
         }
 
     $(document).ready(function(){
         $("#panel").hide();
 
-        $("#boeking").change(function() {
+        $("#pension").change(function() {
             /**
-            *Bij het veranderen van de geselecteerde boeking, veranderdt de info in het panel
+            *Bij het veranderen van de geselecteerde pension, veranderdt de info in het panel
             */
-            haalboeking($(this).val());
+            haalPension($(this).val());
         });
 
         $(".delete").click(function (e) {
             /**
-            *Bij het klikken op verwijder wordt het boeking object verwijderdt
+            *Bij het klikken op verwijder wordt het pension object verwijderdt
             */
             e.preventDefault();
-            var id = $("#boekingId").html();
-            verwijderboeking(id);
+            var id = $("#pensionId").html();
+            verwijderPension(id);
         });
 
         $("#nieuw").click(function (){
             /**
-            *Bij het klikken op nieuw wordt een nieuw boeking object opgehaald
+            *Bij het klikken op nieuw wordt een nieuw pension object opgehaald
             */
-            haalboeking(-1);
+            haalPension(-1);
         });
-
     });
 </script>
 
 
 <?php 
 $options = array();
-foreach($boekingen as $boeking){
-    $naam = $boeking->persoon->naam ." ". $boeking->persoon->voornaam." | " . $boeking->arrangement . " | ". $boeking->startDatum 
-    . " tot ". $boeking->eindDatum ;
-	$options[$boeking->id] = $naam;
+foreach($pensions as $pension){
+	$options[$pension->id] ="$pension->naam";
 }
 ?>
 
 
 <div class="row">
-    <div  class="col-lg-5" >
+    <div  class="col-lg-4" >
         <div id="reload">
         <p>
-            <?php echo form_dropdown('boeking', $options, '0', 'id="boeking" size="10" class="form-control"');?>
+            <?php echo form_dropdown('pension', $options, '0', 'id="pension" size="10" class="form-control"');?>
         </p>
         </div>
         <p  id="nieuw" class="btn btn-primary">Nieuw</p>
         </br></br>
     </div>
 
-  <div class="col-lg-7">
+  <div class="col-lg-8">
     <div class="panel panel-default" id="panel">
-        <!--<div class="panel-heading">Details</div>-->
         <div class="panel-body">
-         
             <div id="resultaat"></div>
-        
         </div>
       </div>
     </div>
@@ -141,38 +133,14 @@ foreach($boekingen as $boeking){
               </div>
               <div class="modal-body">
                   <p>
-                      Weet je zeker dat je deze boeking wil verwijderen?
+                      Weet je zeker dat je deze pension wil verwijderen?
                   </p>
-                  <p hidden id="boekingId">
+                  <p hidden id="pensionId">
                   </p>
               </div>
               <div class="modal-footer">
                   <button type="button" data-dismiss="modal" class="btn btn-warning delete" id="id">Verwijderen</button>
                   <button type="button" data-dismiss="modal" class="btn">Annuleren</button>
-              </div>
-              
-          </div>
-      </div>
-
-  </div>
-
-    <div class="modal fade" id="verwijderFout" role="dialog">
-      <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-              <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Waarschuwing</h4>
-              </div>
-              <div class="modal-body">
-                  <p>
-                      Je kan deze boeking niet verwijderen omdat er nog boekingen aan verbonden zijn.
-                  </p>
-                
-                  </p>
-              </div>
-              <div class="modal-footer">
-                  <button type="button" data-dismiss="modal" class="btn">Oke</button>
               </div>
               
           </div>

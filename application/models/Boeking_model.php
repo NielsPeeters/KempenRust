@@ -64,10 +64,15 @@ class Boeking_model extends CI_Model {
         $boekingen = $query->result();
         
         $this->load->model('persoon_model');
-        
+        $this->load->model('kamerType_model');
+        $this->load->model('kamerBoeking_model');
+        $this->load->model('kamer_model');
+
         foreach ($boekingen as $boeking) {
             $boeking->persoon = $this->persoon_model->get($boeking->persoonId);
+            $boeking->kamerBoeking = $this->kamerBoeking_model->getWithBoeking($boeking->id);
         }
+
 
         $this->load->model('arrangement_model');
         foreach ($boekingen as $boeking) {
