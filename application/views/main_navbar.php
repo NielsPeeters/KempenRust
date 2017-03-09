@@ -50,10 +50,11 @@
                             </li>
                             <!-- Facilitijten Dropdown -->
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Faciliteiten<span class="caret"></span></a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Beheren<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <?php
                                     echo '<li>' . anchor('/faciliteit/index', 'Faciliteiten beheren') . '</li>';
+                                    echo '<li>' . anchor('/menu/index', 'Menu\'s beheren') . '</li>';
                                     ?>
                                 </ul>
                             </li>
