@@ -22,8 +22,8 @@ class Faciliteit_model extends CI_Model {
         return $this->db->insert_id();
     }
 
-    function update($extra) {
-        $this->db->where('id', $faciliteiten->id);
+    function update($faciliteit) {
+        $this->db->where('id', $faciliteit->id);
         $this->db->update('faciliteit', $faciliteit);
     }
 

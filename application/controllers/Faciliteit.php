@@ -56,9 +56,8 @@ class Faciliteit extends CI_Controller {
         $id = $this->input->get('id');
         $this->load->model('faciliteit_model');
         $this->faciliteit_model->delete($id);
+        
         echo 0;
-        
-        
     }
 
     function getEmptyFaciliteit() {

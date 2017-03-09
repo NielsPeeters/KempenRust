@@ -28,8 +28,8 @@ echo form_open('faciliteit/schrijfFaciliteit', $attributes);
     <div class="help-block with-errors"></div>
     
     <button type="button" class="btn btn-secondary annuleren">Annuleren</button>
-    <button type="button" data-id="' . $kamer->id . '" class="btn btn-warning verwijder">Verwijderen</button>
-    <button type="submit" data-id="' . $kamer->id . '" class="btn btn-primary opslaan">Opslaan</button>
+    <button type="button" data-id="' . $faciliteit->id . '" class="btn btn-warning verwijder">Verwijderen</button>
+    <button type="submit" data-id="' . $faciliteit->id . '" class="btn btn-primary opslaan">Opslaan</button>
 
 </div>
 </form>

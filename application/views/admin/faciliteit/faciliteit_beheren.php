@@ -2,7 +2,7 @@
 /**
 * \file
 */
-        function haalFaciliteit (faciliteitId) 
+        function haalFaciliteit(faciliteitId) 
         {
             /**
             * haalt het faciliteit object op dat behoort tot het meegegeven id
@@ -17,7 +17,7 @@
                 $("#resultaat").html(result);
                 // click aan opslaan en verwijderen hangen als die er zijn
                 attach_click();
-                // Geef de verwijder knop van het modalvenster het id van de te verwijderen faciliteit mee
+                // Geef de verwijder knop van het modalvenster het id van de te verwijderen kamer mee
                 resultaat = $(result).find("#id").attr("value");
                 $("#faciliteitId").html(resultaat);
              
@@ -33,7 +33,7 @@
             /**
             * Verwijdert de faciliteit die behoort tot het meegegeven id
             * \param id het id van de te verwijderen faciliteit als int
-            * een leeg faciliteit object genereren als de faciliteit verwijderd kan worden, anders geef een foutmelding
+            * een leeg faciliteit object genereren
             */
             $.ajax({type: "GET",
                 url: site_url + "/faciliteit/verwijderFaciliteit",
@@ -42,7 +42,6 @@
                 success: function (result) {
                     if(result==0){
                         location.reload();
-                        $("#verwijderFout").modal('show');
                     }
                 },
                 error: function (xhr, status, error) {
@@ -69,7 +68,7 @@
     $(document).ready(function(){
         $("#panel").hide();
 
-        $("#kamer").change(function() {
+        $("#faciliteit").change(function() {
             /**
             *Bij het veranderen van de geselecteerde faciliteit, verandert de info in het panel
             */
@@ -78,11 +77,11 @@
 
         $(".delete").click(function (e) {
             /**
-            *Bij het klikken op verwijder wordt het kamer object verwijderdt
+            *Bij het klikken op verwijder wordt het faciliteit object verwijderd
             */
             e.preventDefault();
-            var id = $("#faciliteitId").html();
-            verwijderFacilitieit(id);
+            var id = $("#id").val();
+            verwijderFaciliteit(id);
         });
 
         $("#nieuw").click(function (){
@@ -152,7 +151,7 @@ foreach($faciliteiten as $faciliteit){
 
   </div>
 
-    <div class="modal fade" id="verwijderFout" role="dialog">
+    <div class="modal fade" id="verwijderGelukt" role="dialog">
       <div class="modal-dialog">
           <!-- Modal content-->
           <div class="modal-content">
@@ -181,3 +180,4 @@ foreach($faciliteiten as $faciliteit){
 <p>
   <a id="terug" class="btn btn-secondary" href="javascript:history.go(-1);">Terug</a>
 </p>
+
