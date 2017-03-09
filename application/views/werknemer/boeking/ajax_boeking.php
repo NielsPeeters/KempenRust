@@ -1,49 +1,31 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.3/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- Include Bootstrap Datepicker -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+
 <script>
  $(document).ready(function(){
-    /*$("#geenArrangement").hide();
+   $('.datepicker').datepicker({
+    format: 'dd/mm/yyyy',
+    startDate: '1d'
+});
 
-    checkArrangement();
-    
+$.fn.datepicker.defaults.format = "mm/dd/yyyy";
+$('.datepicker').datepicker({
+    startDate: '-3d'
+});
 
-    $('select').change(function(){    
-            alert("ja");
-            var optionValue = $("#dropDown").val();
-            if(optionValue=="geenArrangement"){
-               $("#geenArrangement").show();
-            } 
-            else{
-                $("#geenArrangement").hide();
-            }
-        
-    })
-
-
-    function checkArrangement(){
-        alert("nee");
-        if($("#check").val()==NULL){
-            
-                $("#geenArrangement").show();
-            }
-             else{
-                $("#geenArrangement").hide();
-            }
-    }*/
-
-    $('.opslaan').click(function(e){
-        /**
-        *Bij een klik op de opslaan knop wordt het form gevalideert.
-        */
-        $('#myForm').validator();
-    });
  });
 
-
 </script>
-<?php echo javascript("validator.js");?>
-
-<form name='myform' id='JqAjaxForm'>
+<?php
+echo javascript("validator.js");
+$attributes = array('name' => 'myform','data-toggle'=>'validator','role'=>'form');
+echo form_open('boeking/schrijfBoeking', $attributes);
+?>
 
      <div class="form-group">
         <label for="persoon" class="control-label">Gast</label>
@@ -70,21 +52,30 @@
     </div>  
     </br>
 
-    <!--<div id="geenArrangement">jdfmsqlfqmd</div>-->
-
-    <div class="form-group">
-        <label for="beschikbaar" class="control-label">Beschikbaarheid</label>
+     <div class="form-group">
+        <label for="startDatum" class="control-label ">van:</label>
+        <div class="input-group date">
         <?php 
-        if($boeking->beschikbaar==1){
-            echo "<div><input type='radio' name='beschikbaar' id='beschikbaar' value='1' checked>Beschikbaar";
-            echo "</div><div><input type='radio' name='beschikbaar' id='beschikbaar' value='0' >Niet beschikbaar</div>";}
-        else{
-            echo "<div><input type='radio' name='beschikbaar' id='beschikbaar' value='1' >Beschikbaar";
-            echo "</div><div><input type='radio' name='beschikbaar' id='beschikbaar' value='0' checked>Niet beschikbaar</div>";}?>
+        echo form_input(array('data-provide'=>'datepicker-inline','name' => 'startDatum', 'id' => 'startDatum', 'value' => $boeking->startDatum, 'class' => 'form-control datepicker', 'placeholder' => 'startDatum', 'required' => 'required'));?>
+         <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
+        </div>
+        </div>
+    </div>
+    <div class="form-group ">
+        <label for="eindDatum" class="control-label">tot:</label>
+        <div class="input-group date">
+        <?php 
+        echo form_input(array('data-provide'=>'datepicker-inline','name' => 'eindDatum', 'id' => 'eindDatum', 'value' => $boeking->eindDatum,'data-date-format'=>'dd/mm/yyyy', 'class' => 'form-control datepicker', 'placeholder' => 'eindDatum', 'required' => 'required'));?>
+        <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
+        </div>
+        </div>
     </div>
     </br>
+    </br>
 
-    
+
 
     <?php echo form_input(array('type' => 'hidden', 'name' => 'id', 'id' => 'id', 'value' => $boeking->id, 'class' => 'form-control', 'placeholder' => 'id')) ?>
 

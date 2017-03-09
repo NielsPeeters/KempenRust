@@ -29,7 +29,7 @@ class Pension_model extends CI_Model {
     function insert($pension) {
         /**
         *Insert een pension object in de database.
-        *\param factuur een pension object
+        *\param pension een pension object
         *\return een pension object
         */
         $this->db->insert('pension', $pension);

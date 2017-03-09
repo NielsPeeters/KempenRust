@@ -48,13 +48,14 @@
                                     ?>
                                 </ul>
                             </li>
-                            <!-- Facilitijten Dropdown -->
+                            <!-- Extra Dropdown -->
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Extra beheren<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <?php
                                     echo '<li>' . anchor('/faciliteit/index', 'Faciliteiten beheren') . '</li>';
                                     echo '<li>' . anchor('/menu/index', 'Menu\'s beheren') . '</li>';
+                                    echo '<li>' . anchor('/pension/index', 'Pensions beheren') . '</li>';
                                     ?>
                                 </ul>
                             </li>

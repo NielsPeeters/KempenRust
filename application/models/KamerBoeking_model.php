@@ -59,6 +59,12 @@ class kamerBoeking_model extends CI_Model {
         return $query->result();
     }
 
+    function getWithBoeking($id){
+        $this->db->where('boekingId', $id);
+        $query = $this->db->get('kamerBoeking');
+        return $query->result();
+    }
+
 
 }
 
