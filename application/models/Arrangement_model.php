@@ -54,6 +54,17 @@ class Arrangement_model extends CI_Model {
         $this->db->delete('arrangement');
     }
 
+    function getAllByPension($id) {
+        /**
+        * gaat na of er een arrangement is met het geselecteerde pension
+        *\param id het id van het geselecteerde pension
+        *\return een array arrangement objecten
+        */
+        $this->db->where('pensionId', $id);
+        $query = $this->db->get('arrangement');
+        return $query->result();
+    }
+
 }
 
 ?>

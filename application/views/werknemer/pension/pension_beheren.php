@@ -33,6 +33,7 @@
             /**
             * Verwijderdt het pension die behoort tot het meegegeven id
             * \param id het id van het te verwijderen pension als int
+            *een leeg pension object genereren als het pension verwijderd kan worden, anders geef een foutmelding
             */
             $.ajax({type: "GET",
                 url: site_url + "/pension/verwijderPension",
@@ -41,7 +42,10 @@
                 success: function (result) {
                     if(result==0){
                         location.reload();
+                    } else{
+                        $("#verwijderFout").modal('show');
                     }
+                    
                 },
                 error: function (xhr, status, error) {
                     alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
@@ -143,6 +147,27 @@ foreach($pensions as $pension){
               <div class="modal-footer">
                   <button type="button" data-dismiss="modal" class="btn btn-warning delete" id="id">Verwijderen</button>
                   <button type="button" data-dismiss="modal" class="btn">Annuleren</button>
+              </div>
+              
+          </div>
+      </div>
+
+  </div>
+  <div class="modal fade" id="verwijderFout" role="dialog">
+      <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Waarschuwing</h4>
+              </div>
+              <div class="modal-body">
+                  <p>
+                      Je kan dit pension niet verwijderen omdat er nog arrangementen aan verbonden zijn.
+                  </p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" data-dismiss="modal" class="btn">Oke</button>
               </div>
               
           </div>

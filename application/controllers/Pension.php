@@ -54,9 +54,15 @@ class Pension extends CI_Controller {
         * Verwijderdt een pension object
         */
         $id = $this->input->get('id');
-        $this->load->model('pension_model');
-        $this->pension_model->delete($id);
-        echo 0;
+        $this->load->model('arrangement_model');
+        $result = $this->arrangement_model->getAllByPension($id);
+        $size = count($result);
+        if ($size==0){
+            $this->load->model('pension_model');
+            $this->pension_model->delete($id);
+            echo 0;
+        }
+        else {echo 1;}
     }
 
     function getEmptyPension() {

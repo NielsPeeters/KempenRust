@@ -54,6 +54,7 @@ class Pension_model extends CI_Model {
         $this->db->delete('pension');
     }
 
+
 }
 
 ?>
