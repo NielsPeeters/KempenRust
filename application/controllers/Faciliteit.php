@@ -7,23 +7,26 @@ class Faciliteit extends CI_Controller {
         parent::__construct();
         $this->load->helper('form');
         $this->load->helper('notation');
-        $this->load->library('email');
     }
     
     public function index() {
         /**
         * Laadt de pagina waarop je faciliteiten kan beheren
-        * geeft een array van faciliteit objecten mee
+        * geeft een array van faciliteiten objecten mee
         */
         $data['title'] = 'Faciliteiten beheren';
         $data['author'] = 'Ellen Peeters';
         $data['user'] = $this->authex->getUserInfo();
-        
-        $this->load->model('Faciliteit_model'); /**< model inladen */
-        $data['types'] = $this->Faciliteit_model->getAll();
+        $user = $this->authex->getUserInfo();
+        if($user->soort==3) {
+            $this->load->model('faciliteit_model');
+            $data['faciliteiten'] = $this->faciliteit_model->getAll();
 
-        $partials = array('navbar' => 'main_navbar', 'content' => 'admin/faciliteit/faciliteit_beheren', 'footer'=>'main_footer');
-        $this->template->load('main_master', $partials, $data);
+            $partials = array('navbar' => 'main_navbar', 'content' => 'admin/faciliteit/faciliteit_beheren', 'footer' => 'main_footer');
+            $this->template->load('main_master', $partials, $data);
+        } else {
+            redirect("/home/index");
+        }       
     }
 
     public function haalFaciliteit() {
@@ -32,11 +35,11 @@ class Faciliteit extends CI_Controller {
         */
         $faciliteitId = $this->input->get('faciliteitId');
         if($faciliteitId<0){
-            $data['kamer'] = $this->getEmptyFaciliteit();
+            $data['faciliteit'] = $this->getEmptyFaciliteit();
         }
         else{
             $this->load->model('faciliteit_model');
-            $data['kamer'] = $this->faciliteit_model->get($faciliteitId);
+            $data['faciliteit'] = $this->faciliteit_model->get($faciliteitId);
         }
         
         $this->load->view("admin/faciliteit/ajax_faciliteit", $data);
@@ -44,26 +47,18 @@ class Faciliteit extends CI_Controller {
 
     public function verwijderFaciliteit(){
         /**
-        * Verwijdert een faciliteit object als hieraan geen boekingen verbonden zijn
+        * Verwijdert een faciliteit object
         */
         $id = $this->input->get('id');
-        $this->load->model('extra_model');
-        $result = $this->extra_model->getAllByFaciliteit($id);
-        $size = count($result);
-        if ($size==0){
-            $this->load->model('faciliteit_model');
-            $this->faciliteit_model->delete($id);
-            echo 0;
-        }
-        else {echo 1;}
-        
-        
+        $this->load->model('faciliteit_model');
+        $this->faciliteit_model->delete($id);
+        echo 0; 
     }
 
-    function getEmptyFaciliteit() {
+    function getEmptyKamer() {
         /**
         * Creërt een leeg faciliteit object
-        * \return faciliteit een leeg faciliteit object
+        * \return kamer een leeg faciliteit object
         */
         $faciliteit = new stdClass();
 
@@ -89,6 +84,6 @@ class Faciliteit extends CI_Controller {
         } else {
             $this->faciliteit_model->update($object);
         }
-        echo 0;
+        redirect('faciliteit/index');
     }
 }
