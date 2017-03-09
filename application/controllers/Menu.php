@@ -55,9 +55,15 @@ class Menu extends CI_Controller {
         */
         $id = $this->input->get('id');
         $this->load->model('menu_model');
-        $this->menu_model->delete($id);
+        $resultArrangementen = $this->menu_model->getWithArrangementen($id);
+        $resultBoekingen = $this->menu_model->getWithBoekingen($id);
         
-        echo 0;
+        if(count($resultArrangementen) == 0 && count($resultBoekingen) == 0){
+            $this->menu_model->delete($id);
+            echo 0;
+        } else {
+            echo -1;
+        }
     }
 
     function getEmptyMenu() {

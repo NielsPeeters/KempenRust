@@ -53,7 +53,26 @@ class Menu_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete('menu');
     }
-
+    
+    function getWithArrangementen($menuId) {
+        /**
+        * kijkt ofdat er arrangementen aan het menu hangen
+        * \param menuId het id van de geselecteerde menu
+        */
+        $this->db->where('menuId', $menuId);
+        $query = $this->db->get('menuArrangement');
+        return $query->result();
+    }
+    
+    function getWithBoekingen($menuId) {
+        /**
+        * kijkt ofdat er boekingen aan het menu hangen
+        * \param menuId het id van de geselecteerde menu
+        */
+        $this->db->where('menuId', $menuId);
+        $query = $this->db->get('menuBoeking');
+        return $query->result();
+    }
 }
 
 ?>
