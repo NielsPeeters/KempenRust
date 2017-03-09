@@ -11,16 +11,16 @@ echo form_open('faciliteit/schrijfFaciliteit', $attributes);
 
     <div class="form-group">
         <label for="naam" class="control-label">Naam</label>
-        <?php echo form_input(array('type'=>'text','name' => 'naam', 'id' => 'naam', 'value' => $kamer->naam, 'class' => 'form-control', 'placeholder' => 'Naam', 'required' => 'required'));?>
+        <?php echo form_input(array('type'=>'text','name' => 'naam', 'id' => 'naam', 'value' => $faciliteit->naam, 'class' => 'form-control', 'placeholder' => 'Naam', 'required' => 'required'));?>
     </div>
     </br>
     
     <div class="form-group">
         <label for="prijs" class="control-label">Prijs</label>
-        <?php echo form_input(array('type'=>'text','name' => 'prijs', 'id' => 'prijs', 'value' => $kamer->prijs, 'class' => 'form-control', 'placeholder' => 'Prijs', 'required' => 'required'));?>
+        <?php echo form_input(array('type'=>'text','name' => 'prijs', 'id' => 'prijs', 'value' => $faciliteit->prijs, 'class' => 'form-control', 'placeholder' => 'Prijs', 'required' => 'required'));?>
     </div>
 
-    <?php echo form_input(array('type' => 'hidden', 'name' => 'id', 'id' => 'id', 'value' => $kamer->id, 'class' => 'form-control', 'placeholder' => 'id')) ?>
+    <?php echo form_input(array('type' => 'hidden', 'name' => 'id', 'id' => 'id', 'value' => $faciliteit->id, 'class' => 'form-control', 'placeholder' => 'id')) ?>
 
     <div class="help-block with-errors"></div>
     
