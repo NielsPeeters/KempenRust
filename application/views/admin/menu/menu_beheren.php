@@ -19,7 +19,7 @@
                 attach_click();
                 // Geef de verwijder knop van het modalvenster het id van de te verwijderen kamer mee
                 resultaat = $(result).find("#id").attr("value");
-                $("#faciliteitId").html(resultaat);
+                $("#menuId").html(resultaat);
              
             },
             error: function (xhr, status, error) {
