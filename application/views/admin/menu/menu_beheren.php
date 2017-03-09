@@ -43,7 +43,7 @@
                     if(result==0){
                         location.reload();
                     } else {
-                        $('#verwijderFout').show();
+                        $('#verwijderFout').model('show');
                     }
                 },
                 error: function (xhr, status, error) {
