@@ -6,8 +6,8 @@
         {
             /**
             * haalt het pension object op dat behoort tot het meegegeven id
-            * \param pensionId het id van de geselecteerde pension
-            * de geselecteerde pension wordt weergeven in een panel
+            * \param pensionId het id van het geselecteerde pension
+            * het geselecteerde pension wordt weergeven in een panel
             */
           $.ajax({type : "GET",
             url : site_url + "/pension/haalPension",
@@ -15,7 +15,7 @@
             success : function(result){
                 $("#panel").show();
                 $("#resultaat").html(result);
-                // click aan opslaan en verwijderen hangen als die er zijn
+                // click aan verwijderen hangen
                 attach_click();
                 // Geef de verwijder knop van het modalvenster het id van de te verwijderen pension mee
                 resultaat = $(result).find("#id").attr("value");
@@ -31,9 +31,8 @@
         function verwijderPension(id) 
         {
             /**
-            * Verwijderd te pension die behoort tot het meegegeven id
-            * \param id het id van de te verwijderen pension als int
-            * een leeg pension object genereren als de pension verwijderd kan worden, anders geef een foutmelding
+            * Verwijderdt het pension die behoort tot het meegegeven id
+            * \param id het id van het te verwijderen pension als int
             */
             $.ajax({type: "GET",
                 url: site_url + "/pension/verwijderPension",
@@ -61,6 +60,9 @@
           });
 
           $(".annuleren").click(function(){
+             /**
+              *Bij het klikken op annuleren wordt het panel verborgen
+              */
             $("#panel").hide();
           });
         }
@@ -70,7 +72,7 @@
 
         $("#pension").change(function() {
             /**
-            *Bij het veranderen van de geselecteerde pension, veranderdt de info in het panel
+            *Bij het veranderen van het geselecteerde pension, veranderdt de info in het panel
             */
             haalPension($(this).val());
         });
@@ -133,7 +135,7 @@ foreach($pensions as $pension){
               </div>
               <div class="modal-body">
                   <p>
-                      Weet je zeker dat je deze pension wil verwijderen?
+                      Weet je zeker dat je dit pension wil verwijderen?
                   </p>
                   <p hidden id="pensionId">
                   </p>

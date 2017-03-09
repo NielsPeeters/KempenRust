@@ -15,7 +15,7 @@
             success : function(result){
                 $("#panel").show();
                 $("#resultaat").html(result);
-                // click aan opslaan en verwijderen hangen als die er zijn
+                // click aan verwijderen hangen
                 attach_click();
                 // Geef de verwijder knop van het modalvenster het id van de te verwijderen kamer mee
                 resultaat = $(result).find("#id").attr("value");
@@ -31,7 +31,7 @@
         function verwijderKamer(id) 
         {
             /**
-            * Verwijderd te kamer die behoort tot het meegegeven id
+            * Verwijderdt de kamer die behoort tot het meegegeven id
             * \param id het id van de te verwijderen kamer als int
             * een leeg kamer object genereren als de kamer verwijderd kan worden, anders geef een foutmelding
             */
@@ -64,6 +64,9 @@
           });
 
           $(".annuleren").click(function(){
+            /**
+              *Bij het klikken op annuleren wordt het panel verborgen
+              */
             $("#panel").hide();
           });
         }

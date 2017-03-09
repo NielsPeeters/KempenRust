@@ -16,7 +16,7 @@ class Pension extends CI_Controller {
 
     public function index() {
         /**
-        * Laadt de pagina waarop je pensions kan beheren
+        * Laadt de pagina waarop je de pensions kan beheren
         * geeft een array van pension objecten mee
         */
         $data['title'] = 'Pensions beheren';
@@ -51,7 +51,7 @@ class Pension extends CI_Controller {
 
     public function verwijderPension(){
         /**
-        * Verwijderdt een pension object als hieraan geen boekingen verbonden zijn
+        * Verwijderdt een pension object
         */
         $id = $this->input->get('id');
         $this->load->model('pension_model');
