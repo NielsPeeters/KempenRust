@@ -55,6 +55,50 @@ class Boeking_model extends CI_Model {
         $this->db->delete('boeking');
     }
 
+    function getBoekingenWith(){
+        /**
+        * geeft een array boeking object terug met alle geassocieerde eigenschappen
+        * \return een array boeking objecten
+        */
+        $query = $this->db->get('boeking');
+        $boekingen = $query->result();
+        
+        $this->load->model('persoon_model');
+        
+        foreach ($boekingen as $boeking) {
+            $boeking->persoon = $this->persoon_model->get($boeking->persoonId);
+        }
+
+        $this->load->model('arrangement_model');
+        foreach ($boekingen as $boeking) {
+            if(!$boeking->arrangementId==NULL){
+                $arrangement=$this->arrangement_model->get($boeking->arrangementId);
+                if($arrangement->pensionId==NULL){
+                    $boeking->arrangement = "Arrangement";}
+                else{
+                    $boeking->arrangement = "Pension";}
+            }
+            else{
+                $boeking->arrangement="Menu";
+            }
+        }
+        return $boekingen;
+
+    }
+
+    function getBoekingWithAll($id){
+        /**
+        * geeft een boeking object terug met alle geassocieerde eigenschappen
+        * \param id het id van de geselecteerde boeking
+        * \return een boeking object
+        */
+        $boeking = $this->get($id);
+        $this->load->model('persoon_model');
+        $boeking->persoon = $this->persoon_model->get($boeking->persoonId);
+        return $boeking;
+
+    }
+
 }
 
 ?>

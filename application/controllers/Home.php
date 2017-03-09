@@ -20,7 +20,7 @@ class Home extends CI_Controller {
             $data['author'] = 'Peeters Niels';
             $data['user'] = $this->authex->getUserInfo();
 
-            //main_content moet vervangen worden naar map/arangementen bij finale afwerking!
+            //main_content moet vervangen worden naar gebruiker/arangementen bij finale afwerking!
             $partials = array('navbar' => 'main_navbar', 'content' => 'main_content', 'footer' => 'main_footer');
             $this->template->load('main_master', $partials, $data);
 	}
