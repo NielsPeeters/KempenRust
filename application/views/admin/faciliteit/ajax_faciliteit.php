@@ -11,13 +11,16 @@ echo form_open('faciliteit/schrijfFaciliteit', $attributes);
 
     <div class="form-group">
         <label for="naam" class="control-label">Naam</label>
-        <?php echo form_input(array('type'=>'text','name' => 'naam', 'id' => 'naam', 'value' => $faciliteit->naam, 'class' => 'form-control', 'placeholder' => 'Naam', 'required' => 'required'));?>
+        <?php echo form_input(array('data-match'=>'','type'=>'text','name' => 'naam','id' => 'naam', 'value' => $faciliteit->naam, 'class' => 'form-control', 'placeholder' => 'Naam', 'required' => 'required'));?>
+        
+        
     </div>
     </br>
-    
+
     <div class="form-group">
         <label for="prijs" class="control-label">Prijs</label>
-        <?php echo form_input(array('type'=>'text','name' => 'prijs', 'id' => 'prijs', 'value' => $faciliteit->prijs, 'class' => 'form-control', 'placeholder' => 'Prijs', 'required' => 'required'));?>
+        <?php echo form_input(array('type' => 'number', 'name' => 'prijs', 'id' => 'prijs', 'value' => $faciliteit->prijs, 'class' => 'form-control', 'placeholder' => 'Max. aantal personen', 'required' => 'required'));?>
+        </br>
     </div>
 
     <?php echo form_input(array('type' => 'hidden', 'name' => 'id', 'id' => 'id', 'value' => $faciliteit->id, 'class' => 'form-control', 'placeholder' => 'id')) ?>
@@ -29,5 +32,4 @@ echo form_open('faciliteit/schrijfFaciliteit', $attributes);
     <button type="submit" data-id="' . $kamer->id . '" class="btn btn-primary opslaan">Opslaan</button>
 
 </div>
-<?php echo form_close();?>
-
+</form>

@@ -4,15 +4,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Faciliteit extends CI_Controller {
     public function __construct() {
+         /**
+        * standaard controller constructor
+        * laadt helpers
+        */
         parent::__construct();
         $this->load->helper('form');
         $this->load->helper('notation');
     }
-    
+
     public function index() {
         /**
         * Laadt de pagina waarop je faciliteiten kan beheren
-        * geeft een array van faciliteiten objecten mee
+        * geeft een array van faciliteit objecten mee
         */
         $data['title'] = 'Faciliteiten beheren';
         $data['author'] = 'Ellen Peeters';
@@ -52,19 +56,21 @@ class Faciliteit extends CI_Controller {
         $id = $this->input->get('id');
         $this->load->model('faciliteit_model');
         $this->faciliteit_model->delete($id);
-        echo 0; 
+        echo 0;
+        
+        
     }
 
     function getEmptyFaciliteit() {
         /**
-        * Creërt een leeg faciliteit object
-        * \return kamer een leeg faciliteit object
+        * Creërt een leeg kamer object
+        * \return kamer een leeg kamer object
         */
         $faciliteit = new stdClass();
 
-        $faciliteit->id = 0;
+        $faciliteit->id = '0';
         $faciliteit->naam = '';
-        $faciliteit->prijs = 0;
+        $faciliteit->prijs = '0';
 
         return $faciliteit;
     }
