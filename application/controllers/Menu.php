@@ -18,7 +18,7 @@ class Menu extends CI_Controller {
         * Laadt de pagina waarop je menu's kan beheren
         * geeft een array van menu objecten mee
         */
-        $data['title'] = 'Faciliteiten beheren';
+        $data['title'] = 'Menu\'s beheren';
         $data['author'] = 'Ellen Peeters';
         $data['user'] = $this->authex->getUserInfo();
         $user = $this->authex->getUserInfo();
