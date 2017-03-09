@@ -62,8 +62,8 @@ class Faciliteit extends CI_Controller {
 
     function getEmptyFaciliteit() {
         /**
-        * Creërt een leeg kamer object
-        * \return kamer een leeg kamer object
+        * Creërt een leeg faciliteit object
+        * \return faciliteit een leeg faciliteit object
         */
         $faciliteit = new stdClass();
 

@@ -41,6 +41,7 @@
                 dataType: "json",
                 success: function (result) {
                     if(result==0){
+                        $('#verwijderGelukt').show();
                         location.reload();
                     }
                 },
