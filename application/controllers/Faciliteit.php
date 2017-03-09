@@ -55,7 +55,7 @@ class Faciliteit extends CI_Controller {
         echo 0; 
     }
 
-    function getEmptyKamer() {
+    function getEmptyFaciliteit() {
         /**
         * Creërt een leeg faciliteit object
         * \return kamer een leeg faciliteit object
