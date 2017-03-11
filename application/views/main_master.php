@@ -63,9 +63,7 @@
             <div class="col-lg-12">
                 <div class="thumbnail" style="padding: 20px">
                     <div class="caption">
-                        <p>
-                            <?php echo $content; ?>
-                        </p>
+                        <?php echo $content; ?>
                     </div>
                 </div>
             </div>
@@ -78,9 +76,5 @@
 <footer class="footer">
     <?php echo $footer; ?>
 </footer>
-
-<!-- /.container -->
-
 </body>
-
 </html>

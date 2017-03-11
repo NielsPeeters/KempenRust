@@ -60,7 +60,16 @@ class TypePersoon_model extends CI_Model {
         $this->db->delete('typePersoon');
     }
 
-
+    function getWithTypePersoon($id)
+    {
+        /**
+         * verwijderd het typepersoon object dat bij het id hoort uit de database
+         * \param id het id van de geselecteerde typepersoon
+         */
+        $this->db->where('id', $id);
+        $query = $this->db->get('typePersoon');
+        return $query->row();
+    }
 }
 
 ?>
