@@ -46,7 +46,7 @@ class TypePersoon extends CI_Controller{
             $data['typePersoon'] = $this->TypePersoon_model->getWithTypePersoon($typePersoonId);
         }
 
-        $this->load->view("admin/TypePersoon/ajax_typePersoon", $data);
+        $this->load->view("admin/typePersoon/ajax_typePersoon", $data);
     }
 
     public function verwijderTypePersoon(){
