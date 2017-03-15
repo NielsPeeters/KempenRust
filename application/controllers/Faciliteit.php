@@ -19,7 +19,7 @@ class Faciliteit extends CI_Controller {
         * geeft een array van faciliteit objecten mee
         */
         $data['title'] = 'Faciliteiten beheren';
-        $data['author'] = 'Ellen Peeters';
+        $data['author'] = 'Peeters Ellen';
         $data['user'] = $this->authex->getUserInfo();
         $user = $this->authex->getUserInfo();
         if($user->soort==3) {

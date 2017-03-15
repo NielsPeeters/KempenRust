@@ -19,7 +19,7 @@ class Menu extends CI_Controller {
         * geeft een array van menu objecten mee
         */
         $data['title'] = 'Menu\'s beheren';
-        $data['author'] = 'Ellen Peeters';
+        $data['author'] = 'Peeters Ellen';
         $data['user'] = $this->authex->getUserInfo();
         $user = $this->authex->getUserInfo();
         if($user->soort==3) {
