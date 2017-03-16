@@ -1,5 +1,5 @@
 <?php
-class BoekingMaken extends CI_Controller {
+class Klant extends CI_Controller {
      public function __construct() {
          /**
         * standaard controller constructor
@@ -12,8 +12,7 @@ class BoekingMaken extends CI_Controller {
 
     public function index() {
         /**
-        * Laadt de pagina waarop je boekingen kan beheren
-        * geeft een array van boeking objecten mee
+        * Laadt de pagina waarop je boeking kan maken
         */
         $data['title'] = 'boekingen beheren';
         $data['author'] = 'Peeters Ellen';
