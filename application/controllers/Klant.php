@@ -14,7 +14,7 @@ class Klant extends CI_Controller {
         /**
         * Laadt de pagina waarop je boeking kan maken
         */
-        $data['title'] = 'boekingen beheren';
+        $data['title'] = 'Boeking maken';
         $data['author'] = 'Peeters Ellen';
         $data['user'] = $this->authex->getUserInfo();
         $user = $this->authex->getUserInfo();
