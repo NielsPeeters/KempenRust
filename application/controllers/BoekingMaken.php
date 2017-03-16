@@ -20,7 +20,7 @@ class BoekingMaken extends CI_Controller {
         $data['user'] = $this->authex->getUserInfo();
         $user = $this->authex->getUserInfo();
         if($user->soort==1) {
-            $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking/boeking_maken1', 'footer' => 'main_footer');
+            $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking_maken1', 'footer' => 'main_footer');
             $this->template->load('main_master', $partials, $data);
         } else {
             redirect("/home/index");
