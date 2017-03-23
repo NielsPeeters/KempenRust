@@ -1,7 +1,4 @@
 <script>
-/**
-* \file
-*/
         function haalboeking (boekingId) 
         {
             /**
@@ -100,7 +97,7 @@
 <?php 
 $options = array();
 foreach($boekingen as $boeking){
-    $naam = $boeking->persoon->naam ." ". $boeking->persoon->voornaam." | " . $boeking->arrangement . " | ". $boeking->startDatum 
+    $naam = $boeking->persoon->naam ." ". $boeking->persoon->voornaam." | " . $boeking->startDatum 
     . " tot ". $boeking->eindDatum ;
 	$options[$boeking->id] = $naam;
 }

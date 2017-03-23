@@ -81,6 +81,26 @@ class Kamer_model extends CI_Model {
         return $query->result();
     }
 
+    function getAllWithKamerType(){
+        /**
+        * haalt de kamer uit de database die bij het gegeven id hoort met het bijbehorende kamertype
+        * \param id het id van de geselecteerde kamer
+        * \return een kamer object
+        */
+         $query = $this->db->get('kamer');
+        $kamers = $query->result();
+        
+      
+        $this->load->model('kamerType_model');
+  
+
+        foreach ($kamers as $kamer) {
+           $kamer->type = $this->kamerType_model->get($kamer->kamerTypeId);
+        }
+
+        return $kamers;
+    }
+
 }
 
 ?>

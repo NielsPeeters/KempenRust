@@ -59,9 +59,20 @@ class BoekingTypePersoon_model extends CI_Model {
         /**
          *Geeft een array terug met een specifiek boekingTypePersoon object gefilterd op megekregen TypePersoonId.
          *\param id het TypePersoonId van het te halen TypePersoon object
-         *\return een boekingTypePersoon object
+         *\return een array boekingTypePersoon objecten
          */
         $this->db->where('typePersoonId', $id);
+        $query = $this->db->get('boekingTypePersoon');
+        return $query->result();
+    }
+
+    function getByBoeking($id){
+        /**
+         *Geeft een array terug met een specifiek boekingTypePersoon object gefilterd op megekregen boekingId.
+         *\param id het boekingId van het te halen TypePersoon object
+         *\return een array  boekingTypePersoon objecten
+         */
+        $this->db->where('boekingId', $id);
         $query = $this->db->get('boekingTypePersoon');
         return $query->result();
     }

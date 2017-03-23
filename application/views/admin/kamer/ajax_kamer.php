@@ -1,8 +1,3 @@
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.3/css/bootstrap-select.min.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-
-
 <?php
 echo javascript("validator.js");
 $attributes = array('name' => 'myform','data-toggle'=>'validator','role'=>'form');

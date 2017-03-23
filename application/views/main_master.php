@@ -14,11 +14,13 @@
     <?php echo stylesheet("bootstrap.css"); ?>
     <!-- Custom CSS -->
     <?php echo stylesheet("heroic-features.css"); ?>
+    <!-- Jquery UI CSS -->
+    <?php echo stylesheet("jquery-ui.css"); ?>
     <!-- Buttons CSS -->
     <?php echo stylesheet("buttons.css"); ?>
     <!-- Custom CSS -->
     <?php echo stylesheet("Custom.css"); ?>
-
+    <link href="https://cdn.jsdelivr.net/bootstrap.datepicker-fork/1.3.0/css/datepicker3.css" rel="stylesheet"/>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -28,8 +30,15 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <?php echo javascript("jquery-3.1.0.min.js"); ?>
-    <?php echo javascript("bootstrap.js"); ?>
+    <?php 
+    echo javascript("jquery-3.1.0.min.js"); 
+    echo javascript("jquery-ui.js"); 
+    echo javascript("bootstrap.js"); 
+    echo javascript("bootstrap-datepicker.js");
+?>
+    
+
+    <script src="https://cdn.jsdelivr.net/bootstrap.datepicker-fork/1.3.0/js/locales/bootstrap-datepicker.nl.js"></script>
 
     <script type="text/javascript">
         var site_url = '<?php echo site_url(); ?>';

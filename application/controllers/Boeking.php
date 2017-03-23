@@ -23,7 +23,7 @@ class Boeking extends CI_Controller {
         $data['author'] = 'Laenen Nathalie';
         $data['user'] = $this->authex->getUserInfo();
         $user = $this->authex->getUserInfo();
-        if($user->soort==3) {
+        if($user->soort>1) {
             $this->load->model('boeking_model');
             $data['boekingen'] = $this->boeking_model->getBoekingenWith();
 
@@ -40,18 +40,28 @@ class Boeking extends CI_Controller {
         */
         $boekingId = $this->input->get('boekingId');
         if($boekingId<0){
-            $data['boeking'] = $this->getEmptyboeking();
+            $this->newBoeking();
         }
         else{
             $this->load->model('boeking_model');
             $data['boeking']= $this->boeking_model->getBoekingWithAll($boekingId);
-            }
-        $this->load->model('kamerType_model');
-        $data['kamerTypes'] = $this->kamerType_model->getall();
-        $this->load->model('arrangement_model');
-        $data['arrangementen'] = $this->arrangement_model->getall();
+            $this->load->model('boekingTypePersoon_model');
+            $data['boekingTypePersonen'] = $this->boekingTypePersoon_model->getByBoeking($boekingId);
+            $this->load->model('arrangement_model');
+            $data['arrangementen'] = $this->arrangement_model->getAll();
+            $this->load->model('typePersoon_model');
+            $data['typePersonen'] = $this->typePersoon_model->getAll();
+            $this->load->model('pension_model');
+            $data['pensions'] = $this->pension_model->getAll();
+            $this->load->model('kamerBoeking_model');
+            $data['kamerBoekingen'] = $this->kamerBoeking_model->getWithBoeking($boekingId);
+            $this->load->model('kamer_model');
+            $data['kamers'] = $this->kamer_model->getAllWithKamerType();
+            
 
-        $this->load->view("werknemer/boeking/ajax_boeking", $data);
+            $this->load->view("werknemer/boeking/ajax_boeking", $data);
+          
+            }
     }
 
     public function verwijderboeking(){
@@ -72,15 +82,55 @@ class Boeking extends CI_Controller {
         
     }
 
-    function getEmptyboeking() {
+    function newBoeking() {
         /**
         * Creërt een leeg boeking object
         * \return boeking een leeg boeking object
         */
+        
+        $data['boeking']=$this->getEmptyBoeking();
+
+        $this->load->model('kamerType_model');
+        $data['kamerTypes'] = $this->kamerType_model->getAll();
+
+        $this->load->model('arrangement_model');
+        $data['arrangementen'] = $this->arrangement_model->getAll();
+
+        $this->load->model('typePersoon_model');
+        $data['typePersonen'] = $this->typePersoon_model->getAll();
+      
+        $this->load->model('pension_model');
+        $data['pensions'] = $this->pension_model->getAll();
+
+        foreach($data['typePersonen']as $typepersoon){
+            $data['boekingTypePersonen'] = $this->getEmptyBoekingTypePersoon($typepersoon->id);
+        }
+    
+        $this->load->view("werknemer/boeking/ajax_boeking", $data);
+    }
+
+    public function getEmptyBoekingTypePersoon($id){
+        $boekingTypePersoon = new stdClass();
+
+        $boekingTypePersoon->typePersoonId = $id ;
+        $boekingTypePersoon->aantal = '0';
+        $boekingTypePersoon->boekingId ='0';
+        $boekingTypePersoon->id = '0';
+
+        return $boekingTypePersoon;
+    }
+
+    public function getEmptyBoeking(){
         $boeking = new stdClass();
 
         $boeking->id = '0';
+        $boeking->persoonId='0';
         $boeking->naam = '';
+        $boeking->arrangementId='0';
+        $boeking->opmerking='';
+        $boeking->startDatum='';
+        $boeking->eindDatum='';
+        $boeking->tijdstip='';
 
         return $boeking;
     }
@@ -101,5 +151,11 @@ class Boeking extends CI_Controller {
         }
         echo 0;
     }
+
+
+
+
+
+
 
 }
