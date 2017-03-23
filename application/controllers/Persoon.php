@@ -12,16 +12,39 @@ class Persoon extends CI_Controller {
     }
 
     public function index() {
+        /**
+         * Laadt de pagina waarop je personen kan beheren
+         * geeft een array van persoon objecten mee
+         */
         $data['title'] = 'Personen beheren';
+        $data['author'] = 'Van de Voorde Tim';
+        $data['user'] = $this->authex->getUserInfo();
 
         $this->load->model('persoon_model');
-        $data['personen'] = $this->persoon_model->getAll();
+        $data['klanten'] = $this->persoon_model->getAll();
 
-        $partials = array('header' => 'main_header', 'content' => 'gebruiker/persoon_lijst');
+        $partials = array('navbar' => 'main_navbar', 'content' => 'admin/klant/klant_beheren', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data);
     }
 
-    function getEmptyPersoon() {
+    public function haalPersoon() {
+        /**
+         * haalt een persoon object op
+         */
+        $persoonId = $this->input->post('persoonId');
+        if($persoonId<0){
+            $data['klant'] = $this->getEmptyPersoon();
+        }
+        else{
+            $this->load->model('persoon_model');
+            $data['klant'] = $this->persoon_model->get($persoonId);
+        }
+        
+        
+        $this->load->view("admin/klant/ajax_klant", $data);
+    }
+
+     function getEmptyPersoon() {
         $persoon = new stdClass();
 
         $persoon->id = 0;
@@ -39,45 +62,62 @@ class Persoon extends CI_Controller {
 
         return $persoon;
     }
-
-    public function toevoegen() {
-        $data['persoon'] = $this->getEmptyPersoon();
-        $data['title'] = 'Persoon toevoegen';
-
-        $partials = array('header' => 'main_header', 'content' => 'gebruiker/persoon_lijst');
-        $this->template->load('main_master', $partials, $data);
+    
+    public function verwijderPersoon(){
+        /**
+        * Verwijderdt een persoon object als hieraan geen boekingen verbonden zijn
+        */
+        $id = $this->input->get('id');
+        $this->load->model('boeking_model');
+        $result = $this->boeking_model->getAllByPersoon($id);
+        $size = count($result);
+        if ($size==0){
+            $this->load->model('persoon_model');
+            $this->persoon_model->delete($id);
+            echo 0;
+        }
+        else {echo 1;}
+        
+        
     }
 
-    public function wijzigen($id) {
+    public function schrijfJSONObject() {
+        /**
+         * haalt de waarden van het persoon object op en update of insert deze in de database
+         */
+        $object = new stdClass();
+        
+        $object->id = $this->input->post('id');
+        $object->naam = $this->input->post('naam');
+        $object->voornaam = $this->input->post('voornaam');
+        $object->postcode = $this->input->post('postcode');
+        $object->gemeente = $this->input->post('gemeente');
+        $object->straat = $this->input->post('straat');
+        $object->huisnummer = $this->input->post('huisnummer');
+        $object->bus = $this->input->post('bus');
+        $object->telefoon = $this->input->post('telefoon');
+        $object->email = $this->input->post('email');
+        $object->wachtwoord = $this->input->post('wachtwoord');
+        $object->soort = $this->input->post('soort');
+
         $this->load->model('persoon_model');
-        $data['persoon'] = $this->persoon_model->update($id);
-        $data['title'] = 'Persoon wijzigen';
-
-        $partials = array('header' => 'main_header', 'content' => 'gebruiker/persoon_lijst');
-        $this->template->load('main_master', $partials, $data);
+        if ($object->id == 0) {
+            $this->persoon_model->insert($object);
+        } else {
+            $this->persoon_model->update($object);
+        }
+        echo 0;
     }
 
-    public function verwijderen($id) {
+    public function haalPersonen() {
+        /**
+         * haalt personen terug op
+         */
         $this->load->model('persoon_model');
-        $data['persoon'] = $this->persoon_model->delete($id);
-
-        redirect('/brouwerij/index');
+        $data['klanten'] = $this->persoon_model->getAll();
+        $this->load->view('admin/persoon/ajax_persoon', $data);
     }
 
-    public function haalpersoon() {
-      $persoonId = $this->input->get('persoonId');
-      $this->load->model('persoon_model');
-      $data['persoon']= $this->persoon_model->get($persoonId);
-      $this->load->view("gebruiker/ajax_persoon", $data);
-    }
-
-    public function verwijderPersoon()
-    {
-         $id = $this->input->post('id');
-         $this->load->model('persoon_model');
-         $this->soort_model->delete($id);
-      
-    }
 
     public function registreer() {
         $persoon = new stdClass();
@@ -92,7 +132,8 @@ class Persoon extends CI_Controller {
         $persoon->postcode = $this->input->post('postcode');
         $persoon->telefoon = $this->input->post('telefoon');
         $persoon->soort = "1";
-        $persoon->wachtwoord = sha1($this->input->post('wachtwoord'));
+        $wachtwoord = $this->input->post('wachtwoord');
+        $persoon->wachtwoord=sha1($wachtwoord);
         $persoon->id = $this->authex->register($persoon->email, $persoon);
         $this->emailVrij($persoon);
     }
@@ -114,7 +155,7 @@ class Persoon extends CI_Controller {
             $data['title']= 'Registeer';
             $data['author'] = 'Laenen Nathalie';
             $data['user'] = $this->authex->getUserInfo();
-            $partials = array('navbar' => 'main_navbar','content' => 'gebruiker/registreer','footer'=>'main_footer');
+            $partials = array('navbar' => 'main_navbar','content' => 'map/registreer','footer'=>'main_footer');
             $this->template->load('main_master', $partials, $data);
         }
 
@@ -124,7 +165,7 @@ class Persoon extends CI_Controller {
         $data['emailVrij']="1"; //email niet in gebruik
         $data['author'] = 'Laenen Nathalie';
         $data['user'] = $this->authex->getUserInfo();
-        $partials = array('navbar' => 'main_navbar','content' => 'gebruiker/registreer','footer'=>'main_footer');
+        $partials = array('navbar' => 'main_navbar','content' => 'map/registreer','footer'=>'main_footer');
         $this->template->load('main_master', $partials, $data);
     }
 
