@@ -81,7 +81,7 @@ class Faciliteit extends CI_Controller {
         $object = new stdClass();
         $object->id = $this->input->post('id');
         $object->naam = $this->input->post('naam');
-        $object->prijs = $this->input->post('prijs');
+        $object->prijs = toPunt($this->input->post('prijs'));
 
         $this->load->model('faciliteit_model');
         if ($object->id == 0) {
