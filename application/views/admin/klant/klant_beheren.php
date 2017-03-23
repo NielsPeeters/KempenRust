@@ -2,17 +2,17 @@
 /**
 * \file
 */
-        function haalKamertype (kamerTypeId) 
+        function haalPersoon (persoonId) 
         {
             /**
             * \file
-            * haalt het kamertype object op dat behoort tot het meegegeven id
-            * \param kamerTypeId het id van het geselecteerde kamertype
-            * \return de geselecteerde kamertype in een panel
+            * haalt het persoon object op dat behoort tot het meegegeven id
+            * \param persoonId het id van de geselecteerde persoon
+            * \return de geselecteerde persoon in een panel
             */
-          $.ajax({type : "GET",
-            url : site_url + "/kamertype/haalKamertype",
-            data : { kamerTypeId : kamerTypeId },
+          $.ajax({type : "POST",
+            url : site_url + "/persoon/haalPersoon",
+            data : { persoonId : persoonId },
             success : function(result){
                 $("#panel").show();
                 $("#resultaat").html(result);
@@ -20,7 +20,7 @@
                 attach_click();
                 // Geef de verwijder knop van het modalvenster het id van de te verwijderen kamertype mee
                 resultaat = $(result).find("#id").attr("value");
-                $("#kamertypeid").html(resultaat);
+                $("#persoonid").html(resultaat);
              
             },
             error: function (xhr, status, error) {
@@ -29,15 +29,15 @@
           });
         }
 
-        function verwijderKamertype(id) 
+        function verwijderPersoon(id) 
         {
             /**
-            * Verwijderd het kamertype die behoort tot het meegegeven id
-            * \param id het id van de te verwijderen kamertype als int
-            * \return een leeg kamertype object als het kamertype verwijderd kon worden, anders geef een foutmelding
+            * Verwijderd de persoon die behoort tot het meegegeven id
+            * \param id het id van de te verwijderen persoon als int
+            * \return een leeg kamertype object als de persoon verwijderd kon worden, anders geef een foutmelding
             */
-            $.ajax({type: "GET",
-                url: site_url + "/kamertype/verwijderKamertype",
+            $.ajax({type: "POST",
+                url: site_url + "/persoon/verwijderPersoon",
                 data: {id: id},
                 dataType: "json",
                 success: function (result) {
@@ -54,17 +54,16 @@
             });
         }
 
-        function schrijfKamertype()
+        function schrijfPersoon()
         {
             /**
-            * Update of insert een kamertypeobject
-            * \param id het id van het te verwijderen kamertype als int
+            * Update of insert een persoonobject
+            * \param id het id van het te verwijderen persoon als int
             * \return een melding dat de gegevens succesvol zijn opgeslagen
             */
             var dataString = $("#JqAjaxForm").serialize();
-            console.log(dataString) 
             $.ajax({type: "POST",
-                url: site_url + "/kamertype/schrijfJSONObject",
+                url: site_url + "/persoon/schrijfJSONObject",
                 data: dataString,
                 dataType: "json",
                 success: function (result) {
@@ -92,36 +91,36 @@
 
           $(".opslaan").click(function(){
             /**
-              *Bij het klikken op opslaan wordt het kamertype object opgeslagen
+              *Bij het klikken op opslaan wordt het persoon object opgeslagen
               */
-            schrijfKamertype();
+            schrijfPersoon();
         })
         }
 
     $(document).ready(function(){
         $("#panel").hide();
 
-        $("#kamertype").change(function() {
+        $("#klant").change(function() {
             /**
-            *Bij het veranderen van de geselecteerde kamertype, veranderdt de info in het panel
+            *Bij het veranderen van de geselecteerde persoon, veranderdt de info in het panel
             */
-            haalKamertype($(this).val());
+            haalPersoon($(this).val());
         });
 
         $(".delete").click(function (e) {
             /**
-            *Bij het klikken op verwijder wordt het kamertype object verwijderdt
+            *Bij het klikken op verwijder wordt het persoon object verwijderdt
             */
             e.preventDefault();
-            var id = $("#kamertypeid").html();
-            verwijderKamertype(id);
+            var id = $("#persoonid").html();
+            verwijderPersoon(id);
         });
 
         $("#nieuw").click(function (e){
              /**
-            *Bij het klikken op nieuw wordt een nieuw kamertype object opgehaald
+            *Bij het klikken op nieuw wordt een nieuw persoon object opgehaald
             */
-            haalKamertype(-1);
+            haalPersoon(-1);
         });
     });
 </script>
@@ -129,8 +128,8 @@
 
 <?php 
 $options = array();
-foreach($types as $type){
-	$options[$type->id] ="$type->omschrijving";
+foreach($klanten as $klant){
+	$options[$klant->id] ="$klant->voornaam $klant->naam";
 }
 ?>
 
@@ -139,7 +138,7 @@ foreach($types as $type){
     <div  class="col-lg-4" >
         <div id="reload">
         <p>
-            <?php echo form_dropdown('kamertype', $options, '0', 'id="kamertype" size="10" class="form-control"');?>
+            <?php echo form_dropdown('klant', $options, '0', 'id="klant" size="10" class="form-control"');?>
         </p>
         </div>
         <p  id="nieuw" class="btn btn-primary">Nieuw</p>
@@ -171,7 +170,7 @@ foreach($types as $type){
               </div>
               <div class="modal-body">
                   <p>
-                      Weet je zeker dat je dit kamertype wil verwijderen?
+                      Weet je zeker dat je dit account wil verwijderen?
                   </p>
                   <p hidden id="kamertypeid">
                   </p>
@@ -196,7 +195,7 @@ foreach($types as $type){
               </div>
               <div class="modal-body">
                   <p>
-                      Je kan dit kamertype niet verwijderen omdat er nog kamers aan verbonden zijn.
+                      Je kan dit account niet verwijderen omdat er nog boekingen aan verbonden zijn.
                   </p>
                 
                   </p>

@@ -103,6 +103,17 @@ class Boeking_model extends CI_Model {
         return $boeking;
 
     }
+    
+        function getAllByPersoon($id) {
+        /**
+        * haalt de boeking uit de database die bij het gegeven id
+        * \param persoonid het id van de geselecteerde boeking
+        * \return of persoon bij boeking hoort
+        */
+        $this->db->where('persoonId', $id);
+        $query = $this->db->get('boeking');
+        return $query->result();
+    }
 
 }
 
