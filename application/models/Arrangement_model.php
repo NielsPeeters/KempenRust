@@ -65,6 +65,15 @@ class Arrangement_model extends CI_Model {
         return $query->result();
     }
 
+    function getAllArrangementen() {
+        /**
+        * haalt alle objecten op die een arrangement zijn (isArrangement = 1)
+        *\return een array met arrangement objecten
+        */
+        $this->db->where('isArrangement', '1');
+        $query = $this->db->get('arrangement');
+        return $query->result();
+    }
 }
 
 ?>
