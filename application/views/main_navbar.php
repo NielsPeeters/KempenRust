@@ -22,7 +22,7 @@
                 } else { // wel aangemeld
                     switch ($user->soort) {
                         case 1: // gewone geregistreerde gebruiker
-                            echo '<li>' . anchor('/klant/index', 'Boeking Maken') . '</li>';
+                            echo '<li>' . anchor('/klant/index', 'Boeking maken') . '</li>';
                             break;
                         case 2: // werknemer
                             echo '<li>' . anchor('/boeking/index', 'Boekingen beheren') . '</li>';
