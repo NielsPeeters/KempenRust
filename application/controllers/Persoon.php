@@ -97,7 +97,9 @@ class Persoon extends CI_Controller {
         $object->bus = $this->input->post('bus');
         $object->telefoon = $this->input->post('telefoon');
         $object->email = $this->input->post('email');
-        $object->wachtwoord = $this->input->post('wachtwoord');
+        //$object->wachtwoord = $this->input->post('wachtwoord');      
+        $wachtwoord = $this->input->post('wachtwoord');
+        $object->wachtwoord=sha1($wachtwoord);       
         $object->soort = $this->input->post('soort');
 
         $this->load->model('persoon_model');

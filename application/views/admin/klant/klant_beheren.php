@@ -172,7 +172,7 @@ foreach($klanten as $klant){
                   <p>
                       Weet je zeker dat je dit account wil verwijderen?
                   </p>
-                  <p hidden id="kamertypeid">
+                  <p hidden id="persoonid">
                   </p>
               </div>
               <div class="modal-footer">

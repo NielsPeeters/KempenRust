@@ -102,5 +102,4 @@ class Boeking extends CI_Controller {
         echo 0;
     }
 
-
 }
