@@ -38,7 +38,7 @@ echo javascript("validator.js");
 
     <div class="form-group">
         <label for="straat" class="control-label">Straat</label>
-        <?php echo form_input(array('type' => 'text', 'name' => 'straat', 'id' => 'straat', 'value' => $klant->straat, 'class' => 'form-control', 'placeholder' => 'Straat', 'required' => 'required')); ?>
+        <?php echo form_input(array('name' => 'straat', 'id' => 'straat', 'value' => $klant->straat, 'class' => 'form-control', 'placeholder' => 'Straat', 'required' => 'required')); ?>
     </div>
 
     <div class="form-group">
@@ -65,15 +65,23 @@ echo javascript("validator.js");
 
     <div class="form-group">
         <label for="wachtwoord" class="control-label">Wachtwoord</label>
-        <?php echo form_input(array('type' => 'password', 'name' => 'wachtwoord', 'id' => 'wachtwoord', 'value' => $klant->wachtwoord, 'class' => 'form-control', 'placeholder' => 'Wachtwoord')); ?>
+        <div class="form-inline row">
+            <div class="form-group col-sm-12">
+                <input type="password" data-minlength="6" class="form-control" id="een" placeholder="Wachtwoord" name="wachtwoord"required>
+                <div class="help-block">Minimum 6 karakters.</div>
+            </div>
+            <div class="form-group col-sm-12">
+                <input type="password" class="form-control" id="wachtwoord" data-match="#een" data-match-error="Deze wachtwoorden komen niet overeen!" placeholder="Herhaal wachtwoord" required>
+                <div class="help-block with-errors"></div>
+            </div>
+        </div>
     </div>
 
     <div class="form-group">
         <label for="soort" class="control-label">Soort</label>
         <?php echo form_input(array('type' => 'text', 'name' => 'soort', 'id' => 'soort', 'value' => $klant->soort, 'class' => 'form-control', 'placeholder' => 'Soort', 'required' => 'required')); ?>
     </div>
-    </br>
-
+    
     <?php echo form_input(array('type' => 'hidden', 'name' => 'id', 'id' => 'id', 'value' => $klant->id, 'class' => 'form-control', 'placeholder' => 'id')) ?>
 
     <div class="help-block with-errors"></div>
