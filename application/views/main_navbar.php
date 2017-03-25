@@ -44,6 +44,7 @@
                                 <ul class="dropdown-menu">
                                     <?php
                                     echo '<li>' . anchor('/boeking/index', 'Boekingen beheren') . '</li>';
+                                    echo '<li>' . anchor('/factuur/index', 'Facturen beheren') . '</li>';
                                     ?>
                                 </ul>
                             </li>
