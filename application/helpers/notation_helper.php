@@ -17,8 +17,13 @@ function toDDMMYYYY($input) {
     if ($input == "") {
         return "";
     } else {
-        $datum = explode("-", $input);
-        return $datum[2] . "/" . $datum[1] . "/" . $datum[0];
+        $tijd = explode(" ", $input);
+        $datum = explode("-", $tijd[0]);
+        $answer = $datum[2] . "/" . $datum[1] . "/" . $datum[0];
+        if (count($tijd) > 1){
+            $answer .= " " . $tijd[1];
+        }
+        return $answer;
     }
 }
 
@@ -28,8 +33,12 @@ function toYYYYMMDD($input) {
     if ($input == "") {
         return "";
     } else {
-        $datum = explode("/", $input);
+        $tijd = explode(" ", $input);
+        $datum = explode("/", $tijd[0]);
         return $datum[2] . "-" . $datum[1] . "-" . $datum[0];
+        if (count($tijd) > 1){
+            $answer .= " " . $tijd[1];
+        }
     }
 }
 
