@@ -5,10 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <link rel=icon href="<?php echo base_url();?>/assets/images/favicon.ico" type="image/png">
+    <meta name="description" content="Dit is een demoproject opgesteld in opracht van Thomas More. Dit is een webapplicatie gemaakt door studenten voor het te volbrengen van hun studiecrediet.">
+    <meta name="author" content="<?php echo $author;?>">
 
-    <title>Hotel Kempenrust</title>
+    <title><?php echo $title?></title>
 
     <!-- Bootstrap Core CSS -->
     <?php echo stylesheet("bootstrap.css"); ?>
