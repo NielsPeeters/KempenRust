@@ -23,31 +23,50 @@
             /** 
             * begindag
             */
-            var msec = Date.parse($("#begindatum").val());
-            var begindatum = new Date(msec);
+            var msecBegin = Date.parse($("#begindatum").val());
+            var begindatum = new Date(msecBegin);
             var dagen = ["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"];
             var begindag = dagen[begindatum.getDay()];
             
             /**
             * einddag
             */
-            msec = Date.parse($("#einddatum").val());
-            var einddatum = new Date(msec);
+            var msecEind = Date.parse($("#einddatum").val());
+            var einddatum = new Date(msecEind);
             var einddag = dagen[einddatum.getDay()];
             
             /**
              * haal begin- en einddag van het arrangement uit de database
              */
             if (arrangementId > 0) {
-                <?php foreach ($arrangementen as $a) {?>
-                    var id = <?php echo $a->id;?>;
-                    if (arrangementId == id){
-                        alert(<?php echo $a->beginDag;?>);
-                        //var arrangementBegin = <?php echo $a->beginDag;?>;
-                        //var arrangementEind = <?php echo $a->eindDag;?>;
-                        //alert("arrangement: " + arrangementBegin + " - " + arrangementEind);
+                var vandaag = new Date();
+                vandaag = Date.parse(vandaag);
+                
+                if (msecBegin > vandaag) {
+                    if (msecEind > msecBegin) {
+                        <?php foreach($arrangementen as $arrangement){?>
+                            if (arrangementId == <?php echo $arrangement->id;?>){
+                                if (begindag == "<?php echo $arrangement->beginDag;?>"){
+                                    if (einddag == "<?php echo $arrangement->eindDag;?>"){
+                                        $('#myform').submit();
+                                    } else {
+                                        alert("Einddatum is geen <?php echo $arrangement->eindDag;?>!");
+                                    }
+                                } else {
+                                    if (einddag == "<?php echo $arrangement->eindDag;?>"){
+                                        alert("Begindatum is geen <?php echo $arrangement->beginDag;?>!");
+                                    } else {
+                                        alert("Begindatum is geen <?php echo $arrangement->beginDag;?> en einddatum is geen <?php echo $arrangement->eindDag;?>!");
+                                    }
+                                }
+                            }
+                        <?php }?>
+                    } else {
+                        alert("Einddatum valt vroeger dan begindatum!");
                     }
-                <?php }?>
+                } else {
+                    alert("Begindatum valt vroeger dan vandaag!");
+                }
             }
         });
     });
