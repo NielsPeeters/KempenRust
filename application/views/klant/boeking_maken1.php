@@ -42,6 +42,7 @@
                 <?php foreach ($arrangementen as $a) {?>
                     var id = <?php echo $a->id;?>;
                     if (arrangementId == id){
+                        alert(<?php echo $a->beginDag;?>);
                         //var arrangementBegin = <?php echo $a->beginDag;?>;
                         //var arrangementEind = <?php echo $a->eindDag;?>;
                         //alert("arrangement: " + arrangementBegin + " - " + arrangementEind);
