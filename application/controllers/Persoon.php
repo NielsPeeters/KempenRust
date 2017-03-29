@@ -157,7 +157,7 @@ class Persoon extends CI_Controller {
             $data['title']= 'Registeer';
             $data['author'] = 'Laenen Nathalie';
             $data['user'] = $this->authex->getUserInfo();
-            $partials = array('navbar' => 'main_navbar','content' => 'map/registreer','footer'=>'main_footer');
+            $partials = array('navbar' => 'main_navbar','content' => 'gebruiker/registreer','footer'=>'main_footer');
             $this->template->load('main_master', $partials, $data);
         }
 
@@ -167,7 +167,7 @@ class Persoon extends CI_Controller {
         $data['emailVrij']="1"; //email niet in gebruik
         $data['author'] = 'Laenen Nathalie';
         $data['user'] = $this->authex->getUserInfo();
-        $partials = array('navbar' => 'main_navbar','content' => 'map/registreer','footer'=>'main_footer');
+        $partials = array('navbar' => 'main_navbar','content' => 'gebruiker/registreer','footer'=>'main_footer');
         $this->template->load('main_master', $partials, $data);
     }
 
