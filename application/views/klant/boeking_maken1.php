@@ -38,12 +38,12 @@
             /**
              * haal begin- en einddag van het arrangement uit de database
              */
-            if (arrangementId > 0) {
-                var vandaag = new Date();
-                vandaag = Date.parse(vandaag);
+            var vandaag = new Date();
+            vandaag = Date.parse(vandaag);
                 
-                if (msecBegin > vandaag) {
-                    if (msecEind > msecBegin) {
+            if (msecBegin > vandaag) {
+                if (msecEind > msecBegin) {
+                    if(arrangementId > 0){
                         <?php foreach($arrangementen as $arrangement){?>
                             if (arrangementId == <?php echo $arrangement->id;?>){
                                 if (begindag == "<?php echo $arrangement->beginDag;?>"){
@@ -62,11 +62,13 @@
                             }
                         <?php }?>
                     } else {
-                        alert("Einddatum valt vroeger dan begindatum!");
+                        $('#myform').submit();
                     }
                 } else {
-                    alert("Begindatum valt vroeger dan vandaag!");
+                    alert("Einddatum valt vroeger dan begindatum!");
                 }
+            } else {
+                alert("Begindatum valt vroeger dan vandaag!");
             }
         });
     });
@@ -88,7 +90,7 @@
 <div class="row">
     <?php 
         echo javascript("validator.js");
-        $attributes = array('name' => 'myform', 'id' => 'myform', 'data-toggle'=>'validator','role'=>'form');
+        $attributes = array('name' => 'myform', 'id' => 'myform', 'data-toggle'=>'validator','role'=>'form', 'method'=>'get');
         echo form_open('klant/arrangementGekozen', $attributes);
     ?>
     
