@@ -116,13 +116,13 @@ if($user == null){
 
 
                         <div id='error' class="alert alert-danger alert-dismissable">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <a href="#" class="close" onclick='$("#error").hide();' aria-label="close">&times;</a>
                             Aanmelden mislukt, controleer uw aanmeldgegevens.
                         </div>
 
                         <hr/>
                         <?php
-                            echo anchor('/persoon/nieuw', 'Nieuwe gebruiker') . '<br/>';
+                            echo anchor('persoon/nieuw', 'Nieuwe gebruiker') . '<br/>';
                             echo anchor('#', 'Wachtwoord vergeten');
                         ?>
                     </div>
@@ -146,7 +146,18 @@ if($user == null){
         $( document ).ready(function() {
             $('#error').hide();
 
-            $('#btn-aanmelden').click(function (event) {
+            $("#btn-aanmelden").click(function(){
+                checkAccount();
+            });
+
+            $("#wachtwoord, #email").keypress(function(event) {
+                if (event.which == 13) {
+                    event.preventDefault();
+                    checkAccount();
+                }
+            });
+
+            function checkAccount() {
                 var post_url = site_url + '/home/getAjaxLogin';
 
                 $.ajax({
@@ -164,7 +175,12 @@ if($user == null){
                         alert("-- Error in ajax main_navbar --\n\n" + xhr.responseText);
                     }
                 });
-            });
+            }
         });
+
+
+
+
+
     </script>
 <?php } ?>
