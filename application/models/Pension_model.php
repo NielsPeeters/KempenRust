@@ -12,6 +12,7 @@ class Pension_model extends CI_Model {
         *\param id het id van het te halen pension object
         *\return een pension object
         */
+        
         $this->db->where('id', $id);
         $query = $this->db->get('pension');
         return $query->row();                 // genereert een pension object
@@ -22,7 +23,8 @@ class Pension_model extends CI_Model {
         *Geeft een array terug met alle pension objecten.
         *\return een array met pension objecten
         */
-        $query = $this->db->get('pension');  // genereert SELECT * FROM persoon
+         $this->db->order_by('naam', 'asc');
+        $query = $this->db->get('pension');  // genereert SELECT * FROM pension
         return $query->result();             // een array met pension-objecten
     }
 

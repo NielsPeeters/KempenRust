@@ -27,7 +27,7 @@ class Boeking extends CI_Controller {
             $this->load->model('boeking_model');
             $data['boekingen'] = $this->boeking_model->getBoekingenWith();
 
-            $partials = array('navbar' => 'main_navbar', 'content' => 'werknemer/boeking/boeking_beheren', 'footer' => 'main_footer');
+            $partials = array('navbar' => 'main_navbar', 'content' => 'werknemer/boeking/boeking_zoeken', 'footer' => 'main_footer');
             $this->template->load('main_master', $partials, $data);
         } else {
             redirect("/home/index");
@@ -135,22 +135,36 @@ class Boeking extends CI_Controller {
         return $boeking;
     }
 
-    public function schrijfboeking(){
+    public function schrijfBoeking(){
         /**
         * Haalt de waarden van het boeking object op en update of insert deze in de database
         */
-        $object = new stdClass();
-        $object->id = $this->input->post('id');
-        $object->naam = $this->input->post('naam');
+       
 
-        $this->load->model('boeking_model');
-        if ($object->id == 0) {
-            $this->boeking_model->insert($object);
-        } else {
-            $this->boeking_model->update($object);
-        }
-        echo 0;
+        redirect("boeking/index");
     }
+
+     public function setGoedkeuring(){
+        /**
+        * veranderd de waarde van goedgekeurd van de boeking
+        */
+        
+        $id = $this->input->get('id');
+        $this->load->model('boeking_model');
+        $boeking = $this->boeking_model->get($id);
+        if($boeking->goedgekeurd==0){
+             $boeking->goedgekeurd=1;
+        }
+        else{
+            $boeking->goedgekeurd=0;
+        }
+        $this->boeking_model->update($boeking);
+       
+        redirect("boeking/index");
+    }
+
+    
+
 
 
 

@@ -144,8 +144,7 @@ foreach($kamers as $kamer){
                   <p>
                       Weet je zeker dat je deze kamer wil verwijderen?
                   </p>
-                  <p hidden id="kamerId">
-                  </p>
+                  <p hidden id="kamerId"></p>
               </div>
               <div class="modal-footer">
                   <button type="button" data-dismiss="modal" class="btn btn-warning delete" id="id">Verwijderen</button>
@@ -179,7 +178,7 @@ foreach($kamers as $kamer){
 
   </div>
 
-<?php echo "</tbody></table>";?>
+
 
 <p>
   <a id="terug" class="btn btn-secondary" href="javascript:history.go(-1);">Terug</a>

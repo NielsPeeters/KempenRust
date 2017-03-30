@@ -22,6 +22,7 @@ class Boeking_model extends CI_Model {
         *Geeft een array terug met alle boeking objecten.
         *\return een array met boeking objecten
         */
+         $this->db->order_by('id', 'desc');
         $query = $this->db->get('boeking');  // genereert SELECT * FROM persoon
         return $query->result();             // een array met boeking-objecten
     }
@@ -60,6 +61,7 @@ class Boeking_model extends CI_Model {
         * geeft een array boeking object terug met alle geassocieerde eigenschappen
         * \return een array boeking objecten
         */
+        $this->db->order_by('goedgekeurd', 'asc');
         $query = $this->db->get('boeking');
         $boekingen = $query->result();
         
@@ -114,6 +116,7 @@ class Boeking_model extends CI_Model {
         $query = $this->db->get('boeking');
         return $query->result();
     }
+
 
 }
 
