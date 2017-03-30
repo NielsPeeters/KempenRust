@@ -47,14 +47,6 @@
     });
 </script>
 
-
-<?php 
-$options = array();
-foreach($menus as $menu){
-	$options[$menu->id] ="$menu->naam";
-}
-?>
-
 <div class="row">
     <h4>Kamer(s) kiezen</h4>
     <p>Voeg een kamer toe: <button class="btn btn-primary" id="toevoegen">Voeg toe</button></p>

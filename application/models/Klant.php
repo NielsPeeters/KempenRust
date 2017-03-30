@@ -71,4 +71,30 @@ class Klant extends CI_Controller {
         $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking_maken2', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data); 
     }
+    
+    public function nieuweKamer() {
+        $this->load->model('typepersoon_model');
+        $data["persoontypes"] = $this->typepersoon_model->getAll();
+        
+        $this->load->model('kamertype_model');
+        $data["kamertypes"] = $this->kamertype_model->getAll();
+        
+        $this->load->model('kamer_model');
+        $data["kamers"] = $this->kamer_model->getAll();
+        
+        $this->load->view("klant/ajax_kamertoevoegen", $data);
+    }
+    
+    public function voegKamerToe(){
+        $typeId = $this->input->post('kamertype');
+        $voorkeur = $this->input->post('voorkeur');
+        
+        $kamers = array();
+        
+        if($this->session->has_userdata('kamers')){
+            $kamers = $this->session->userdata('kamers');
+        } else {
+            //$kamers[""];
+        }
+    }
 }
