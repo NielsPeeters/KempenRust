@@ -203,4 +203,20 @@ class Klant extends CI_Controller {
         $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking_maken2', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data); 
     }
+    
+    public function annuleerBoeking()
+    {
+        $this->session->unset_userdata('begindatum');
+        $this->session->unset_userdata('einddatum');
+        $this->session->unset_userdata('arrangementId');
+        $this->session->unset_userdata('boeking');
+
+        if($this->session->has_userdata('kamers')){
+            $this->session->unset_userdata('kamers');
+        }
+        
+        if($this->session->has_userdata('pensionId')){
+            $this->session->unset_userdata('pensionId');
+        }
+    }
 }

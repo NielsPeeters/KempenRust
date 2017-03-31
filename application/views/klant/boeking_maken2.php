@@ -50,10 +50,27 @@
             */
             voegKamerToe();
         });
+        
+        $(".annuleerBoeking").click(function() {
+            url : site_url + "/klant/annuleerBoeking",
+            success : function(result){
+                
+            },
+            error: function (xhr, status, error) {
+                alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+              }
+          });
+        });
     });
 </script>
 
 <div class="row">
+    <?php
+        echo javascript("validator.js");
+        $attributes = array('name' => 'myform','data-toggle'=>'validator','role'=>'form', 'method' => 'post');
+        echo form_open('klant/boekingBevestigen', $attributes);
+    ?>
+    
     <h4>Kamer(s) kiezen</h4>
     <p>Overzicht gekozen kamer(s):</p>
     <div id="overzicht">
@@ -83,9 +100,17 @@
         </div>
     </div>
     
-    <h4>Opmerkingen</h4>
-    <p>Typ hieronder eventuele opmerkingen in verband met uw boeking. Bv. als u een hond bij u zich heeft of allergiën heeft.</p>
-    <?php echo form_textarea(array('name' => 'opmerking'));?>
+    <div class="form-group">
+        <h4>Opmerkingen</h4>
+        <p>Typ hieronder eventuele opmerkingen in verband met uw boeking. Bv. als u een hond bij u zich heeft of allergiën heeft.</p>
+        <?php echo form_textarea(array('name' => 'opmerking'));?>
+    </div>
+    
+    <div class="help-block with-errors"></div>
+    
+    <button type="button" class="btn btn-secondary annuleerBoeking">Annuleren</button>
+    <?php echo form_submit('submit', 'Boeking bevestigen', 'class="btn btn-primary bevestig"');?>
+    <?php echo form_close();?>
 </div>
 
 <?php echo "</tbody></table>";?>
