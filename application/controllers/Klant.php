@@ -188,5 +188,20 @@ class Klant extends CI_Controller {
         
         $kamers[$kamer->id] = $kamerBoeking->id . "." . $kamer->naam;
         $this->session->set_userdata('kamers', $kamers);
+        
+        /*
+         * laad de pagina opnieuw
+         */
+        $data['title'] = 'Boeking maken';
+        $data['author'] = 'Peeters Ellen';
+        $user = $this->authex->getUserInfo();
+        $data['user'] = $user;
+
+        $this->load->model('typePersoon_model');
+        $data["types"] = $this->typePersoon_model->getAll();
+        $data["gekozenKamers"] = $kamers;
+        
+        $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking_maken2', 'footer' => 'main_footer');
+        $this->template->load('main_master', $partials, $data); 
     }
 }

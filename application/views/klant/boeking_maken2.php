@@ -55,8 +55,9 @@
             if(isset($gekozenKamers)){
                 echo '<ul>';
                 
-                foreach($gekozenKamers as $kamer) {
-                    echo '<li>' . $kamer->naam . '</li>';
+                foreach($gekozenKamers as $id => $info) {
+                    $delen = explode('.', $info);
+                    echo '<li>' . $delen[1] . '</li>';
                 }
                 
                 echo '</ul>';
