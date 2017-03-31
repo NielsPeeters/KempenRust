@@ -218,7 +218,5 @@ class Klant extends CI_Controller {
         if($this->session->has_userdata('pensionId')){
             $this->session->unset_userdata('pensionId');
         }
-        
-        index();
     }
 }

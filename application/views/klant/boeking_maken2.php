@@ -100,7 +100,7 @@
     <p><?php echo form_textarea(array('name' => 'opmerking'));?></p>
     
     <p>
-    <button type="button" class="btn btn-secondary annuleerBoeking">Annuleren</button>
+        <button type="button" class="btn btn-secondary annuleerBoeking"><?php echo anchor('home/index', 'Annuleren');?></button>
     <?php echo form_submit('submit', 'Bevestig boeking', 'class="btn btn-primary bevestig"');?>
     </p>
 </div>
