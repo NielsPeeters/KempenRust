@@ -52,19 +52,20 @@
         });
         
         $(".annuleerBoeking").click(function() {
-            url : site_url + "/klant/annuleerBoeking",
-            success : function(result){
-                
-            },
-            error: function (xhr, status, error) {
-                alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
-              }
-          });
+            $.ajax({type : "GET",
+                url : site_url + "/klant/annuleerBoeking",
+                success : function(result){
+
+                },
+                error: function (xhr, status, error) {
+                    alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+                }
+            });
         });
     });
 </script>
 
-<div class="row">    
+<div class="row">
     <h4>Kamer(s) kiezen</h4>
     <p>Overzicht gekozen kamer(s):</p>
     <div id="overzicht">
@@ -94,16 +95,12 @@
         </div>
     </div>
     
-    <div class="form-group">
-        <h4>Opmerkingen</h4>
-        <p>Typ hieronder eventuele opmerkingen in verband met uw boeking. Bv. als u een hond bij u zich heeft of allergiën heeft.</p>
-        <?php echo form_textarea(array('name' => 'opmerking'));?>
-    </div>
-    
-    <div class="help-block with-errors"></div>
+    <h4>Opmerkingen</h4>
+    <p>Typ hieronder eventuele opmerkingen in verband met uw boeking. Bv. als u een hond bij u zich heeft of allergiën heeft.</p>
+    <?php echo form_textarea(array('name' => 'opmerking'));?>
     
     <button type="button" class="btn btn-secondary annuleerBoeking">Annuleren</button>
-    <button class="btn btn-primary bevestig">Boeking bevestigen</button>
+    <?php echo form_submit('submit', 'Bevestig boeking', 'class="btn btn-primary bevestig"');?>
 </div>
 
 <?php echo "</tbody></table>";?>
