@@ -30,9 +30,14 @@
             e.preventDefault();
             var id = $(this).data('id');
           });
+          
+          $(".opslaan").click(function(){
+              $("#toevoegen").show();
+          });
 
           $(".annuleren").click(function(){
             $("#panel").hide();
+            $("#toevoegen").show();
           });
         }
 
