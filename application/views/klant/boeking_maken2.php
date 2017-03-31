@@ -10,6 +10,7 @@
           $.ajax({type : "GET",
             url : site_url + "/klant/nieuweKamer",
             success : function(result){
+                $("#toevoegen").hide();
                 $("#panel").show();
                 $("#resultaat").html(result);
                 // click aan toevoegen hangen als die er is
