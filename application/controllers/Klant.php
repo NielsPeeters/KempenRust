@@ -219,6 +219,6 @@ class Klant extends CI_Controller {
             $this->session->unset_userdata('pensionId');
         }
         
-        redirect("/home/index");
+        index();
     }
 }

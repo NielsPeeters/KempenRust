@@ -55,7 +55,7 @@
             $.ajax({type : "GET",
                 url : site_url + "/klant/annuleerBoeking",
                 success : function(result){
-
+                    
                 },
                 error: function (xhr, status, error) {
                     alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
