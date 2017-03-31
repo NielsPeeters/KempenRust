@@ -16,8 +16,8 @@ class Klant extends CI_Controller {
         */
         $data['title'] = 'Boeking maken';
         $data['author'] = 'Peeters Ellen';
-        $data['user'] = $this->authex->getUserInfo();
         $user = $this->authex->getUserInfo();
+        $data['user'] = $user;
         if($user->soort==1) {
             $this->load->model('arrangement_model');
             $arrangementen = $this->arrangement_model->getAllArrangementen();
@@ -36,7 +36,8 @@ class Klant extends CI_Controller {
     public function arrangementGekozen() {
         $data['title'] = 'Boeking maken';
         $data['author'] = 'Peeters Ellen';
-        $data['user'] = $this->authex->getUserInfo();
+        $user = $this->authex->getUserInfo();
+        $data['user'] = $user;
         
         /*
          * haal de waarden uit de form op en set de userdata
@@ -55,7 +56,6 @@ class Klant extends CI_Controller {
          * arrangementId
          */
         $arrangementId = $this->input->get('arrangement');
-        $this->session->set_userdata('arrangementId', $arrangementId);
         
         if($arrangementId == 0) {
             /*
@@ -63,8 +63,35 @@ class Klant extends CI_Controller {
              */
             $pensionId = $this->input->get('pension');
             $this->session->set_userdata('pensionId', $pensionId);
+            
+            /*
+             * haal arrangement aan de hand van het pensionId in de tabel arrangement
+             */
+            $this->load->model('arrangement_model');
+            $arrangement = $this->arrangement_model->getAllByPension($pensionId);
+            $arrangementId = $arrangement->id;
         }
         
+        $this->session->set_userdata('arrangementId', $arrangementId);
+        
+        /*
+         * maak boeking aan
+         */
+        $boeking = new stdClass();
+        $boeking->persoonId = $user->id;
+        $boeking->startDatum = $begindatum;
+        $boeking->eindDatum = $einddatum;
+        $boeking->arrangementId = $arrangementId;
+        $boeking->tijstip = "";
+        $boeking->goedgekeurd = 0;
+        $boeking->opmerking = "NULL";
+        $this->load->model('boeking_model');
+        $boeking->id = $this->boeking_model->insert($boeking);
+        $this->session->set_userdata('boeking', $boeking);
+        
+        /*
+         * laad de pagina om boeking te vervolledigen
+         */
         $this->load->model('typePersoon_model');
         $data["types"] = $this->typePersoon_model->getAll();
         
@@ -72,9 +99,9 @@ class Klant extends CI_Controller {
         $this->template->load('main_master', $partials, $data); 
     }
     
-    public function nieuweKamer() {        
+    public function nieuweKamer() { 
         $this->load->model('typePersoon_model');
-        $data["persoontypes"] = $this->typePersoon_model->getAll();
+        $data['persoontypes'] = $this->typePersoon_model->getAll();
         
         $this->load->model('kamer_model');
         $kamers = $this->kamer_model->getAllBeschikbaar($this->session->userdata('begindatum'), $this->session->userdata('einddatum'));
@@ -87,15 +114,78 @@ class Klant extends CI_Controller {
     }
     
     public function voegKamerToe(){
+        $boeking = $this->session->userdata('boeking');
+        $totaal = 0;
+        $personen = array();
+        
+        $this->load->model('typePersoon_model');
+        $persoontypes = $this->typePersoon_model->getAll();
+        
+        foreach($persoontypes as $type) {
+            $persoonId = $type->id;
+            $aantal = $this->input->post('persoon' . $persoonId);
+            $personen[$persoonId] = $aantal;
+            
+            /*
+             * voeg data toe aan tabel boekingtypepersoon
+             */
+            $boekingTypePersoon = new stdClass();
+            $boekingTypePersoon->typePersoonId = $persoonId;
+            $boekingTypePersoon->boekingId = $boeking->id;
+            $boekingTypePersoon->aantal = $aantal;
+            $this->load->model('boekingTypePersoon_model');
+            $boekingTypePersoon->id = $this->boekingTypePersoon_model->insert($boekingTypePersoon);
+        }
+        
+        foreach($personen as $id => $aantal) {
+            $totaal = $totaal + $aantal;
+        }
+        
         $typeId = $this->input->post('kamertype');
         $voorkeur = $this->input->post('voorkeur');
+        $kamerId = 0;
+        $vast = 0;
+        
+        if ($voorkeur == "ja") {
+            $kamerId = $this->input->post('kamer');
+            $vast = 1;
+        } else {
+            $aantal = 0;
+            $this->load->model('kamer_model');
+            $beschikbareKamers = $this->kamer_model->getAllBeschikbaar($this->session->userdata('begindatum'), $this->session->userdata('einddatum'));
+            
+            foreach($beschikbareKamers as $id => $info) {
+                $kamer = $this->kamer_model->get($id);
+                
+                if ($kamer->kamerTypeId == $typeId) {
+                    $aantal++;
+                }
+            }
+            
+            $kamerId = rand(0, $aantal - 1);
+        }
         
         $kamers = array();
         
         if($this->session->has_userdata('kamers')){
             $kamers = $this->session->userdata('kamers');
-        } else {
-            //$kamers[""];
         }
+        
+        $this->load->model('kamer_model');
+        $kamer = $this->kamer_model->get($kamerId);
+        
+        /*
+         * voeg kamer toe aan tabel kamerboeking
+         */
+        $kamerBoeking = new stdClass();
+        $kamerBoeking->boekingId = $boeking->id;
+        $kamerBoeking->kamerId = $kamer->id;
+        $kamerBoeking->aantalMensen = $totaal;
+        $kamerBoeking->staatVast = $vast;
+        $this->load->model('kamerBoeking_model');
+        $kamerBoeking->id = $this->kamerBoeking_model->insert($kamerBoeking);
+        
+        $kamers[$kamer->id] = $kamerBoeking->id . "." . $kamer->naam;
+        $this->session->set_userdata('kamers', $kamers);
     }
 }
