@@ -64,13 +64,7 @@
     });
 </script>
 
-<div class="row">
-    <?php
-        echo javascript("validator.js");
-        $attributes = array('name' => 'myform','data-toggle'=>'validator','role'=>'form', 'method' => 'post');
-        echo form_open('klant/boekingBevestigen', $attributes);
-    ?>
-    
+<div class="row">    
     <h4>Kamer(s) kiezen</h4>
     <p>Overzicht gekozen kamer(s):</p>
     <div id="overzicht">
@@ -109,8 +103,7 @@
     <div class="help-block with-errors"></div>
     
     <button type="button" class="btn btn-secondary annuleerBoeking">Annuleren</button>
-    <?php echo form_submit('submit', 'Boeking bevestigen', 'class="btn btn-primary bevestig"');?>
-    <?php echo form_close();?>
+    <button class="btn btn-primary bevestig">Boeking bevestigen</button>
 </div>
 
 <?php echo "</tbody></table>";?>
