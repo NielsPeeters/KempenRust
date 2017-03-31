@@ -153,7 +153,6 @@ class Klant extends CI_Controller {
             $kamerId = $this->input->post('kamer');
             $vast = 1;
         } else {
-            $aantal = 0;
             $this->load->model('kamer_model');
             $beschikbareKamers = $this->kamer_model->getAllBeschikbaar($this->session->userdata('begindatum'), $this->session->userdata('einddatum'));
             
@@ -161,11 +160,9 @@ class Klant extends CI_Controller {
                 $kamer = $this->kamer_model->get($id);
                 
                 if ($kamer->kamerTypeId == $typeId) {
-                    $aantal++;
+                    $kamerId = $kamer->id;
                 }
             }
-            
-            $kamerId = rand(0, $aantal - 1);
         }
         
         $kamers = array();
