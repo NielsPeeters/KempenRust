@@ -82,7 +82,8 @@ class Klant extends CI_Controller {
         $boeking->startDatum = $begindatum;
         $boeking->eindDatum = $einddatum;
         $boeking->arrangementId = $arrangementId;
-        $boeking->tijstip = "";
+        $date = date('Y-m-d H:i:s');
+        $boeking->tijdstip = $date;;
         $boeking->goedgekeurd = 0;
         $boeking->opmerking = "NULL";
         $this->load->model('boeking_model');
