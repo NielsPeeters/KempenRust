@@ -72,7 +72,7 @@ class Klant extends CI_Controller {
         $this->template->load('main_master', $partials, $data); 
     }
     
-    public function nieuweKamer() {
+    public function nieuweKamer() {        
         $this->load->model('typepersoon_model');
         $data["persoontypes"] = $this->typepersoon_model->getAll();
         
@@ -83,7 +83,7 @@ class Klant extends CI_Controller {
         $types = $this->kamer_model->getAllTypesByKamers();
         $data["kamertypes"] = $types;
         
-        $this->load->view("klant/ajax_kamertoevoegen", $data);
+        $this->load->view('klant/ajax_kamertoevoegen', $data);
     }
     
     public function voegKamerToe(){

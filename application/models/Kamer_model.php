@@ -111,7 +111,7 @@ class Kamer_model extends CI_Model {
         $alleKamers = $this->kamer_model->getAll();
         
         foreach($alleKamers as $kamer){
-            $check = true;
+            $checkAlle = 1;
             $this->load->model('kamerboeking_model');
             $boekingenMetKamer = $this->kamerboeking_model->getAllByKamer($kamer->id);
         
@@ -119,12 +119,14 @@ class Kamer_model extends CI_Model {
                 $this->load->model('boeking_model');
                 $boeking = $this->boeking_model->get($kamerBoeking->boekingId);
             
-                if(!($this->kamer_model->checkData($begindatum, $boeking->startDatum, $einddatum, $boeking->eindDatum))){
-                    $check = false;
+                $checkPerBoeking = $this->kamer_model->checkData($begindatum, $boeking->startDatum , $einddatum, $boeking->eindDatum);
+                
+                if($checkPerBoeking == 0){
+                    $checkAlle = 0;
                 }
             }
             
-            if($check){
+            if($checkAlle == 1) {
                 $kamers[$kamer->id] = $kamer->kamerTypeId . "." . $kamer->naam;
             }
         }
@@ -133,15 +135,15 @@ class Kamer_model extends CI_Model {
     }
     
     function checkData($beginDatumGevraagd, $beginDatumBoeking, $eindDatumGevraagd, $eindDatumBoeking) {
-        $check = false;
+        $check = 0;
         
-        if (toDDMMYYYY($beginDatumBoeking) > $beginDatumGevraagd) {
-            if ($eindDatumGevraagd < toDDMMYYYY($beginDatumBoeking)) {
-                $check = true;
+        if ($beginDatumBoeking > $beginDatumGevraagd) {
+            if ($eindDatumGevraagd < $beginDatumBoeking) {
+                $check = 1;
             }
         } else {
-            if ($beginDatumGevraagd > toDDMMYYYY($eindDatumBoeking)) {
-                $check = true;
+            if ($beginDatumGevraagd > $eindDatumBoeking) {
+                $check = 1;
             }
         }
         
@@ -155,7 +157,7 @@ class Kamer_model extends CI_Model {
         $this->load->model('kamer_model');
         $kamers = $this->kamer_model->getAllBeschikbaar($this->session->userdata('begindatum'), $this->session->userdata('einddatum'));
             
-        foreach($kamers as $id => $naam){
+        foreach($kamers as $id => $info){
             $kamer = $this->kamer_model->get($id);
             $this->load->model('kamertype_model');
             $type = $this->kamertype_model->get($kamer->kamerTypeId);
