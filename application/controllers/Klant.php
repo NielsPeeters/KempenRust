@@ -130,12 +130,14 @@ class Klant extends CI_Controller {
             /*
              * voeg data toe aan tabel boekingtypepersoon
              */
-            $boekingTypePersoon = new stdClass();
-            $boekingTypePersoon->typePersoonId = $persoonId;
-            $boekingTypePersoon->boekingId = $boeking->id;
-            $boekingTypePersoon->aantal = $aantal;
-            $this->load->model('boekingTypePersoon_model');
-            $boekingTypePersoon->id = $this->boekingTypePersoon_model->insert($boekingTypePersoon);
+            if($aantal != 0){
+                $boekingTypePersoon = new stdClass();
+                $boekingTypePersoon->typePersoonId = $persoonId;
+                $boekingTypePersoon->boekingId = $boeking->id;
+                $boekingTypePersoon->aantal = $aantal;
+                $this->load->model('boekingTypePersoon_model');
+                $boekingTypePersoon->id = $this->boekingTypePersoon_model->insert($boekingTypePersoon);
+            }
         }
         
         foreach($personen as $id => $aantal) {
