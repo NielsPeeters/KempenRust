@@ -101,6 +101,69 @@ class Kamer_model extends CI_Model {
         return $kamers;
     }
 
+    function getAllBeschikbaar($begindatum, $einddatum) {
+         /**
+        * haalt alle kamers uit de database die beschikbaar zijn voor die periode
+        * \return een array met kamer objecten
+        */
+        $kamers = array();
+        $this->load->model('kamer_model');
+        $alleKamers = $this->kamer_model->getAll();
+        
+        foreach($alleKamers as $kamer){
+            $check = true;
+            $this->load->model('kamerboeking_model');
+            $boekingenMetKamer = $this->kamerboeking_model->getAllByKamer($kamer->id);
+        
+            foreach($boekingenMetKamer as $kamerBoeking) {
+                $this->load->model('boeking_model');
+                $boeking = $this->boeking_model->get($kamerBoeking->boekingId);
+            
+                if(!($this->kamer_model->checkData($begindatum, $boeking->startDatum, $einddatum, $boeking->eindDatum))){
+                    $check = false;
+                }
+            }
+            
+            if($check){
+                $kamers[$kamer->id] = $kamer->kamerTypeId . "." . $kamer->naam;
+            }
+        }
+        
+        return $kamers;
+    }
+    
+    function checkData($beginDatumGevraagd, $beginDatumBoeking, $eindDatumGevraagd, $eindDatumBoeking) {
+        $check = false;
+        
+        if (toDDMMYYYY($beginDatumBoeking) > $beginDatumGevraagd) {
+            if ($eindDatumGevraagd < toDDMMYYYY($beginDatumBoeking)) {
+                $check = true;
+            }
+        } else {
+            if ($beginDatumGevraagd > toDDMMYYYY($eindDatumBoeking)) {
+                $check = true;
+            }
+        }
+        
+        return $check;
+    }
+    
+    
+    function getAllTypesByKamers(){
+        $types = array();
+        
+        $this->load->model('kamer_model');
+        $kamers = $this->kamer_model->getAllBeschikbaar($this->session->userdata('begindatum'), $this->session->userdata('einddatum'));
+            
+        foreach($kamers as $id => $naam){
+            $kamer = $this->kamer_model->get($id);
+            $this->load->model('kamertype_model');
+            $type = $this->kamertype_model->get($kamer->kamerTypeId);
+            $types[$kamer->kamerTypeId] = $type->omschrijving;
+        }
+            
+        return $types;
+    }
 }
 
 ?>

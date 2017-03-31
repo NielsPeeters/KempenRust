@@ -7,10 +7,11 @@
         var options = '';
         
         <?php 
-            foreach($kamers as $kamer){
+            foreach($kamers as $id => $info){
+                $delen = explode(".", $info);
         ?>
-                if(typeId == <?php echo $kamer->kamerTypeId;?>){
-                    options = options + '<option value="<?php echo $kamer->id;?>"><?php echo $kamer->naam;?></option>';
+                if(typeId == <?php echo $delen[0];?>){
+                    options = options + '<option value="<?php echo $id;?>"><?php echo $delen[1];?></option>';
                 }
         <?php
             }
@@ -40,7 +41,7 @@
 <div id="inhoud">
 <?php
 echo javascript("validator.js");
-$attributes = array('name' => 'myform','data-toggle'=>'validator','role'=>'form');
+$attributes = array('name' => 'myform','data-toggle'=>'validator','role'=>'form', 'method' => 'get');
 echo form_open('klant/voegKamerToe', $attributes);
 ?>
 
@@ -59,8 +60,8 @@ echo form_open('klant/voegKamerToe', $attributes);
         <p>Welke soort kamer wenst u?</p>
         <?php $optionsKamertypes = array();
         
-            foreach($kamertypes as $kamertype) {
-                $optionsKamertypes[$kamertype->id] = $kamertype->omschrijving;
+            foreach($kamertypes as $id => $naam) {
+                $optionsKamertypes[$id] = $naam;
             }
         
             echo form_dropdown('kamertype', $optionsKamertypes, '0', 'id="kamertype" size="10" class="form-control" required = "required"');
@@ -84,6 +85,6 @@ echo form_open('klant/voegKamerToe', $attributes);
     <div class="help-block with-errors"></div>
     
     <button type="button" class="btn btn-secondary annuleren">Annuleren</button>
-    <button type="submit" data-id="' . $faciliteit->id . '" class="btn btn-primary opslaan">Toevoegen</button>
-</form>
+    <?php echo form_submit('submit', 'Toevoegen', 'class="btn btn-primary opslaan"');?>
+<?php echo form_close();?>
 </div>

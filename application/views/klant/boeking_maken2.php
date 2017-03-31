@@ -49,7 +49,23 @@
 
 <div class="row">
     <h4>Kamer(s) kiezen</h4>
-    <p>Voeg een kamer toe: <button class="btn btn-primary" id="toevoegen">Voeg toe</button></p>
+    <p>Overzicht gekozen kamer(s):</p>
+    <div id="overzicht">
+        <?php 
+            if(isset($gekozenKamers)){
+                echo '<ul>';
+                
+                foreach($gekozenKamers as $kamer) {
+                    echo '<li>' . $kamer->naam . '</li>';
+                }
+                
+                echo '</ul>';
+            } else {
+                echo '<p>Nog geen kamers.</p>';
+            }
+        ?>
+    </div>
+    <button class="btn btn-primary" id="toevoegen">Voeg een kamer toe</button>
     
     <div class="panel panel-default" id="panel">
         <!--<div class="panel-heading">Details</div>-->
@@ -62,7 +78,7 @@
     
     <h4>Opmerkingen</h4>
     <p>Typ hieronder eventuele opmerkingen in verband met uw boeking. Bv. als u een hond bij u zich heeft of allergiën heeft.</p>
-    
+    <?php echo form_textarea(array('name' => 'opmerking'));?>
 </div>
 
 <?php echo "</tbody></table>";?>
