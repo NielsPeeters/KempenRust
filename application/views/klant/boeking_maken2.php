@@ -97,10 +97,12 @@
     
     <h4>Opmerkingen</h4>
     <p>Typ hieronder eventuele opmerkingen in verband met uw boeking. Bv. als u een hond bij u zich heeft of allergiën heeft.</p>
-    <?php echo form_textarea(array('name' => 'opmerking'));?>
+    <p><?php echo form_textarea(array('name' => 'opmerking'));?></p>
     
+    <p>
     <button type="button" class="btn btn-secondary annuleerBoeking">Annuleren</button>
     <?php echo form_submit('submit', 'Bevestig boeking', 'class="btn btn-primary bevestig"');?>
+    </p>
 </div>
 
 <?php echo "</tbody></table>";?>
