@@ -65,16 +65,16 @@ class Klant extends CI_Controller {
             $this->session->set_userdata('pensionId', $pensionId);
         }
         
-        $this->load->model('typepersoon_model');
-        $data["types"] = $this->typepersoon_model->getAll();
+        $this->load->model('typePersoon_model');
+        $data["types"] = $this->typePersoon_model->getAll();
         
         $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking_maken2', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data); 
     }
     
     public function nieuweKamer() {        
-        $this->load->model('typepersoon_model');
-        $data["persoontypes"] = $this->typepersoon_model->getAll();
+        $this->load->model('typePersoon_model');
+        $data["persoontypes"] = $this->typePersoon_model->getAll();
         
         $this->load->model('kamer_model');
         $kamers = $this->kamer_model->getAllBeschikbaar($this->session->userdata('begindatum'), $this->session->userdata('einddatum'));
