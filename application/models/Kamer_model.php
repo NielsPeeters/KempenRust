@@ -160,7 +160,7 @@ class Kamer_model extends CI_Model {
         foreach($kamers as $id => $info){
             $kamer = $this->kamer_model->get($id);
             $this->load->model('kamerType_model');
-            $type = $this->kamertype_model->get($kamer->kamerTypeId);
+            $type = $this->kamerType_model->get($kamer->kamerTypeId);
             $types[$kamer->kamerTypeId] = $type->omschrijving;
         }
             
