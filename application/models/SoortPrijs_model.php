@@ -54,6 +54,11 @@ class soortPrijs_model extends CI_Model {
         $this->db->delete('soortPrijs');
     }
 
+    function getByAantal($aantal){
+        $this->db->where('aantal', $aantal);
+        $query = $this->db->get('soortPrijs');
+        return $query->row();
+    }
 }
 
 ?>

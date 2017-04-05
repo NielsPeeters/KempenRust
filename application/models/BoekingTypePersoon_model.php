@@ -13,7 +13,7 @@ class BoekingTypePersoon_model extends CI_Model {
          *\return een boekingTypePersoon object
          */
         $this->db->where('id', $id);
-        $query = $this->db->get('boeking');
+        $query = $this->db->get('boekingTypePersoon');
         return $query->row();                 // genereert een boekingTypePersoon object
     }
 

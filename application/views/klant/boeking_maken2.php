@@ -21,6 +21,20 @@
               }
           });
         }
+        
+        function bevestigBoeking(opmerking)
+        {
+            $.ajax({type : "GET",
+            url : site_url + "/klant/bevestigBoeking",
+            data: { opmerking : opmerking },
+            success : function(result){
+                
+            },
+            error: function (xhr, status, error) {
+                alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+              }
+          });
+        }
 
         function attach_click() {
           $(".voegtoe").click(function (e) {
@@ -62,8 +76,23 @@
                 }
             });
         });
+        
+        $("#bevestigBoeking").click(function() {
+            var opmerking = $("#opmerking").val();
+            bevestigBoeking(opmerking);
+        });
     });
 </script>
+
+<style>
+    #veranderKleur {
+       color: white; 
+    }
+    
+    #annuleren {
+        color: black;
+    }
+</style>
 
 <div class="row">
     <h4>Kamer(s) kiezen</h4>
@@ -97,11 +126,11 @@
     
     <h4>Opmerkingen</h4>
     <p>Typ hieronder eventuele opmerkingen in verband met uw boeking. Bv. als u een hond bij u zich heeft of allergiën heeft.</p>
-    <p><?php echo form_textarea(array('name' => 'opmerking'));?></p>
+    <p><?php echo form_textarea(array('name' => 'opmerking', 'id' => 'opmerking', 'value' => '/'));?></p>
     
     <p>
-        <button type="button" class="btn btn-secondary annuleerBoeking"><?php echo anchor('home/index', 'Annuleren');?></button>
-    <?php echo form_submit('submit', 'Bevestig boeking', 'class="btn btn-primary bevestig"');?>
+        <button type="button" class="btn btn-secondary annuleerBoeking"><?php echo anchor('home/index', 'Annuleer boeking', 'id="annuleren"');?></button>
+        <button type="button" class="btn btn-primary" id="bevestigBoeking"><?php echo anchor('klant/toonBevestiging', 'Bevestig boeking', 'id="veranderKleur"');?></button>
     </p>
 </div>
 

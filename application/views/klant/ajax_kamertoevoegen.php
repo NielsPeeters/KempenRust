@@ -41,7 +41,7 @@
 <div id="inhoud">
 <?php
 echo javascript("validator.js");
-$attributes = array('name' => 'myform','data-toggle'=>'validator','role'=>'form', 'method' => 'post');
+$attributes = array('name' => 'myform', 'data-toggle'=>'validator', 'id' => 'myform', 'role'=>'form', 'method' => 'post');
 echo form_open('klant/voegKamerToe', $attributes);
 ?>
 
@@ -85,6 +85,6 @@ echo form_open('klant/voegKamerToe', $attributes);
     <div class="help-block with-errors"></div>
     
     <button type="button" class="btn btn-secondary annuleren">Annuleren</button>
-    <?php echo form_submit('submit', 'Toevoegen', 'class="btn btn-primary opslaan"');?>
+    <?php echo form_submit('submit', 'Toevoegen', 'class="btn btn-primary"');?>
 <?php echo form_close();?>
 </div>

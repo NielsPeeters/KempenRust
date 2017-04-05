@@ -54,6 +54,21 @@ class Prijs_model extends CI_Model {
         $this->db->delete('prijs');
     }
 
+    function getPrijs($arrangementId, $kamerTypeId, $soortPrijsId){
+        $this->db->where('arrangementId', $arrangementId);
+        $query = $this->db->get('prijs');
+        $prijzenPerArrangement = $query->result();
+        
+        foreach($prijzenPerArrangement as $prijs) {
+            if($prijs->kamertypeId == $kamerTypeId) {
+                if($prijs->soortPrijsId == $soortPrijsId){
+                    $this->db->where('id', $prijs->id);
+                    $query = $this->db->get('prijs');
+                    return $query->row();
+                }
+            }
+        }
+    }
 }
 
 ?>

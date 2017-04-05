@@ -71,8 +71,26 @@
                 alert("Begindatum valt vroeger dan vandaag!");
             }
         });
+        
+        $(".annuleren").click(function() {
+            $.ajax({type: "GET",
+                url : site_url + "/klant/annuleerBoeking",
+                success : function(result){
+                    
+                },
+                error: function (xhr, status, error) {
+                    alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+                }             
+            });
+        });
     });
 </script>
+
+<style>
+    #annuleren {
+        color: black;
+    }
+</style>
 
 <?php 
     $optionsArrangementen = array();
@@ -142,7 +160,7 @@
         <p>&nbsp;</p>
     </div>
     
-    <button type="button" class="btn btn-secondary annuleren"><?php echo anchor('home/index', 'Annuleren');?></button>
+    <button type="button" class="btn btn-secondary annuleren"><?php echo anchor('home/index', 'Annuleren', 'id="annuleren"');?></button>
     <button type="button" class="btn btn-primary opslaan" id="volgende">Volgende</button>
     
     <?php echo form_close();?>
