@@ -144,6 +144,7 @@ class Boeking extends CI_Controller {
         $boeking->startDatum='';
         $boeking->eindDatum='';
         $boeking->tijdstip='';
+        $boeking->goedgekeurd='0';
 
         return $boeking;
     }
