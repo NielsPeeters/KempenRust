@@ -1,46 +1,6 @@
+
 <script>
 
- function verwijderKamerBoeking(id) 
-        {
-            /**
-            * Verwijderd te boeking die behoort tot het meegegeven id
-            * \param id het id van de te verwijderen boeking als int
-            * een leeg boeking object genereren als de boeking verwijderd kan worden, anders geef een foutmelding
-            */
-            $.ajax({type: "GET",
-                url: site_url + "/kamerBoeking/verwijder",
-                data: {id: id},
-                dataType: "text",
-                success: function (result) {
-            
-                        alert(result);
-                        location.reload();
-                   
-                },
-                error: function (xhr, status, error) {
-                    alert("-- ERROR IN AJAX --\n\n" + xhr.responseText + status + error);
-                }
-            });
-        }
-
- function haalKamers (id) 
-        {
-            /**
-            *\TODO
-            */
-            alert('ja');
-          $.ajax({type : "GET",
-            url : site_url + "/kamerBoeking/getWithBoeking",
-            data : { id : id },
-            success : function(result){
-                $("#resultaat").html(result);
-             
-            },
-            error: function (xhr, status, error) {
-                alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
-              }
-          });
-        }
 
 $(document).ready(function(){
     checkPension();
@@ -49,60 +9,7 @@ $(document).ready(function(){
         checkPension();
     });
 
-    $(".opslaan").click(function(){// datums validatie
-         /** 
-            * begindag
-            */
-            var msecBegin = Date.parse($("#beginDatum").val());
-            var begindatum = new Date(msecBegin);
-            var dagen = ["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"];
-            var begindag = dagen[begindatum.getDay()];
-            /**
-            * einddag
-            */
-            var msecEind = Date.parse($("#eindDatum").val());
-            var einddatum = new Date(msecEind);
-            var einddag = dagen[einddatum.getDay()];
-            var arrangementId = $("#dropDown").find(":selected").text();
-            /**
-             * haal begin- en einddag van het arrangement uit de database
-             */
-            var vandaag = new Date();
-            vandaag = Date.parse(vandaag);
-                
-            if (msecBegin > vandaag) {
-                if (msecEind > msecBegin) {
-                    if(arrangementId > 0){
-                        <?php foreach($arrangementen as $arrangement){?>
-                            if (arrangementId == <?php echo $arrangement->id;?>){
-                                if (begindag == "<?php echo $arrangement->beginDag;?>"){
-                                    if (einddag == "<?php echo $arrangement->eindDag;?>"){
-                                        $('#myform').submit();
-                                    } else {
-                                        alert("Einddatum is geen <?php echo $arrangement->eindDag;?>!");
-                                    }
-                                } else {
-                                    if (einddag == "<?php echo $arrangement->eindDag;?>"){
-                                        alert("Begindatum is geen <?php echo $arrangement->beginDag;?>!");
-                                    } else {
-                                        alert("Begindatum is geen <?php echo $arrangement->beginDag;?> en einddatum is geen <?php echo $arrangement->eindDag;?>!");
-                                    }
-                                }
-                            }
-                        <?php }?>
-                    } else {
-                        alert("succes");
-                        $('#myform').submit();
-                    }
-                } else {
-                    $(".modal-body").html('Einddatum valt vroeger dan begindatum!');
-                    $("#waarschuwingModal").modal('show');
-                }
-            } else {
-                  $(".modal-body").html('Begindatum valt vroeger dan vandaag!');
-                  $("#waarschuwingModal").modal('show');
-            }
-    });
+   
 
     $(".kamerVerwijderen").click(function(){
         verwijderKamerBoeking($(".kamerVerwijderen").attr('id'));
@@ -122,26 +29,45 @@ $(document).ready(function(){
         }
     }
 
-    function wijzigKamers(){
-        $("#wijzigenModal").modal('show');
-    }
   </script>
 
  
 <?php
 echo javascript("validator.js");
-$attributes = array('name' => 'myform','data-toggle'=>'validator','role'=>'form');
-echo form_open('boeking/schrijfBoeking', $attributes);
+$attributes = array('name' => 'myform', 'id' => 'myform','data-toggle'=>'validator','role'=>'form');
+echo form_open('boeking/schrijfBoeking/', $attributes);
 ?>
 
-
      <div class="form-group"> <!--gast-->
+     </br>
         <label for="persoon" class="control-label">Gast</label>
-        <?php if(!$boeking->persoonId==0){$naam=$boeking->persoon->naam . " ".$boeking->persoon->voornaam;
-                echo form_input(array('disabled'=>'disabled','name' => 'persoon', 'id' => 'persoon', 'value' => $naam, 'class' => 'form-control', 'placeholder' => 'Gast', 'required' => 'required'));}
-        else{echo "TODO: gast selecteren of nieuwe gast maken";}?>
-     
-    </div>
+        
+        <?php if(!$boeking->persoonId==0)
+        {
+            $naam=$boeking->persoon->naam . " ".$boeking->persoon->voornaam;
+            echo form_input(array('disabled'=>'disabled', 'id' => 'persoon', 'value' => $naam, 'class' => 'form-control', 'placeholder' => 'Gast', 'required' => 'required'));
+            echo form_input(array('type' => 'hidden', 'name' => 'persoonId', 'id' => 'persoonId', 'value' => $boeking->persoon->id, 'class' => 'form-control', 'placeholder' => 'persoonId'));
+        }
+              
+        else
+        { ?>
+            <select  name="persoonId" class="form-control">
+                <?php 
+                foreach ($personen as $persoon) {
+                    $naam=$persoon->naam . " ".$persoon->voornaam;?>
+                    <option label="<?php echo $naam;?>" id="" value="<?php echo $naam;?>">
+                    </option>
+                
+                <?php } ?>
+            </select>  
+             </br>
+            <button class="btn btn-secondary pull-right"><?php echo anchor('/persoon/index/','Nieuwe gast'); ?></button>
+            </br>
+                 </div>  
+
+            
+        <?php   }?>
+            </div>
 
     
     <div class="form-group row"> <!--Start + Einddatum-->
@@ -154,6 +80,42 @@ echo form_open('boeking/schrijfBoeking', $attributes);
             <input class="form-control" data-fv-date-format="DD/MM/YYYY" type="date" id="eindDatum" name="eindDatum" value=<?php echo $boeking->eindDatum; ?> required>
         </div>
     </div>
+
+    <div class="form-group">
+
+        <label for="persoontype" class="control-label">Aantal personen</label>
+        <div>
+        
+        <?php 
+        if($boeking->id==0){
+        foreach($typePersonen as $typePersoon) {?>
+             <div class="col-xs-3">
+                        <label for="persoontype" id="persoontype" class="control-label"><?php echo $typePersoon->soort;?></label>
+                        <?php
+                        echo form_input(array('class'=>'form-control','type' => 'number', 'name' => 'persoon' . $typePersoon->id, 'id' => 'persoon' . $typePersoon->id, 'required' => 'required', 'value' => '0'));
+                   ?>
+                    
+                    </div>
+     <?php   }}
+     else{
+ foreach ($typePersonen as $typePersoon) {
+            foreach($boekingTypePersonen as $boekingTypePersoon){
+                if($boekingTypePersoon->typePersoonId == $typePersoon->id){
+                    //echo "test ze zijn gelijk";
+                  ?>
+                    <div class="col-xs-3">
+                        <label for="persoontype" id="persoontype" class="control-label"><?php echo $typePersoon->soort;?></label>
+  <?php
+                        echo form_input(array('class'=>'form-control','type' => 'number', 'name' => 'persoon' . $typePersoon->id, 'id' => 'persoon' . $typePersoon->id, 'required' => 'required', 'value' => $boekingTypePersoon->aantal));
+                   ?>                    </div><?php  
+                }
+            }
+        }
+
+     }?></div></div>
+    </br>
+    </br>
+    </br>
 
      <div class="form-group"> <!--Arrangementen-->
         <label for="arrangement" class="control-label">Arrangement</label>
@@ -200,80 +162,9 @@ echo form_open('boeking/schrijfBoeking', $attributes);
     </br>
 
 
-
-       <div class="form-group" id=""> <!--kamers-->
-        <label for="kamerBoeking"  class="control-label">Geboekte kamers</label>
-         <table class="table table-condensed">
-         <tr class="success">
-            <th >Kamer</th>
-            <th >Type</th>
-            <th >Aantal personen</th>
-
-         </tr>
-        <?php
-        foreach($kamers as $kamer){
-            $teller=0;
-            $rij =  array();
-            foreach($kamerBoekingen as $kamerBoeking){
-                array_push($rij,$kamerBoeking->kamerId);
-            }
-                if(in_array($kamer->id, $rij) ){
-                     ?>
-                     <tr>
-                        <td><?php echo $kamer->naam; ?></td>
-                        <td><?php echo $kamer->type->omschrijving; ?></td>
-                        <?php foreach($kamerBoekingen as $kamerBoeking){
-                            if($kamerBoeking->kamerId==$kamer->id){?>
-                               <td><?php echo $kamerBoeking->aantalMensen;?> </td>
-
-                               <?php
-                            }
-                        }?>
-                     </tr>
-                    <?php
-                
-                }
-            }
-            ?>
-                  </table>
-    </div>  
-    
-
-    </br></br>
-    <div class="form-group row">
-    <div id="resultaat"></div>
-    </div>
-
-<div class="form-group row"> <!--typepersonen-->
-    <?php   $totaal=0;
-        foreach ($typePersonen as $typePersoon) {
-            //echo $typePersoon->id;
-            //echo "test typepersoon </br>";
-            foreach($boekingTypePersonen as $boekingTypePersoon){
-                //echo $boekingTypePersoon->typePersoonId;
-                //echo "test boekingtypepersoon </br>";
-               
-                if($boekingTypePersoon->typePersoonId == $typePersoon->id){
-                    //echo "test ze zijn gelijk";
-                    $totaal += $boekingTypePersoon->aantal;?>
-                    <div class="col-xs-3">
-                        <label for="typePersoon" id="typePersoon" class="control-label"><?php echo $typePersoon->soort;?></label>
-                        <input class="form-control" type="number" id="to" name="to" value="<?php echo $boekingTypePersoon->aantal;?>" required>
-                    </div><?php  
-                }
-            }
-        }
-      ?>
-</div>
-</br>
-<div class="form-group" id="totaal">
-    <label for="aantalMensen" class="control-label">Totaal aantal personen</label>
-    <input class="form-control" type="number" id="" name="to" value="<?php echo $totaal;?>" disabled>
-</div>
-
 <div class="form-group">
-    <label for="opmerking" class="control-label">Opmerkingen</label>
-    <textarea rows="3" class="form-control" name="opmerking"><?php echo $boeking->opmerking;?></textarea>
+    <label for="opmerking" class="control-label">Opmerkingen (Allergieën, huisdieren, ...)</label>
+    <textarea rows="3" type="text" class="form-control" name="opmerking"><?php echo $boeking->opmerking;?></textarea>
 </div>
 
 
@@ -289,15 +180,10 @@ echo form_open('boeking/schrijfBoeking', $attributes);
 </div>
 </br>
 
-
     <?php echo form_input(array('type' => 'hidden', 'name' => 'id', 'id' => 'id', 'value' => $boeking->id, 'class' => 'form-control', 'placeholder' => 'id')) ?>
 
-    <div class="help-block with-errors"></div>
-    
     <button type="button" class="btn btn-secondary annuleren">Annuleren</button>
-    <button type="button" data-id="' . $boeking->id . '" class="btn btn-warning verwijder">Verwijderen</button>
-   
-    <button type="button" data-id="' . $boeking->id . '" class="btn btn-primary opslaan">Opslaan</button>
+    <button type="button" data-id="' . $boeking->id . '" class="btn btn-primary opslaan">Volgende</button>
 
 </div>
 </form>

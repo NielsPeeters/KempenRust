@@ -74,6 +74,12 @@ class Arrangement_model extends CI_Model {
         $query = $this->db->get('arrangement');
         return $query->result();
     }
+
+    function getByOmschrijving($omschrijving){
+        $this->db->where('omschrijving', $omschrijving);
+         $query = $this->db->get('arrangement');
+        return $query->row();
+    }
 }
 
 ?>

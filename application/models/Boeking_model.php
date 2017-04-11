@@ -61,7 +61,9 @@ class Boeking_model extends CI_Model {
         * geeft een array boeking object terug met alle geassocieerde eigenschappen
         * \return een array boeking objecten
         */
+       
         $this->db->order_by('goedgekeurd', 'asc');
+        $this->db->order_by('tijdstip', 'desc');
         $query = $this->db->get('boeking');
         $boekingen = $query->result();
         
@@ -116,6 +118,13 @@ class Boeking_model extends CI_Model {
         $query = $this->db->get('boeking');
         return $query->result();
     }
+
+      function getCount() {
+        return $this->db->count_all('boeking');
+    }
+
+    
+
 
 
 }

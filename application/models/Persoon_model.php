@@ -97,6 +97,17 @@ class Persoon_model extends CI_Model {
         }                 // genereert een persoon object
     }
 
+     function getWithNaam($naam, $voornaam)
+    {
+        /**
+        * \TODO
+        */
+        $this->db->where('naam', $naam);
+        $this->db->where('voornaam', $voornaam);
+        $query = $this->db->get('persoon');
+        return $query->row();                // genereert een persoon object
+    }
+
 }
 
 ?>

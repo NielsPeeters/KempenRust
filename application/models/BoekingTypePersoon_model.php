@@ -42,7 +42,8 @@ class BoekingTypePersoon_model extends CI_Model {
          *\param boekingTypePersoon een boekingTypePersoon object
          */
 
-        $this->db->where('id', $boekingTypePersoon->id);
+        $this->db->where('boekingId', $boekingTypePersoon->boekingId);
+        $this->db->where('typePersoonId', $boekingTypePersoon->typePersoonId);
         $this->db->update('boekingTypePersoon', $boekingTypePersoon);
     }
 

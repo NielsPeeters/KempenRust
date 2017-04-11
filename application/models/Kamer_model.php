@@ -133,6 +133,46 @@ class Kamer_model extends CI_Model {
         
         return $kamers;
     }
+
+     function getAllBeschikbaarWithType($begindatum, $einddatum) {
+         /**
+        * haalt alle kamers uit de database die beschikbaar zijn voor die periode
+        * \return een array met kamer objecten
+        */
+        $kamers = array();
+        $this->load->model('kamer_model');
+        $alleKamers = $this->kamer_model->getAll();
+
+
+        $this->load->model('kamerBoeking_model');
+        $this->load->model('kamerType_model');
+        foreach ($alleKamers as $kamer) {
+           $kamer->type = $this->kamerType_model->get($kamer->kamerTypeId);
+        }
+
+        foreach($alleKamers as $kamer){
+            $checkAlle = 1;
+            $this->load->model('kamerBoeking_model');
+            $boekingenMetKamer = $this->kamerBoeking_model->getAllByKamer($kamer->id);
+        
+            foreach($boekingenMetKamer as $kamerBoeking) {
+                $this->load->model('boeking_model');
+                $boeking = $this->boeking_model->get($kamerBoeking->boekingId);
+            
+                $checkPerBoeking = $this->kamer_model->checkData($begindatum, $boeking->startDatum , $einddatum, $boeking->eindDatum);
+                
+                if($checkPerBoeking == 0){
+                    $checkAlle = 0;
+                }
+            }
+            
+            if($checkAlle == 1) {
+                $kamers[$kamer->id] = $kamer;
+            }
+        }
+        return $kamers;
+    }
+    
     
     function checkData($beginDatumGevraagd, $beginDatumBoeking, $eindDatumGevraagd, $eindDatumBoeking) {
         $check = 0;
@@ -166,6 +206,10 @@ class Kamer_model extends CI_Model {
             
         return $types;
     }
+
+
+     
+
 }
 
 ?>

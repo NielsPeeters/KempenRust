@@ -70,6 +70,18 @@ class TypePersoon_model extends CI_Model {
         $query = $this->db->get('typePersoon');
         return $query->row();
     }
+
+       function getWithBoeking($id)
+    {
+        /**
+         * verwijderd het typepersoon object dat bij het id hoort uit de database
+         * \param id het id van de geselecteerde typepersoon
+         */
+        $this->db->where('boekingId', $id);
+        $query = $this->db->get('typePersoon');
+        return $query->result();
+    }
+
 }
 
 ?>
