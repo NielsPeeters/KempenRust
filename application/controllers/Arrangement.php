@@ -46,7 +46,7 @@ class Arrangement extends CI_Controller {
             $this->load->model('arrangement_model');
             $data['arrangement'] = $this->arrangement_model->get($arrangementId);
         }
-        $this->load->view("werknemer/arrangement/ajax_arrangement", $data);
+        $this->load->view("admin/arrangement/ajax_arrangement", $data);
     }
 
     public function verwijderArrangement(){
