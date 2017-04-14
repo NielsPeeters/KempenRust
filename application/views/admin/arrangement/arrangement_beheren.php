@@ -2,16 +2,16 @@
 /**
 * \file
 */
-        function haalPension (pensionId) 
+        function haalArrangement (arrangementId) 
         {
             /**
-            * haalt het pension object op dat behoort tot het meegegeven id
-            * \param pensionId het id van het geselecteerde pension
-            * het geselecteerde pension wordt weergeven in een panel
+            * haalt het arrangement object op dat behoort tot het meegegeven id
+            * \param arrangementId het id van het geselecteerde arrangement
+            * het geselecteerde arrangement wordt weergeven in een panel
             */
           $.ajax({type : "GET",
-            url : site_url + "/pension/haalPension",
-            data : { pensionId : pensionId },
+            url : site_url + "/arrangement/haalArrangement",
+            data : { arrangementId : arrangementId },
             success : function(result){
                 $("#panel").show();
                 $("#resultaat").html(result);
@@ -19,8 +19,7 @@
                 attach_click();
                 // Geef de verwijder knop van het modalvenster het id van de te verwijderen pension mee
                 resultaat = $(result).find("#id").attr("value");
-                $("#pensionId").html(resultaat);
-             
+                $("#arrangementId").html(resultaat);
             },
             error: function (xhr, status, error) {
                 alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
@@ -28,15 +27,15 @@
           });
         }
 
-        function verwijderPension(id) 
+        function verwijderArrangement(id) 
         {
             /**
-            * Verwijderdt het pension die behoort tot het meegegeven id
-            * \param id het id van het te verwijderen pension als int
-            *een leeg pension object genereren als het pension verwijderd kan worden, anders geef een foutmelding
+            * Verwijdert het arrangement die behoort tot het meegegeven id
+            * \param id het id van het te verwijderen arrangement als int
+            *een leeg arrangement object genereren als het arrangement verwijderd kan worden, anders geef een foutmelding
             */
             $.ajax({type: "GET",
-                url: site_url + "/pension/verwijderPension",
+                url: site_url + "/arrangement/verwijderArrangement",
                 data: {id: id},
                 dataType: "json",
                 success: function (result) {
@@ -44,8 +43,7 @@
                         location.reload();
                     } else{
                         $("#verwijderFout").modal('show');
-                    }
-                    
+                    }  
                 },
                 error: function (xhr, status, error) {
                     alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
@@ -74,27 +72,27 @@
     $(document).ready(function(){
         $("#panel").hide();
 
-        $("#pension").change(function() {
+        $("#arrangement").change(function() {
             /**
-            *Bij het veranderen van het geselecteerde pension, veranderdt de info in het panel
+            *Bij het veranderen van het geselecteerde arrangement, verandert de info in het panel
             */
-            haalPension($(this).val());
+            haalArrangement($(this).val());
         });
 
         $(".delete").click(function (e) {
             /**
-            *Bij het klikken op verwijder wordt het pension object verwijderdt
+            *Bij het klikken op verwijder wordt het arrangement object verwijderd
             */
             e.preventDefault();
-            var id = $("#pensionId").html();
-            verwijderPension(id);
+            var id = $("#arrangementId").html();
+            verwijderArrangement(id);
         });
 
         $("#nieuw").click(function (){
             /**
-            *Bij het klikken op nieuw wordt een nieuw pension object opgehaald
+            *Bij het klikken op nieuw wordt een nieuw arrangement object opgehaald
             */
-            haalPension(-1);
+            haalArrangement(-1);
         });
     });
 </script>
@@ -102,8 +100,8 @@
 
 <?php 
 $options = array();
-foreach($pensions as $pension){
-	$options[$pension->id] ="$pension->naam";
+foreach($arrangementen as $arrangement){
+	$options[$arrangement->id] = "$arrangement->naam";
 }
 ?>
 
@@ -112,7 +110,7 @@ foreach($pensions as $pension){
     <div  class="col-lg-4" >
         <div id="reload">
         <p>
-            <?php echo form_dropdown('pension', $options, '0', 'id="pension" size="10" class="form-control"');?>
+            <?php echo form_dropdown('arrangement', $options, '0', 'id="arrangement" size="10" class="form-control"');?>
         </p>
         </div>
         <p  id="nieuw" class="btn btn-primary">Nieuw</p>
@@ -128,7 +126,6 @@ foreach($pensions as $pension){
     </div>
   </div>
 
-
   <div class="modal fade" id="verwijderModal" role="dialog">
       <div class="modal-dialog">
           <!-- Modal content-->
@@ -139,9 +136,9 @@ foreach($pensions as $pension){
               </div>
               <div class="modal-body">
                   <p>
-                      Weet je zeker dat je dit pension wil verwijderen?
+                      Weet je zeker dat je dit arrangement wil verwijderen?
                   </p>
-                  <p hidden id="pensionId">
+                  <p hidden id="arrangementId">
                   </p>
               </div>
               <div class="modal-footer">
@@ -163,7 +160,7 @@ foreach($pensions as $pension){
               </div>
               <div class="modal-body">
                   <p>
-                      Je kan dit pension niet verwijderen omdat er nog arrangementen aan verbonden zijn.
+                      Je kan dit arrangement niet verwijderen omdat er nog boekingen aan verbonden zijn.
                   </p>
               </div>
               <div class="modal-footer">

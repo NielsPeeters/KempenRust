@@ -108,7 +108,7 @@ class Boeking_model extends CI_Model {
 
     }
     
-        function getAllByPersoon($id) {
+    function getAllByPersoon($id) {
         /**
         * haalt de boeking uit de database die bij het gegeven id
         * \param persoonid het id van de geselecteerde boeking
@@ -119,14 +119,20 @@ class Boeking_model extends CI_Model {
         return $query->result();
     }
 
-      function getCount() {
+    function getCount() {
         return $this->db->count_all('boeking');
     }
-
     
-
-
-
+    function getAllByArrangement($arrangementId){
+        /**
+        * haalt de boeking uit de database die bij het gegeven arrangementId horen
+        * \param arrangementId het id van de geselecteerde boeking
+        * \return of arrangement bij boeking hoort
+        */
+        $this->db->where('arrangementId', $arrangementId);
+        $query = $this->db->get('boeking');
+        return $query->result();
+    }
 }
 
 ?>

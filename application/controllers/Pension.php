@@ -23,11 +23,11 @@ class Pension extends CI_Controller {
         $data['author'] = 'Laenen Nathalie';
         $data['user'] = $this->authex->getUserInfo();
         $user = $this->authex->getUserInfo();
-        if($user->soort>=2) {
+        if($user->soort>=3) {
             $this->load->model('pension_model');
             $data['pensions'] = $this->pension_model->getAll();
 
-            $partials = array('navbar' => 'main_navbar', 'content' => 'werknemer/pension/pension_beheren', 'footer' => 'main_footer');
+            $partials = array('navbar' => 'main_navbar', 'content' => 'admin/pension/pension_beheren', 'footer' => 'main_footer');
             $this->template->load('main_master', $partials, $data);
         } else {
             redirect("/home/index");
@@ -55,14 +55,20 @@ class Pension extends CI_Controller {
         */
         $id = $this->input->get('id');
         $this->load->model('arrangement_model');
-        $result = $this->arrangement_model->getAllByPension($id);
+        $arrangement = $this->arrangement_model->getAllByPension($id);
+        
+        $this->load->model('boeking_model');
+        $result = $this->boeking_model->getAllByArrangement($arrangement->id);
         $size = count($result);
         if ($size==0){
+            $this->arrangement_model->delete($arrangement->id);
+            
             $this->load->model('pension_model');
             $this->pension_model->delete($id);
             echo 0;
+        } else {
+            echo 1;
         }
-        else {echo 1;}
     }
 
     function getEmptyPension() {
@@ -85,14 +91,33 @@ class Pension extends CI_Controller {
         $object->id = $this->input->post('id');
         $object->naam = $this->input->post('naam');
 
+        $arrangement = $this->getEmptyArrangement($object->naam, $object->id);
+            
         $this->load->model('pension_model');
+        $this->load->model('arrangement_model');
         if ($object->id == 0) {
-            $this->pension_model->insert($object);
+            $pensionId = $this->pension_model->insert($object);
+            
+            $arrangement->pensionId = $pensionId;
+            
+            $this->arrangement_model->insert($arrangement);
         } else {
             $this->pension_model->update($object);
+
+            $this->arrangement_model->update($arrangement);
         }
         redirect('pension/index');
     }
-
-
+    
+    function getEmptyArrangement($naam, $pensionId){
+        $arrangement = new stdClass();
+        $arrangement->naam = 'Pension';
+        $arrangement->beginDag = null;
+        $arrangement->eindDag = null;
+        $arrangement->omschrijving = $naam;
+        $arrangement->isArrangement = 0;
+        $arrangement->pensionId = $pensionId;
+        
+        return $arrangement;
+    }
 }

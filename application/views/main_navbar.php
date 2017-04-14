@@ -56,6 +56,7 @@
                                     echo '<li>' . anchor('/faciliteit/index', 'Faciliteiten beheren') . '</li>';
                                     echo '<li>' . anchor('/menu/index', 'Menu\'s beheren') . '</li>';
                                     echo '<li>' . anchor('/pension/index', 'Pensions beheren') . '</li>';
+                                    echo '<li>' . anchor('/arrangement/index', 'Arrangementen beheren') . '</li>';
                                     echo '<li>' . anchor('/typePersoon/index', 'TypePersoon beheren (KortingTypes)') . '</li>';
                                     echo '<li>' . anchor('/persoon/index', 'Accounts beheren') . '</li>';
                                     ?>

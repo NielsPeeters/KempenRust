@@ -62,7 +62,7 @@ class Arrangement_model extends CI_Model {
         */
         $this->db->where('pensionId', $id);
         $query = $this->db->get('arrangement');
-        return $query->result();
+        return $query->row();
     }
 
     function getAllArrangementen() {
