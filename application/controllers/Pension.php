@@ -46,7 +46,7 @@ class Pension extends CI_Controller {
             $this->load->model('pension_model');
             $data['pension'] = $this->pension_model->get($pensionId);
             }
-        $this->load->view("werknemer/pension/ajax_pension", $data);
+        $this->load->view("admin/pension/ajax_pension", $data);
     }
 
     public function verwijderPension(){
