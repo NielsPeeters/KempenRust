@@ -168,22 +168,12 @@ echo form_open('boeking/schrijfBoeking/', $attributes);
 </div>
 
 
-<div class="form-group"> <!--goedgekeurd-->
-        <label for="goedgekeurd" class="control-label">Goedgekeurd</label>
-        <?php 
-        if($boeking->goedgekeurd=='1'){
-            echo "<div><input type='radio' name='goedgekeurd' id='goedgekeurd' value='1' checked>Ja";
-            echo "</div><div><input type='radio' name='goedgekeurd' id='goedgekeurd' value='0' >Nee</div>";}
-        else{
-            echo "<div><input type='radio' name='goedgekeurd' id='goedgekeurd' value='1' >Ja";
-            echo "</div><div><input type='radio' name='goedgekeurd' id='goedgekeurd' value='0' checked>Nee</div>";}?>
-</div>
-</br>
+
 
     <?php echo form_input(array('type' => 'hidden', 'name' => 'id', 'id' => 'id', 'value' => $boeking->id, 'class' => 'form-control', 'placeholder' => 'id')) ?>
 
     <button type="button" class="btn btn-secondary annuleren">Annuleren</button>
-    <button type="button" data-id="' . $boeking->id . '" class="btn btn-primary opslaan">Volgende</button>
+    <button type="button" data-id="' . $boeking->id . '" class="btn btn-primary opslaan">Opslaan</button>
 
 </div>
 </form>

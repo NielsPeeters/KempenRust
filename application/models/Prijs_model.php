@@ -69,6 +69,18 @@ class Prijs_model extends CI_Model {
             }
         }
     }
+
+     function getPrijsTotaal($arrangementId, $kamerTypeId, $soortPrijsId) {
+        /**
+        * verwijderd het prijs object dat bij het id hoort uit de database
+        * \param id het id van de geselecteerde prijs
+        */
+        $this->db->where('arrangementId', $arrangementId);
+        $this->db->where('kamerTypeId', $kamerTypeId);
+        $this->db->where('soortPrijsId', $soortPrijsId);
+        $query = $this->db->get('prijs');
+        return $query->row();
+    }
 }
 
 ?>

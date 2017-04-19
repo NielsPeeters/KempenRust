@@ -3,24 +3,26 @@
 function schrijfBoeking() 
         {
             /**
-            *\TODO
+            *Schrijft de boeking weg in de database
             */
              var dataString = $("#myform").serialize();
           $.ajax({type : "POST",
             url : site_url + "/boeking/schrijfBoeking",
             data: dataString,
             dataType: "json",
-            success : function(result){}
+            success : function(result){
+            }
           });
             $('#algemeen').hide();
             $('#kamers').show();
            getKamers();
+           
         }
 
            function getKamers() 
         {
             /**
-            * \TODO
+            * Haalt alle kamers op die bij de boeking horen en geeft ze weer.
             */
           $.ajax({type : "GET",
             url : site_url + "/boeking/gekozenKamers",
@@ -28,6 +30,47 @@ function schrijfBoeking()
                 
                 $("#overzicht").html(result);
                 attach_click();
+                getPrijs();
+            },
+            error: function (xhr, status, error) {
+                alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+              }
+          });
+        }
+
+            function getPrijs() 
+        {
+            /**
+            * Berekend de prijs van de boeking zonder kortingen
+            */
+          $.ajax({type : "GET",
+            url : site_url + "/boeking/berekenPrijs",
+            success : function(result){
+                $("#prijs").val(result);
+            },
+            error: function (xhr, status, error) {
+                alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+              }
+          });
+        }
+
+          function checkAantallen() 
+        {
+            /**
+            * Gaat na of het aantal opgegeven personen per kamer in de kamers past.
+            */
+          $.ajax({type : "GET",
+            url : site_url + "/boeking/checkAantallen",
+            success : function(result){
+               if(result==0){
+                  alert("Het aantal opgegeven personen komt niet overeen met het aantal personen per kamer."); 
+               }
+               else{
+                       $('#zoek').show();
+                    $('#knop').hide();
+                    $('#algemeen').hide();
+                    $('#kamers').hide();
+               }
             },
             error: function (xhr, status, error) {
                 alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
@@ -62,17 +105,23 @@ function schrijfBoeking()
             /**
             * \TODO
             */
+           
             var dataString = $("#kamerform").serialize();
+     
           $.ajax({type : "POST",
             url : site_url + "/boeking/voegKamerToe",
             data: dataString,
             success : function(result){
+
                 getKamers();
                 $('#resultaat').hide();
                 $('#toevoegen').show();
                 $('#geboekteKamers').show();
                 
-            }
+            },
+            error: function (xhr, status, error) {
+                alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+              }
 
           });
         }
@@ -86,6 +135,7 @@ function schrijfBoeking()
             * \param boekingId het id van de geselecteerde boeking
             * de geselecteerde boeking wordt weergeven in een panel
             */
+
           $.ajax({type : "GET",
             url : site_url + "/boeking/haalboeking",
             data : { boekingId : boekingId },
@@ -107,9 +157,12 @@ function schrijfBoeking()
           $.ajax({type : "GET",
             url : site_url + "/boeking/setGoedkeuring",
             data : { id : id },
-            success: function() {
+            success: function(result) {
                 location.reload();
-            }
+            },
+            error: function (xhr, status, error) {
+                alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+              }
         });
     }
 
@@ -175,8 +228,22 @@ function attach_click(){
     })
 
     $('.kamerToevoegen').click(function(){
+        var aantal = $('#aantal').val();
+        var string =$('#kamer').find(":selected").text();
+        var rij = string.split('max:');
+        var string2 = rij[1];
+        var rij2 = string2.split(' ');
+        var aantal2 = rij2[1];
+        if(parseInt(aantal) > parseInt(aantal2)){
+            alert("Het aantal opgegeven personen past niet in de geselecteerde kamer!");
+           // $(".modal-body").html("Het aantal opgegeven personen past niet in de geselecteerde kamer!");
+            //$("#waarschuwingModal").modal('show');
+            
+        }
+        else{
+            nieuweKamer();
+        }
         
-        nieuweKamer();
     })
 
 
@@ -248,8 +315,8 @@ function attach_click(){
 
 
       $('.annuleren').click(function(){
-          $('#knop').hide();
-            $('#zoek').show();
+        $('#knop').hide();
+        $('#zoek').show();
         $('#algemeen').hide();
         $('#kamers').hide();
     })
@@ -316,7 +383,11 @@ function attach_click(){
             $('#verwijderModal').modal('show');
         });
 
-       
+        $(".check").click(function(){
+            checkAantallen();
+
+         
+        })
 
     });
 
@@ -361,8 +432,8 @@ function zoek() {
     <table class="table table-responsive" id="boekingen">
     <tr class="success">
         <th>Naam</th>
-        <th>Van</th>
-        <th>Tot</th>
+        <th>Van / Tot</th>
+        <th>Arrangement</th>
         <th>Tijdstip</th>
         <th>Goedgekeurd?</th>
         <th>Wijzig</th>
@@ -372,9 +443,9 @@ function zoek() {
 
     foreach($boekingen as $boeking){?>
         <tr>
-            <td><?php echo $boeking->persoon->naam . " " . $boeking->persoon->voornaam; ?></td>
+            <td rowspan="2"><?php echo $boeking->persoon->naam . " " . $boeking->persoon->voornaam; ?></td>
             <td><?php echo date('d-m-Y',strtotime($boeking->startDatum)); ?></td>
-            <td><?php echo date('d-m-Y',strtotime($boeking->eindDatum)); ?></td>
+            <td><?php echo $boeking->arrangement;?></td>
             <td><?php echo date('d-m-Y h:m:s',strtotime($boeking->tijdstip)); ?></td>
             <td class="text-center">
             <?php 
@@ -389,6 +460,11 @@ function zoek() {
             <td class="text-center"><button type="button" id="<?php echo $boeking->id; ?>" class="btn btn-warning btn-xs btn-round wijzig"><span class="glyphicon glyphicon-pencil"></span></button></td>
             <td class="text-center"><button type="button" id="<?php echo $boeking->id; ?>" class="btn btn-danger btn-xs btn-round verwijder"><span class="glyphicon glyphicon-remove"></span></button></td>
         </tr>
+        <tr>
+       
+        <td><?php echo date('d-m-Y',strtotime($boeking->eindDatum)); ?></td>
+        <td><?php echo $boeking->aantalPersonen;?> Personen</td>
+        </tr>
     <?php
 
     }
@@ -396,6 +472,7 @@ function zoek() {
     ?>
     </table>
         <button type="button"  class="btn btn-primary nieuw">Nieuw</button>
+
 </br></br></br>
 </div>
 
@@ -412,9 +489,12 @@ function zoek() {
     </div>
     </br>
     </br>
+    <label for="prijs">Prijs (zonder korting)</label>
+    <input class='form-control' id="prijs" disabled></input>
+    </br>
      <button type="button" class="btn btn-secondary annuleren">Annuleren</button>
     <button type="button" class="btn btn-secondary vorige">Vorige</button>
-    <button type="button" class="btn btn-primary opslaan">Opslaan</button>
+    <button type="button" class="btn btn-primary check">Opslaan</button>
 
 </div>
 

@@ -62,7 +62,7 @@ class Boeking_model extends CI_Model {
         * \return een array boeking objecten
         */
        
-        $this->db->order_by('goedgekeurd', 'asc');
+       $this->db->order_by('goedgekeurd', 'asc');
         $this->db->order_by('tijdstip', 'desc');
         $query = $this->db->get('boeking');
         $boekingen = $query->result();
@@ -71,28 +71,26 @@ class Boeking_model extends CI_Model {
         $this->load->model('kamerType_model');
         $this->load->model('kamerBoeking_model');
         $this->load->model('kamer_model');
+        $this->load->model('boekingTypePersoon_model');
 
         foreach ($boekingen as $boeking) {
             $boeking->persoon = $this->persoon_model->get($boeking->persoonId);
             $boeking->kamerBoeking = $this->kamerBoeking_model->getWithBoeking($boeking->id);
+            $totaalPersonen = 0;
+            $boekingTypePersonen = $this->boekingTypePersoon_model->getByBoeking($boeking->id);
+            foreach($boekingTypePersonen as $boekingTypePersoon){
+                $totaalPersonen += (int) $boekingTypePersoon->aantal;
+            }
+            $boeking->aantalPersonen = $totaalPersonen;
         }
 
 
         $this->load->model('arrangement_model');
         foreach ($boekingen as $boeking) {
-            if(!$boeking->arrangementId==NULL){
-                $arrangement=$this->arrangement_model->get($boeking->arrangementId);
-                if($arrangement->pensionId==NULL){
-                    $boeking->arrangement = "Arrangement";}
-                else{
-                    $boeking->arrangement = "Pension";}
-            }
-            else{
-                $boeking->arrangement="Menu";
-            }
+            $arrangement = $this->arrangement_model->get($boeking->arrangementId);
+            $boeking->arrangement = $arrangement->naam;
         }
         return $boekingen;
-
     }
 
     function getBoekingWithAll($id){
@@ -119,10 +117,7 @@ class Boeking_model extends CI_Model {
         return $query->result();
     }
 
-    function getCount() {
-        return $this->db->count_all('boeking');
-    }
-    
+
     function getAllByArrangement($arrangementId){
         /**
         * haalt de boeking uit de database die bij het gegeven arrangementId horen

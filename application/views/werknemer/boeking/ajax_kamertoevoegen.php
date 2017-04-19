@@ -11,7 +11,16 @@ echo javascript("validator.js");
 
 ?>
     <form name="kamerform" data-toggle="validator" id="kamerform" role="form" method="post">
-    <div class="form-group">
+    
+    
+
+        <?php
+        $opties = array();
+            foreach($kamers as $kamer) {
+                $opties[$kamer->id] = "$kamer->naam" . ' &nbsp max: ' . $kamer->aantalPersonen .' personen &nbsp ' . $kamer->type->omschrijving;
+            }
+            if(count($opties)!=0){?>
+            <div class="form-group">
    
         <p>Kies het aantal personen voor deze kamer:</p>
         <?php 
@@ -21,20 +30,13 @@ echo javascript("validator.js");
 
     </div>
 
-    <div class="form-group">
-        <p>Welke kamer wil u toevoegen?</p>
-
-        <?php
-        $opties = array();
-            foreach($kamers as $kamer) {
-                $opties[$kamer->id] = "$kamer->naam" . ' &nbsp max: ' . $kamer->aantalPersonen .' personen &nbsp ' . $kamer->type->omschrijving;
-            }
-        
+                <div class="form-group">
+                <p>Welke kamer wil u toevoegen?</p>
+            <?php
             echo form_dropdown('kamer', $opties, '1', 'id="kamer" size="10" class="form-control"');
-        ?>
-    </div>
-
-    <div class="form-group">
+            ?>
+            </div>
+       <div class="form-group">
         <p>Staat de kamer vast?</p>
         <?php 
             echo form_radio('voorkeur', '1', '', 'id="ja"') . form_label('Ja', 'ja');
@@ -44,7 +46,15 @@ echo javascript("validator.js");
     </div>
 
         <a class="kamerToevoegen btn btn-primary">Toevoegen</a>
-        <a class="annuleer btn btn-secondary">Annuleren</a>
+        
+     <?php   }
+        else {
+            echo "<div class='alert alert-danger'><p>Er zijn geen kamers beschikbaar voor de geselecteerde datum.</p></div>";
+        }
+        ?>
+    
+<a class="annuleer btn btn-secondary">Annuleren</a>
+    
     <?php //echo form_submit('submit', 'Toevoegen', 'class="btn btn-primary"');?>
 <?php echo form_close();?>
 </div>

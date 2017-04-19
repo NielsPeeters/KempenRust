@@ -13,6 +13,7 @@ class Boeking extends CI_Controller {
         $this->load->helper('form');
         $this->load->helper('notation');
         $this->load->library('pagination');
+        $this->load->library('email');
     }
 
     public function index() {
@@ -32,7 +33,6 @@ class Boeking extends CI_Controller {
         if($user->soort>1) {
             $this->load->model('boeking_model');
             $data['boekingen'] = $this->boeking_model->getBoekingenWith();
-
             $partials = array('navbar' => 'main_navbar', 'content' => 'werknemer/boeking/boeking_zoeken', 'footer' => 'main_footer');
             $this->template->load('main_master', $partials, $data);
         } else {
@@ -40,7 +40,70 @@ class Boeking extends CI_Controller {
         }       
     }
 
+    public function berekenPrijs(){
+          /**
+        * Berekend de prijs van een boeking zonder kortingen
+        */
+        $totaal=0;
+        $this->load->model('prijs_model');
+        $this->load->model('boeking_model');
+        $this->load->model('kamer_model');
+        $this->load->model('soortPrijs_model');
+        $this->load->model('kamerBoeking_model');
+        $this->load->model('typePersoon_model');
+        $boekingId = $this->session->userdata('boekingId');
+        //$typePersonen = $this->typePersoon_model->getWithBoeking($boekingId);
+        $kamerBoekingen = $this->kamerBoeking_model->getWithBoeking($boekingId);
+        $boeking = $this->boeking_model->get($boekingId);
+        foreach($kamerBoekingen as $kamerBoeking){
+            $soortPrijs = $this->soortPrijs_model->getByAantal($kamerBoeking->aantalMensen);
+            $kamer = $this->kamer_model->get($kamerBoeking->kamerId);
+            $prijs = $this->prijs_model->getPrijsTotaal($boeking->arrangementId, $kamer->kamerTypeId, $soortPrijs->id);
+            $totaal += (float) $prijs->actuelePrijs;
+        }
+        
+          $this->load->model('arrangement_model');
+          $arrangement = $this->arrangement_model->get($boeking->arrangementId);
+          
+          if($arrangement->isArrangement == 0){
+            
+              $dagen = strtotime($boeking->eindDatum) - strtotime($boeking->startDatum);
+              $dagen = floor($dagen / (60 * 60 * 24));
+              echo $dagen + "dagen";
+              echo $totaal + "totaal";
+              $totaal = (float)$totaal*$dagen;
+          }
 
+         echo $totaal;
+        
+    }
+
+    public function checkAantallen(){
+        /*
+        * Gaat na of het aantal opgegeven personen per kamer in de kamers past.
+        */
+            $boekingId = $this->session->userdata('boekingId');
+            $this->load->model('boekingTypePersoon_model');
+            $boekingTypePersonen = $this->boekingTypePersoon_model->getByBoeking($boekingId);
+            $totaalPersonen = 0;
+            $personen = 0;
+            foreach($boekingTypePersonen as $boekingTypePersoon){
+                $totaalPersonen += (int) $boekingTypePersoon->aantal;
+            }
+            $this->load->model('kamerBoeking_model');
+            $kamerBoekingen = $this->kamerBoeking_model->getWithBoeking($boekingId);
+            foreach($kamerBoekingen as $kamerBoeking){
+                    $personen += (int) $kamerBoeking->aantalMensen;
+            }
+         
+            if($totaalPersonen != $personen){
+                echo 0;
+            }
+            else{
+                redirect("boeking/index");
+            }
+            
+    }
 
     public function haalboeking() {
         /**
@@ -49,6 +112,7 @@ class Boeking extends CI_Controller {
         $boekingId = $this->input->get('boekingId');
         if($boekingId==0){
             $this->newBoeking();
+            $this->session->set_userdata('boekingId', '0');
         }
         else{
             $this->load->model('boeking_model');
@@ -122,20 +186,14 @@ class Boeking extends CI_Controller {
         $this->load->view("werknemer/boeking/ajax_boeking", $data);
     }
 
-    public function getEmptyBoekingTypePersoon($id){
-        $boekingTypePersoon = new stdClass();
-
-        $boekingTypePersoon->typePersoonId = $id ;
-        $boekingTypePersoon->aantal = '0';
-        $boekingTypePersoon->boekingId ='0';
-        $boekingTypePersoon->id = '0';
-
-        return $boekingTypePersoon;
-    }
 
     public function getEmptyBoeking(){
+        /*
+        *Genereerd een leeg boeking object
+        *\return een leeg boeking object
+        */
         $boeking = new stdClass();
-
+        $this->session->set_userdata('boekingId', '0');
         $boeking->id = '0';
         $boeking->persoonId='0';
         $boeking->naam = '';
@@ -155,7 +213,7 @@ class Boeking extends CI_Controller {
         */
         $this->load->model('arrangement_model');
         $arrangement = $this->arrangement_model->getByOmschrijving($this->input->post('arrangement'));
-
+ 
         $boeking = new stdClass();
         $boeking->id = $this->input->post('id');
         $boeking->goedgekeurd = $this->input->post('goedgekeurd');
@@ -168,23 +226,22 @@ class Boeking extends CI_Controller {
         $this->load->model('boeking_model');
         $this->session->set_userdata('einddatum', $boeking->eindDatum);
         $this->session->set_userdata('begindatum', $boeking->beginDatum);
-
+       
         $this->load->model('typePersoon_model');
         $persoontypes = $this->typePersoon_model->getAll();
         
         $new = 0;
-            
+
         if ($boeking->id == 0) {
             $namen = explode(" ", $persoonId);
-           
-
+           $boeking->goedgekeurd = 0;
+            
             $this->load->model('persoon_model');
             $persoonId = $this->persoon_model->getWithNaam($namen[0],$namen[1]);
+            
             $boeking->persoonId = $persoonId->id;
+            $boeking->id = $this->boeking_model->insert($boeking);
             
-            
-
-            $boeking->id=$this->boeking_model->insert($boeking);
         } else {
             $new=1;
             $boeking->persoonId=$persoonId;
@@ -213,18 +270,20 @@ class Boeking extends CI_Controller {
             else{
                 $this->boekingTypePersoon_model->update($boekingTypePersoon);
             }
-            
-            
         }
 
         $this->load->model('arrangement_model');
         $data['arrangementen']=$this->arrangement_model->getAll();
-        echo $arrangementen;
+        $data['boeking']=$boeking;
+        echo $data;
 
     }
 
     public function nieuweKamer() { 
-        
+        /*
+        * Haalt alle kamers op die beschikbaar zijn op de datums van de boeking
+        *\return een verzameling kamer objecten
+        */
         $this->load->model('kamer_model');
         $data["kamers"]  = $this->kamer_model->getAllBeschikbaarWithType($this->session->userdata('begindatum'), $this->session->userdata('einddatum'));
 
@@ -232,7 +291,10 @@ class Boeking extends CI_Controller {
     }
 
     public function gekozenKamers(){
-        //$boekingId = 
+        /*
+        *Haalt alle kamers op die bij de boeking horen
+        *\return een verzameling kamer objecten
+        */
         
         $this->load->model('kamerBoeking_model');
         $kamers = $this->kamerBoeking_model->getWithBoeking($this->session->userdata('boekingId'));
@@ -268,15 +330,28 @@ class Boeking extends CI_Controller {
         $boeking = $this->boeking_model->get($id);
         if($boeking->goedgekeurd==0){
              $boeking->goedgekeurd=1;
+             $this->sendmail($boeking, $id);
         }
         else{
             $boeking->goedgekeurd=0;
         }
         $this->boeking_model->update($boeking);
-       
         redirect("boeking/index");
     }
 
+private function sendmail($boeking, $id) {
+    /*
+    *verzend een email naar het email adres van de klant
+    */
+        $this->load->model('boeking_model');
+        $boeking = $this->boeking_model->getBoekingWithAll($id);
+        $this->email->from('r0589993@student.thomasmore.be', 'Hotel Kempenrust');
+        $this->email->to($boeking->persoon->email);
+        $this->email->subject('Boeking goedgekeurd');
+        $this->email->message("Beste" . $boeking->persoon->voornaam . " " . $boeking->persoon->naam);
+        
+        $this->email->send();
+    }
     
 
 
