@@ -63,5 +63,23 @@ class Home extends CI_Controller {
 
     }
     
+     function dashboard()
+    {
+        
+        $data['title']  = 'Overzicht';
+        $data['nobox'] = true;      // geen extra rand rond hoofdmenu
+        $data['author'] = 'Van de Voorde Tim';
+        $data['user'] = $this->authex->getUserInfo();
+            
+        $this->load->model('arrangement_model');
+        $data['arrangementen'] = $this->arrangement_model->getAll();
+        
+        $this->load->model('boeking_model');
+        $data['boekingen'] = $this->boeking_model->getBoekingenWith();
+        
+        
+        $partials = array('navbar' => 'main_navbar', 'content' => 'klant/dashboard/dashboard', 'footer' => 'main_footer');
+        $this->template->load('main_master', $partials, $data);
+    }
 
 }
