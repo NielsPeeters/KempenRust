@@ -1,10 +1,3 @@
-<?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
 <script>
     $.getScript('http://arshaw.com/js/fullcalendar-1.6.4/fullcalendar/fullcalendar.min.js', function () {
 
@@ -15,8 +8,8 @@
         
         var eventArray = new Array();
         for (var i = 0; i < boekingenEvent.length; i++) {
-
-   
+        
+        
             //Check if kamerBoeking is set
             if(boekingenEvent[i].kamerBoeking["0"] == null){
 
@@ -52,6 +45,20 @@
 
 </script>
 
-<hr>
-<div id="calendar"></div>
+<div class="container">
+    <div class="row">   
+        <h1>Arrangementen</h1>
+        <?php foreach ($arrangementen as $arrangement) { ?>
+            <div class="col-sm-3">              
+                <h2><?php echo $arrangement->naam ?></h2>
+                <p><?php echo $arrangement->omschrijving ?></p>
+            </div>
+        <?php } ?>
+    </div>
+    
+    <hr>
+    <h1>Kalender</h1>
+    <div class="row">     
+        <div id="calendar"></div>
+    </div>
 </div>
