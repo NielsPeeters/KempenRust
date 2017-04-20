@@ -90,32 +90,35 @@ echo form_open('boeking/schrijfBoeking/', $attributes);
         <div>
         
         <?php 
-        if($boeking->id==0){
-        foreach($typePersonen as $typePersoon) {?>
-             <div class="col-xs-3">
+   
+    foreach ($typePersonen as $typePersoon) {
+            $nieuw = TRUE;
+
+            foreach($boekingTypePersonen as $boekingTypePersoon){
+                if($boekingTypePersoon->typePersoonId == $typePersoon->id){
+                  $nieuw = FALSE
+                  ?>
+                    <div class="col-xs-3">
+                    <label for="persoontype" id="persoontype" class="control-label"><?php echo $typePersoon->soort;?></label>
+                 <?php
+                        echo form_input(array('class'=>'form-control','type' => 'number', 'name' => 'persoon' . $typePersoon->id, 'id' => 'persoon' . $typePersoon->id, 'required' => 'required', 'value' => $boekingTypePersoon->aantal));
+                   ?>                    </div><?php  
+                }
+                
+            }
+            if($nieuw){?>
+                   <div class="col-xs-3">
                         <label for="persoontype" id="persoontype" class="control-label"><?php echo $typePersoon->soort;?></label>
                         <?php
                         echo form_input(array('class'=>'form-control','type' => 'number', 'name' => 'persoon' . $typePersoon->id, 'id' => 'persoon' . $typePersoon->id, 'required' => 'required', 'value' => '0'));
                    ?>
                     
                     </div>
-     <?php   }}
-     else{
- foreach ($typePersonen as $typePersoon) {
-            foreach($boekingTypePersonen as $boekingTypePersoon){
-                if($boekingTypePersoon->typePersoonId == $typePersoon->id){
-                    //echo "test ze zijn gelijk";
-                  ?>
-                    <div class="col-xs-3">
-                        <label for="persoontype" id="persoontype" class="control-label"><?php echo $typePersoon->soort;?></label>
-  <?php
-                        echo form_input(array('class'=>'form-control','type' => 'number', 'name' => 'persoon' . $typePersoon->id, 'id' => 'persoon' . $typePersoon->id, 'required' => 'required', 'value' => $boekingTypePersoon->aantal));
-                   ?>                    </div><?php  
-                }
+     <?php  
             }
         }
 
-     }?></div></div>
+     ?></div></div>
     </br>
     </br>
     </br>
