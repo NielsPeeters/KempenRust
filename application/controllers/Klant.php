@@ -23,11 +23,8 @@ class Klant extends CI_Controller {
             $data['user'] = $user;
             
             $this->load->model('arrangement_model');
-            $arrangementen = $this->arrangement_model->getAllArrangementen();
-            $data["arrangementen"] = $arrangementen;
-            
-            $this->load->model('pension_model');
-            $data['pensions'] = $this->pension_model->getAll();
+            $data["arrangementen"] = $this->arrangement_model->getAllArrangementen();
+            $data['pensions'] = $this->arrangement_model->getAllPensions();
             
             $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking/boeking_maken1', 'footer' => 'main_footer');
             $this->template->load('main_master', $partials, $data);
@@ -59,7 +56,7 @@ class Klant extends CI_Controller {
              * haal arrangement aan de hand van het pensionId in de tabel arrangement
              */
             $this->load->model('arrangement_model');
-            $arrangement = $this->arrangement_model->getAllByPension($pensionId);
+            $arrangement = $this->arrangement_model->get($pensionId);
             $arrangementId = $arrangement->id;
         }
         
@@ -211,22 +208,17 @@ class Klant extends CI_Controller {
         $boeking = $this->session->userdata('boeking');
 
         $arrangementId = $this->session->userdata('arrangementId');
+        $this->load->model('arrangement_model');
+        $arrangement = $this->arrangement_model->get($arrangementId);
         
         if($this->session->has_userdata('pensionId')){
-            $arrangementId = 0;
-            
-            $pensionId = $this->session->userdata('pensionId');
-            $this->load->model('pension_model');
-            $pension = $this->pension_model->get($pensionId);
-            $data['pension'] = $pension;
+            $data['pension'] = $arrangement;
             
             /*
              * bereken aantal dagen dat verblijf duurt
              */
             $this->berekenAaantalDagen($begindatum, $einddatum);
         } else {
-            $this->load->model('arrangement_model');
-            $arrangement = $this->arrangement_model->get($arrangementId);
             $data['arrangement'] = $arrangement;
         }
         
@@ -308,18 +300,12 @@ class Klant extends CI_Controller {
              */
             $this->load->model('kamer_model');
             $kamerBoeking = $this->kamer_model->get($kamerBoekingen[$index]->kamerId);
-                     
-            /*
-             * haal soort prijs voor aantal van dit type persoon
-             */
-            $this->load->model('soortPrijs_model');
-            $soortPrijs = $this->soortPrijs_model->getByAantal($kamerBoekingen[$index]->aantalMensen);
             
             /*
              * bereken prijs voor geboekte kamer voor dit type persoon
              */
             $this->load->model('prijs_model');
-            $prijs = $this->prijs_model->getPrijsTotaal($boeking->arrangementId, $kamerBoeking->kamerTypeId, $soortPrijs->id);
+            $prijs = $this->prijs_model->getPrijsTotaal($boeking->arrangementId, $kamerBoeking->kamerTypeId, $kamerBoekingen[$index]->aantalMensen);
             
             /*
             * haal korting voor type persoon op
@@ -346,7 +332,7 @@ class Klant extends CI_Controller {
         $date1=date_create($begindatum);
         $date2=date_create($einddatum);
         $verschil=date_diff($date1,$date2);
-        $aantalDagen = (int)$verschil->format("%a");
+        $aantalDagen = (int)$verschil->format("%a") + 1;
         
         return $aantalDagen;
     }
@@ -444,6 +430,35 @@ class Klant extends CI_Controller {
         return $totaal;
     }
     
+    function haalPensionOfArrangement($arrangementId)
+    {      
+        $this->load->model('arrangement_model');
+        $arrangement = $this->arrangement_model->get($arrangementId);
+        $bericht = $arrangement->naam;
+        
+        return $bericht;
+    }
+    
+    function haalKamers($kamers)
+    {
+        $teller = 0;
+        $bericht = "";
+        
+        foreach ($kamers as $id => $info) {
+            $delen = explode('.', $info);
+            
+            if($teller == 0) {
+                $bericht .= $delen[1];
+            } else {
+                $bericht .= ", " . $delen[1];
+            }
+            
+            $teller++;
+        }
+        
+        return $bericht;
+    }
+    
     function unsetUserdata()
     {
         if($this->session->has_userdata('begindatum')){
@@ -469,42 +484,5 @@ class Klant extends CI_Controller {
         if($this->session->has_userdata('pensionId')){
             $this->session->unset_userdata('pensionId');
         }
-    }
-    
-    function haalPensionOfArrangement($arrangementId, $pensionId)
-    {
-        $bericht = "";
-        
-        if($arrangementId == 0) {
-            $this->load->model('pension_model');
-            $pension = $this->pension_model->get($pensionId);
-            $bericht .= $pension->naam;
-        } else {
-            $this->load->model('arrangement_model');
-            $arrangement = $this->arrangement_model->get($arrangementId);
-            $bericht .= $arrangement->naam;
-        }
-        
-        return $bericht;
-    }
-    
-    function haalKamers($kamers)
-    {
-        $teller = 0;
-        $bericht = "";
-        
-        foreach ($kamers as $id => $info) {
-            $delen = explode('.', $info);
-            
-            if($teller == 0) {
-                $bericht .= $delen[1];
-            } else {
-                $bericht .= ", " . $delen[1];
-            }
-            
-            $teller++;
-        }
-        
-        return $bericht;
     }
 }
