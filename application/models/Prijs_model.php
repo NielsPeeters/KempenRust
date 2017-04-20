@@ -71,7 +71,7 @@ class Prijs_model extends CI_Model {
         
         foreach($prijzenPerArrangement as $prijs) {
             if($prijs->kamertypeId == $kamerTypeId) {
-                if($prijs->soortPrijsId == $soortPrijsId){
+                if($prijs->meerderePersonen == $meerdere){
                     $this->db->where('id', $prijs->id);
                     $query = $this->db->get('prijs');
                     return $query->row();
