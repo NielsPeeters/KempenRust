@@ -11,6 +11,7 @@ function schrijfBoeking()
             data: dataString,
             dataType: "json",
             success : function(result){
+                alert(result)
             }
           });
             $('#algemeen').hide();
@@ -66,10 +67,12 @@ function schrijfBoeking()
                   alert("Het aantal opgegeven personen komt niet overeen met het aantal personen per kamer."); 
                }
                else{
+
                        $('#zoek').show();
                     $('#knop').hide();
                     $('#algemeen').hide();
                     $('#kamers').hide();
+                    location.reload();
                }
             },
             error: function (xhr, status, error) {
@@ -103,7 +106,7 @@ function schrijfBoeking()
             function nieuweKamer() 
         {
             /**
-            * \TODO
+            * Voegt de gekozen kamer toe aan de database
             */
            
             var dataString = $("#kamerform").serialize();
@@ -299,6 +302,8 @@ function attach_click(){
                             }
                         <?php }?>
                     } else {
+
+                        
                         schrijfBoeking();
                     }
                 } else {

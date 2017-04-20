@@ -55,6 +55,14 @@ class Prijs_model extends CI_Model {
     }
 
     function getPrijs($arrangementId, $kamerTypeId, $soortPrijsId){
+        /*
+        * Gaat de prijs na aan de hand van de meegegeven parameters
+        *\param arrangementId
+        *\param kamerTypeId
+        *\param soortPrijsId
+        *
+        *\return prijs
+        */
         $this->db->where('arrangementId', $arrangementId);
         $query = $this->db->get('prijs');
         $prijzenPerArrangement = $query->result();

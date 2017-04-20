@@ -155,7 +155,7 @@ class Kamer_model extends CI_Model {
             
                 $checkPerBoeking = $this->kamer_model->checkData($begindatum, $boeking->startDatum , $einddatum, $boeking->eindDatum);
                 
-                if($checkPerBoeking == 0){
+                if($checkPerBoeking){
                     $checkAlle = 0;
                 }
             }
@@ -170,19 +170,19 @@ class Kamer_model extends CI_Model {
     
     
     function checkData($beginDatumGevraagd, $beginDatumBoeking, $eindDatumGevraagd, $eindDatumBoeking) {
-        $check = 0;
+        $beschikbaar = True;
         
         if ($beginDatumBoeking > $beginDatumGevraagd) {
             if ($eindDatumGevraagd < $beginDatumBoeking) {
-                $check = 1;
+                $beschikbaar = False;
             }
         } else {
             if ($beginDatumGevraagd > $eindDatumBoeking) {
-                $check = 1;
+                $beschikbaar = False;
             }
         }
         
-        return $check;
+        return $beschikbaar;
     }
     
     

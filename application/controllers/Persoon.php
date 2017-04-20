@@ -19,6 +19,7 @@ class Persoon extends CI_Controller {
         $data['title'] = 'Personen beheren';
         $data['author'] = 'Van de Voorde Tim';
         $data['user'] = $this->authex->getUserInfo();
+        $user = $this->authex->getUserInfo();
         if ($user->soort == 3) {
             $this->load->model('persoon_model');
             $data['klanten'] = $this->persoon_model->getAll();
@@ -109,7 +110,7 @@ class Persoon extends CI_Controller {
         } else {
             $this->persoon_model->update($object);
         }
-        echo 0;
+        redirect("/persoon/index");
     }
 
     public function haalPersonen() {
