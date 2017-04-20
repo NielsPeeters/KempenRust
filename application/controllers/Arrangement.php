@@ -79,7 +79,7 @@ class Arrangement extends CI_Controller {
         $arrangement->eindDag = '';
         $arrangement->omschrijving = '';
         $arrangement->isArrangement = 1;
-        $arrangement->pensionId = null;
+        
         return $arrangement;
     }
 
@@ -94,7 +94,6 @@ class Arrangement extends CI_Controller {
         $object->eindDag = $this->input->post('einddag');
         $object->omschrijving = $this->input->post('omschrijving');
         $object->isArrangement = 1;
-        $object->pensionId = null;
         
         $this->load->model('arrangement_model');
         if ($object->id == 0) {

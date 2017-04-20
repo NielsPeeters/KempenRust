@@ -24,8 +24,8 @@ class Pension extends CI_Controller {
         $data['user'] = $this->authex->getUserInfo();
         $user = $this->authex->getUserInfo();
         if($user->soort>=3) {
-            $this->load->model('pension_model');
-            $data['pensions'] = $this->pension_model->getAll();
+            $this->load->model('arrangement_model');
+            $data['pensions'] = $this->arrangement_model->getAllPensions();
 
             $partials = array('navbar' => 'main_navbar', 'content' => 'admin/pension/pension_beheren', 'footer' => 'main_footer');
             $this->template->load('main_master', $partials, $data);
@@ -43,8 +43,8 @@ class Pension extends CI_Controller {
             $data['pension'] = $this->getEmptyPension();
         }
         else{
-            $this->load->model('pension_model');
-            $data['pension'] = $this->pension_model->get($pensionId);
+            $this->load->model('arrangement_model');
+            $data['pension'] = $this->arrangement_model->get($pensionId);
             }
         $this->load->view("admin/pension/ajax_pension", $data);
     }
@@ -53,18 +53,14 @@ class Pension extends CI_Controller {
         /**
         * Verwijderdt een pension object
         */
-        $id = $this->input->get('id');
-        $this->load->model('arrangement_model');
-        $arrangement = $this->arrangement_model->getAllByPension($id);
-        
+        $id = $this->input->get('id');        
         $this->load->model('boeking_model');
-        $result = $this->boeking_model->getAllByArrangement($arrangement->id);
+        $result = $this->boeking_model->getAllByArrangement($id);
         $size = count($result);
+        
         if ($size==0){
-            $this->arrangement_model->delete($arrangement->id);
-            
-            $this->load->model('pension_model');
-            $this->pension_model->delete($id);
+            $this->load->model('arrangement_model');
+            $this->arrangement_model->delete($id);
             echo 0;
         } else {
             echo 1;
@@ -78,8 +74,13 @@ class Pension extends CI_Controller {
         */
         $pension = new stdClass();
 
-        $pension->id = '0';
+        $pension->id = 0;
         $pension->naam = '';
+        $pension->beginDag = null;
+        $pension->eindDag = null;
+        $pension->omschrijving = '';
+        $pension->isArrangement = 0;
+        
         return $pension;
     }
 
@@ -90,34 +91,18 @@ class Pension extends CI_Controller {
         $object = new stdClass();
         $object->id = $this->input->post('id');
         $object->naam = $this->input->post('naam');
-
-        $arrangement = $this->getEmptyArrangement($object->naam, $object->id);
+        $object->beginDag = null;
+        $object->eindDag = null;
+        $object->omschrijving = $object->naam;
+        $object->isArrangement = 0;
             
-        $this->load->model('pension_model');
         $this->load->model('arrangement_model');
+        
         if ($object->id == 0) {
-            $pensionId = $this->pension_model->insert($object);
-            
-            $arrangement->pensionId = $pensionId;
-            
-            $this->arrangement_model->insert($arrangement);
+            $this->arrangement_model->insert($object);
         } else {
-            $this->pension_model->update($object);
-
-            $this->arrangement_model->update($arrangement);
+            $this->arrangement_model->update($object);
         }
         redirect('pension/index');
-    }
-    
-    function getEmptyArrangement($naam, $pensionId){
-        $arrangement = new stdClass();
-        $arrangement->naam = 'Pension';
-        $arrangement->beginDag = null;
-        $arrangement->eindDag = null;
-        $arrangement->omschrijving = $naam;
-        $arrangement->isArrangement = 0;
-        $arrangement->pensionId = $pensionId;
-        
-        return $arrangement;
     }
 }
