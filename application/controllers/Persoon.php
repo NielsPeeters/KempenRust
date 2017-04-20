@@ -110,7 +110,7 @@ class Persoon extends CI_Controller {
         } else {
             $this->persoon_model->update($object);
         }
-        echo 0;
+        redirect("/persoon/index");
     }
 
     public function haalPersonen() {
