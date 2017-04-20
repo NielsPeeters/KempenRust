@@ -26,7 +26,7 @@
         ?>
     </ul>
     <p>Opmerking: <?php echo $this->session->userdata('opmerking');?></p>
-    <p>Totale prijs (exclusief consumpties): <?php echo '€' . $prijs;?></p>
+    <p>Totale prijs (exclusief consumpties): <?php echo '€' . toKomma($prijs);?></p>
     <p>Te betalen voorschot (via overschrijving): €20</p>
     
     <h4>Overzicht rekening Hotel Kempenrust</h4>

@@ -11,6 +11,7 @@ function schrijfBoeking()
             data: dataString,
             dataType: "json",
             success : function(result){
+                alert(result);
             }
           });
             $('#algemeen').hide();
@@ -66,10 +67,12 @@ function schrijfBoeking()
                   alert("Het aantal opgegeven personen komt niet overeen met het aantal personen per kamer."); 
                }
                else{
+
                        $('#zoek').show();
                     $('#knop').hide();
                     $('#algemeen').hide();
                     $('#kamers').hide();
+                    location.reload();
                }
             },
             error: function (xhr, status, error) {
@@ -103,7 +106,7 @@ function schrijfBoeking()
             function nieuweKamer() 
         {
             /**
-            * \TODO
+            * Voegt de gekozen kamer toe aan de database
             */
            
             var dataString = $("#kamerform").serialize();
@@ -283,6 +286,7 @@ function attach_click(){
                                 if (begindag == "<?php echo $arrangement->beginDag;?>"){
                                     if (einddag == "<?php echo $arrangement->eindDag;?>"){
                                         schrijfBoeking();
+                                        return;
                                     } else {
                                         $(".modal-body").html("Einddatum is geen <?php echo $arrangement->eindDag;?>!");
                                         $("#waarschuwingModal").modal('show');
@@ -299,7 +303,10 @@ function attach_click(){
                             }
                         <?php }?>
                     } else {
+
+                        
                         schrijfBoeking();
+                        return;
                     }
                 } else {
                     $(".modal-body").html('Einddatum valt vroeger dan begindatum!');
@@ -421,15 +428,18 @@ function zoek() {
     padding: 12px 20px 12px 40px; /* Add some padding */
     border: 1px solid #ddd; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
+ 
 }
-
+    tr:nth-child(4n) { background-color: #eee; }
+    tr:nth-child(4n+1) { background-color: #eee; }
+  
 </style>
 <button id="knop" type="button" class="btn btn-primary btn-block">Geef alle boekingen weer</button>
 <div id="zoek">
 
     <input type="text" id="zoekInput" onkeyup="zoek()" placeholder="Zoek op naam">
 
-    <table class="table table-responsive" id="boekingen">
+    <table class="table table-responsive " id="boekingen">
     <tr class="success">
         <th>Naam</th>
         <th>Van / Tot</th>
@@ -443,11 +453,11 @@ function zoek() {
 
     foreach($boekingen as $boeking){?>
         <tr>
-            <td rowspan="2"><?php echo $boeking->persoon->naam . " " . $boeking->persoon->voornaam; ?></td>
+            <td><?php echo $boeking->persoon->naam . " " . $boeking->persoon->voornaam; ?></td>
             <td><?php echo date('d-m-Y',strtotime($boeking->startDatum)); ?></td>
             <td><?php echo $boeking->arrangement;?></td>
             <td><?php echo date('d-m-Y h:m:s',strtotime($boeking->tijdstip)); ?></td>
-            <td class="text-center">
+            <td class="text-center" rowspan="2">
             <?php 
             if($boeking->goedgekeurd==1){
                 echo '<button type="button"' . "id= $boeking->id" .' class="btn btn-success btn-xs btn-round goedkeuren"><span class="glyphicon glyphicon-thumbs-up"></span></button>';
@@ -457,17 +467,24 @@ function zoek() {
             }
             ?>
             </td>
-            <td class="text-center"><button type="button" id="<?php echo $boeking->id; ?>" class="btn btn-warning btn-xs btn-round wijzig"><span class="glyphicon glyphicon-pencil"></span></button></td>
-            <td class="text-center"><button type="button" id="<?php echo $boeking->id; ?>" class="btn btn-danger btn-xs btn-round verwijder"><span class="glyphicon glyphicon-remove"></span></button></td>
+            <td rowspan="2" class="text-center"><button type="button" id="<?php echo $boeking->id; ?>" class="btn btn-warning btn-xs btn-round wijzig"><span class="glyphicon glyphicon-pencil"></span></button></td>
+            <td rowspan="2" class="text-center"><button type="button" id="<?php echo $boeking->id; ?>" class="btn btn-danger btn-xs btn-round verwijder"><span class="glyphicon glyphicon-remove"></span></button></td>
         </tr>
         <tr>
-       
+       <td><?php echo $boeking->persoon->email;?> </td>
         <td><?php echo date('d-m-Y',strtotime($boeking->eindDatum)); ?></td>
-        <td><?php echo $boeking->aantalPersonen;?> Personen</td>
+        <td><?php 
+            $aantal="persoon"; 
+            if($boeking->aantalPersonen>1){
+            $aantal="personen";} 
+            echo "$boeking->aantalPersonen $aantal" ; ?></td>
+        <td></td>
         </tr>
+        </hr>
     <?php
 
     }
+
     
     ?>
     </table>

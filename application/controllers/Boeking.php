@@ -120,11 +120,10 @@ class Boeking extends CI_Controller {
             $this->load->model('boekingTypePersoon_model');
             $data['boekingTypePersonen'] = $this->boekingTypePersoon_model->getByBoeking($boekingId);
             $this->load->model('arrangement_model');
-            $data['arrangementen'] = $this->arrangement_model->getAll();
+            $data['arrangementen'] = $this->arrangement_model->getArrangementen(1);
+            $data['pensions'] = $this->arrangement_model->getArrangementen(0);
             $this->load->model('typePersoon_model');
             $data['typePersonen'] = $this->typePersoon_model->getAll();
-            $this->load->model('pension_model');
-            $data['pensions'] = $this->pension_model->getAll();
             $this->load->model('kamerBoeking_model');
             $data['kamerBoekingen'] = $this->kamerBoeking_model->getWithBoeking($boekingId);
             $this->load->model('kamer_model');
@@ -171,14 +170,12 @@ class Boeking extends CI_Controller {
         $this->load->model('kamerType_model');
         $data['kamerTypes'] = $this->kamerType_model->getAll();
 
-        $this->load->model('arrangement_model');
-        $data['arrangementen'] = $this->arrangement_model->getAll();
+       $this->load->model('arrangement_model');
+            $data['arrangementen'] = $this->arrangement_model->getArrangementen(1);
+            $data['pensions'] = $this->arrangement_model->getArrangementen(0);
 
         $this->load->model('typePersoon_model');
         $data['typePersonen'] = $this->typePersoon_model->getAll();
-      
-        $this->load->model('pension_model');
-        $data['pensions'] = $this->pension_model->getAll();
 
         $this->load->model('persoon_model');
          $data['personen'] = $this->persoon_model->getAll();
@@ -212,43 +209,44 @@ class Boeking extends CI_Controller {
         * Haalt de waarden van het boeking object op en update of insert deze in de database
         */
         $this->load->model('arrangement_model');
-        $arrangement = $this->arrangement_model->getByOmschrijving($this->input->post('arrangement'));
- 
+        $arrangement = $this->input->post('arrangement');
+        if($arrangement ==0 ){
+            $arrangement = $this->input->post('pension');
+        }
         $boeking = new stdClass();
         $boeking->id = $this->input->post('id');
         $boeking->goedgekeurd = $this->input->post('goedgekeurd');
         $persoonId = $this->input->post('persoonId');
         $boeking->startDatum = $this->input->post('startDatum');
         $boeking->eindDatum = $this->input->post('eindDatum');
-        $boeking->arrangementId = $arrangement->id;
+        $boeking->arrangementId = $arrangement;
         $boeking->tijdstip = date('Y-m-d H:i:s',$_SERVER['REQUEST_TIME']);
         $boeking->opmerking = $this->input->post('opmerking');
         $this->load->model('boeking_model');
         $this->session->set_userdata('einddatum', $boeking->eindDatum);
-        $this->session->set_userdata('begindatum', $boeking->beginDatum);
+        $this->session->set_userdata('begindatum', $boeking->startDatum);
        
         $this->load->model('typePersoon_model');
         $persoontypes = $this->typePersoon_model->getAll();
         
         $new = 0;
 
-        if ($boeking->id == 0) {
+        if ($boeking->id == 0 && $this->session->userdata("boekingId")==0) {
             $namen = explode(" ", $persoonId);
-           $boeking->goedgekeurd = 0;
+            $boeking->goedgekeurd = 0;
             
             $this->load->model('persoon_model');
             $persoonId = $this->persoon_model->getWithNaam($namen[0],$namen[1]);
             
             $boeking->persoonId = $persoonId->id;
             $boeking->id = $this->boeking_model->insert($boeking);
+            $this->session->set_userdata('boekingId', $boeking->id);
             
         } else {
             $new=1;
             $boeking->persoonId=$persoonId;
             $this->boeking_model->update($boeking);
         }
-
-        $this->session->set_userdata('boekingId', $boeking->id);
 
          foreach($persoontypes as $type) {
             $persoonId = $type->id;
@@ -275,7 +273,7 @@ class Boeking extends CI_Controller {
         $this->load->model('arrangement_model');
         $data['arrangementen']=$this->arrangement_model->getAll();
         $data['boeking']=$boeking;
-        echo $data;
+        //echo $data;
 
     }
 
@@ -330,7 +328,7 @@ class Boeking extends CI_Controller {
         $boeking = $this->boeking_model->get($id);
         if($boeking->goedgekeurd==0){
              $boeking->goedgekeurd=1;
-             $this->sendmail($boeking, $id);
+             $this->sendmail($id);
         }
         else{
             $boeking->goedgekeurd=0;
@@ -339,18 +337,31 @@ class Boeking extends CI_Controller {
         redirect("boeking/index");
     }
 
-private function sendmail($boeking, $id) {
+private function sendmail($id) {
     /*
     *verzend een email naar het email adres van de klant
+    *\param id het id van de betrokken boeking
     */
+       
         $this->load->model('boeking_model');
         $boeking = $this->boeking_model->getBoekingWithAll($id);
         $this->email->from('r0589993@student.thomasmore.be', 'Hotel Kempenrust');
         $this->email->to($boeking->persoon->email);
+        $this->session->set_userdata('boekingId',$boeking->id);
         $this->email->subject('Boeking goedgekeurd');
-        $this->email->message("Beste" . $boeking->persoon->voornaam . " " . $boeking->persoon->naam);
-        
+        $bericht = "Beste\n\n";
+        $bericht .= "Uw boeking werd goedgekeurd. \n";
+        $bericht .= toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) ;
+        $bericht .= $boeking->arrangement;
+        $bericht .= " en u heeft volgende kamers geboekt: ";
+        $bericht .= $this->gekozenKamers();      
+        $bericht .= "Gelieve een voorschot van €20 te storten op rekeningnummer BE230 026 631 772.\n\n";
+        $bericht .= "Met vriendelijke groeten\n";
+        $bericht .= "Hotel Kempenrust";
+
+        $this->email->message($bericht);
         $this->email->send();
+        $this->session->set_userdata('boekingId',0);
     }
     
 

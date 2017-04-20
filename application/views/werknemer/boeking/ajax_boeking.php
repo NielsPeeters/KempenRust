@@ -18,6 +18,9 @@ $(document).ready(function(){
 });
 
     function checkPension(){
+        /*
+        *Gaat na of het geselecteerde arrangement een pension is en geeft de pension dropdown weer indien dit zo is.
+        */
         var naam = $('#dropDown').find(":selected").attr('id');
          $("#arrangementOmschrijving").html( $('#dropDown').find(":selected").val());
         if(naam=="0"){
@@ -87,32 +90,35 @@ echo form_open('boeking/schrijfBoeking/', $attributes);
         <div>
         
         <?php 
-        if($boeking->id==0){
-        foreach($typePersonen as $typePersoon) {?>
-             <div class="col-xs-3">
+   
+    foreach ($typePersonen as $typePersoon) {
+            $nieuw = TRUE;
+
+            foreach($boekingTypePersonen as $boekingTypePersoon){
+                if($boekingTypePersoon->typePersoonId == $typePersoon->id){
+                  $nieuw = FALSE
+                  ?>
+                    <div class="col-xs-3">
+                    <label for="persoontype" id="persoontype" class="control-label"><?php echo $typePersoon->soort;?></label>
+                 <?php
+                        echo form_input(array('class'=>'form-control','type' => 'number', 'name' => 'persoon' . $typePersoon->id, 'id' => 'persoon' . $typePersoon->id, 'required' => 'required', 'value' => $boekingTypePersoon->aantal));
+                   ?>                    </div><?php  
+                }
+                
+            }
+            if($nieuw){?>
+                   <div class="col-xs-3">
                         <label for="persoontype" id="persoontype" class="control-label"><?php echo $typePersoon->soort;?></label>
                         <?php
                         echo form_input(array('class'=>'form-control','type' => 'number', 'name' => 'persoon' . $typePersoon->id, 'id' => 'persoon' . $typePersoon->id, 'required' => 'required', 'value' => '0'));
                    ?>
                     
                     </div>
-     <?php   }}
-     else{
- foreach ($typePersonen as $typePersoon) {
-            foreach($boekingTypePersonen as $boekingTypePersoon){
-                if($boekingTypePersoon->typePersoonId == $typePersoon->id){
-                    //echo "test ze zijn gelijk";
-                  ?>
-                    <div class="col-xs-3">
-                        <label for="persoontype" id="persoontype" class="control-label"><?php echo $typePersoon->soort;?></label>
-  <?php
-                        echo form_input(array('class'=>'form-control','type' => 'number', 'name' => 'persoon' . $typePersoon->id, 'id' => 'persoon' . $typePersoon->id, 'required' => 'required', 'value' => $boekingTypePersoon->aantal));
-                   ?>                    </div><?php  
-                }
+     <?php  
             }
         }
 
-     }?></div></div>
+     ?></div></div>
     </br>
     </br>
     </br>
@@ -120,12 +126,14 @@ echo form_open('boeking/schrijfBoeking/', $attributes);
      <div class="form-group"> <!--Arrangementen-->
         <label for="arrangement" class="control-label">Arrangement</label>
         <select id="dropDown" name="arrangement" class="form-control">
+        <option id="0">Geen arrangement</option>
         <?php
-            $value = $boeking->arrangementId;?>
-            <?php 
+        
+            $value = $boeking->arrangementId;
+          
             foreach ($arrangementen as $arrangement) {
                 $type = $arrangement->id; ?>
-                <option label="<?php echo $arrangement->naam;?>" id="<?php echo $arrangement->isArrangement;?>" value="<?php echo $arrangement->omschrijving;?>" <?php echo set_select('arrangement', $type, $type === $value);?>>
+                <option label="<?php echo $arrangement->naam;?>" id="<?php echo $arrangement->id;?>" value="<?php echo $arrangement->omschrijving;?>" <?php echo set_select('arrangement', $type, $type === $value);?>>
                 <?php echo "$arrangement->id";
                 ?>
                 </option>
@@ -142,18 +150,13 @@ echo form_open('boeking/schrijfBoeking/', $attributes);
      <div class="form-group" id="dropDownPension">
         <label for="pension" class="control-label">Pension</label>
         <?php
-        $arrangementId = $boeking->arrangementId;
-            foreach($arrangementen as $arrangement){
-                if($arrangementId == $arrangement->id){
-                    $pensionId = $arrangement->pensionId;
-                }
-            }
+        $value = $boeking->arrangementId;
             ?>
            <select name="pension" class="form-control"><?php
             foreach ($pensions as $pension) { 
                 $type = $pension->id; ?>
-                <option  value="<?php echo $pension->naam;?>" <?php echo set_select('pension', $type, $type === $pensionId);?>>
-                <?php echo "$pension->naam";?>
+                <option  value="<?php echo $pension->id;?>" <?php echo set_select('pension', $type, $type === $value);?>>
+                <?php echo "$pension->naam $pension->omschrijving";?>
                 </option>
             <?php }?>
         </select>  

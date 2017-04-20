@@ -114,19 +114,15 @@
     
     <h4>Kies een begin- en einddatum:</h4>
     
-    <div class="form-group">
-        <p>
-            <?php echo form_label('Begindatum:', 'begindatum'); ?>
-            <?php echo form_input(array('type' => 'date', 'name' => 'begindatum', 'id' => 'begindatum', 'required' => 'required')); ?>
-        </p>
-        <div class="help-block with-errors"></div>  
-    </div>
-       
-    <div class="form-group">
-        <p>
-            <?php echo form_label('Einddatum:', 'einddatum'); ?>
-            <?php echo form_input(array('type' => 'date', 'name' => 'einddatum', 'id' => 'einddatum', 'required' => 'required')); ?>
-        </p>
+    <div class="form-group row"> <!--Start + Einddatum-->
+        <div class="col-xs-6">
+            <?php echo form_label('Van', 'begindatum', 'class="control-label"'); ?>
+            <?php echo form_input(array('type' => 'date', 'name' => 'begindatum', 'id' => 'begindatum', 'required' => 'required', 'data-fv-date-format' => 'DD/MM/YYYY', 'class' => 'form-control')); ?>
+        </div>
+        <div class="col-xs-6">
+            <?php echo form_label('Van', 'einddatum', 'class="control-label"'); ?>
+            <?php echo form_input(array('type' => 'date', 'name' => 'einddatum', 'id' => 'einddatum', 'required' => 'required', 'data-fv-date-format' => 'DD/MM/YYYY', 'class' => 'form-control')); ?>
+        </div>
         <div class="help-block with-errors"></div>  
     </div>
     

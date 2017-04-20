@@ -78,6 +78,9 @@ class Boeking_model extends CI_Model {
             $boeking->kamerBoeking = $this->kamerBoeking_model->getWithBoeking($boeking->id);
             $totaalPersonen = 0;
             $boekingTypePersonen = $this->boekingTypePersoon_model->getByBoeking($boeking->id);
+             foreach($boeking->kamerBoeking as $key => $kamerBoekingCurrent){
+                $boeking->kamerBoeking[$key]->Kamer = $this->kamer_model->get($kamerBoekingCurrent->kamerId);
+            }
             foreach($boekingTypePersonen as $boekingTypePersoon){
                 $totaalPersonen += (int) $boekingTypePersoon->aantal;
             }

@@ -19,12 +19,17 @@ class Kamertype extends CI_Controller {
         $data['title'] = 'Kamertypes beheren';
         $data['author'] = 'Van de Voorde Tim';
         $data['user'] = $this->authex->getUserInfo();
-
+        
+        if($user->soort==3) {
         $this->load->model('kamerType_model');
         $data['types'] = $this->kamerType_model->getAll();
+        
 
         $partials = array('navbar' => 'main_navbar', 'content' => 'admin/kamertype/kamertype_beheren', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data);
+         } else {
+            redirect("/home/index");
+        }     
     }
 
     public function haalKamertype() {

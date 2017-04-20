@@ -139,7 +139,7 @@ class Kamer_model extends CI_Model {
         * haalt alle kamers uit de database die beschikbaar zijn voor die periode
         * \return een array met kamer objecten
         */
-         $kamers = array();
+        $kamers = array();
         $this->load->model('kamer_model');
         $alleKamers = $this->kamer_model->getAll();
         
@@ -170,19 +170,19 @@ class Kamer_model extends CI_Model {
     
     
     function checkData($beginDatumGevraagd, $beginDatumBoeking, $eindDatumGevraagd, $eindDatumBoeking) {
-        $check = 0;
+        $beschikbaar = 1;
         
-        if ($beginDatumBoeking > $beginDatumGevraagd) {
-            if ($eindDatumGevraagd < $beginDatumBoeking) {
-                $check = 1;
+        if ($beginDatumBoeking >= $beginDatumGevraagd) {
+            if ($eindDatumGevraagd <= $beginDatumBoeking) {
+                $beschikbaar = 0;
             }
         } else {
-            if ($beginDatumGevraagd > $eindDatumBoeking) {
-                $check = 1;
+            if ($beginDatumGevraagd >= $eindDatumBoeking) {
+                $beschikbaar = 0;
             }
         }
         
-        return $check;
+        return $beschikbaar;
     }
     
     
