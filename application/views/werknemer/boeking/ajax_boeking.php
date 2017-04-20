@@ -147,17 +147,12 @@ echo form_open('boeking/schrijfBoeking/', $attributes);
      <div class="form-group" id="dropDownPension">
         <label for="pension" class="control-label">Pension</label>
         <?php
-        $arrangementId = $boeking->arrangementId;
-            foreach($arrangementen as $arrangement){
-                if($arrangementId == $arrangement->id){
-                    $pensionId = $arrangement->pensionId;
-                }
-            }
+        $value = $boeking->arrangementId;
             ?>
            <select name="pension" class="form-control"><?php
             foreach ($pensions as $pension) { 
                 $type = $pension->id; ?>
-                <option  value="<?php echo $pension->id;?>" <?php echo set_select('pension', $type, $type === $pensionId);?>>
+                <option  value="<?php echo $pension->id;?>" <?php echo set_select('pension', $type, $type === $value);?>>
                 <?php echo "$pension->naam $pension->omschrijving";?>
                 </option>
             <?php }?>
