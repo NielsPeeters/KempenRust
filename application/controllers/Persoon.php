@@ -19,6 +19,7 @@ class Persoon extends CI_Controller {
         $data['title'] = 'Personen beheren';
         $data['author'] = 'Van de Voorde Tim';
         $data['user'] = $this->authex->getUserInfo();
+        $user = $this->authex->getUserInfo();
         if ($user->soort == 3) {
             $this->load->model('persoon_model');
             $data['klanten'] = $this->persoon_model->getAll();
