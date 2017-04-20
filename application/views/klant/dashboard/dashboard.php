@@ -58,7 +58,9 @@
     
     <hr>
     <h1>Kalender</h1>
-    <div class="row">     
+    <div class="row">  
+        <div class="col-sm-12">  
         <div id="calendar"></div>
+        </div>
     </div>
 </div>
