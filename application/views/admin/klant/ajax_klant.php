@@ -12,7 +12,7 @@
 <?php
 echo javascript("validator.js");
 $attributes = array('name' => 'myform','id'=>'JqAjaxForm');
-echo form_open('kamertype/schrijfJSONObject', $attributes);
+echo form_open('persoon/schrijfJSONObject', $attributes);
 ?>
 
 <form name='myform' id='JqAjaxForm'>

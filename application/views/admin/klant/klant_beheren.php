@@ -54,26 +54,26 @@
             });
         }
 
-        function schrijfPersoon()
-        {
-            /**
-            * Update of insert een persoonobject
-            * \param id het id van het te verwijderen persoon als int
-            * \return een melding dat de gegevens succesvol zijn opgeslagen
-            */
-            var dataString = $("#JqAjaxForm").serialize();
-            $.ajax({type: "POST",
-                url: site_url + "/persoon/schrijfJSONObject",
-                data: dataString,
-                dataType: "json",
-                success: function (result) {
-                    location.reload();
-                },
-                error: function (xhr, status, error) {
-                    alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
-                }
-            });
-        }
+//        function schrijfPersoon()
+//        {
+//            /**
+//            * Update of insert een persoonobject
+//            * \param id het id van het te verwijderen persoon als int
+//            * \return een melding dat de gegevens succesvol zijn opgeslagen
+//            */
+//            var dataString = $("#JqAjaxForm").serialize();
+//            $.ajax({type: "POST",
+//                url: site_url + "/persoon/schrijfJSONObject",
+//                data: dataString,
+//                dataType: "json",
+//                success: function (result) {
+//                    location.reload();
+//                },
+//                error: function (xhr, status, error) {
+//                    alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+//                }
+//            });
+//        }
 
         function attach_click() {
           $(".verwijder").click(function (e) {
