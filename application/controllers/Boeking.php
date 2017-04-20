@@ -224,7 +224,7 @@ class Boeking extends CI_Controller {
         $boeking->opmerking = $this->input->post('opmerking');
         $this->load->model('boeking_model');
         $this->session->set_userdata('einddatum', $boeking->eindDatum);
-        $this->session->set_userdata('begindatum', $boeking->beginDatum);
+        $this->session->set_userdata('begindatum', $boeking->startDatum);
        
         $this->load->model('typePersoon_model');
         $persoontypes = $this->typePersoon_model->getAll();

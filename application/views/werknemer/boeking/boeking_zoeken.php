@@ -12,10 +12,7 @@ function schrijfBoeking()
             dataType: "json",
             success : function(result){
                 alert(result);
-            },
-            error: function (xhr, status, error) {
-                alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
-              }
+            }
           });
             $('#algemeen').hide();
             $('#kamers').show();
