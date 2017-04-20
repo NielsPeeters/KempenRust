@@ -26,6 +26,16 @@ class Arrangement_model extends CI_Model {
         return $query->result();             // een array met arrangement-objecten
     }
 
+     function getArrangementen($isArrangement) {
+        /**
+        *Geeft een array terug met alle arrangement objecten die een arrangement zijn.
+        *\return een array met arrangement objecten
+        */
+        $this->db->where('isArrangement',$isArrangement);
+        $query = $this->db->get('arrangement');  // genereert SELECT * FROM persoon
+        return $query->result();             // een array met arrangement-objecten
+    }
+
     function insert($arrangement) {
         /**
         *Insert een arrangement object in de database.
