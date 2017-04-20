@@ -18,6 +18,15 @@ nav.navbar-default a.navbar-brand:hover{
 
 }
 
+nav.navbar-default a.navbar-brand:focus{
+    color: #146e28;
+    font-size: large;
+    padding:13px;
+    border-top: 2px solid #146e28;
+    border-bottom: 2px solid #146e28;
+
+}
+
 nav.navbar-default ul.navbar-nav > li > a:link{
     color: #146e28;
 }
@@ -88,6 +97,10 @@ header.jumbotron {
 header.jumbotron-fluid{
     padding: 0px;
     border-bottom: 2px solid #146e28;
+}
+
+.capitalize {
+    text-transform: capitalize;
 }
 
 body{

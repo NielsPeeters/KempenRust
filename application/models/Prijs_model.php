@@ -81,6 +81,29 @@ class Prijs_model extends CI_Model {
         $query = $this->db->get('prijs');
         return $query->row();
     }
+
+    function getPrijsByArrangementAndKamerTypeAndPersonen($arrangementId, $kamerTypeId, $meerderePersonen) {
+        /**
+         * haalt het prijs object op dat hoort bij de bijhorende ids uit de database
+         * \param id het id van de geselecteerde prijs
+         */
+        $this->db->where('arrangementId', $arrangementId);
+        $this->db->where('kamerTypeId', $kamerTypeId);
+        $this->db->where('meerderePersonen', $meerderePersonen);
+        $query = $this->db->get('prijs');
+        return $query->row();
+    }
+
+    function getPrijsByArrangementAndKamerType($arrangementId, $kamerTypeId) {
+        /**
+         * haalt het prijs object op dat hoort bij de bijhorende ids uit de database
+         * \param id het id van de geselecteerde prijs
+         */
+        $this->db->where('arrangementId', $arrangementId);
+        $this->db->where('kamerTypeId', $kamerTypeId);
+        $query = $this->db->get('prijs');
+        return $query->result();
+}
 }
 
 ?>

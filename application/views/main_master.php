@@ -56,7 +56,7 @@
     <div id="header" class="container">
         <div class="row">
             <div class="text-center">
-                <h1><?php echo $title; ?></h1>
+                <h1 class="capitalize"><?php echo $title; ?></h1>
             </div>
         </div>
     </div>
