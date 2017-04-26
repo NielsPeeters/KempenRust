@@ -457,7 +457,7 @@ function zoek() {
             <td><?php echo date('d-m-Y',strtotime($boeking->startDatum)); ?></td>
             <td><?php echo $boeking->arrangement;?></td>
             <td><?php echo date('d-m-Y h:m:s',strtotime($boeking->tijdstip)); ?></td>
-            <td class="text-center" rowspan="2">
+            <td class="text-center">
             <?php 
             if($boeking->goedgekeurd==1){
                 echo '<button type="button"' . "id= $boeking->id" .' class="btn btn-success btn-xs btn-round goedkeuren"><span class="glyphicon glyphicon-thumbs-up"></span></button>';
@@ -467,8 +467,8 @@ function zoek() {
             }
             ?>
             </td>
-            <td rowspan="2" class="text-center"><button type="button" id="<?php echo $boeking->id; ?>" class="btn btn-warning btn-xs btn-round wijzig"><span class="glyphicon glyphicon-pencil"></span></button></td>
-            <td rowspan="2" class="text-center"><button type="button" id="<?php echo $boeking->id; ?>" class="btn btn-danger btn-xs btn-round verwijder"><span class="glyphicon glyphicon-remove"></span></button></td>
+            <td  class="text-center"><button type="button" id="<?php echo $boeking->id; ?>" class="btn btn-warning btn-xs btn-round wijzig"><span class="glyphicon glyphicon-pencil"></span></button></td>
+            <td  class="text-center"><button type="button" id="<?php echo $boeking->id; ?>" class="btn btn-danger btn-xs btn-round verwijder"><span class="glyphicon glyphicon-remove"></span></button></td>
         </tr>
         <tr>
        <td><?php echo $boeking->persoon->email;?> </td>
@@ -478,6 +478,9 @@ function zoek() {
             if($boeking->aantalPersonen>1){
             $aantal="personen";} 
             echo "$boeking->aantalPersonen $aantal" ; ?></td>
+        <td></td>
+        <td></td>
+        <td></td>
         <td></td>
         </tr>
         </hr>

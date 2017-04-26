@@ -144,7 +144,7 @@ class Kamer_model extends CI_Model {
         $alleKamers = $this->kamer_model->getAll();
         
         foreach($alleKamers as $kamer){
-            $kamer->type = $this->getWithKamerType($kamer->id);
+            $kamer = $this->getWithKamerType($kamer->id);
             $checkAlle = 1;
             $this->load->model('kamerBoeking_model');
             $boekingenMetKamer = $this->kamerBoeking_model->getAllByKamer($kamer->id);
@@ -155,7 +155,7 @@ class Kamer_model extends CI_Model {
             
                 $checkPerBoeking = $this->kamer_model->checkData($begindatum, $boeking->startDatum , $einddatum, $boeking->eindDatum);
                 
-                if($checkPerBoeking == 0){
+                if($checkPerBoeking==0){
                     $checkAlle = 0;
                 }
             }

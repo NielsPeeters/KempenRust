@@ -66,7 +66,7 @@ class Boeking extends CI_Controller {
           $arrangement = $this->arrangement_model->get($boeking->arrangementId);
           
           if($arrangement->isArrangement == 0){
-            
+             echo "test";
               $dagen = strtotime($boeking->eindDatum) - strtotime($boeking->startDatum);
               $dagen = floor($dagen / (60 * 60 * 24));
               echo $dagen + "dagen";
@@ -224,7 +224,7 @@ class Boeking extends CI_Controller {
         $boeking->opmerking = $this->input->post('opmerking');
         $this->load->model('boeking_model');
         $this->session->set_userdata('einddatum', $boeking->eindDatum);
-        $this->session->set_userdata('begindatum', $boeking->startDatum);
+        $this->session->set_userdata('startdatum', $boeking->startDatum);
        
         $this->load->model('typePersoon_model');
         $persoontypes = $this->typePersoon_model->getAll();
@@ -283,7 +283,7 @@ class Boeking extends CI_Controller {
         *\return een verzameling kamer objecten
         */
         $this->load->model('kamer_model');
-        $data["kamers"]  = $this->kamer_model->getAllBeschikbaarWithType($this->session->userdata('begindatum'), $this->session->userdata('einddatum'));
+        $data["kamers"]  = $this->kamer_model->getAllBeschikbaarWithType($this->session->userdata('startdatum'), $this->session->userdata('einddatum'));
 
         $this->load->view('werknemer/boeking/ajax_kamertoevoegen', $data);
     }
@@ -365,6 +365,7 @@ private function sendmail($id) {
     }
     
 
+<<<<<<< HEAD
   public function dashboard() {
         /**
          * Laadt de pagina waarop je kamertypes kan beheren
@@ -385,6 +386,8 @@ private function sendmail($id) {
         $partials = array('navbar' => 'main_navbar', 'content' => 'werknemer/dashboard/dashboard', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data);
     }
+=======
+>>>>>>> 96099c6bd9ab33ee396052141f0d4b38bc4f7110
 
 
 
