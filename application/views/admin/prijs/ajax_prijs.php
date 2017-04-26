@@ -14,7 +14,7 @@ if (count($prijzen) > 0){
                 <label for="<?php echo $prijs->id;?>" class="control-label">Single prijs</label>
 
             <?php } ?>
-            <?php echo form_input(array('data-match'=>'','type'=>'text','name' => "prijs$key",'id' => "prijs$key", 'value' => $prijs->actuelePrijs, 'class' => 'form-control', 'placeholder' => '0,00', 'required' => 'required'));?>
+            <?php echo form_input(array('data-match'=>'','type'=>'text','name' => "prijs$key",'id' => "prijs$key", 'value' => toKomma($prijs->actuelePrijs), 'class' => 'form-control', 'placeholder' => '0,00', 'required' => 'required'));?>
             <?php echo form_input(array('data-match'=>'','type'=>'hidden','name' => "id$key",'id' => "id$key", 'value' => $prijs->id, 'class' => 'form-control'));?>
         </div>
     <?php } ?>

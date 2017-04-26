@@ -58,8 +58,8 @@ class prijs extends CI_Controller {
 
         $prijs0->id = $this->input->post('id0');
         $prijs1->id = $this->input->post('id1');
-        $prijs0->actuelePrijs = $this->input->post('prijs0');
-        $prijs1->actuelePrijs = $this->input->post('prijs1');
+        $prijs0->actuelePrijs = toPunt($this->input->post('prijs0'));
+        $prijs1->actuelePrijs = toPunt($this->input->post('prijs1'));
 
         $this->load->model('prijs_model');
         $this->prijs_model->update($prijs0);
