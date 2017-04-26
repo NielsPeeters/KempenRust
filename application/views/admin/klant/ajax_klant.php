@@ -67,17 +67,18 @@ echo form_open('persoon/schrijfJSONObject', $attributes);
         <label for="wachtwoord" class="control-label">Wachtwoord</label>
         <div class="form-inline row">
             <div class="form-group col-sm-12">
-                <input type="password" data-minlength="6" class="form-control" id="een" placeholder="Wachtwoord" name="wachtwoord"required>
+                <input type="password" data-minlength="6" class="form-control" id="een" placeholder="Wachtwoord" name="wachtwoord">
                 <div class="help-block">Minimum 6 karakters.</div>
             </div>
             <div class="form-group col-sm-12">
-                <input type="password" class="form-control" id="wachtwoord" data-match="#een" data-match-error="Deze wachtwoorden komen niet overeen!" placeholder="Herhaal wachtwoord" required>
+                <input type="password" class="form-control" id="wachtwoord" data-match="#een" data-match-error="Deze wachtwoorden komen niet overeen!" placeholder="Herhaal wachtwoord" >
                 <div class="help-block with-errors"></div>
             </div>
         </div>
     </div>
 
     <div class="form-group">
+        <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="right" title="1 = Gebruiker, 2 = Werknemer, 3 = Administrator"></span>
         <label for="soort" class="control-label">Soort</label>
         <?php echo form_input(array('type' => 'text', 'name' => 'soort', 'id' => 'soort', 'value' => $klant->soort, 'class' => 'form-control', 'placeholder' => 'Soort', 'required' => 'required')); ?>
     </div>
@@ -87,7 +88,7 @@ echo form_open('persoon/schrijfJSONObject', $attributes);
     <div class="help-block with-errors"></div>
 
     <button type="button" class="btn btn-secondary annuleren">Annuleren</button>
-    <button type="button" data-id="' . $type->id . '" class="btn btn-warning verwijder">Verwijderen</button>
-    <button type="submit" data-id="' . $type->id . '" class="btn btn-primary opslaan">Opslaan</button>
+    <button type="button" data-id="' . $klant->id . '" class="btn btn-warning verwijder">Verwijderen</button>
+    <button type="submit" data-id="' . $klant->id . '" class="btn btn-primary opslaan">Opslaan</button>
 </div>
 </form>

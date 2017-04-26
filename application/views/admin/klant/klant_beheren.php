@@ -36,7 +36,7 @@
             * \param id het id van de te verwijderen persoon als int
             * \return een leeg kamertype object als de persoon verwijderd kon worden, anders geef een foutmelding
             */
-            $.ajax({type: "POST",
+            $.ajax({type: "GET",
                 url: site_url + "/persoon/verwijderPersoon",
                 data: {id: id},
                 dataType: "json",

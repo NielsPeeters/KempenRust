@@ -86,11 +86,16 @@
                 if ($user == null) { // niet aangemeld
                     echo '<li>' . anchor('/persoon/nieuw', 'Registreren') . '</li>';
                     echo '<li>' . anchor('#', 'Aanmelden','data-toggle="modal" data-target="#aanmeldModal"') . '</li>';
-                } else { // wel aangemeld
-                    echo '<li>' . anchor ('home/afmelden', 'Afmelden') . '</li>';
-                }
-
-                ?>
+                } else {  ?> <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Account<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <?php
+                            echo '<li>' . anchor('home/afmelden', 'Afmelden') . '</li>';
+                            echo '<li>' . anchor('/klant/haalKlant', 'Accountgegevens') . '</li>';
+                        }
+                        ?>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

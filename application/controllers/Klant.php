@@ -252,7 +252,7 @@ class Klant extends CI_Controller {
         $bericht .= $this->haalPensionOfArrangement($arrangementId, $pensionId);
         $bericht .= " en u heeft volgende kamers geboekt: ";
         $bericht .= $this->haalKamers($kamers);      
-        $bericht .= ". U moet in totaal €" . $totaal . " betalen.\n\n";
+        $bericht .= ". U moet in totaal €" . toKomma($totaal) . " betalen.\n\n";
         $bericht .= "Gelieve een voorschot van €20 te storten op rekeningnummer BE230 026 631 772.\n\n";
         $bericht .= "Met vriendelijke groeten\n";
         $bericht .= "Hotel Kemperust";
@@ -502,4 +502,47 @@ class Klant extends CI_Controller {
             $this->session->unset_userdata('pensionId');
         }
     }
+    
+       public function haalKlant() {
+        $data['title'] = 'Gegevens beheren';
+        $data['author'] = 'Van de Voorde Tim';
+        
+        $data['user'] = $this->authex->getUserInfo();
+        $user = $this->authex->getUserInfo();
+
+        $partials = array('navbar' => 'main_navbar', 'content' => 'klant/ajax_klant', 'footer' => 'main_footer');
+        $this->template->load('main_master', $partials, $data);
+    }
+
+        public function schrijfJSONObject() {
+        /**
+         * haalt de waarden van het persoon object op en update of insert deze in de database
+         */
+        $object = new stdClass();
+
+        $object->id = $this->input->post('id');
+        $object->naam = $this->input->post('naam');
+        $object->voornaam = $this->input->post('voornaam');
+        $object->postcode = $this->input->post('postcode');
+        $object->gemeente = $this->input->post('gemeente');
+        $object->straat = $this->input->post('straat');
+        $object->huisnummer = $this->input->post('huisnummer');
+        $object->bus = $this->input->post('bus');
+        $object->telefoon = $this->input->post('telefoon');
+        $object->email = $this->input->post('email');
+      
+        $wachtwoord = $this->input->post('wachtwoord');
+        if ($wachtwoord != "" && $wachtwoord != null) {
+            $object->wachtwoord = sha1($wachtwoord);
+        }
+       
+        $this->load->model('persoon_model');
+        if ($object->id == 0) {
+            $this->persoon_model->insert($object);
+        } else {
+            $this->persoon_model->update($object);
+        }
+         redirect('klant/haalKlant');
+    }
+
 }
