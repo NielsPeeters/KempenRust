@@ -374,12 +374,15 @@ private function sendmail($id) {
         $data['author'] = 'Van de Voorde Tim';
         $data['user'] = $this->authex->getUserInfo();
         
+        if($user->soort>=2) {
         $this->load->model('boeking_model');
         $data['boekingen'] = $this->boeking_model->getBoekingenWith();
-      
-       
+        } else
+        {
+             redirect("/home/index");
+        }
         
-        $partials = array('navbar' => 'main_navbar', 'content' => 'admin/dashboard/dashboard', 'footer' => 'main_footer');
+        $partials = array('navbar' => 'main_navbar', 'content' => 'werknemer/dashboard/dashboard', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data);
     }
 

@@ -11,19 +11,19 @@ class Home extends CI_Controller {
             $this->load->helper('form');
             $this->load->helper('notation');
     }
-
-	public function index()
-	{
-	        //Laad de thuis pagina
-            $data['title']  = 'Dit is de $data[\'title\'] = "xxx"';
-            $data['nobox'] = true;      // geen extra rand rond hoofdmenu
-            $data['author'] = 'Peeters Niels';
-            $data['user'] = $this->authex->getUserInfo();
-
-            //main_content moet vervangen worden naar gebruiker/arangementen bij finale afwerking!
-            $partials = array('navbar' => 'main_navbar', 'content' => 'main_content', 'footer' => 'main_footer');
-            $this->template->load('main_master', $partials, $data);
-	}
+//
+//	public function index()
+//	{
+//	        //Laad de thuis pagina
+//            $data['title']  = 'Dit is de $data[\'title\'] = "xxx"';
+//            $data['nobox'] = true;      // geen extra rand rond hoofdmenu
+//            $data['author'] = 'Peeters Niels';
+//            $data['user'] = $this->authex->getUserInfo();
+//
+//            //main_content moet vervangen worden naar gebruiker/arangementen bij finale afwerking!
+//            $partials = array('navbar' => 'main_navbar', 'content' => 'main_content', 'footer' => 'main_footer');
+//            $this->template->load('main_master', $partials, $data);
+//	}
 
 	function aanmelden()
     {
@@ -63,7 +63,7 @@ class Home extends CI_Controller {
 
     }
     
-     function dashboard()
+     function index()
     {
         
         $data['title']  = 'Overzicht';
