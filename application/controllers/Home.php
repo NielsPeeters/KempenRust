@@ -78,7 +78,7 @@ class Home extends CI_Controller {
         $data['boekingen'] = $this->boeking_model->getBoekingenWith();
         
         
-        $partials = array('navbar' => 'main_navbar', 'content' => 'klant/dashboard/dashboard', 'footer' => 'main_footer');
+        $partials = array('navbar' => 'main_navbar', 'content' => 'gebruiker/dashboard/dashboard', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data);
     }
 
