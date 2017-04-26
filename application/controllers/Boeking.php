@@ -174,6 +174,9 @@ class Boeking extends CI_Controller {
             $data['arrangementen'] = $this->arrangement_model->getArrangementen(1);
             $data['pensions'] = $this->arrangement_model->getArrangementen(0);
 
+        $this->load->model('boekingTypePersoon_model');
+            $data['boekingTypePersonen'] = $this->boekingTypePersoon_model->getByBoeking($boekingId);
+
         $this->load->model('typePersoon_model');
         $data['typePersonen'] = $this->typePersoon_model->getAll();
 
