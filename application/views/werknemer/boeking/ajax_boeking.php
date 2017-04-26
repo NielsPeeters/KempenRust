@@ -91,6 +91,7 @@ echo form_open('boeking/schrijfBoeking/', $attributes);
         
         <?php 
    
+   if($boeking->id==0){
     foreach ($typePersonen as $typePersoon) {
             $nieuw = TRUE;
 
@@ -117,8 +118,21 @@ echo form_open('boeking/schrijfBoeking/', $attributes);
      <?php  
             }
         }
+        }
+        else{
+             foreach ($typePersonen as $typePersoon) {
+                 ?>
+                   <div class="col-xs-3">
+                        <label for="persoontype" id="persoontype" class="control-label"><?php echo $typePersoon->soort;?></label>
+                        <?php
+                        echo form_input(array('class'=>'form-control','type' => 'number', 'name' => 'persoon' . $typePersoon->id, 'id' => 'persoon' . $typePersoon->id, 'required' => 'required', 'value' => '0'));
+                   ?>
+                     </div> <?php
+             }
+        }
 
-     ?></div></div>
+     ?>
+     </div></div>
     </br>
     </br>
     </br>
