@@ -72,7 +72,7 @@ class Home extends CI_Controller {
         $data['user'] = $this->authex->getUserInfo();
             
         $this->load->model('arrangement_model');
-        $data['arrangementen'] = $this->arrangement_model->getAll();
+        $data['arrangementen'] = $this->arrangement_model->getArrangementen(1);
         
         $this->load->model('boeking_model');
         $data['boekingen'] = $this->boeking_model->getBoekingenWith();
