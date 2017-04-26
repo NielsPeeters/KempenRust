@@ -18,7 +18,7 @@ echo javascript("validator.js");
         $opties = array();
             foreach($kamers as $kamer) {
                 $test = $kamer->type->omschrijving;
-                $persoon= " persoon ";
+                $persoon= " persoon   ";
                 if($kamer->aantalPersonen>1){
                     $persoon = " personen ";
                 }
