@@ -104,7 +104,8 @@ class Boeking_model extends CI_Model {
         */
         
          $this->db->where('id', $id);
-        $boeking = $this->db->get('boeking');
+        $query = $this->db->get('boeking');
+        $boeking = $query->row();
         $this->load->model('persoon_model');
         $this->load->model('arrangement_model');
         $boeking->persoon = $this->persoon_model->get($boeking->persoonId);
