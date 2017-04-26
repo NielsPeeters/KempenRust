@@ -44,7 +44,19 @@
                                 <ul class="dropdown-menu">
                                     <?php
                                     echo '<li>' . anchor('/boeking/index', 'Boekingen beheren') . '</li>';
-                                    echo '<li>' . anchor('/factuur/index', 'Facturen beheren') . '</li>';
+                                    //echo '<li>' . anchor('/factuur/index', 'Facturen beheren') . '</li>';
+                                    ?>
+                                </ul>
+                            </li>
+                            <!-- Arrangementen Dropdown -->
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Boeking opties<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <?php
+                                    echo '<li>' . anchor('/arrangement/index', 'Arrangementen beheren') . '</li>';
+                                    echo '<li>' . anchor('/pension/index', 'Pensions beheren') . '</li>';
+                                    echo '<li>' . anchor('/menu/index', 'Menu\'s beheren') . '</li>';
+                                    echo '<li>' . anchor('/faciliteit/index', 'Faciliteiten beheren') . '</li>';
                                     ?>
                                 </ul>
                             </li>
@@ -53,11 +65,8 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Extra beheren<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <?php
-                                    echo '<li>' . anchor('/faciliteit/index', 'Faciliteiten beheren') . '</li>';
-                                    echo '<li>' . anchor('/menu/index', 'Menu\'s beheren') . '</li>';
-                                    echo '<li>' . anchor('/pension/index', 'Pensions beheren') . '</li>';
-                                    echo '<li>' . anchor('/arrangement/index', 'Arrangementen beheren') . '</li>';
-                                    echo '<li>' . anchor('/typePersoon/index', 'TypePersoon beheren (KortingTypes)') . '</li>';
+                                    echo '<li>' . anchor('/prijs/index', 'Prijzen beheren') . '</li>';
+                                    echo '<li>' . anchor('/typePersoon/index', 'Kortingen beheren') . '</li>';
                                     echo '<li>' . anchor('/persoon/index', 'Accounts beheren') . '</li>';
                                     ?>
                                 </ul>

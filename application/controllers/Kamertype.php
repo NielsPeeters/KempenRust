@@ -19,6 +19,7 @@ class Kamertype extends CI_Controller {
         $data['title'] = 'Kamertypes beheren';
         $data['author'] = 'Van de Voorde Tim';
         $data['user'] = $this->authex->getUserInfo();
+        $user = $this->authex->getUserInfo();
         
         if($user->soort==3) {
         $this->load->model('kamerType_model');

@@ -44,9 +44,9 @@
 
 
 </script>
-
+<h1>Arrangementen</h1>
 <div class="row">   
-    <h1>Arrangementen</h1>
+    
     <?php foreach ($arrangementen as $arrangement) { ?>  
     
         <h4><?php echo $arrangement->naam ?></h4>
