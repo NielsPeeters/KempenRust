@@ -28,3 +28,13 @@
 button.btn.btn-primary{
     background-color: #146e28;
 }
+
+.btn-primary:active{
+    background-color: #014f24;
+}
+.btn.btn-primary:active{
+    background-color: #014f24;
+}
+button.btn.btn-primary:active{
+    background-color: #014f24;
+}
