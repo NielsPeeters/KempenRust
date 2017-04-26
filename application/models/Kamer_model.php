@@ -101,7 +101,7 @@ class Kamer_model extends CI_Model {
         return $kamers;
     }
 
-    function getAllBeschikbaar($begindatum, $einddatum) {
+     function getAllBeschikbaar($begindatum, $einddatum) {
          /**
         * haalt alle kamers uit de database die beschikbaar zijn voor die periode
         * \return een array met kamer objecten
@@ -111,30 +111,28 @@ class Kamer_model extends CI_Model {
         $alleKamers = $this->kamer_model->getAll();
         
         foreach($alleKamers as $kamer){
-            $checkAlle = 1;
-            $this->load->model('kamerBoeking_model');
-            $boekingenMetKamer = $this->kamerBoeking_model->getAllByKamer($kamer->id);
+            $check = true;
+            $this->load->model('kamerboeking_model');
+            $boekingenMetKamer = $this->kamerboeking_model->getAllByKamer($kamer->id);
         
             foreach($boekingenMetKamer as $kamerBoeking) {
                 $this->load->model('boeking_model');
                 $boeking = $this->boeking_model->get($kamerBoeking->boekingId);
             
-                $checkPerBoeking = $this->kamer_model->checkData($begindatum, $boeking->startDatum , $einddatum, $boeking->eindDatum);
-                
-                if($checkPerBoeking == 0){
-                    $checkAlle = 0;
+                if(!($this->kamer_model->checkData($begindatum, $boeking->startDatum, $einddatum, $boeking->eindDatum))){
+                    $check = false;
                 }
             }
             
-            if($checkAlle == 1) {
+            if($check){
                 $kamers[$kamer->id] = $kamer->kamerTypeId . "." . $kamer->naam;
             }
         }
         
         return $kamers;
     }
-
-     function getAllBeschikbaarWithType($begindatum, $einddatum) {
+    
+    function getAllBeschikbaarWithType($begindatum, $einddatum) {
          /**
         * haalt alle kamers uit de database die beschikbaar zijn voor die periode
         * \return een array met kamer objecten
@@ -145,22 +143,20 @@ class Kamer_model extends CI_Model {
         
         foreach($alleKamers as $kamer){
             $kamer = $this->getWithKamerType($kamer->id);
-            $checkAlle = 1;
+            $check = true;
             $this->load->model('kamerBoeking_model');
             $boekingenMetKamer = $this->kamerBoeking_model->getAllByKamer($kamer->id);
         
             foreach($boekingenMetKamer as $kamerBoeking) {
                 $this->load->model('boeking_model');
                 $boeking = $this->boeking_model->get($kamerBoeking->boekingId);
-            
-                $checkPerBoeking = $this->kamer_model->checkData($begindatum, $boeking->startDatum , $einddatum, $boeking->eindDatum);
                 
-                if($checkPerBoeking==0){
-                    $checkAlle = 0;
+                if(!($this->kamer_model->checkData($begindatum, $boeking->startDatum , $einddatum, $boeking->eindDatum))){
+                    $check = false;
                 }
             }
             
-            if($checkAlle == 1) {
+            if($check) {
                  $kamers[$kamer->id] = $kamer;
             }
         }
@@ -168,23 +164,21 @@ class Kamer_model extends CI_Model {
         return $kamers;
     }
     
-    
     function checkData($beginDatumGevraagd, $beginDatumBoeking, $eindDatumGevraagd, $eindDatumBoeking) {
-        $beschikbaar = 1;
+        $check = true;
         
-        if ($beginDatumBoeking >= $beginDatumGevraagd) {
-            if ($eindDatumGevraagd <= $beginDatumBoeking) {
-                $beschikbaar = 0;
+        if (toDDMMYYYY($beginDatumBoeking) >= $beginDatumGevraagd) {
+            if ($eindDatumGevraagd <= toDDMMYYYY($beginDatumBoeking)) {
+                $check = false;
             }
         } else {
-            if ($beginDatumGevraagd >= $eindDatumBoeking) {
-                $beschikbaar = 0;
+            if ($beginDatumGevraagd >= toDDMMYYYY($eindDatumBoeking)) {
+                $check = false;
             }
         }
         
-        return $beschikbaar;
+        return $check;
     }
-    
     
     function getAllTypesByKamers(){
         $types = array();
