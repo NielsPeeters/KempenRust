@@ -165,7 +165,7 @@ class Boeking extends CI_Controller {
         * \return boeking een leeg boeking object
         */
         
-        $boeking = $this->getEmptyBoeking();
+        $data['boeking'] = $this->getEmptyBoeking();
 
         $this->load->model('kamerType_model');
         $data['kamerTypes'] = $this->kamerType_model->getAll();
@@ -175,15 +175,13 @@ class Boeking extends CI_Controller {
         $data['pensions'] = $this->arrangement_model->getArrangementen(0);
 
         $this->load->model('boekingTypePersoon_model');
-        $data['boekingTypePersonen'] = $this->boekingTypePersoon_model->getByBoeking($boekingId);
+        $data['boekingTypePersonen'] = $this->boekingTypePersoon_model->getByBoeking($boeking->id);
 
         $this->load->model('typePersoon_model');
         $data['typePersonen'] = $this->typePersoon_model->getAll();
 
         $this->load->model('persoon_model');
         $data['personen'] = $this->persoon_model->getAll();
-
-        $data['boeking']=$boeking;
 
         $this->load->view("werknemer/boeking/ajax_boeking", $data);
     }
