@@ -365,7 +365,7 @@ private function sendmail($id) {
     }
     
 
-<<<<<<< HEAD
+
   public function dashboard() {
         /**
          * Laadt de pagina waarop je kamertypes kan beheren
@@ -386,8 +386,7 @@ private function sendmail($id) {
         $partials = array('navbar' => 'main_navbar', 'content' => 'werknemer/dashboard/dashboard', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data);
     }
-=======
->>>>>>> 96099c6bd9ab33ee396052141f0d4b38bc4f7110
+
 
 
 
