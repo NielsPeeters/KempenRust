@@ -18,7 +18,11 @@ echo javascript("validator.js");
         $opties = array();
             foreach($kamers as $kamer) {
                 $test = $kamer->type->omschrijving;
-                $opties[$kamer->id] = "$kamer->naam" . ' &nbsp max: ' . $kamer->aantalPersonen .' personen &nbsp ' . $test . ' ';
+                $persoon= " persoon ";
+                if($kamer->aantalPersonen>1){
+                    $persoon = " personen ";
+                }
+                $opties[$kamer->id] = "$kamer->naam" . ' &nbsp max: ' . $kamer->aantalPersonen . $persoon .'  &nbsp ' . $test . ' ';
             }
             if(count($opties)!=0){?>
             <div class="form-group">
