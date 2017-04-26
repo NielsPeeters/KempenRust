@@ -355,17 +355,15 @@ private function sendmail($id) {
     */
        
         $this->load->model('boeking_model');
-        $boeking = $this->boeking_model->getBoekingWith($id);
+        $boeking = $this->boeking_model->getBoekingWithAll($id);
         $this->email->from('r0589993@student.thomasmore.be', 'Hotel Kempenrust');
         $this->email->to($boeking->persoon->email);
         $this->session->set_userdata('boekingId',$boeking->id);
         $this->email->subject('Boeking goedgekeurd');
         $bericht = "Beste\n\n";
         $bericht .= "Uw boeking werd goedgekeurd. \n";
-        $bericht .= toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . "\n";
-        $bericht .= $boeking->arrangement;
-        $bericht .= " en u heeft volgende kamers geboekt: ";
-        $bericht .= $this->gekozenKamers();      
+        $bericht .= toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . "\n\n";
+        $bericht .= "U koos voor de volgende formule: " . $boeking->arrangement; 
         $bericht .= "Gelieve een voorschot van €20 te storten op rekeningnummer BE230 026 631 772.\n\n";
         $bericht .= "Met vriendelijke groeten\n";
         $bericht .= "Hotel Kempenrust";
