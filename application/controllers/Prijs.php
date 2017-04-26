@@ -53,19 +53,17 @@ class prijs extends CI_Controller {
         /**
         * Haalt de waarden van het prijs object op en update of insert deze in de database
         */
-        $object = new stdClass();
-        $object->id = $this->input->post('id');
-        $object->naam = $this->input->post('naam');
-        $object->aantalPersonen = $this->input->post('aantalPersonen');
-        $object->prijsTypeId = $this->input->post('prijsType');
-        $object->beschikbaar = $this->input->post('beschikbaar');
+        $prijs0 = new stdClass();
+        $prijs1 = new stdClass();
+
+        $prijs0->id = $this->input->post('id0');
+        $prijs1->id = $this->input->post('id1');
+        $prijs0->actuelePrijs = $this->input->post('prijs0');
+        $prijs1->actuelePrijs = $this->input->post('prijs1');
 
         $this->load->model('prijs_model');
-        if ($object->id == 0) {
-            $this->prijs_model->insert($object);
-        } else {
-            $this->prijs_model->update($object);
-        }
+        $this->prijs_model->update($prijs0);
+        $this->prijs_model->update($prijs1);
         redirect('prijs/index');
     }
 
