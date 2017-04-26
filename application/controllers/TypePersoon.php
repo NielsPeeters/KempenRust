@@ -18,7 +18,7 @@ class TypePersoon extends CI_Controller{
          * Laadt de pagina waarop je typepersoonen kan beheren
          * geeft een array van typepersoon objecten mee
          */
-        $data['title'] = 'Persoons Type\'s beheren';
+        $data['title'] = 'Persoontype\'s beheren';
         $data['author'] = 'Peeters Niels';
         $data['user'] = $this->authex->getUserInfo();
         $user = $this->authex->getUserInfo();

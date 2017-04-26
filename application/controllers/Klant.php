@@ -252,7 +252,7 @@ class Klant extends CI_Controller {
         $bericht .= $this->haalPensionOfArrangement($arrangementId, $pensionId);
         $bericht .= " en u heeft volgende kamers geboekt: ";
         $bericht .= $this->haalKamers($kamers);      
-        $bericht .= ". U moet in totaal €" . $totaal . " betalen.\n\n";
+        $bericht .= ". U moet in totaal €" . toKomma($totaal) . " betalen.\n\n";
         $bericht .= "Gelieve een voorschot van €20 te storten op rekeningnummer BE230 026 631 772.\n\n";
         $bericht .= "Met vriendelijke groeten\n";
         $bericht .= "Hotel Kemperust";
