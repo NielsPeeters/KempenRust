@@ -93,7 +93,7 @@ class Kamertype extends CI_Controller {
         } else {
             $this->kamerType_model->update($object);
         }
-        echo 0;
+        redirect("/kamertype/index");
     }
 
     public function haalKamertypes() {
