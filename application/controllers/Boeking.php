@@ -355,7 +355,7 @@ private function sendmail($id) {
     */
        
         $this->load->model('boeking_model');
-        $boeking = $this->boeking_model->getBoekingWith($id);
+        $boeking = $this->boeking_model->getBoekingWithAll($id);
         $this->email->from('r0589993@student.thomasmore.be', 'Hotel Kempenrust');
         $this->email->to($boeking->persoon->email);
         $this->session->set_userdata('boekingId',$boeking->id);
