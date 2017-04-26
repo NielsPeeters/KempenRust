@@ -165,15 +165,15 @@ class Kamer_model extends CI_Model {
     }
     
     function checkData($beginDatumGevraagd, $beginDatumBoeking, $eindDatumGevraagd, $eindDatumBoeking) {
-        $check = true;
+        $check = false;
         
-        if (toDDMMYYYY($beginDatumBoeking) >= $beginDatumGevraagd) {
-            if ($eindDatumGevraagd <= toDDMMYYYY($beginDatumBoeking)) {
-                $check = false;
+        if (toDDMMYYYY($beginDatumBoeking) > $beginDatumGevraagd) {
+            if ($eindDatumGevraagd < toDDMMYYYY($beginDatumBoeking)) {
+                $check = true;
             }
         } else {
-            if ($beginDatumGevraagd >= toDDMMYYYY($eindDatumBoeking)) {
-                $check = false;
+            if ($beginDatumGevraagd > toDDMMYYYY($eindDatumBoeking)) {
+                $check = true;
             }
         }
         
