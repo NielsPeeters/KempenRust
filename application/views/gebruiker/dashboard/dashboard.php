@@ -45,22 +45,18 @@
 
 </script>
 
-<div class="container">
     <div class="row">   
         <h1>Arrangementen</h1>
         <?php foreach ($arrangementen as $arrangement) { ?>
-            <div class="col-sm-3">              
+                    
                 <h2><?php echo $arrangement->naam ?></h2>
                 <p><?php echo $arrangement->omschrijving ?></p>
-            </div>
+         
         <?php } ?>
     </div>
-    
+
     <hr>
     <h1>Kalender</h1>
-    <div class="row">  
-        <div class="col-sm-12">  
+    <div class="row">     
         <div id="calendar"></div>
-        </div>
     </div>
-</div>
