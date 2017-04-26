@@ -362,10 +362,8 @@ private function sendmail($id) {
         $this->email->subject('Boeking goedgekeurd');
         $bericht = "Beste\n\n";
         $bericht .= "Uw boeking werd goedgekeurd. \n";
-        $bericht .= toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . "\n";
-        $bericht .= $boeking->arrangement;
-        $bericht .= " en u heeft volgende kamers geboekt: ";
-        $bericht .= $this->gekozenKamers();      
+        $bericht .= toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . "\n\n";
+        $bericht .= "U koos voor de volgende formule: " . $boeking->arrangement; 
         $bericht .= "Gelieve een voorschot van €20 te storten op rekeningnummer BE230 026 631 772.\n\n";
         $bericht .= "Met vriendelijke groeten\n";
         $bericht .= "Hotel Kempenrust";
