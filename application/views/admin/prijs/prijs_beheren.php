@@ -40,44 +40,28 @@
     $(document).ready(function () {
         $("#panel").hide();
 
-        $("#prijs").change(function () {
-            /**
-             *Bij het veranderen van de geselecteerde prijs, veranderdt de info in het panel
-             */
-            haalPrijs($(this).val());
-        });
+        $("#opslaan").on('click', function(){
 
-        $(".delete").click(function (e) {
-            /**
-             *Bij het klikken op verwijder wordt het prijs object verwijderdt
-             */
-            e.preventDefault();
-            var id = $("#prijsId").html();
-            verwijderprijs(id);
-        });
 
-        $("#nieuw").click(function () {
-            /**
-             *Bij het klikken op nieuw wordt een nieuw prijs object opgehaald
-             */
-            haalPrijs(-1);
+
         });
 
         $('#arrangementen').on( "change", function(){
             if ($(this).val() == 0){
                 $('#pension').show();
+                haalPrijs($("#pension option:selected").val(),$("#kamerType option:selected").val());
             } else {
                 $('#pension').hide();
                 haalPrijs($(this).val(),$("#kamerType option:selected").val());
             }
         });
 
-        $('#pension').on( "change", function(){
+        $('#pensions').on( "change", function(){
 
                 haalPrijs($(this).val(),$("#kamerType option:selected").val());
         });
 
-        $('#kamerType').on( "change", function(){
+        $('#kamerTypes').on( "change", function(){
             if($("#arrangementen option:selected").val() == 0){
                 haalPrijs($("#pension option:selected").val(),$(this).val());
             } else{

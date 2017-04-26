@@ -80,18 +80,20 @@ class Prijs_model extends CI_Model {
         }
     }
 
-     function getPrijsTotaal($arrangementId, $kamerTypeId, $aantal) {
+     function getPrijsTotaal($arrangementId, $kamerTypeId, $meerdere) {
         /**
         * haalt het prijs object op dat hoort bij de bijhorende ids uit de database
         */
-        $meerdere = 0;
+
          
         /*
         * check if aantal is meer dan 1
         */
-        if($aantal > 1)
+        if($meerdere > 1)
         {
             $meerdere = 1;
+        }else{
+            $meerdere = 0;
         }
          
         $this->db->where('arrangementId', $arrangementId);
@@ -101,17 +103,6 @@ class Prijs_model extends CI_Model {
         return $query->row();
     }
 
-    function getPrijsByArrangementAndKamerTypeAndPersonen($arrangementId, $kamerTypeId, $meerderePersonen) {
-        /**
-         * haalt het prijs object op dat hoort bij de bijhorende ids uit de database
-         * \param id het id van de geselecteerde prijs
-         */
-        $this->db->where('arrangementId', $arrangementId);
-        $this->db->where('kamerTypeId', $kamerTypeId);
-        $this->db->where('meerderePersonen', $meerderePersonen);
-        $query = $this->db->get('prijs');
-        return $query->row();
-    }
 
     function getPrijsByArrangementAndKamerType($arrangementId, $kamerTypeId) {
         /**
