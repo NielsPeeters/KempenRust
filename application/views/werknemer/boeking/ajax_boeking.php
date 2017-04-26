@@ -94,7 +94,6 @@ echo form_open('boeking/schrijfBoeking/', $attributes);
    if($boeking->id==0){
     foreach ($typePersonen as $typePersoon) {
             $nieuw = TRUE;
-
             foreach($boekingTypePersonen as $boekingTypePersoon){
                 if($boekingTypePersoon->typePersoonId == $typePersoon->id){
                   $nieuw = FALSE
@@ -118,8 +117,8 @@ echo form_open('boeking/schrijfBoeking/', $attributes);
      <?php  
             }
         }
-        }
-        else{
+        }     else{
+           
              foreach ($typePersonen as $typePersoon) {
                  ?>
                    <div class="col-xs-3">
@@ -130,6 +129,7 @@ echo form_open('boeking/schrijfBoeking/', $attributes);
                      </div> <?php
              }
         }
+
 
      ?>
      </div></div>
