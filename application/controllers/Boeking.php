@@ -184,7 +184,7 @@ class Boeking extends CI_Controller {
         $data['personen'] = $this->persoon_model->getAll();
 
         $data['boeking']=$boeking;
-        
+
         $this->load->view("werknemer/boeking/ajax_boeking", $data);
     }
 
@@ -213,10 +213,16 @@ class Boeking extends CI_Controller {
         /**
         * Haalt de waarden van het boeking object op en update of insert deze in de database
         */
+
+ 
         $this->load->model('arrangement_model');
-        $arrangement = $this->input->post('arrangement');
-        if($arrangement ==0 ){
+        $this->load->model('arrangement_model');
+        $arrangement = $this->arrangement_model->getByOmschrijving($this->input->post('arrangement'));
+
+        if($arrangement->isArrangement == 0 ){
             $arrangement = $this->input->post('pension');
+        }else{
+            $arrangement = $arrangement->id;
         }
         $boeking = new stdClass();
         $boeking->id = $this->input->post('id');

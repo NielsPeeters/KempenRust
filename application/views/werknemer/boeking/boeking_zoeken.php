@@ -11,7 +11,7 @@ function schrijfBoeking()
             data: dataString,
             dataType: "json",
             success : function(result){
-                alert(result);
+                //alert(result);
             }
           });
             $('#algemeen').hide();
