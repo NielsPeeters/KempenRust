@@ -22,7 +22,7 @@ class Boeking extends CI_Controller {
         * geeft een array van boeking objecten mee
         */
     
-        $data['title'] = 'boekingen beheren';
+        $data['title'] = 'Boekingen beheren';
         $data['author'] = 'Laenen Nathalie';
         $data['user'] = $this->authex->getUserInfo();
 
@@ -314,7 +314,6 @@ class Boeking extends CI_Controller {
         *Haalt alle kamers op die bij de boeking horen
         *\return een verzameling kamer objecten
         */
-        
         $this->load->model('kamerBoeking_model');
         $kamers = $this->kamerBoeking_model->getWithBoeking($this->session->userdata('boekingId'));
         $data["kamerBoekingen"] = $kamers;
@@ -373,7 +372,9 @@ private function sendmail($id) {
         $bericht = "Beste\n\n";
         $bericht .= "Uw boeking werd goedgekeurd. \n";
         $bericht .= toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . "\n";
-        $bericht .= "U koos voor de volgende formule: " . $boeking->arrangement . "\n"; 
+        $bericht .= "U koos voor de volgende formule: " . $boeking->arrangement . ",\n"; 
+        $bericht .= "en onderstaande kamers:";
+        $bericht .= "";
         $bericht .= "Gelieve een voorschot van €20 te storten op rekeningnummer BE230 026 631 772.\n\n";
         $bericht .= "Met vriendelijke groeten\n";
         $bericht .= "Hotel Kempenrust";
