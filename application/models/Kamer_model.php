@@ -112,8 +112,8 @@ class Kamer_model extends CI_Model {
         
         foreach($alleKamers as $kamer){
             $check = true;
-            $this->load->model('kamerboeking_model');
-            $boekingenMetKamer = $this->kamerboeking_model->getAllByKamer($kamer->id);
+            $this->load->model('kamerBoeking_model');
+            $boekingenMetKamer = $this->kamerBoeking_model->getAllByKamer($kamer->id);
         
             foreach($boekingenMetKamer as $kamerBoeking) {
                 $this->load->model('boeking_model');
@@ -195,10 +195,5 @@ class Kamer_model extends CI_Model {
             
         return $types;
     }
-
-
-     
-
 }
-
 ?>

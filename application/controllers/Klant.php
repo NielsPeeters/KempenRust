@@ -73,9 +73,6 @@ class Klant extends CI_Controller {
         $user = $this->authex->getUserInfo();
         $data['user'] = $user;
         
-        /*$this->load->model('typePersoon_model');
-        $data["types"] = $this->typePersoon_model->getAll();*/
-        
         $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking/boeking_maken2', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data); 
     }
@@ -148,9 +145,6 @@ class Klant extends CI_Controller {
         $user = $this->authex->getUserInfo();
         $data['user'] = $user;
         $data['gekozenKamers'] = $kamers;
-        
-        /*$this->load->model('typePersoon_model');
-        $data["types"] = $this->typePersoon_model->getAll();*/
         
         $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking/boeking_maken2', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data); 
