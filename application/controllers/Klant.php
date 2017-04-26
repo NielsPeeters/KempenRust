@@ -78,7 +78,7 @@ class Klant extends CI_Controller {
         $this->load->model('typePersoon_model');
         $data["types"] = $this->typePersoon_model->getAll();
         
-        $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking/boeking_maken2', 'footer' => 'main_footer');
+        $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking_maken2', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data); 
     }
     
@@ -93,7 +93,7 @@ class Klant extends CI_Controller {
         $types = $this->kamer_model->getAllTypesByKamers();
         $data["kamertypes"] = $types;
         
-        $this->load->view('klant/boeking/ajax_kamertoevoegen', $data);
+        $this->load->view('klant/ajax_kamertoevoegen', $data);
     }
     
     public function voegKamerToe(){
@@ -154,7 +154,7 @@ class Klant extends CI_Controller {
         $data["types"] = $this->typePersoon_model->getAll();
         $data["gekozenKamers"] = $kamers;
         
-        $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking/boeking_maken2', 'footer' => 'main_footer');
+        $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking_maken2', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data); 
     }
     
@@ -243,7 +243,7 @@ class Klant extends CI_Controller {
         $data['author'] = 'Peeters Ellen';
         $data['user'] = $user;
         
-        $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking/boeking_bevestiging', 'footer' => 'main_footer');
+        $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking_bevestiging', 'footer' => 'main_footer');
         $this->template->load('main_master', $partials, $data); 
     }
     
@@ -281,7 +281,7 @@ class Klant extends CI_Controller {
         $kamerBoekingen = $this->kamerBoeking_model->getWithBoeking($boeking->id);
         
         /*
-         * haal alle type personen op voor een boeking
+         * haal alle type personen op
          */
         $this->load->model('boekingTypePersoon_model');
         $typePersonen = $this->boekingTypePersoon_model->getByBoeking($boeking->id);
