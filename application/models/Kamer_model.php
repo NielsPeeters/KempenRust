@@ -101,7 +101,7 @@ class Kamer_model extends CI_Model {
         return $kamers;
     }
 
-     function getAllBeschikbaar($begindatum, $einddatum) {
+    function getAllBeschikbaar($begindatum, $einddatum) {
          /**
         * haalt alle kamers uit de database die beschikbaar zijn voor die periode
         * \return een array met kamer objecten
@@ -118,13 +118,13 @@ class Kamer_model extends CI_Model {
             foreach($boekingenMetKamer as $kamerBoeking) {
                 $this->load->model('boeking_model');
                 $boeking = $this->boeking_model->get($kamerBoeking->boekingId);
-            
-                if(!($this->kamer_model->checkData($begindatum, $boeking->startDatum, $einddatum, $boeking->eindDatum))){
+                
+                if(!($this->kamer_model->checkData($begindatum, $boeking->startDatum , $einddatum, $boeking->eindDatum))){
                     $check = false;
                 }
             }
             
-            if($check){
+            if($check) {
                 $kamers[$kamer->id] = $kamer->kamerTypeId . "." . $kamer->naam;
             }
         }
@@ -132,7 +132,7 @@ class Kamer_model extends CI_Model {
         return $kamers;
     }
     
-    function getAllBeschikbaarWithType($begindatum, $einddatum) {
+     function getAllBeschikbaarWithType($begindatum, $einddatum) {
          /**
         * haalt alle kamers uit de database die beschikbaar zijn voor die periode
         * \return een array met kamer objecten
@@ -165,15 +165,15 @@ class Kamer_model extends CI_Model {
     }
     
     function checkData($beginDatumGevraagd, $beginDatumBoeking, $eindDatumGevraagd, $eindDatumBoeking) {
-        $check = true;
+        $check = false;
         
-        if (toDDMMYYYY($beginDatumBoeking) >= $beginDatumGevraagd) {
-            if ($eindDatumGevraagd <= toDDMMYYYY($beginDatumBoeking)) {
-                $check = false;
+        if ($beginDatumBoeking > $beginDatumGevraagd) {
+            if ($eindDatumGevraagd < $beginDatumBoeking) {
+                $check = true;
             }
         } else {
-            if ($beginDatumGevraagd >= toDDMMYYYY($eindDatumBoeking)) {
-                $check = false;
+            if ($beginDatumGevraagd > $eindDatumBoeking) {
+                $check = true;
             }
         }
         

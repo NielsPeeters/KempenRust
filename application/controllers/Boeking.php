@@ -45,36 +45,43 @@ class Boeking extends CI_Controller {
         * Berekend de prijs van een boeking zonder kortingen
         */
         $totaal=0;
+        $prijs=0;
         $this->load->model('prijs_model');
         $this->load->model('boeking_model');
         $this->load->model('kamer_model');
-        $this->load->model('soortPrijs_model');
         $this->load->model('kamerBoeking_model');
         $this->load->model('typePersoon_model');
+        
         $boekingId = $this->session->userdata('boekingId');
-        //$typePersonen = $this->typePersoon_model->getWithBoeking($boekingId);
         $kamerBoekingen = $this->kamerBoeking_model->getWithBoeking($boekingId);
         $boeking = $this->boeking_model->get($boekingId);
+        
         foreach($kamerBoekingen as $kamerBoeking){
-            $soortPrijs = $this->soortPrijs_model->getByAantal($kamerBoeking->aantalMensen);
+            $aantal = $kamerBoeking->aantalMensen;
             $kamer = $this->kamer_model->get($kamerBoeking->kamerId);
-            $prijs = $this->prijs_model->getPrijsTotaal($boeking->arrangementId, $kamer->kamerTypeId, $soortPrijs->id);
-            $totaal += (float) $prijs->actuelePrijs;
+            if($aantal>1){
+                 $prijs = $this->prijs_model->getPrijsTotaal($boeking->arrangementId, $kamer->kamerTypeId, $aantal);
+                 $prijs = $prijs->actuelePrijs * $aantal;
+            }else{
+                $prijs = $this->prijs_model->getPrijsTotaal($boeking->arrangementId, $kamer->kamerTypeId, $aantal);
+                $prijs = $prijs->actuelePrijs;
+            }
+               $totaal += (float) $prijs;
         }
         
           $this->load->model('arrangement_model');
           $arrangement = $this->arrangement_model->get($boeking->arrangementId);
           
           if($arrangement->isArrangement == 0){
-             echo "test";
+           
               $dagen = strtotime($boeking->eindDatum) - strtotime($boeking->startDatum);
               $dagen = floor($dagen / (60 * 60 * 24));
-              echo $dagen + "dagen";
-              echo $totaal + "totaal";
+              //echo $dagen + "dagen";
+              //echo $totaal + "totaal";
               $totaal = (float)$totaal*$dagen;
           }
 
-         echo $totaal;
+        echo $totaal;
         
     }
 
@@ -257,6 +264,9 @@ class Boeking extends CI_Controller {
             $new=1;
             $boeking->persoonId=$persoonId;
             $this->boeking_model->update($boeking);
+            if($boeking->id != 0){
+                 $this->session->set_userdata('boekingId', $boeking->id);
+            }
         }
 
          foreach($persoontypes as $type) {
@@ -324,7 +334,7 @@ class Boeking extends CI_Controller {
         $kamerBoeking->aantalMensen = $this->input->post('aantal');
         $kamerBoeking->staatVast = $this->input->post('voorkeur');
         $this->load->model('kamerBoeking_model');
-        $kamerBoeking->id = $this->kamerBoeking_model->insert($kamerBoeking);
+        $this->kamerBoeking_model->insert($kamerBoeking);
         echo 0;
     }
     
@@ -362,8 +372,8 @@ private function sendmail($id) {
         $this->email->subject('Boeking goedgekeurd');
         $bericht = "Beste\n\n";
         $bericht .= "Uw boeking werd goedgekeurd. \n";
-        $bericht .= toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . "\n\n";
-        $bericht .= "U koos voor de volgende formule: " . $boeking->arrangement; 
+        $bericht .= toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . "\n";
+        $bericht .= "U koos voor de volgende formule: " . $boeking->arrangement . "\n"; 
         $bericht .= "Gelieve een voorschot van €20 te storten op rekeningnummer BE230 026 631 772.\n\n";
         $bericht .= "Met vriendelijke groeten\n";
         $bericht .= "Hotel Kempenrust";

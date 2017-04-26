@@ -257,7 +257,7 @@ class Klant extends CI_Controller {
         $bericht .= "Met vriendelijke groeten\n";
         $bericht .= "Hotel Kemperust";
             
-        $this->email->from('r0633567@student.thomasmore.be', 'Ellen Peeters');
+        $this->email->from('r0633567@student.thomasmore.be', 'Hotel Kempenrust');
         $this->email->to($to);
         $this->email->subject('Uw boeking - geboekt op ' . toDDMMYYYY($boeking->tijdstip));
         $this->email->message($bericht);
