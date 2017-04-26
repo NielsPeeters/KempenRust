@@ -355,14 +355,14 @@ private function sendmail($id) {
     */
        
         $this->load->model('boeking_model');
-        $boeking = $this->boeking_model->getBoekingWithAll($id);
+        $boeking = $this->boeking_model->getBoekingWith($id);
         $this->email->from('r0589993@student.thomasmore.be', 'Hotel Kempenrust');
         $this->email->to($boeking->persoon->email);
         $this->session->set_userdata('boekingId',$boeking->id);
         $this->email->subject('Boeking goedgekeurd');
         $bericht = "Beste\n\n";
         $bericht .= "Uw boeking werd goedgekeurd. \n";
-        $bericht .= toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) ;
+        $bericht .= toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . "\n";
         $bericht .= $boeking->arrangement;
         $bericht .= " en u heeft volgende kamers geboekt: ";
         $bericht .= $this->gekozenKamers();      
