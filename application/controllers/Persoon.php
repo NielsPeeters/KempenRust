@@ -101,8 +101,6 @@ class Persoon extends CI_Controller {
         $object->email = $this->input->post('email');
         //$object->wachtwoord = $this->input->post('wachtwoord');  
         $wachtwoord = $this->input->post('wachtwoord');
-        var_dump($wachtwoord);
-        return true;
         if($this->input->post('wachtwoord') != "" || $this->input->post('wachtwoord') != null){
             $object->wachtwoord = sha1($wachtwoord);
         }
