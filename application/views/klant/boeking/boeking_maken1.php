@@ -120,7 +120,7 @@
             <?php echo form_input(array('type' => 'date', 'name' => 'begindatum', 'id' => 'begindatum', 'required' => 'required', 'data-fv-date-format' => 'DD/MM/YYYY', 'class' => 'form-control')); ?>
         </div>
         <div class="col-xs-6">
-            <?php echo form_label('Van', 'einddatum', 'class="control-label"'); ?>
+            <?php echo form_label('Tot', 'einddatum', 'class="control-label"'); ?>
             <?php echo form_input(array('type' => 'date', 'name' => 'einddatum', 'id' => 'einddatum', 'required' => 'required', 'data-fv-date-format' => 'DD/MM/YYYY', 'class' => 'form-control')); ?>
         </div>
         <div class="help-block with-errors"></div>  
