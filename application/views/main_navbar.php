@@ -93,11 +93,10 @@
                             <?php
                             echo '<li>' . anchor('/klant/haalKlant', 'Accountgegevens') . '</li>';
                             echo '<li>' . anchor('home/afmelden', 'Afmelden') . '</li>';
-                }
-                        ?>
+                         ?>
                     </ul>
                 </li>
-                <?php echo '<li>' . anchor('#','<i class="fa fa-question" aria-hidden="true"></i> Help','data-toggle="modal" data-target="#FAQModal"') . '</li>';?>
+                <?php echo '<li>' . anchor('#','<i class="fa fa-question" aria-hidden="true"></i> Help','data-toggle="modal" data-target="#FAQModal"') . '</li>';}?>
             </ul>
         </div>
     </div>
@@ -230,7 +229,7 @@ if($user == null){
                     switch ($user->soort) {
                         case 1: // gewone geregistreerde gebruiker
                             echo '<dt>Hoe kan ik een boeking maken?</dt>';
-                            echo '<dd>Klik op de knop ' . anchor('/klant/index', 'Boeking maken') . ' in de navigatiebalk.\nJe kan ook gerust onze ' . anchor('/klant/help', 'video') . '  die stap per stap uitlegt hoe je kan boeken.\n ' . anchor('/klant/help', 'Klik hier voor de video te bekijken.') . '</dd>';
+                            echo '<dd>Klik op de knop ' . anchor('/klant/index', 'Boeking maken') . ' in de navigatiebalk.Je kan ook gerust onze ' . anchor('/klant/help', 'video') . '  die stap per stap uitlegt hoe je kan boeken. ' . anchor('/klant/help', 'Klik hier voor de video te bekijken.') . '</dd>';
                             echo '<dt>Hoe kan ik mijn eigen accountgegevens wijzigen?</dt>';
                             echo '<dd>Klik op de knop Jouw profiel in de navigatiebalk en kies de optie ' . anchor('/klant/haalKlant', 'Accountgegevens') . ' waarna je jou informatie kan aanpassen.</dd>';
                             break;
