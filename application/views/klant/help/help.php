@@ -1,6 +1,6 @@
 <div class="row">
     <video width="400" controls>
-	<source src="<?php echo base_url() + "assets/videos/demo.mp4";?>" type="video/mp4"/>
+	<source src="<?php echo base_url() . "assets/videos/demo.mp4";?>" type="video/mp4"/>
 	Helaas...
     </video>
     
