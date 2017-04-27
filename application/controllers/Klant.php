@@ -10,6 +10,21 @@ class Klant extends CI_Controller {
         $this->load->helper('notation');
         $this->load->library('email');
     }
+    
+    public function help() {
+        $user = $this->authex->getUserInfo();
+        
+        if($user->soort==1) {
+            $data['title'] = 'Help';
+            $data['author'] = 'Peeters Ellen';
+            $data['user'] = $user;
+            
+            $partials = array('navbar' => 'main_navbar', 'content' => 'klant/help/help', 'footer' => 'main_footer');
+            $this->template->load('main_master', $partials, $data); 
+        } else {
+            redirect("/home/index");
+        }    
+    }
 
     public function index() {
         /**
