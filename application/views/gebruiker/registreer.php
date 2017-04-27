@@ -50,7 +50,7 @@ echo form_open('persoon/registreer', $attributes);
 
 <div class="form-group">
     <label for="straat" class="control-label">Straat</label>
-    <?php echo form_input(array('data-toggle'=>"tooltip", 'title'=>"Geef je straatnaam op",'pattern'=>'[a-zA-Z]+','name' => 'straat', 'id' => 'straat', 'value' => $persoon->straat, 'class' => 'form-control', 'placeholder' => 'Straat', 'required' => 'required')); ?>
+    <?php echo form_input(array('data-toggle'=>"tooltip", 'title'=>"Geef je straatnaam op",'pattern'=>'[a-zA-Z\s]+','name' => 'straat', 'id' => 'straat', 'value' => $persoon->straat, 'class' => 'form-control', 'placeholder' => 'Straat', 'required' => 'required')); ?>
 </div>
 
 <div class="form-group">
@@ -65,7 +65,7 @@ echo form_open('persoon/registreer', $attributes);
 
 <div class="form-group">
     <label for="telefoon" class="control-label">Telefoon</label>
-    <?php echo form_input(array('data-toggle'=>"tooltip", 'title'=>"Geef je telefoonnummer op",'pattern' => '^\+?[0-9]{10}', 'name' => 'telefoon', 'id' => 'telefoon', 'value' => $persoon->telefoon, 'class' => 'form-control', 'placeholder' => 'Telefoon')); ?>
+    <?php echo form_input(array('data-toggle'=>"tooltip", 'title'=>"Geef je telefoonnummer op",'pattern' => '^\+?[0-9]{9-10}', 'name' => 'telefoon', 'id' => 'telefoon', 'value' => $persoon->telefoon, 'class' => 'form-control', 'placeholder' => 'Telefoon')); ?>
 </div>
 
 <div class="form-group">
