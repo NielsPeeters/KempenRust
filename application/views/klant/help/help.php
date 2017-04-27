@@ -1,5 +1,6 @@
 <div class="row">
     <p><?php echo site_url();?></p>
+    <p><?php echo base_url();?></p>
 </div>
 
 <?php echo "</tbody></table>";?>
