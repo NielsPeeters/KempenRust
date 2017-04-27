@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel=icon href="<?php echo base_url(); ?>/assets/images/favicon.ico" type="image/png">
+
     <meta name="description"
           content="Dit is een demoproject opgesteld in opracht van Thomas More. Dit is een webapplicatie gemaakt door studenten voor het te volbrengen van hun studiecrediet.">
     <meta name="author" content="<?php echo $author; ?>">
@@ -24,6 +25,8 @@
     <?php echo stylesheet("Custom.css"); ?>
     <link href="https://cdn.jsdelivr.net/bootstrap.datepicker-fork/1.3.0/css/datepicker3.css" rel="stylesheet"/>
 
+    <!-- Font Awesome CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
