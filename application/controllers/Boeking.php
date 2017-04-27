@@ -394,7 +394,7 @@ private function sendmail($id) {
         $data['title'] = 'Dashboard';
         $data['author'] = 'Van de Voorde Tim';
         $data['user'] = $this->authex->getUserInfo();
-        
+        $user = $this->authex->getUserInfo();
         if($user->soort>=2) {
         $this->load->model('boeking_model');
         $data['boekingen'] = $this->boeking_model->getBoekingenWith();
