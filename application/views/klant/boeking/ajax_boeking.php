@@ -25,8 +25,6 @@
                 }
             ?>
             </td>
-            <td  class="text-center"><button type="button" id="<?php echo $boeking->id; ?>" class="btn btn-warning btn-xs btn-round wijzig"><span class="glyphicon glyphicon-pencil"></span></button></td>
-            <td  class="text-center"><button type="button" id="<?php echo $boeking->id; ?>" class="btn btn-danger btn-xs btn-round verwijder"><span class="glyphicon glyphicon-remove"></span></button></td>
         </tr>
         <tr>
             <td><?php echo $boeking->persoon->email;?> </td>
@@ -42,8 +40,6 @@
                     echo "$boeking->aantalPersonen $aantal"; 
                 ?>
             </td>
-            <td></td>
-            <td></td>
             <td></td>
             <td></td>
         </tr>
