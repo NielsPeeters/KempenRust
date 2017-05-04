@@ -82,10 +82,24 @@ class Klant extends CI_Controller {
         /**
         * Haalt een boeking object op
         */
+        $totaalPersonen = 0;
+        
         $boekingId = $this->input->get('boekingId');
         
         $this->load->model('boeking_model');
-        $data['boeking'] = $this->boeking_model->get($boekingId);
+        $boeking = $this->boeking_model->get($boekingId);
+        $this->load->model('persoon_model');
+        $boeking->persoon = $this->persoon_model->get($boeking->persoonId);
+        $this->load->model('boekingTypePersoon_model');
+        $boekingTypePersonen = $this->boekingTypePersoon_model->getByBoeking($boeking->id);
+        
+        foreach($boekingTypePersonen as $boekingTypePersoon){
+            $totaalPersonen += (int) $boekingTypePersoon->aantal;
+        }
+        
+        $boeking->aantalPersonen = $totaalPersonen;
+        
+        $data["boeking"] = $boeking;
         
         $this->load->view("klant/boeking/ajax_boeking", $data);
     }
