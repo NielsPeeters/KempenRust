@@ -83,6 +83,7 @@ class Klant extends CI_Controller {
         * Haalt een boeking object op
         */
         $totaalPersonen = 0;
+        $kamers = array();
         
         $boekingId = $this->input->get('boekingId');
         
@@ -90,8 +91,17 @@ class Klant extends CI_Controller {
         $boeking = $this->boeking_model->get($boekingId);
         $this->load->model('arrangement_model');
         $boeking->arrangement = $this->arrangement_model->get($boeking->arrangementId);
-        $this->load->model('persoon_model');
-        $boeking->persoon = $this->persoon_model->get($boeking->persoonId);
+        $this->load->model('kamerBoeking_model');
+        $kamerBoekingen = $this->kamerBoeking_model->getAllByBoeking($boeking->id);
+        
+        foreach($kamerBoekingen as $kamerBoeking) {
+            $this->load->model('kamer_model');
+            $kamer = $this->kamer_model->get($kamerBoeking->kamerId);
+            $this->load->model('kamerType_model');
+            $kamer->kamerType = $this->kamerType_model->get($kamer->kamerTypeId);
+            $kamers[$kamer->id] = $kamer;
+        }
+        
         $this->load->model('boekingTypePersoon_model');
         $boekingTypePersonen = $this->boekingTypePersoon_model->getByBoeking($boeking->id);
         
@@ -102,6 +112,7 @@ class Klant extends CI_Controller {
         $boeking->aantalPersonen = $totaalPersonen;
         
         $data["boeking"] = $boeking;
+        $data["kamers"] = $kamers;
         
         $this->load->view("klant/boeking/ajax_boeking", $data);
     }

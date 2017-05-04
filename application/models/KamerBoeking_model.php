@@ -63,6 +63,17 @@ class kamerBoeking_model extends CI_Model {
         $query = $this->db->get('kamerBoeking');
         return $query->result();
     }
+    
+    function getAllByBoeking($id) {
+        /**
+        * gaat na of er een kamerboeking is met de geselecteerde boeking
+        *\param id het id van de geselecteerde boeking
+        *\return een array kamerboeking objecten
+        */
+        $this->db->where('boekingId', $id);
+        $query = $this->db->get('kamerBoeking');
+        return $query->result();
+    }
 
     function getWithBoeking($id){
         /**

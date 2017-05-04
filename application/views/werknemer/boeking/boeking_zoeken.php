@@ -1,15 +1,5 @@
 
 <script>
-<<<<<<< HEAD
-function schrijfBoeking() 
-        {
-            /**
-            *Schrijft de boeking weg in de database
-            */
-             var dataString = $("#myform").serialize();
-          $.ajax({type : "POST",
-            url : site_url + "/boeking/schrijfBoeking",
-=======
     var comeFromCalendar = "<?php echo $comeFromCalendar; ?>";
     var fromCalendarId = "<?php echo $fromCalendarId; ?>";
 
@@ -32,7 +22,6 @@ function schrijfBoeking()
         var dataString = $("#myform").serialize();
         $.ajax({type: "POST",
             url: site_url + "/boeking/schrijfBoeking",
->>>>>>> 9b9dd1d84146f2dc32eefb0a383730a20ddd6cfc
             data: dataString,
             dataType: "json",
             success : function(result){
