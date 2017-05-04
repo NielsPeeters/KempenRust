@@ -91,7 +91,7 @@
 <?php 
     $options = array();
     foreach($boekingen as $boeking){
-	$options[$boeking->id] = "$boeking->naam";
+	$options[$boeking->id] = toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . ": " . $boeking->arrangement->naam;
     }
 ?>
 

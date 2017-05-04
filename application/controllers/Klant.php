@@ -55,12 +55,21 @@ class Klant extends CI_Controller {
         $user = $this->authex->getUserInfo();
         
         if($user->soort==1) {
+            $boekingen = array();
+                       
+            $this->load->model('boeking_model');
+            $boekingenPerPersoon = $this->boeking_model->getAllByPersoonOrderByStartDatum($user->id);
+            
+            foreach($boekingenPerPersoon as $boeking) {
+                $this->load->model('arrangement_model');
+                $boeking->arrangement = $this->arrangement_model->get($boeking->arrangementId);
+                $boekingen[$boeking->id] = $boeking;
+            }
+            
             $data['title'] = 'Boekingen beheren';
             $data['author'] = 'Peeters Ellen';
             $data['user'] = $user;
-            
-            $this->load->model('boeking_model');
-            $data["boekingen"] = $this->boeking_model->getAllByPersoonOrderByStartDatum($user->id);
+            $data["boekingen"] = $boekingen;
             
             $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking/boeking_zoeken', 'footer' => 'main_footer');
             $this->template->load('main_master', $partials, $data); 
