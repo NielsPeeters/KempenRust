@@ -13,7 +13,7 @@
         <tr>
             <td><?php echo $boeking->persoon->naam . " " . $boeking->persoon->voornaam; ?></td>
             <td><?php echo toDDMMYYYY($boeking->startDatum); ?></td>
-            <td><?php echo $boeking->arrangement->naam;?></td>
+            <td><?php echo $boeking->arrangement;?></td>
             <td><?php echo toDDMMYYYY($boeking->tijdstip);?></td>
             <td class="text-center">
             <?php 
