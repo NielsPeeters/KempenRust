@@ -434,8 +434,9 @@ function zoek() {
     margin-bottom: 12px; /* Add some space below the input */
  
 }
-    tr:nth-child(4n) { background-color: #eee; }
-    tr:nth-child(4n+1) { background-color: #eee; }
+   tr:nth-child(odd) {
+    background-color: #eee;
+}
   
 </style>
 
@@ -448,7 +449,7 @@ function zoek() {
   <div id="nietgoedgekeurd" class="tab-pane fade in active">
     <div class="zoek">
     </br>
-    <input type="text" id="zoekInput" onkeyup="zoek()" placeholder="Zoek op naam">
+    <input type="text" id="zoekInput" onkeyup="zoek()" placeholder="Zoek op naam of email">
 
     <table class="table table-responsive " id="boekingen">
     <tr class="success">
@@ -464,9 +465,23 @@ function zoek() {
 
     foreach($NGBoekingen as $boeking){?>
         <tr>
-            <td><?php echo $boeking->persoon->naam . " " . $boeking->persoon->voornaam; ?></td>
-            <td><?php echo date('d-m-Y',strtotime($boeking->startDatum)); ?></td>
-            <td><?php echo $boeking->arrangement;?></td>
+            <td>
+                <p><?php echo $boeking->persoon->naam . " " . $boeking->persoon->voornaam; ?></p>
+                <p><?php echo $boeking->persoon->email;?></p>
+            </td>
+            <td>
+                <p><?php echo date('d-m-Y',strtotime($boeking->startDatum)); ?></p>
+                <p><?php echo date('d-m-Y',strtotime($boeking->eindDatum)); ?></p>
+            </td>
+            <td>
+                <p><?php echo $boeking->arrangement;?></p>
+                <p><?php 
+                    $aantal="persoon"; 
+                    if($boeking->aantalPersonen>1){
+                    $aantal="personen";} 
+                    echo "$boeking->aantalPersonen $aantal" ; ?>
+                </p>
+            </td>
             <td><?php echo date('d-m-Y h:m:s',strtotime($boeking->tijdstip)); ?></td>
             <td class="text-center">
             <?php 
@@ -481,20 +496,6 @@ function zoek() {
             <td  class="text-center"><button type="button" id="<?php echo $boeking->id; ?>" class="btn btn-warning btn-xs btn-round wijzig"><span class="glyphicon glyphicon-pencil"></span></button></td>
             <td  class="text-center"><button type="button" id="<?php echo $boeking->id; ?>" class="btn btn-danger btn-xs btn-round verwijder"><span class="glyphicon glyphicon-remove"></span></button></td>
         </tr>
-        <tr>
-       <td><?php echo $boeking->persoon->email;?> </td>
-        <td><?php echo date('d-m-Y',strtotime($boeking->eindDatum)); ?></td>
-        <td><?php 
-            $aantal="persoon"; 
-            if($boeking->aantalPersonen>1){
-            $aantal="personen";} 
-            echo "$boeking->aantalPersonen $aantal" ; ?></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        </tr>
-        </hr>
     <?php
 
     }
@@ -510,7 +511,7 @@ function zoek() {
   <div id="goedgekeurd" class="tab-pane fade">
     <div class="zoek">
     </br>
-    <input type="text" id="zoekInput" onkeyup="zoek()" placeholder="Zoek op naam">
+    <input type="text" id="zoekInput" onkeyup="zoek()" placeholder="Zoek op naam of email">
 
     <table class="table table-responsive " id="boekingen">
     <tr class="success">
@@ -526,9 +527,22 @@ function zoek() {
 
     foreach($GBoekingen as $GBoeking){?>
         <tr>
-            <td><?php echo $GBoeking->persoon->naam . " " . $GBoeking->persoon->voornaam; ?></td>
-            <td><?php echo date('d-m-Y',strtotime($GBoeking->startDatum)); ?></td>
-            <td><?php echo $GBoeking->arrangement;?></td>
+            <td>
+                <p><?php echo $GBoeking->persoon->naam . " " . $GBoeking->persoon->voornaam; ?></p>
+                <p><?php echo $boeking->persoon->email;?></p>
+            </td>
+            <td>
+                <p><?php echo date('d-m-Y',strtotime($GBoeking->startDatum)); ?></p>
+                <p><?php echo date('d-m-Y',strtotime($GBoeking->eindDatum)); ?></p>
+            </td>
+            <td>
+                <p><?php echo $GBoeking->arrangement;?></p>
+                <p><?php 
+            $aantal="persoon"; 
+            if($GBoeking->aantalPersonen>1){
+            $aantal="personen";} 
+            echo "$GBoeking->aantalPersonen $aantal" ; ?></p>
+            </td>
             <td><?php echo date('d-m-Y h:m:s',strtotime($GBoeking->tijdstip)); ?></td>
             <td class="text-center">
             <?php 
@@ -543,20 +557,7 @@ function zoek() {
             <td  class="text-center"><button type="button" id="<?php echo $GBoeking->id; ?>" class="btn btn-warning btn-xs btn-round wijzig"><span class="glyphicon glyphicon-pencil"></span></button></td>
             <td  class="text-center"><button type="button" id="<?php echo $GBoeking->id; ?>" class="btn btn-danger btn-xs btn-round verwijder"><span class="glyphicon glyphicon-remove"></span></button></td>
         </tr>
-        <tr>
-       <td><?php echo $boeking->persoon->email;?> </td>
-        <td><?php echo date('d-m-Y',strtotime($GBoeking->eindDatum)); ?></td>
-        <td><?php 
-            $aantal="persoon"; 
-            if($GBoeking->aantalPersonen>1){
-            $aantal="personen";} 
-            echo "$GBoeking->aantalPersonen $aantal" ; ?></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        </tr>
-        </hr>
+        
     <?php
 
     }
