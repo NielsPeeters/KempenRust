@@ -433,10 +433,7 @@ function zoek() {
     border: 1px solid #ddd; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
  
-}
-
-}
-  
+} 
 </style>
 
 <ul class="nav nav-tabs">

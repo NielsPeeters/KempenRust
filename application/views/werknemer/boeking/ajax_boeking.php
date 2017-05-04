@@ -84,9 +84,11 @@ echo form_open('boeking/schrijfBoeking/', $attributes);
         </div>
     </div>
 
-    <div class="form-group">
 
-        <label for="persoontype" class="control-label">Aantal personen</label>
+<label for="persoontype" class="control-label">Aantal personen</label>
+    <div class="form-group row">
+
+        
         <div>
         
         <?php 
@@ -123,9 +125,6 @@ echo form_open('boeking/schrijfBoeking/', $attributes);
 
      ?>
      </div></div>
-    </br>
-    </br>
-    </br>
 
      <div class="form-group"> <!--Arrangementen-->
         <label for="arrangement" class="control-label">Arrangement</label>
