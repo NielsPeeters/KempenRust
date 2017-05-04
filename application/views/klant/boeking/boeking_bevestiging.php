@@ -20,7 +20,7 @@
             foreach($kamers as $id => $info){
                 $delen = explode('.', $info);
         ?>
-                <li><?php echo $delen[1];?></li>
+                <li><?php echo $delen[1] . '(' . $delen[2]. ')';?></li>
         <?php
             }
         ?>
