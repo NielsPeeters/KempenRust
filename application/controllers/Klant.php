@@ -48,6 +48,27 @@ class Klant extends CI_Controller {
         }       
     }
     
+    public function beheren() {
+        /**
+        * Laadt de pagina waarop je boekingen kan beheren
+        */
+        $user = $this->authex->getUserInfo();
+        
+        if($user->soort==1) {
+            $data['title'] = 'Boekingen beheren';
+            $data['author'] = 'Peeters Ellen';
+            $data['user'] = $user;
+            
+            $this->load->model('boeking_model');
+            $data["boekingen"] = $this->boeking_model->getAllByPersoonOrderByStartDatum($user->id);
+            
+            $partials = array('navbar' => 'main_navbar', 'content' => 'klant/boeking/boeking_zoeken', 'footer' => 'main_footer');
+            $this->template->load('main_master', $partials, $data); 
+        } else {
+            redirect("/home/index");
+        }      
+    }
+    
     public function arrangementGekozen() {        
         /*
          * haal de waarden uit de form op en set de userdata

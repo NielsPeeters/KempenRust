@@ -115,11 +115,23 @@ class Boeking_model extends CI_Model {
     
     function getAllByPersoon($id) {
         /**
-        * haalt de boeking uit de database die bij het gegeven id
+        * haalt de boeking uit de database die bij het gegeven id hoort
         * \param persoonid het id van de geselecteerde boeking
         * \return of persoon bij boeking hoort
         */
         $this->db->where('persoonId', $id);
+        $query = $this->db->get('boeking');
+        return $query->result();
+    }
+    
+     function getAllByPersoonOrderByStartDatum($id) {
+        /**
+        * haalt de boeking uit de database die bij het gegeven id hoort
+        * \param persoonid het id van de geselecteerde boeking
+        * \return of persoon bij boeking hoort
+        */
+        $this->db->where('persoonId', $id);
+        $this->db->order_by('startDatum', 'asc');
         $query = $this->db->get('boeking');
         return $query->result();
     }
