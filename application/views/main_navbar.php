@@ -23,6 +23,7 @@
                     switch ($user->soort) {
                         case 1: // gewone geregistreerde gebruiker
                             echo '<li>' . anchor('/klant/index', 'Boeking maken') . '</li>';
+                            echo '<li>' . anchor('/klant/beheren', 'Boekingen beheren') . '</li>';
                             break;
                         case 2: // werknemer
                             echo '<li>' . anchor('/boeking/index', 'Boekingen beheren') . '</li>';
@@ -270,10 +271,10 @@ if($user == null){
                             <dd>Klik op de knop Extra beheren en neem de optie <?php echo anchor('/prijs/index', 'Faciliteiten beheren') ?>  2 - 3 tabellen worden getoond, selecteer voor welke situatie je de prijzen wilt aanpassen en druk op de groene knop opslaan om ze aan te passen.</dd>
 
                             <dt>Hoe kan ik de kortingen op leeftijds categorie aanpassen?</dt>
-                            <dd>Klik op de knop Extra beheren en neem de optie <?php echo anchor('/typePersoon/index', 'Kortingen beheren') ?>  waarna alle kortingen worden getoond. Hier kan je kortingen aanmaken, aanpassen of verwijderen</dd
+                            <dd>Klik op de knop Extra beheren en neem de optie <?php echo anchor('/typePersoon/index', 'Kortingen beheren') ?>  waarna alle kortingen worden getoond. Hier kan je kortingen aanmaken, aanpassen of verwijderen</dd>
 
                             <dt>Hoe kan ik de gebruikers accounts beheren?</dt>
-                            <dd>Klik op de knop Extra beheren en neem de optie <?php echo anchor('/persoon/index', 'Kortingen beheren') ?>  waarna alle gebruikers worden getoond. Hier kan je gebruikers aanmaken, aanpassen of verwijderen</dd
+                            <dd>Klik op de knop Extra beheren en neem de optie <?php echo anchor('/persoon/index', 'Kortingen beheren') ?>  waarna alle gebruikers worden getoond. Hier kan je gebruikers aanmaken, aanpassen of verwijderen</dd>
 
                             <dt>Hoe kan ik mijn eigen accountgegevens wijzigen?</dt>
                             <dd>Klik op de knop Jouw profiel in de navigatiebalk en kies de optie ' . anchor('/klant/haalKlant', 'Accountgegevens') . ' waarna je jou informatie kan aanpassen. Of dit kan je ook doen via de gebruikers accounts beheren.</dd>

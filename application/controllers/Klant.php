@@ -151,7 +151,7 @@ class Klant extends CI_Controller {
         /*
          * update userdata kamers
          */
-        $kamers[$kamer->id] = $kamerBoeking->id . "." . $kamer->naam . "." . $kamer->kamerType->naam;
+        $kamers[$kamer->id] = $kamerBoeking->id . "." . $kamer->naam . "." . $kamer->kamerType->omschrijving;
         $this->session->set_userdata('kamers', $kamers);
         
         /*
@@ -378,9 +378,9 @@ class Klant extends CI_Controller {
             $delen = explode('.', $info);
             
             if($teller == 0) {
-                $bericht .= $delen[1] . '(' . $delen[2]. ')';
+                $bericht .= $delen[1] . ' (' . $delen[2]. ')';
             } else {
-                $bericht .= ", " . $delen[1];
+                $bericht .= ", " . $delen[1] . ' (' . $delen[2]. ')';
             }
             
             $teller++;
