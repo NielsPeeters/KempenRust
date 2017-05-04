@@ -117,7 +117,7 @@ class Klant extends CI_Controller {
         $this->load->view("klant/boeking/ajax_boeking", $data);
     }
 
-    public function verwijderMenu(){
+    public function verwijderBoeking(){
         /**
         * Verwijdert een boeking object
         */
