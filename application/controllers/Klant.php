@@ -117,7 +117,7 @@ class Klant extends CI_Controller {
         $this->load->view("klant/boeking/ajax_boeking", $data);
     }
 
-    public function verwijderMenu(){
+    public function verwijderBoeking(){
         /**
         * Verwijdert een boeking object
         */
@@ -126,7 +126,7 @@ class Klant extends CI_Controller {
         $boeking = $this->boeking_model->get($id);
         
         if($boeking->goedgekeurd == 0){
-            $this->menu_model->delete($id);
+            $this->boeking_model->delete($id);
             echo 0;
         } else {
             echo -1;

@@ -363,6 +363,7 @@ private function sendmail($id) {
     */
        
         $this->load->model('boeking_model');
+        $this->load->model('kamerBoeking_model');
         $boeking = $this->boeking_model->getBoekingWithAll($id);
         $this->email->from('r0589993@student.thomasmore.be', 'Hotel Kempenrust');
         $this->email->to($boeking->persoon->email);
@@ -373,7 +374,18 @@ private function sendmail($id) {
         $bericht .= toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . "\n";
         $bericht .= "U koos voor de volgende formule: " . $boeking->arrangement . ",\n"; 
         $bericht .= "en onderstaande kamers:";
-        $bericht .= "";
+       
+        $kamerBoekingen = $this->kamerBoeking_model->getWithBoekingAndInfo($boeking->id);
+        foreach($kamerBoekingen as $kamerBoeking) {
+                $persoon= " persoon ";
+                $type = $kamerBoeking->kamer->naam;
+                $naam = $kamerBoeking->type->naam;
+                if($kamerBoeking->aantalMensen>1){
+                    $persoon = " personen ";
+                }
+                $bericht .= "$naam " . " $type " . ' met ' . $kamerBoeking->aantalMensen . $persoon;
+            }
+        $bericht .= "\n";
         $bericht .= "Gelieve een voorschot van €20 te storten op rekeningnummer BE230 026 631 772.\n\n";
         $bericht .= "Met vriendelijke groeten\n";
         $bericht .= "Hotel Kempenrust";

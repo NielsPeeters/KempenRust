@@ -86,7 +86,11 @@
         });
     });
 </script>
-
+<style>
+    #annuleren {
+        color: white;
+    }
+</style>
 
 <?php 
     $options = array();
@@ -103,7 +107,7 @@
             <?php echo form_dropdown('boeking', $options, '0', 'id="boeking" size="10" class="form-control"');?>
         </p>
         </div>
-        <button id="nieuw" class="btn btn-primary"><?php echo anchor('klant/index', 'Nieuw');?></button>
+        <button type="button" class="btn btn-primary annuleren"><?php echo anchor('klant/index', 'Nieuw', 'id="annuleren"');?></button>
         </br></br>
     </div>
 
@@ -130,7 +134,7 @@
                   <p>
                       Weet je zeker dat je deze boeking wil verwijderen?
                   </p>
-                  <p hidden id="kamerId">
+                  <p hidden id="boekingId">
                   </p>
               </div>
               <div class="modal-footer">

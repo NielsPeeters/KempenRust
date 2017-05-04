@@ -60,6 +60,8 @@ class Arrangement extends CI_Controller {
         if ($size==0){
             $this->load->model('arrangement_model');
             $this->arrangement_model->delete($id);
+            $this->load->model('prijs_model');
+            $this->prijs_model->deleteByArrangementId($id);
             echo 0;
         } else {
             echo 1;
@@ -87,6 +89,7 @@ class Arrangement extends CI_Controller {
         /**
         * Haalt de waarden van het arrangement object op en update of insert deze in de database
         */
+
         $object = new stdClass();
         $object->id = $this->input->post('id');
         $object->naam = $this->input->post('naam');
@@ -96,8 +99,10 @@ class Arrangement extends CI_Controller {
         $object->isArrangement = 1;
         
         $this->load->model('arrangement_model');
+        $this->load->model('prijs_model');
         if ($object->id == 0) {
-            $this->arrangement_model->insert($object);
+            $id = $this->arrangement_model->insert($object);
+            $this->prijs_model->insertPrijsByArrangemantId($id);
         } else {
             $this->arrangement_model->update($object);
         }

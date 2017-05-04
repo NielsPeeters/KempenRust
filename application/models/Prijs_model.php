@@ -114,6 +114,53 @@ class Prijs_model extends CI_Model {
         $query = $this->db->get('prijs');
         return $query->result();
 }
+
+    function getEmptyPrijs() {
+        /**
+         * Creërt een leeg arrangement object
+         * \return arrangement een leeg arrangement object
+         */
+        $prijs = new stdClass();
+
+        $prijs->id = '0';
+        $prijs->arrangementId = '';
+        $prijs->kamerTypeId = '';
+        $prijs->meerderePersonen = '';
+        $prijs->actuelePrijs = '0.00';
+
+
+        return $prijs;
+    }
+
+    public function insertPrijsByArrangemantId($id){
+        /**
+         * Voegt dynamisch prijzen toe als er een Arrangement is toegevoegd.
+         */
+        $prijs = $this->getEmptyPrijs();
+
+        $prijs->arrangementId = $id;
+        $this->load->model('prijs_model');
+        $this->load->model('kamerType_model');
+        $kamerTypes = $this->kamerType_model->getAll();
+
+        foreach($kamerTypes as $kamerType){
+            $prijs->kamerTypeId = $kamerType->id;
+            for($i = 0 ; $i < 2 ; $i++){
+                $prijs->meerderePersonen = $i;
+                $this->prijs_model->insert($prijs);
+            }
+        }
+    }
+
+    function deleteByArrangementId($id) {
+        /**
+         * verwijderd het prijs object dat bij het id hoort uit de database
+         * \param id het id van de geselecteerde prijs
+         */
+        $this->db->where('arrangementId', $id);
+        $this->db->delete('prijs');
+    }
+
 }
 
 ?>
