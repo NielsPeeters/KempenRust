@@ -28,6 +28,7 @@ class Persoon_model extends CI_Model {
         *Geeft een array terug met alle persoon objecten.
         *\return een array met persoon objecten
         */
+        $this->db->order_by("naam", "asc");
         $query = $this->db->get('persoon');	 // genereert SELECT * FROM persoon
         return $query->result();             // een array met persoon-objecten
     }

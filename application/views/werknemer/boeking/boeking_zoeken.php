@@ -68,7 +68,7 @@ function schrijfBoeking()
                }
                else{
 
-                       $('#zoek').show();
+                       $('.zoek').show();
                     $('#knop').hide();
                     $('#algemeen').hide();
                     $('#kamers').hide();
@@ -323,9 +323,10 @@ function attach_click(){
 
       $('.annuleren').click(function(){
         $('#knop').hide();
-        $('#zoek').show();
+        $('.zoek').show();
         $('#algemeen').hide();
         $('#kamers').hide();
+        $('.nav-tabs').show();
     })
 
 }
@@ -351,15 +352,17 @@ function attach_click(){
 
         $(".wijzig").click(function(){
             haalBoeking($(this).attr('id'));
-            $('#zoek').hide();
+            $('.zoek').hide();
              $('#knop').show();
+             $('.nav-tabs').hide();
              $('#algemeen').show();
              $('#kamers').hide();
         })
 
          $(".nieuw").click(function(){
             haalBoeking(0);
-            $('#zoek').hide();
+            $('.zoek').hide();
+            $('.nav-tabs').hide();
              $('#knop').show();
              $('#algemeen').show();
              $('#kamers').hide();
@@ -371,8 +374,9 @@ function attach_click(){
         })
 
          $("#knop").click(function(){
-            $('#zoek').show();
+            $('.zoek').show();
             $('#knop').hide();
+            $('.nav-tabs').show();
             $('#algemeen').hide();
             $('#kamers').hide();
         })
@@ -434,9 +438,16 @@ function zoek() {
     tr:nth-child(4n+1) { background-color: #eee; }
   
 </style>
-<button id="knop" type="button" class="btn btn-primary btn-block">Geef alle boekingen weer</button>
-<div id="zoek">
 
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#nietgoedgekeurd">Niet goedgekeurd</a></li>
+  <li><a data-toggle="tab" href="#goedgekeurd">Goedgekeurd</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="nietgoedgekeurd" class="tab-pane fade in active">
+    <div class="zoek">
+    </br>
     <input type="text" id="zoekInput" onkeyup="zoek()" placeholder="Zoek op naam">
 
     <table class="table table-responsive " id="boekingen">
@@ -451,7 +462,7 @@ function zoek() {
     </tr>
     <?php
 
-    foreach($boekingen as $boeking){?>
+    foreach($NGBoekingen as $boeking){?>
         <tr>
             <td><?php echo $boeking->persoon->naam . " " . $boeking->persoon->voornaam; ?></td>
             <td><?php echo date('d-m-Y',strtotime($boeking->startDatum)); ?></td>
@@ -491,10 +502,78 @@ function zoek() {
     
     ?>
     </table>
-        <button type="button"  class="btn btn-primary nieuw">Nieuw</button>
+     <button type="button"  class="btn btn-primary nieuw">Nieuw</button>
+    </div>
+    
+  </div>
 
-</br></br></br>
+  <div id="goedgekeurd" class="tab-pane fade">
+    <div class="zoek">
+    </br>
+    <input type="text" id="zoekInput" onkeyup="zoek()" placeholder="Zoek op naam">
+
+    <table class="table table-responsive " id="boekingen">
+    <tr class="success">
+        <th>Naam</th>
+        <th>Van / Tot</th>
+        <th>Arrangement</th>
+        <th>Tijdstip</th>
+        <th>Goedgekeurd?</th>
+        <th>Wijzig</th>
+        <th>Verwijder</th>
+    </tr>
+    <?php
+
+    foreach($GBoekingen as $GBoeking){?>
+        <tr>
+            <td><?php echo $GBoeking->persoon->naam . " " . $GBoeking->persoon->voornaam; ?></td>
+            <td><?php echo date('d-m-Y',strtotime($GBoeking->startDatum)); ?></td>
+            <td><?php echo $GBoeking->arrangement;?></td>
+            <td><?php echo date('d-m-Y h:m:s',strtotime($GBoeking->tijdstip)); ?></td>
+            <td class="text-center">
+            <?php 
+            if($GBoeking->goedgekeurd==1){
+                echo '<button type="button"' . "id= $GBoeking->id" .' class="btn btn-success btn-xs btn-round goedkeuren"><span class="glyphicon glyphicon-thumbs-up"></span></button>';
+            }
+            else{
+                echo '<button type="button"' . "id= $GBoeking->id" .' class="btn btn-danger btn-xs btn-round goedkeuren"><span class="glyphicon glyphicon-thumbs-down"></span></button>';
+            }
+            ?>
+            </td>
+            <td  class="text-center"><button type="button" id="<?php echo $GBoeking->id; ?>" class="btn btn-warning btn-xs btn-round wijzig"><span class="glyphicon glyphicon-pencil"></span></button></td>
+            <td  class="text-center"><button type="button" id="<?php echo $GBoeking->id; ?>" class="btn btn-danger btn-xs btn-round verwijder"><span class="glyphicon glyphicon-remove"></span></button></td>
+        </tr>
+        <tr>
+       <td><?php echo $boeking->persoon->email;?> </td>
+        <td><?php echo date('d-m-Y',strtotime($GBoeking->eindDatum)); ?></td>
+        <td><?php 
+            $aantal="persoon"; 
+            if($GBoeking->aantalPersonen>1){
+            $aantal="personen";} 
+            echo "$GBoeking->aantalPersonen $aantal" ; ?></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+        </hr>
+    <?php
+
+    }
+
+    
+    ?>
+    </table>
+     <button type="button"  class="btn btn-primary nieuw">Nieuw</button>
+    </div>
+    
+  </div>
 </div>
+
+
+
+<button id="knop" type="button" class="btn btn-primary btn-block">Geef alle boekingen weer</button>
+
 
 <div id="algemeen"></div>
 <div id="kamers">

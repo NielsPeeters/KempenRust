@@ -26,6 +26,7 @@
                         title: boekingenEvent[i].kamerBoeking["0"].Kamer.naam,
                         start: boekingenEvent[i]["startDatum"],
                         end: boekingenEvent[i]["eindDatum"]
+                        
                     };              
                 eventArray.push(newEvent);  
             }
