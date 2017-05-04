@@ -151,7 +151,7 @@ class Klant extends CI_Controller {
         /*
          * update userdata kamers
          */
-        $kamers[$kamer->id] = $kamerBoeking->id . "." . $kamer->naam . "." . $kamer->kamerType->naam;
+        $kamers[$kamer->id] = $kamerBoeking->id . "." . $kamer->naam . "." . $kamer->kamerType->omschrijving;
         $this->session->set_userdata('kamers', $kamers);
         
         /*
