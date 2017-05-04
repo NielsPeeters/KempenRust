@@ -32,7 +32,8 @@ class Boeking extends CI_Controller {
         $user = $this->authex->getUserInfo();
         if($user->soort>1) {
             $this->load->model('boeking_model');
-            $data['boekingen'] = $this->boeking_model->getBoekingenWith();
+            $data['NGBoekingen'] = $this->boeking_model->getBoekingenWithG(0);
+            $data['GBoekingen'] = $this->boeking_model->getBoekingenWithG(1);
             $partials = array('navbar' => 'main_navbar', 'content' => 'werknemer/boeking/boeking_zoeken', 'footer' => 'main_footer');
             $this->template->load('main_master', $partials, $data);
         } else {
@@ -135,8 +136,6 @@ class Boeking extends CI_Controller {
             $data['kamerBoekingen'] = $this->kamerBoeking_model->getWithBoeking($boekingId);
             $this->load->model('kamer_model');
             $data['kamers'] = $this->kamer_model->getAllWithKamerType();
-            
-
             $this->load->view("werknemer/boeking/ajax_boeking", $data);
           
             }
