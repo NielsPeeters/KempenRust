@@ -375,13 +375,15 @@ private function sendmail($id) {
         $bericht .= "U koos voor de volgende formule: " . $boeking->arrangement . ",\n"; 
         $bericht .= "en onderstaande kamers:";
        
-        $kamers = $this->kamerBoeking_model->getWithBoeking($boeking->id);
-        foreach($kamers as $kamer) {
-                $persoon= " persoon   ";
-                if($kamer->aantalMensen>1){
+        $kamerBoekingen = $this->kamerBoeking_model->getWithBoekingAndInfo($boeking->id);
+        foreach($kamerBoekingen as $kamerBoeking) {
+                $persoon= " persoon ";
+                $type = $kamerBoeking->kamer->naam;
+                $naam = $kamerBoeking->type->naam;
+                if($kamerBoeking->aantalMensen>1){
                     $persoon = " personen ";
                 }
-                $bericht .= "$kamer->naam " . " $type " . ' met ' . $kamer->aantalMensen . $persoon;
+                $bericht .= "$naam " . " $type " . ' met ' . $kamerBoeking->aantalMensen . $persoon;
             }
         $bericht .= "\n";
         $bericht .= "Gelieve een voorschot van €20 te storten op rekeningnummer BE230 026 631 772.\n\n";
