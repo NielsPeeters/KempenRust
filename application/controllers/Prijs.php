@@ -67,5 +67,4 @@ class prijs extends CI_Controller {
         redirect('prijs/index');
     }
 
-
 }
