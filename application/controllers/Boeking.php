@@ -25,14 +25,6 @@ class Boeking extends CI_Controller {
         $data['title'] = 'Boekingen beheren';
         $data['author'] = 'Laenen Nathalie';
         $data['user'] = $this->authex->getUserInfo();
-        
-        if($id != ''){
-           $data['comeFromCalendar'] = "yes";
-           $data['fromCalendarId'] = $id;
-        }else{
-            $data['comeFromCalendar'] = "no";
-            $data['fromCalendarId'] = $id;
-        }
 
         $this->load->model('boeking_model');
         $this->load->model('arrangement_model');

@@ -29,6 +29,17 @@
                         $teller++;
                     }
                 ?>    
+            <td><?php echo $boeking->arrangement;?></td>
+            <td><?php echo toDDMMYYYY($boeking->tijdstip);?></td>
+            <td class="text-center">
+            <?php 
+                if($boeking->goedgekeurd==1){
+                    echo '<button type="button"' . "id= $boeking->id" .' class="btn btn-success btn-xs btn-round"><span class="glyphicon glyphicon-thumbs-up"></span></button>';
+                }
+                else{
+                    echo '<button type="button"' . "id= $boeking->id" .' class="btn btn-danger btn-xs btn-round"><span class="glyphicon glyphicon-thumbs-down"></span></button>';
+                }
+            ?>
             </td>
             <td>
                 <?php 

@@ -7,35 +7,27 @@
 ?>
 <script>
     $.getScript('http://arshaw.com/js/fullcalendar-1.6.4/fullcalendar/fullcalendar.min.js', function () {
-
-        //GetAllBoekingsFromPHP
-        var boekingenEvent = <?php echo json_encode($boekingen);?>;
-         var baseurl = "<?php echo base_url();?>";
+//Get All Boekingen From PHP
+        var boekingenEvent = <?php echo json_encode($boekingen); ?>;
         //CreateArrayWithObjectsForEvents
-            
-        
         var eventArray = new Array();
         for (var i = 0; i < boekingenEvent.length; i++) {
 
-   
             //Check if kamerBoeking is set
-            if(boekingenEvent[i].kamerBoeking["0"] == null){
+            if (boekingenEvent[i].kamerBoeking["0"] == null) {
 
-            }else{
-              var newEvent = {
+            } else {
+                var newEvent = {
                     //Only first object of Kamerboeking (only one kamerboeking referenced in object) if more objects 'kamerBoeking' returned, funciton needs to be re-written with foreach
-                        title: boekingenEvent[i].kamerBoeking["0"].Kamer.naam,
-                        start: boekingenEvent[i]["startDatum"],
-                        end: boekingenEvent[i]["eindDatum"],
-                        url: baseurl + "index.php/boeking/index/" + boekingenEvent[i].kamerBoeking["0"].Boeking.id
-                        
-                    };              
-                eventArray.push(newEvent);  
+                    title: boekingenEvent[i].kamerBoeking["0"].Kamer.naam,
+                    start: boekingenEvent[i]["startDatum"],
+                    end: boekingenEvent[i]["eindDatum"],
+                    url: base_url + "index.php/boeking/index/" + boekingenEvent[i].kamerBoeking["0"].Boeking.id
+                };
+                eventArray.push(newEvent);
             }
-        
-           
-        }      
-        
+        }
+
         var date = new Date();
         var d = date.getDate();
         var m = date.getMonth();
@@ -51,8 +43,6 @@
             events: eventArray
         });
     });
-
-
 </script>
 
 <hr>
