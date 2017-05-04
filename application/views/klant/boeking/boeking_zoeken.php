@@ -134,7 +134,7 @@
                   <p>
                       Weet je zeker dat je deze boeking wil verwijderen?
                   </p>
-                  <p hidden id="kamerId">
+                  <p hidden id="boekingId">
                   </p>
               </div>
               <div class="modal-footer">
