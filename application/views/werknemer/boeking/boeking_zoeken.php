@@ -434,8 +434,7 @@ function zoek() {
     margin-bottom: 12px; /* Add some space below the input */
  
 }
-   tr:nth-child(odd) {
-    background-color: #eee;
+
 }
   
 </style>
