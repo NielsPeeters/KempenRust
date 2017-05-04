@@ -4,8 +4,6 @@
     var fromCalendarId = "<?php echo $fromCalendarId; ?>";
 
     $(document).ready(function () {
-        //check if we are CUMMING from Calendar
-
         if (comeFromCalendar === "yes") {
             haalBoeking(fromCalendarId);
             $('.zoek').hide();
