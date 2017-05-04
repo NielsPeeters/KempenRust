@@ -150,10 +150,17 @@ class Prijs_model extends CI_Model {
                 $this->prijs_model->insert($prijs);
             }
         }
-
-
-
     }
+
+    function deleteByArrangementId($id) {
+        /**
+         * verwijderd het prijs object dat bij het id hoort uit de database
+         * \param id het id van de geselecteerde prijs
+         */
+        $this->db->where('arrangementId', $id);
+        $this->db->delete('prijs');
+    }
+
 }
 
 ?>

@@ -60,6 +60,8 @@ class Arrangement extends CI_Controller {
         if ($size==0){
             $this->load->model('arrangement_model');
             $this->arrangement_model->delete($id);
+            $this->load->model('prijs_model');
+            $this->prijs_model->deleteByArrangementId($id);
             echo 0;
         } else {
             echo 1;
