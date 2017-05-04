@@ -434,8 +434,6 @@ function zoek() {
     margin-bottom: 12px; /* Add some space below the input */
  
 }
-
-}
   
 </style>
 
