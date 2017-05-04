@@ -23,6 +23,7 @@
                     switch ($user->soort) {
                         case 1: // gewone geregistreerde gebruiker
                             echo '<li>' . anchor('/klant/index', 'Boeking maken') . '</li>';
+                            echo '<li>' . anchor('/klant/beheren', 'Boekingen beheren') . '</li>';
                             break;
                         case 2: // werknemer
                             echo '<li>' . anchor('/boeking/index', 'Boekingen beheren') . '</li>';
