@@ -88,6 +88,8 @@ class Klant extends CI_Controller {
         
         $this->load->model('boeking_model');
         $boeking = $this->boeking_model->get($boekingId);
+        $this->load->model('arrangement_model');
+        $boeking->arrangement = $this->arrangement_model->get($boeking->arrangementId);
         $this->load->model('persoon_model');
         $boeking->persoon = $this->persoon_model->get($boeking->persoonId);
         $this->load->model('boekingTypePersoon_model');
