@@ -4,7 +4,7 @@
     var fromCalendarId = "<?php echo $fromCalendarId; ?>";
 
     $(document).ready(function () {
-        if (comeFromCalendar === "yes") {
+        if (comeFromCalendar.toString() === "yes") {
             haalBoeking(fromCalendarId);
             $('.zoek').hide();
             $('#knop').show();
