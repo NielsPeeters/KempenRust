@@ -22,8 +22,8 @@ echo form_open('menu/schrijfMenu', $attributes);
     <div class="help-block with-errors"></div>
     
     <button type="button" class="btn btn-secondary annuleren">Annuleren</button>
-    <button type="button" data-id="' . $faciliteit->id . '" class="btn btn-warning verwijder">Verwijderen</button>
-    <button type="submit" data-id="' . $faciliteit->id . '" class="btn btn-primary opslaan">Opslaan</button>
+    <button type="button" data-id="' . $menu->id . '" class="btn btn-warning verwijder">Verwijderen</button>
+    <button type="submit" data-id="' . $menu->id . '" class="btn btn-primary opslaan">Opslaan</button>
 
 </div>
 </form>

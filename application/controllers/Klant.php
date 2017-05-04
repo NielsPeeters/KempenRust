@@ -69,6 +69,34 @@ class Klant extends CI_Controller {
         }      
     }
     
+    public function haalBoeking() {
+        /**
+        * Haalt een boeking object op
+        */
+        $boekingId = $this->input->get('boekingId');
+        
+        $this->load->model('boeking_model');
+        $data['boeking'] = $this->boeking_model->get($boekingId);
+        
+        $this->load->view("klant/boeking/ajax_boeking", $data);
+    }
+
+    public function verwijderMenu(){
+        /**
+        * Verwijdert een boeking object
+        */
+        $id = $this->input->get('id');
+        $this->load->model('boeking_model');
+        $boeking = $this->boeking_model->get($id);
+        
+        if($boeking->goedgekeurd == 0){
+            $this->menu_model->delete($id);
+            echo 0;
+        } else {
+            echo -1;
+        }
+    }
+    
     public function arrangementGekozen() {        
         /*
          * haal de waarden uit de form op en set de userdata
