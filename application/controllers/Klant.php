@@ -378,9 +378,9 @@ class Klant extends CI_Controller {
             $delen = explode('.', $info);
             
             if($teller == 0) {
-                $bericht .= $delen[1] . '(' . $delen[2]. ')';
+                $bericht .= $delen[1] . ' (' . $delen[2]. ')';
             } else {
-                $bericht .= ", " . $delen[1];
+                $bericht .= ", " . $delen[1] . ' (' . $delen[2]. ')';
             }
             
             $teller++;
