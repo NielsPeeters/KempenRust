@@ -98,7 +98,7 @@ class kamerBoeking_model extends CI_Model {
         $this->load->model('kamerType_model');
         foreach($kamerboekingen as $kamerboeking){
             $kamerboeking->kamer = $this->kamer_model->get($kamerBoeking->kamerId);
-            $kamerboeking->type = $this->kamerType_model->get($kamerBoeking->kamer->kamerTypeId);
+            //$kamerboeking->type = $this->kamerType_model->get($kamerBoeking->kamer->kamerTypeId);
         }
 
         return $kamerboekingen->result();
