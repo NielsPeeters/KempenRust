@@ -103,7 +103,7 @@
             <?php echo form_dropdown('boeking', $options, '0', 'id="boeking" size="10" class="form-control"');?>
         </p>
         </div>
-        <p  id="nieuw" class="btn btn-primary">Nieuw</p>
+        <button id="nieuw" class="btn btn-primary"><?php echo anchor('klant/index', 'Nieuw');?></button>
         </br></br>
     </div>
 
