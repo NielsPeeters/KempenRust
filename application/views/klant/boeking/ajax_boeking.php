@@ -61,5 +61,5 @@ echo form_open('', $attributes);
 
 
     <button type="button" class="btn btn-secondary annuleren">Annuleren</button>
-    <button type="button" data-id="' . $menu->id . '" class="btn btn-warning verwijder">Verwijderen</button>
+    <button type="button" data-id="' . $menu->id . '" class="btn btn-warning verwijder" id="annuleerBoeking">Annuleer boeking</button>
 </form>

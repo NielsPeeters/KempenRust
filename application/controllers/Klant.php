@@ -101,7 +101,7 @@ class Klant extends CI_Controller {
         }
         
         $this->load->model('boekingTypePersoon_model');
-        $personen = $this->boekingTypePersoon_model->getAllByBoeking($boeking->id);
+        $personen = $this->boekingTypePersoon_model->getByBoeking($boeking->id);
         
         foreach($personen as $persoon) {
             $totaal += $persoon->aantal;

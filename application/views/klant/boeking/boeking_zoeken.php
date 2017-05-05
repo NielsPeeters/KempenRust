@@ -87,7 +87,11 @@
         });
     });
 </script>
-
+<style>
+    #nieuweBoeking {
+        color: white;
+    }
+</style>
 
 <?php 
 $options = array();
@@ -104,6 +108,7 @@ foreach($boekingen as $boeking){
             <?php echo form_dropdown('boeking', $options, '0', 'id="boeking" size="10" class="form-control"');?>
         </p>
         </div>
+        <button type="button" class="btn btn-primary annuleren"><?php echo anchor('klant/index', 'Nieuw', 'id="nieuweBoeking"');?></button>
         </br></br>
     </div>
 
@@ -128,7 +133,7 @@ foreach($boekingen as $boeking){
               </div>
               <div class="modal-body">
                   <p>
-                      Weet je zeker dat je deze boeking wil verwijderen?
+                      Weet je zeker dat je deze boeking wil annuleren? Dit betekent dat deze boeking verwijderd zal worden!
                   </p>
                   <p hidden id="boekingId">
                   </p>
