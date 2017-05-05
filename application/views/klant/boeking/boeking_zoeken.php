@@ -47,7 +47,7 @@
                     }
                 },
                 error: function (xhr, status, error) {
-                    alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+                    alert("-- ERROR IN AJAX --\n\n" + xhr.responseText + "\n" + status + "\n" + error);
                 }
             });
     }
