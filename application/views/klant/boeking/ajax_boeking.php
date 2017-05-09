@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <div>
-    <table class="table table-responsive " id="boekingen">
+    <table class="table table-responsive " id="boeking">
         <tr class="success">
             <th>Van</th>
             <th>Tot</th>
@@ -28,7 +28,7 @@
             
                         $teller++;
                     }
-                ?>
+                ?>    
             </td>
             <td>
                 <?php 
@@ -54,7 +54,7 @@
         </tr>
         </hr>
     </table>
+
+    <button type="button" class="btn btn-secondary annuleren">Annuleren</button>
+    <button type="button" data-id="<?php echo $boeking->id;?>" class="btn btn-warning verwijder" id="annuleerBoeking">Annuleer boeking</button>
 </div>
-    
-<button type="button" class="btn btn-secondary annuleren">Annuleren</button>
-<button type="button" data-id="' . $boeking->id . '" class="btn btn-warning verwijder">Verwijderen</button>
