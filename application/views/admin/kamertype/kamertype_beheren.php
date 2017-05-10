@@ -54,27 +54,27 @@
             });
         }
 
-        function schrijfKamertype()
-        {
-            /**
-            * Update of insert een kamertypeobject
-            * \param id het id van het te verwijderen kamertype als int
-            * \return een melding dat de gegevens succesvol zijn opgeslagen
-            */
-            var dataString = $("#JqAjaxForm").serialize();
-            console.log(dataString) 
-            $.ajax({type: "POST",
-                url: site_url + "/kamertype/schrijfJSONObject",
-                data: dataString,
-                dataType: "json",
-                success: function (result) {
-                    location.reload();
-                },
-                error: function (xhr, status, error) {
-                    alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
-                }
-            });
-        }
+//        function schrijfKamertype()
+//        {
+//            /**
+//            * Update of insert een kamertypeobject
+//            * \param id het id van het te verwijderen kamertype als int
+//            * \return een melding dat de gegevens succesvol zijn opgeslagen
+//            */
+//            var dataString = $("#JqAjaxForm").serialize();
+//            console.log(dataString) 
+//            $.ajax({type: "POST",
+//                url: site_url + "/kamertype/schrijfJSONObject",
+//                data: dataString,
+//                dataType: "json",
+//                success: function (result) {
+//                    location.reload();
+//                },
+//                error: function (xhr, status, error) {
+//                    alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+//                }
+//            });
+//        }
 
         function attach_click() {
           $(".verwijder").click(function (e) {

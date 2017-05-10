@@ -543,7 +543,7 @@ function zoek() {
         <tr>
             <td>
                 <p><?php echo $GBoeking->persoon->naam . " " . $GBoeking->persoon->voornaam; ?></p>
-                <p><?php echo $boeking->persoon->email;?></p>
+                <p><?php echo $GBoeking->persoon->email;?></p>
             </td>
             <td>
                 <p><?php echo date('d-m-Y',strtotime($GBoeking->startDatum)); ?></p>
