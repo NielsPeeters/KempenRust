@@ -22,6 +22,15 @@ class Boeking extends CI_Controller {
         * geeft een array van boeking objecten mee
         */
     
+        if($id != ''){
+            //43 in ons geval van die kut kamer
+           $data['comeFromCalendar'] = "yes";
+           $data['fromCalendarId'] = $id;
+        }else{
+            $data['comeFromCalendar'] = "no";
+            $data['fromCalendarId'] = $id;
+        }
+        
         $data['title'] = 'Boekingen beheren';
         $data['author'] = 'Laenen Nathalie';
         $data['user'] = $this->authex->getUserInfo();
