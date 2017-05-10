@@ -14,7 +14,7 @@
 
         $("#persoon").change(function () {
             /**
-             *Bij het veranderen van de geselecteerde kamertype, veranderdt de info in het panel
+             *Bij het veranderen van de geselecteerde kamertype, verandert de info in het panel
              */
             haalPersoon($(this).val());
         });
