@@ -48,5 +48,5 @@
 </script>
 
 <hr>
-<div id="calendar"></div>
+<div style="overflow-x:auto;" id="calendar"></div>
 </div>

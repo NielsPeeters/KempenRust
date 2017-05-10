@@ -2,7 +2,10 @@
 <script>
     var comeFromCalendar = "<?php echo $comeFromCalendar; ?>";
     var fromCalendarId = "<?php echo $fromCalendarId; ?>";
-
+    
+    console.log(comeFromCalender);
+    console.log(fromCalenderId);
+    
     $(document).ready(function () {
         if (comeFromCalendar.toString() === "yes") {
             haalBoeking(fromCalendarId);
