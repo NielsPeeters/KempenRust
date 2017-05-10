@@ -10,7 +10,7 @@
             </button>
 
             <?php // iedereen
-            echo '<li>' . anchor('/home/index', image("logo.PNG",'class="navbar-brand-img"'),'class="navbar-brand"') . '</li>';
+            echo  anchor('/home/index', image("logo.PNG",'class="navbar-brand-img"'),'class="navbar-brand"');
             ?>
 
 
