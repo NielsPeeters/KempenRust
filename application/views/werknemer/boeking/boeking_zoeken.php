@@ -7,7 +7,7 @@
     console.log(fromCalenderId);
     
     $(document).ready(function () {
-        if (comeFromCalendar.toString() === "yes") {
+        if (comeFromCalendar === "yes") {
             haalBoeking(fromCalendarId);
             $('.zoek').hide();
             $('#knop').show();

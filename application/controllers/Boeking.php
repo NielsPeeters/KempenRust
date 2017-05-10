@@ -386,10 +386,12 @@ private function sendmail($id) {
         $kamerBoekingen = $this->kamerBoeking_model->getWithBoekingAndInfo($boeking->id);
         foreach($kamerBoekingen as $kamerBoeking) {
                 $persoon= " persoon ";
+                $kamer = $kamerBoeking->kamer;
+                $type = $kamerBoeking->type;
                 if($kamerBoeking->aantalMensen>1){
                     $persoon = " personen ";
                 }
-                 $bericht .= $kamerBoeking->kamer  . " " . $kamerBoeking->type  . ' met ' . $kamerBoeking->aantalMensen . $persoon . "\n";
+                 $bericht .=  $kamer  . " " . $type  . ' met ' . $kamerBoeking->aantalMensen . $persoon . "\n";
        }
         
         $bericht .= "Gelieve een voorschot van €20 te storten op rekeningnummer BE230 026 631 772.\n\n";
