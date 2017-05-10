@@ -46,7 +46,7 @@ class kamerBoeking_model extends CI_Model {
 
     function delete($id) {
         /**
-        * verwijderd het kamerBoeking object dat bij het id hoort uit de database
+        * verwijdert het kamerBoeking object dat bij het id hoort uit de database
         * \param id het id van de geselecteerde kamerBoeking
         */
         $this->db->where('id', $id);
@@ -100,7 +100,7 @@ class kamerBoeking_model extends CI_Model {
             $kamer = $this->kamer_model->get($kamerboeking->kamerId);
             $kamerboeking->kamer = $kamer->naam;
             $type = $this->kamerType_model->get($kamer->kamerTypeId);
-            $kamerboeking->type = $type->omschrijving;
+            $kamerboeking->type = $type;
             
         }
         

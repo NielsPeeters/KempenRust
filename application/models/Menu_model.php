@@ -47,7 +47,7 @@ class Menu_model extends CI_Model {
 
     function delete($id) {
         /**
-        * verwijderd het menu object dat bij het id hoort uit de database
+        * verwijdert het menu object dat bij het id hoort uit de database
         * \param id het id van de geselecteerde menu
         */
         $this->db->where('id', $id);
@@ -56,7 +56,7 @@ class Menu_model extends CI_Model {
     
     function getWithArrangementen($menuId) {
         /**
-        * kijkt ofdat er arrangementen aan het menu hangen
+        * kijkt of dat er arrangementen aan het menu hangen
         * \param menuId het id van de geselecteerde menu
         */
         $this->db->where('menuId', $menuId);
@@ -66,7 +66,7 @@ class Menu_model extends CI_Model {
     
     function getWithBoekingen($menuId) {
         /**
-        * kijkt ofdat er boekingen aan het menu hangen
+        * kijkt of dat er boekingen aan het menu hangen
         * \param menuId het id van de geselecteerde menu
         */
         $this->db->where('menuId', $menuId);

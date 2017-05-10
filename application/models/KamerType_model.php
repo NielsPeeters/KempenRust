@@ -47,7 +47,7 @@ class kamerType_model extends CI_Model {
 
     function delete($id) {
         /**
-        *Verwijderdt een kamertype object uit de database.
+        *Verwijdert een kamertype object uit de database.
         *\param id het id van het te verwijderen kamertype object
         */
         $this->db->where('id', $id);
