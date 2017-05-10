@@ -1,5 +1,5 @@
 <script>
-    $.getScript('http://arshaw.com/js/fullcalendar-1.6.4/fullcalendar/fullcalendar.min.js', function () {
+    $.getScript('../../assets/js/kalender.js', function () {
 
         //GetAllBoekingsFromPHP
         var boekingenEvent = <?php echo json_encode($boekingen); ?>;

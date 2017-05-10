@@ -6,9 +6,11 @@
  */
 ?>
 <script>
-    $.getScript('http://arshaw.com/js/fullcalendar-1.6.4/fullcalendar/fullcalendar.min.js', function () {
-//Get All Boekingen From PHP
+ $.getScript('../../assets/js/kalender.js', function () {
+
+        //Get All Boekingen From PHP
         var boekingenEvent = <?php echo json_encode($boekingen); ?>;
+        var baseurl = "<?php echo base_url();?>";
         //CreateArrayWithObjectsForEvents
         var eventArray = new Array();
         for (var i = 0; i < boekingenEvent.length; i++) {
@@ -22,7 +24,7 @@
                     title: boekingenEvent[i].kamerBoeking["0"].Kamer.naam,
                     start: boekingenEvent[i]["startDatum"],
                     end: boekingenEvent[i]["eindDatum"],
-                    url: base_url + "index.php/boeking/index/" + boekingenEvent[i].kamerBoeking["0"].Boeking.id
+                    url: baseurl + "index.php/boeking/index/" + boekingenEvent[i].kamerBoeking["0"].Boeking.id
                 };
                 eventArray.push(newEvent);
             }
