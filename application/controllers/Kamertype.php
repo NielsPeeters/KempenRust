@@ -74,6 +74,8 @@ class Kamertype extends CI_Controller {
         if ($size == 0) {
             $this->load->model('kamerType_model');
             $this->kamerType_model->delete($id);
+            $this->load->model('prijs_model');
+            $this->prijs_model->deleteByKamerTypeId($id);
             echo 0;
         } else {
             echo 1;
@@ -89,8 +91,10 @@ class Kamertype extends CI_Controller {
         $object->omschrijving = $this->input->post('omschrijving');
 
         $this->load->model('kamerType_model');
+        $this->load->model('prijs_model');
         if ($object->id == 0) {
-            $this->kamerType_model->insert($object);
+            $id = $this->kamerType_model->insert($object);
+            $this->prijs_model->insertPrijsByKamerTypeId($id);
         } else {
             $this->kamerType_model->update($object);
         }
