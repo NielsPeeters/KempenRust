@@ -59,7 +59,7 @@
             function getPrijs() 
         {
             /**
-            * Berekend de prijs van de boeking zonder kortingen
+            * Berekent de prijs van de boeking zonder kortingen
             */
           $.ajax({type : "GET",
             url : site_url + "/boeking/berekenPrijs",
@@ -172,7 +172,7 @@
 
         function goedkeuren(id){
             /**
-            * veranderd de waarde van goedgekeurd
+            * verandert de waarde van goedgekeurd
             */
           $.ajax({type : "GET",
             url : site_url + "/boeking/setGoedkeuring",
@@ -189,7 +189,7 @@
      function verwijderBoeking(id) 
         {
             /**
-            * Verwijderd te boeking die behoort tot het meegegeven id
+            * Verwijdert te boeking die behoort tot het meegegeven id
             * \param id het id van de te verwijderen boeking als int
             * een leeg boeking object genereren als de boeking verwijderd kan worden, anders geef een foutmelding
             */
@@ -210,7 +210,7 @@
         function verwijderKamer(id) 
         {
             /**
-            * Verwijderd te boeking die behoort tot het meegegeven id
+            * Verwijdert te boeking die behoort tot het meegegeven id
             * \param id het id van de te verwijderen boeking als int
             * een leeg boeking object genereren als de boeking verwijderd kan worden, anders geef een foutmelding
             */
@@ -404,7 +404,7 @@ function attach_click(){
 
         $(".verwijder").click(function (e) {
             /**
-             *Bij het klikken op verwijder wordt het verwijder modal getoont
+             *Bij het klikken op verwijder wordt het verwijder modal getoond
              */
             var id = $(this).attr('id');
             $("#boekingId").html(id);
