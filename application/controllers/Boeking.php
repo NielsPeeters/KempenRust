@@ -388,7 +388,7 @@ private function sendmail($id) {
                 $persoon= " persoon ";
                 $id = $kamerBoeking->kamerId;
                 $kamer = $kamerBoeking->kamer;
-                $type = "test"; //$kamerBoeking->type;
+                $type = $kamerBoeking->type;
                 if($kamerBoeking->aantalMensen>1){
                     $persoon = " personen ";
                 }
