@@ -54,7 +54,7 @@
         </tr>
         </hr>
     </table>
-
-    <button type="button" class="btn btn-secondary annuleren">Annuleren</button>
-    <button type="button" data-id="<?php echo $boeking->id;?>" class="btn btn-warning verwijder" id="annuleerBoeking">Annuleer boeking</button>
 </div>
+
+<button type="button" class="btn btn-secondary annuleren">Annuleren</button>
+<button type="button" data-id="<?php echo $boeking->id;?>" class="btn btn-warning verwijder" id="annuleerBoeking">Annuleer boeking</button>
