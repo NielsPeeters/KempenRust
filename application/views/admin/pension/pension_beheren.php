@@ -31,7 +31,7 @@
         function verwijderPension(id) 
         {
             /**
-            * Verwijderdt het pension die behoort tot het meegegeven id
+            * Verwijdert het pension die behoort tot het meegegeven id
             * \param id het id van het te verwijderen pension als int
             *een leeg pension object genereren als het pension verwijderd kan worden, anders geef een foutmelding
             */

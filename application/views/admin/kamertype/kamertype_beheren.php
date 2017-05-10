@@ -32,7 +32,7 @@
         function verwijderKamertype(id) 
         {
             /**
-            * Verwijderd het kamertype die behoort tot het meegegeven id
+            * Verwijdert het kamertype die behoort tot het meegegeven id
             * \param id het id van de te verwijderen kamertype als int
             * \return een leeg kamertype object als het kamertype verwijderd kon worden, anders geef een foutmelding
             */

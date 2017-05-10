@@ -32,7 +32,7 @@
         function verwijderPersoon(id) 
         {
             /**
-            * Verwijderd de persoon die behoort tot het meegegeven id
+            * Verwijdert de persoon die behoort tot het meegegeven id
             * \param id het id van de te verwijderen persoon als int
             * \return een leeg klant object als de persoon verwijderd kon worden, anders geef een foutmelding
             */
