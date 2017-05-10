@@ -99,12 +99,12 @@ class kamerBoeking_model extends CI_Model {
         foreach($kamerboekingen as $kamerboeking){
             $kamer = $this->kamer_model->get($kamerBoeking->kamerId);
             $kamerboeking->kamer = $kamerBoeking->kamerId;
-            
+
             
         }
         
 
-        return $kamerboekingen->result();
+        return $kamerboekingen;
     }
 
 
