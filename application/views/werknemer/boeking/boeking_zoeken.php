@@ -1,7 +1,23 @@
 
 <script>
 
+    var comeFromCalendar = "<?php echo $comeFromCalendar; ?>";
+    var fromCalendarId = "<?php echo $fromCalendarId; ?>";
 
+    $(document).ready(function () {
+        /**
+         *Checken of we van dashboard komen
+         */
+
+        if (comeFromCalendar === "yes") {
+            haalBoeking(fromCalendarId);
+            $('.zoek').hide();
+            $('#knop').show();
+            $('.nav-tabs').hide();
+            $('#algemeen').show();
+            $('#kamers').hide();
+        }
+    });
     function schrijfBoeking()
     {
         /**
