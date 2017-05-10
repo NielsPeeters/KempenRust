@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Boeking extends CI_Controller {
 
     public function __construct() {
-         /**
+         /***
         * standaard controller constructor
         * laadt helpers
         */
@@ -17,7 +17,7 @@ class Boeking extends CI_Controller {
     }
 
     public function index($id = '') {
-        /**
+        /***
         * Laadt de pagina waarop je boekingen kan beheren
         * geeft een array van boeking objecten mee
         */
@@ -50,7 +50,7 @@ class Boeking extends CI_Controller {
     }
 
     public function berekenPrijs(){
-          /**
+          /***
         * Berekent de prijs van een boeking zonder kortingen
         */
         $totaal=0;
@@ -95,7 +95,7 @@ class Boeking extends CI_Controller {
     }
 
     public function checkAantallen(){
-        /*
+        /**
         * Gaat na of het aantal opgegeven personen per kamer in de kamers past.
         */
             $boekingId = $this->session->userdata('boekingId');
@@ -122,7 +122,7 @@ class Boeking extends CI_Controller {
     }
 
     public function haalboeking() {
-        /**
+        /***
         * Haalt een boeking object op
         */
         $boekingId = $this->input->get('boekingId');
@@ -150,7 +150,7 @@ class Boeking extends CI_Controller {
     }
 
     public function verwijderBoeking(){
-        /**
+        /***
         * Verwijdert een boeking object
         */
         $id = $this->input->get('id');
@@ -162,7 +162,7 @@ class Boeking extends CI_Controller {
     }
 
     public function verwijderKamer(){
-        /**
+        /***
         * Verwijdert een kamerboeking object
         */
         $id = $this->input->get('id');
@@ -173,8 +173,8 @@ class Boeking extends CI_Controller {
         
     }
 
-    function newBoeking() {
-        /**
+    public function newBoeking() {
+        /***
         * Creërt een leeg boeking object
         * \return boeking een leeg boeking object
         */
@@ -204,7 +204,7 @@ class Boeking extends CI_Controller {
 
 
     public function getEmptyBoeking(){
-        /*
+        /**
         *Genereert een leeg boeking object
         *\return een leeg boeking object
         */
@@ -224,10 +224,9 @@ class Boeking extends CI_Controller {
     }
 
     public function schrijfBoeking(){
-        /**
+        /***
         * Haalt de waarden van het boeking object op en update of insert deze in de database
         */
-
  
         $this->load->model('arrangement_model');
         $this->load->model('arrangement_model');
@@ -281,7 +280,7 @@ class Boeking extends CI_Controller {
             $aantal = $this->input->post('persoon' . $persoonId);
             $personen[$persoonId] = $aantal;
 
-            /*
+            /**
              * voeg data toe aan tabel boekingtypepersoon
              */
             
@@ -301,12 +300,10 @@ class Boeking extends CI_Controller {
         $this->load->model('arrangement_model');
         $data['arrangementen']=$this->arrangement_model->getAll();
         $data['boeking']=$boeking;
-        //echo $data;
-
     }
 
     public function nieuweKamer() { 
-        /*
+        /**
         * Haalt alle kamers op die beschikbaar zijn op de datums van de boeking
         *\return een verzameling kamer objecten
         */
@@ -317,7 +314,7 @@ class Boeking extends CI_Controller {
     }
 
     public function gekozenKamers(){
-        /*
+        /**
         *Haalt alle kamers op die bij de boeking horen
         *\return een verzameling kamer objecten
         */
@@ -331,7 +328,7 @@ class Boeking extends CI_Controller {
     }
     
     public function voegKamerToe(){
-        /*
+        /**
          * voeg kamer toe aan tabel kamerboeking
          */
         $kamerBoeking = new stdClass();
@@ -346,7 +343,7 @@ class Boeking extends CI_Controller {
     
 
      public function setGoedkeuring(){
-        /**
+        /***
         * verandert de waarde van goedgekeurd van de boeking
         */
         
@@ -364,8 +361,8 @@ class Boeking extends CI_Controller {
         redirect("boeking/index");
     }
 
-private function sendmail($id) {
-    /*
+    public function sendmail($id) {
+    /**
     *verzend een email naar het email adres van de klant
     *\param id het id van de betrokken boeking
     */
@@ -381,7 +378,12 @@ private function sendmail($id) {
         $this->session->set_userdata('boekingId',0);
     }
 
-    function getBericht($boeking){
+    public function getBericht($boeking){
+        /**
+        * haalt het bericht op dat hoort bij de boeking
+        *\param boeking, de boeking waarbij het bericht hoort
+        *\return bericht
+        */
         $this->load->model('kamerBoeking_model');
         $this->load->model('kamer_model');
         $this->load->model('kamerType_model');
@@ -405,7 +407,12 @@ private function sendmail($id) {
         return $bericht;
     }
     
- function haalKamers($kamers)
+ public function haalKamers($kamers)
+    /**
+    * haalt alle kamers op die bij de boeking horen
+    *\param kamers, de kamers van de boeking
+    *\return bericht
+    */
     {
         $teller = 0;
         $bericht = "";
