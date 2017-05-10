@@ -455,12 +455,15 @@ function zoek() {
   <li><a data-toggle="tab" href="#goedgekeurd">Goedgekeurd</a></li>
 </ul>
 
+ 
+
 <div class="tab-content">
   <div id="nietgoedgekeurd" class="tab-pane fade in active">
     <div class="zoek">
     </br>
     <input type="text" id="zoekInput" onkeyup="zoek()" placeholder="Zoek op naam of email">
 
+<div style="overflow-x:auto;">
     <table class="table table-responsive " id="boekingen">
     <tr class="success">
         <th>Naam</th>
@@ -513,6 +516,7 @@ function zoek() {
     
     ?>
     </table>
+</div>
      <button type="button"  class="btn btn-primary nieuw">Nieuw</button>
     </div>
     
@@ -522,7 +526,7 @@ function zoek() {
     <div class="zoek">
     </br>
     <input type="text" id="zoekInput" onkeyup="zoek()" placeholder="Zoek op naam of email">
-
+<div style="overflow-x:auto;">
     <table class="table table-responsive " id="boekingen">
     <tr class="success">
         <th>Naam</th>
@@ -575,6 +579,7 @@ function zoek() {
     
     ?>
     </table>
+    </div>
      <button type="button"  class="btn btn-primary nieuw">Nieuw</button>
     </div>
     
