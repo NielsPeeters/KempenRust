@@ -369,40 +369,39 @@ private function sendmail($id) {
     *verzend een email naar het email adres van de klant
     *\param id het id van de betrokken boeking
     */
-       
         $this->load->model('boeking_model');
-        $this->load->model('kamerBoeking_model');
-        $this->load->model('kamer_model');
         $boeking = $this->boeking_model->getBoekingWithAll($id);
         $this->email->from('r0589993@student.thomasmore.be', 'Hotel Kempenrust');
         $this->email->to($boeking->persoon->email);
         $this->session->set_userdata('boekingId',$boeking->id);
         $this->email->subject('Boeking goedgekeurd');
+        
+        $this->email->message(getBericht($boeking));
+        $this->email->send();
+        $this->session->set_userdata('boekingId',0);
+    }
+
+    function getBericht($boeking){
+        $this->load->model('kamerBoeking_model');
+        $this->load->model('kamer_model');
         $bericht = "Beste\n\n";
         $bericht .= "Uw boeking werd goedgekeurd. \n";
         $bericht .= toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . "\n";
         $bericht .= "U koos voor de volgende formule: " . $boeking->arrangement . ",\n"; 
         $bericht .= "en onderstaande kamers:";
        
-        $kamerBoekingen = $this->kamerBoeking_model->getWithBoekingAndInfo($boeking->id);
+        $kamerBoekingen = $this->kamerBoeking_model->getWithBoeking($boeking->id);
         foreach($kamerBoekingen as $kamerBoeking) {
                 $kamer = $this->kamer_model->get($kamerBoeking->kamerId);
                 $kamer->kamerType = $this->kamerType_model->get($kamer->id);
-                $persoon= " persoon ";
                 $kamers[$kamer->id] = $kamerBoeking->id . "." . $kamer->naam . "." . $kamer->kamerType->omschrijving;
-                if($kamerBoeking->aantalMensen>1){
-                    $persoon = " personen ";
-                }
-                 $bericht .=  $id.$kamer  . " " . $type  . ' met ' . $kamerBoeking->aantalMensen . $persoon . "\n";
-       }
+        }
+
         $bericht .= $this->haalKamers($kamers);  
         $bericht .= "Gelieve een voorschot van €20 te storten op rekeningnummer BE230 026 631 772.\n\n";
         $bericht .= "Met vriendelijke groeten\n";
         $bericht .= "Hotel Kempenrust";
-
-        $this->email->message($bericht);
-        $this->email->send();
-        $this->session->set_userdata('boekingId',0);
+        return $bericht;
     }
     
  function haalKamers($kamers)
