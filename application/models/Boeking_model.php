@@ -49,7 +49,7 @@ class Boeking_model extends CI_Model {
 
     function delete($id) {
         /**
-        * verwijderd het boeking object dat bij het id hoort uit de database
+        * verwijdert het boeking object dat bij het id hoort uit de database
         * \param id het id van de geselecteerde boeking
         */
         $this->db->where('id', $id);

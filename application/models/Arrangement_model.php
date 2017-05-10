@@ -57,7 +57,7 @@ class Arrangement_model extends CI_Model {
 
     function delete($id) {
         /**
-        * verwijderd het arrangement object dat bij het id hoort uit de database
+        * verwijdert het arrangement object dat bij het id hoort uit de database
         * \param id het id van de geselecteerde arrangement
         */
         $this->db->where('id', $id);
