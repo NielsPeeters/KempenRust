@@ -44,8 +44,8 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Boekingen<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <?php
+                                    echo '<li>' . anchor('/boeking/dashboard', 'Boekingen dashboard') . '</li>';
                                     echo '<li>' . anchor('/boeking/index', 'Boekingen beheren') . '</li>';
-                                    //echo '<li>' . anchor('/factuur/index', 'Facturen beheren') . '</li>';
                                     ?>
                                 </ul>
                             </li>
