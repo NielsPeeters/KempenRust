@@ -67,7 +67,6 @@ class Home extends CI_Controller {
     {
         
         $data['title']  = 'Overzicht';
-        $data['nobox'] = true;      // geen extra rand rond hoofdmenu
         $data['author'] = 'Van de Voorde Tim';
         $data['user'] = $this->authex->getUserInfo();
             
@@ -77,8 +76,12 @@ class Home extends CI_Controller {
         $this->load->model('boeking_model');
         $data['boekingen'] = $this->boeking_model->getBoekingenWith();
         
-        
-        $partials = array('navbar' => 'main_navbar', 'content' => 'gebruiker/dashboard/dashboard', 'footer' => 'main_footer');
+        if($data['user']->soort > 1){
+            $partials = array('navbar' => 'main_navbar', 'content' => 'werknemer/dashboard/dashboard', 'footer' => 'main_footer');
+        } else {
+            $partials = array('navbar' => 'main_navbar', 'content' => 'gebruiker/dashboard/dashboard', 'footer' => 'main_footer');
+        }
+
         $this->template->load('main_master', $partials, $data);
     }
 
