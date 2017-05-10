@@ -384,6 +384,7 @@ private function sendmail($id) {
     function getBericht($boeking){
         $this->load->model('kamerBoeking_model');
         $this->load->model('kamer_model');
+        $this->load->model('kamerType_model');
         $bericht = "Beste\n\n";
         $bericht .= "Uw boeking werd goedgekeurd. \n";
         $bericht .= toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . "\n";
