@@ -56,7 +56,7 @@
         function attach_click() {
           $(".verwijder").click(function (e) {
               /**
-              *Bij het klikken op verwijder wordt het verwijder modal getoont
+              *Bij het klikken op verwijder wordt het verwijder modal getoond
               */
             e.preventDefault();
             var id = $(this).data('id');
@@ -76,14 +76,14 @@
 
         $("#pension").change(function() {
             /**
-            *Bij het veranderen van het geselecteerde pension, veranderdt de info in het panel
+            *Bij het veranderen van het geselecteerde pension, verandert de info in het panel
             */
             haalPension($(this).val());
         });
 
         $(".delete").click(function (e) {
             /**
-            *Bij het klikken op verwijder wordt het pension object verwijderdt
+            *Bij het klikken op verwijder wordt het pension object verwijderd
             */
             e.preventDefault();
             var id = $("#pensionId").html();

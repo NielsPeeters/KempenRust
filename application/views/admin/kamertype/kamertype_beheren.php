@@ -103,14 +103,14 @@
 
         $("#kamertype").change(function() {
             /**
-            *Bij het veranderen van de geselecteerde kamertype, veranderdt de info in het panel
+            *Bij het veranderen van de geselecteerde kamertype, verandert de info in het panel
             */
             haalKamertype($(this).val());
         });
 
         $(".delete").click(function (e) {
             /**
-            *Bij het klikken op verwijder wordt het kamertype object verwijderdt
+            *Bij het klikken op verwijder wordt het kamertype object verwijderd
             */
             e.preventDefault();
             var id = $("#kamertypeid").html();

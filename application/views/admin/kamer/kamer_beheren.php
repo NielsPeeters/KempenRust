@@ -31,7 +31,7 @@
         function verwijderKamer(id) 
         {
             /**
-            * Verwijderdt de kamer die behoort tot het meegegeven id
+            * Verwijdert de kamer die behoort tot het meegegeven id
             * \param id het id van de te verwijderen kamer als int
             * een leeg kamer object genereren als de kamer verwijderd kan worden, anders geef een foutmelding
             */
@@ -56,7 +56,7 @@
         function attach_click() {
           $(".verwijder").click(function (e) {
               /**
-              *Bij het klikken op verwijder wordt het verwijder modal getoont
+              *Bij het klikken op verwijder wordt het verwijder modal getoond
               */
             e.preventDefault();
             var id = $(this).data('id');
@@ -76,14 +76,14 @@
 
         $("#kamer").change(function() {
             /**
-            *Bij het veranderen van de geselecteerde kamer, veranderdt de info in het panel
+            *Bij het veranderen van de geselecteerde kamer, verandert de info in het panel
             */
             haalKamer($(this).val());
         });
 
         $(".delete").click(function (e) {
             /**
-            *Bij het klikken op verwijder wordt het kamer object verwijderdt
+            *Bij het klikken op verwijder wordt het kamer object verwijderd
             */
             e.preventDefault();
             var id = $("#kamerId").html();
