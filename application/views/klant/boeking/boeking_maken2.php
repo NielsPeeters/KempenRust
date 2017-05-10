@@ -94,7 +94,7 @@
     }
     
     .breedte {
-        width: 200px;
+        width: 100px;
     }
 </style>
 
