@@ -347,7 +347,7 @@ class Klant extends CI_Controller {
     
     private function sendmail ($to, $boeking, $arrangementId, $pensionId, $kamers, $totaal)
     {
-        // the message
+        //verstuur een mail naar de klant met alle info
         $bericht = "Beste\n\n";
         $bericht .= "U heeft een boeking gemaakt op " . toDDMMYYYY($boeking->tijdstip) . " voor volgende periode: " . toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . ".\n";
         $bericht .= "U heeft gekozen voor een ";

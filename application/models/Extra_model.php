@@ -47,7 +47,7 @@ class Extra_model extends CI_Model {
 
     function delete($id) {
         /**
-        * verwijderd het extra object dat bij het id hoort uit de database
+        * verwijdert het extra object dat bij het id hoort uit de database
         * \param id het id van de geselecteerde extra
         */
         $this->db->where('id', $id);

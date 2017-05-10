@@ -46,7 +46,7 @@ class Factuur_model extends CI_Model {
 
     function delete($id) {
         /**
-        * verwijderd het factuur object dat bij het id hoort uit de database
+        * verwijdert het factuur object dat bij het id hoort uit de database
         * \param id het id van de geselecteerde factuur
         */
         $this->db->where('id', $id);

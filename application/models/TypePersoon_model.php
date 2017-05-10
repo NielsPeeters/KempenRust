@@ -53,7 +53,7 @@ class TypePersoon_model extends CI_Model {
     function delete($id)
     {
         /**
-        * verwijderd het typepersoon object dat bij het id hoort uit de database
+        * verwijdert het typepersoon object dat bij het id hoort uit de database
         * \param id het id van de geselecteerde typepersoon
         */
         $this->db->where('id', $id);
@@ -63,7 +63,7 @@ class TypePersoon_model extends CI_Model {
     function getWithTypePersoon($id)
     {
         /**
-         * verwijderd het typepersoon object dat bij het id hoort uit de database
+         * haalt het typepersoon object op dat bij het id hoort uit de database
          * \param id het id van de geselecteerde typepersoon
          */
         $this->db->where('id', $id);
@@ -74,8 +74,8 @@ class TypePersoon_model extends CI_Model {
        function getWithBoeking($id)
     {
         /**
-         * verwijderd het typepersoon object dat bij het id hoort uit de database
-         * \param id het id van de geselecteerde typepersoon
+         * haalt het typepersoon object op dat bij het id hoort uit de database
+         * \param id het id van de geselecteerde boeking
          */
         $this->db->where('boekingId', $id);
         $query = $this->db->get('typePersoon');

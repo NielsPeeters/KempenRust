@@ -57,7 +57,7 @@ class Persoon_model extends CI_Model {
     function delete($id)
     {
         /**
-        *Verwijderdt een persoon object uit de database.
+        *Verwijdert een persoon object uit de database.
         *\param id het id van het te verwijderen persoon object
         */
         $this->db->where('id', $id);

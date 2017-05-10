@@ -68,7 +68,7 @@ class Persoon extends CI_Controller {
 
     public function verwijderPersoon() {
         /**
-         * Verwijderdt een persoon object als hieraan geen boekingen verbonden zijn
+         * Verwijdert een persoon object als hieraan geen boekingen verbonden zijn
          */
         $id = $this->input->get('id');
         $this->load->model('boeking_model');

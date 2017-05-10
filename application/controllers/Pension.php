@@ -51,7 +51,7 @@ class Pension extends CI_Controller {
 
     public function verwijderPension(){
         /**
-        * Verwijderdt een pension object
+        * Verwijdert een pension object
         */
         $id = $this->input->get('id');        
         $this->load->model('boeking_model');
