@@ -17,7 +17,7 @@
                 $("#resultaat").html(result);
                 // click aan opslaan en verwijderen hangen als die er zijn
                 attach_click();
-                // Geef de verwijder knop van het modalvenster het id van de te verwijderen kamer mee
+                // Geef de verwijder knop van het modalvenster het id van de te verwijderen menu mee
                 resultaat = $(result).find("#id").attr("value");
                 $("#menuId").html(resultaat);
              
@@ -55,7 +55,7 @@
         function attach_click() {
           $(".verwijder").click(function (e) {
               /**
-              *Bij het klikken op verwijder wordt het verwijder modal getoont
+              *Bij het klikken op verwijder wordt het verwijder modal getoond
               */
             e.preventDefault();
             var id = $(this).data('id');

@@ -18,7 +18,7 @@
                 $("#resultaat").html(result);
                 // click aan opslaan en verwijderen hangen als die er zijn
                 attach_click();
-                // Geef de verwijder knop van het modalvenster het id van de te verwijderen kamertype mee
+                // Geef de verwijder knop van het modalvenster het id van de te verwijderen typePersoon mee
                 resultaat = $(result).find("#id").attr("value");
                 $("#typePersoonId").html(resultaat);
              
@@ -32,7 +32,7 @@
         function verwijderTypePersoon(id)
         {
             /**
-            * Verwijderd het typePersoon die behoort tot het meegegeven id
+            * Verwijdert het typePersoon die behoort tot het meegegeven id
             * \param id het id van de te verwijderen typePersoon als int
             * \return een leeg typePersoon object als het typePersoon verwijderd kon worden, anders geef een foutmelding
             */
@@ -58,7 +58,7 @@
         function attach_click() {
           $(".verwijder").click(function (e) {
               /**
-              *Bij het klikken op verwijder wordt het verwijder modal getoont
+              *Bij het klikken op verwijder wordt het verwijder modal getoond
               */
             e.preventDefault();
 
@@ -75,14 +75,14 @@
 
         $("#typePersoon").change(function() {
             /**
-            *Bij het veranderen van de geselecteerde kamertype, veranderdt de info in het panel
+            *Bij het veranderen van de geselecteerde kamertype, verandert de info in het panel
             */
             haalTypePersoon($(this).val());
         });
 
         $(".delete").click(function (e) {
             /**
-            *Bij het klikken op verwijder wordt het kamertype object verwijderdt
+            *Bij het klikken op verwijder wordt het kamertype object verwijderd
             */
             e.preventDefault();
             var id = $("#typePersoonId").html();

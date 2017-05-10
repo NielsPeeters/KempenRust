@@ -17,7 +17,7 @@
                 $("#resultaat").html(result);
                 // click aan verwijderen hangen
                 attach_click();
-                // Geef de verwijder knop van het modalvenster het id van de te verwijderen pension mee
+                // Geef de verwijder knop van het modalvenster het id van de te verwijderen arrangement mee
                 resultaat = $(result).find("#id").attr("value");
                 $("#arrangementId").html(resultaat);
             },
@@ -54,7 +54,7 @@
         function attach_click() {
           $(".verwijder").click(function (e) {
               /**
-              *Bij het klikken op verwijder wordt het verwijder modal getoont
+              *Bij het klikken op verwijder wordt het verwijder modal getoond
               */
             e.preventDefault();
             var id = $(this).data('id');
