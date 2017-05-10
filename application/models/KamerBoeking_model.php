@@ -88,7 +88,6 @@ class kamerBoeking_model extends CI_Model {
 
       function getWithBoekingAndInfo($id){
         /**
-        *
         *\param id
         *\return een array kamerboeking objecten
         */
@@ -96,14 +95,6 @@ class kamerBoeking_model extends CI_Model {
         $kamerBoekingen = $this->db->get('kamerBoeking');
         $this->load->model('kamer_model');
         $this->load->model('kamerType_model');
-        foreach($kamerBoekingen as $kamerBoeking){
-            $kamer = $this->kamer_model->get($kamerBoeking->kamerId);
-            $kamerBoeking->kamer = $kamer->naam;
-            $type = $this->kamerType_model->get($kamer->kamerTypeId);
-            $kamerBoeking->type = $kamer->kamerTypeId;
-        }
-        
-
         return $kamerBoekingen->result();
     }
 
