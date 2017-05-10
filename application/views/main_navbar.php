@@ -8,9 +8,21 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+
             <?php // iedereen
-            echo  anchor('/home/index', image("logo.PNG",'class="navbar-brand-img"'),'class="navbar-brand"');
-            ?>
+            if ($user == null) { // niet aangemeld
+            } else { // wel aangemeld
+                switch ($user->soort) {
+                    case 1: // gewone geregistreerde gebruiker
+                        echo  anchor('/home/index', image("logo.PNG",'class="navbar-brand-img"'),'class="navbar-brand"');
+                        break;
+                    default:
+                        echo  anchor('/boeking/dashboard', image("logo.PNG",'class="navbar-brand-img"'),'class="navbar-brand"');
+                        break;
+
+                }
+            }?>
+
 
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -44,7 +56,7 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Boekingen<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <?php
-                                    echo '<li>' . anchor('/boeking/dashboard', 'Boekingen dashboard') . '</li>';
+                                   //echo '<li>' . anchor('/boeking/dashboard', 'Boekingen dashboard') . '</li>';
                                     echo '<li>' . anchor('/boeking/index', 'Boekingen beheren') . '</li>';
                                     ?>
                                 </ul>
