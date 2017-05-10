@@ -23,7 +23,6 @@ class Boeking extends CI_Controller {
         */
     
         if($id != ''){
-            //43 in ons geval van die kut kamer
            $data['comeFromCalendar'] = "yes";
            $data['fromCalendarId'] = $id;
         }else{
