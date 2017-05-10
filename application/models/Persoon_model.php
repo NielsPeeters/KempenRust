@@ -101,7 +101,10 @@ class Persoon_model extends CI_Model {
      function getWithNaam($naam, $voornaam)
     {
         /**
-        * \TODO
+        *Geeft een persoon object met de naam
+        *\param naam de familienaam van de persoon
+        *\param voornaam de voornaam van de persoon
+        *\return een persoon object
         */
         $this->db->where('naam', $naam);
         $this->db->where('voornaam', $voornaam);

@@ -96,8 +96,13 @@ class Arrangement_model extends CI_Model {
     }
 
     function getByOmschrijving($omschrijving){
+        /**
+        *Geeft een arrangement object terug met de omschrijving
+        *\param omschrijving de omschrijving van het arrangement
+        *\return arrangement object
+        */
         $this->db->where('omschrijving', $omschrijving);
-         $query = $this->db->get('arrangement');
+        $query = $this->db->get('arrangement');
         return $query->row();
     }
 }

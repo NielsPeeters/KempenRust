@@ -372,6 +372,7 @@ private function sendmail($id) {
        
         $this->load->model('boeking_model');
         $this->load->model('kamerBoeking_model');
+        $this->load->model('kamer_model');
         $boeking = $this->boeking_model->getBoekingWithAll($id);
         $this->email->from('r0589993@student.thomasmore.be', 'Hotel Kempenrust');
         $this->email->to($boeking->persoon->email);
@@ -385,16 +386,16 @@ private function sendmail($id) {
        
         $kamerBoekingen = $this->kamerBoeking_model->getWithBoekingAndInfo($boeking->id);
         foreach($kamerBoekingen as $kamerBoeking) {
+                $kamer = $this->kamer_model->get($kamerBoeking->kamerId);
+                $kamer->kamerType = $this->kamerType_model->get($kamer->id);
                 $persoon= " persoon ";
-                $id = $kamerBoeking->kamerId;
-                $kamer = $kamerBoeking->kamer;
-                $type = $kamerBoeking->type;
+                $kamers[$kamer->id] = $kamerBoeking->id . "." . $kamer->naam . "." . $kamer->kamerType->omschrijving;
                 if($kamerBoeking->aantalMensen>1){
                     $persoon = " personen ";
                 }
                  $bericht .=  $id.$kamer  . " " . $type  . ' met ' . $kamerBoeking->aantalMensen . $persoon . "\n";
        }
-        
+        $bericht .= $this->haalKamers($kamers);  
         $bericht .= "Gelieve een voorschot van €20 te storten op rekeningnummer BE230 026 631 772.\n\n";
         $bericht .= "Met vriendelijke groeten\n";
         $bericht .= "Hotel Kempenrust";
@@ -404,7 +405,25 @@ private function sendmail($id) {
         $this->session->set_userdata('boekingId',0);
     }
     
-
+ function haalKamers($kamers)
+    {
+        $teller = 0;
+        $bericht = "";
+        
+        foreach ($kamers as $id => $info) {
+            $delen = explode('.', $info);
+            
+            if($teller == 0) {
+                $bericht .= $delen[1] . ' (' . $delen[2]. ')';
+            } else {
+                $bericht .= ", " . $delen[1] . ' (' . $delen[2]. ')';
+            }
+            
+            $teller++;
+        }
+        
+        return $bericht;
+    }
 
   public function dashboard() {
         /**
