@@ -12,6 +12,9 @@ class Klant extends CI_Controller {
     }
     
     public function help() {
+        /*
+         * Laadt de help-pagina
+         */
         $user = $this->authex->getUserInfo();
         
         if($user->soort==1) {
@@ -135,6 +138,9 @@ class Klant extends CI_Controller {
     
     public function arrangementGekozen() {        
         /*
+         * laadt de pagina waar je de boeking kan vervolledigen wanneer je een begin-, einddatum en pension of arrangement hebt gekozen
+         */
+        /*
          * haal de waarden uit de form op en set de userdata
          */
         $begindatum = $this->input->get('begindatum');
@@ -178,6 +184,9 @@ class Klant extends CI_Controller {
     }
     
     public function nieuweKamer() { 
+        /*
+         * haalt de pagina op waar je een nieuwe kamer aan je boeking kunt toevoegen
+         */
         $this->load->model('typePersoon_model');
         $data['persoontypes'] = $this->typePersoon_model->getAll();
         
@@ -192,6 +201,9 @@ class Klant extends CI_Controller {
     }
     
     public function voegKamerToe(){
+        /*
+         * voegt de kamer toe aan de boeking en laadt de pagina opnieuw
+         */
         $boeking = $this->session->userdata('boeking');
         
         $typeId = $this->input->post('kamertype');
@@ -254,6 +266,9 @@ class Klant extends CI_Controller {
     
     public function annuleerBoeking()
     {
+        /*
+         * annuleer de boeking
+         */
         if($this->session->has_userdata('boeking')){
             $boeking = $this->session->userdata('boeking');
             $this->load->model('boeking_model');
@@ -285,6 +300,9 @@ class Klant extends CI_Controller {
     
     public function toonBevestiging()
     {
+        /*
+         * laadt de pagina waar de bevestiging getoond wordt
+         */
         $pensionId = 0;
         $aantalDagen = 1;
         $user = $this->authex->getUserInfo();
@@ -421,6 +439,11 @@ class Klant extends CI_Controller {
     
     function genereerKamer($typeId)
     {
+        /*
+         * genereert een random kamer van een bepaalt type
+         *\param typeId het id van de type
+         *\return de kamerId van de gegenereerde kamer
+         */
         $kamerId = 0;
         
         $this->load->model('kamer_model');
@@ -439,6 +462,9 @@ class Klant extends CI_Controller {
     
     function haalPensionOfArrangement($arrangementId, $pensionId)
     {
+        /*
+         * haalt het gekozen arrangement of pension aan de hand van de id
+         */
         $pensionOfArrangement = "";
         
         $this->load->model('arrangement_model');
@@ -456,6 +482,9 @@ class Klant extends CI_Controller {
     
     function haalKamers($kamers)
     {
+        /*
+         * haalt de kamers die bij de boeking horen
+         */
         $teller = 0;
         $bericht = "";
         
@@ -476,6 +505,9 @@ class Klant extends CI_Controller {
     
     function haalPersoonTypes($boeking)
     {
+        /*
+         * haalt alle persoontypes en berekent het totaal aantal personen
+         */
         $totaal = 0;
         $personen = array();
         
@@ -511,6 +543,9 @@ class Klant extends CI_Controller {
     
     function berekenPrijs($boeking, $aantalDagen)
     {
+        /*
+         * berekent de prijs
+         */
         $aantalMensen = 0;
         $index = 0;
         $totaal = 0;
@@ -571,6 +606,9 @@ class Klant extends CI_Controller {
 
     
     function berekenAaantalDagen($begindatum, $einddatum){
+        /*
+         * berekent het aantal dagen dat je hebt geboekt indien pension
+         */
         $date1=date_create($begindatum);
         $date2=date_create($einddatum);
         $verschil = date_diff($date1, $date2);
@@ -580,6 +618,9 @@ class Klant extends CI_Controller {
     
     function unsetUserdata()
     {
+        /*
+         * unset de userdata
+         */
         if($this->session->has_userdata('begindatum')){
             $this->session->unset_userdata('begindatum');
         }
@@ -605,7 +646,11 @@ class Klant extends CI_Controller {
         }
     }
     
-       public function haalKlant() {
+    public function haalKlant() {
+        /*
+         * haal de gegevens van de klant
+         * laadt de pagina waar je je gegevens als klant kunt aanpassen
+         */
         $data['title'] = 'Gegevens beheren';
         $data['author'] = 'Van de Voorde Tim';
         
