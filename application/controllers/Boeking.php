@@ -376,7 +376,7 @@ private function sendmail($id) {
         $this->session->set_userdata('boekingId',$boeking->id);
         $this->email->subject('Boeking goedgekeurd');
         
-        $this->email->message(getBericht($boeking));
+        $this->email->message($this->getBericht($boeking));
         $this->email->send();
         $this->session->set_userdata('boekingId',0);
     }
