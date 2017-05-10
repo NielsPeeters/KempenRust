@@ -15,9 +15,9 @@
             success : function(result){
                 $("#panel").show();
                 $("#resultaat").html(result);
-                // click aan verwijderen hangen
+                /// click aan verwijderen hangen
                 attach_click();
-                // Geef de verwijder knop van het modalvenster het id van de te verwijderen kamer mee
+                /// Geef de verwijder knop van het modalvenster het id van de te verwijderen kamer mee
                 resultaat = $(result).find("#id").attr("value");
                 $("#kamerId").html(resultaat);
              

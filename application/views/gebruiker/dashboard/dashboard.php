@@ -1,16 +1,16 @@
 <script>
     $.getScript('../../assets/js/kalender.js', function () {
 
-        //GetAllBoekingsFromPHP
+        ///GetAllBoekingsFromPHP
         var boekingenEvent = <?php echo json_encode($boekingen); ?>;
-        //CreateArrayWithObjectsForEvents
+        ///CreateArrayWithObjectsForEvents
 
 
         var eventArray = new Array();
         for (var i = 0; i < boekingenEvent.length; i++) {
 
 
-            //Check if kamerBoeking is set
+            ///Check if kamerBoeking is set
             if (boekingenEvent[i].kamerBoeking["0"] == null) {
 
             } else {

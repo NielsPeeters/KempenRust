@@ -15,9 +15,9 @@
             success : function(result){
                 $("#panel").show();
                 $("#resultaat").html(result);
-                // click aan opslaan en verwijderen hangen als die er zijn
+                /// click aan opslaan en verwijderen hangen als die er zijn
                 attach_click();
-                // Geef de verwijder knop van het modalvenster het id van de te verwijderen faciliteit mee
+                /// Geef de verwijder knop van het modalvenster het id van de te verwijderen faciliteit mee
                 resultaat = $(result).find("#id").attr("value");
                 $("#faciliteitId").html(resultaat);
              
