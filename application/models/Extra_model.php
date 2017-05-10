@@ -55,6 +55,11 @@ class Extra_model extends CI_Model {
     }
     
     function getAllByFaciliteit($faciliteitId) {
+        /**
+        *Geeft het extra object terug dat bij het id hoort.
+        *\param faciliteitId het id van de geselecteerde faciliteit
+        *\return een extra object
+        */
         $this->db->where('faciliteitId', $faciliteitId);
         $query = $this->db->get('extra');
         return $query->result();

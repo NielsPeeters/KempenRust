@@ -165,6 +165,9 @@ class Kamer_model extends CI_Model {
     }
     
     function checkData($beginDatumGevraagd, $beginDatumBoeking, $eindDatumGevraagd, $eindDatumBoeking) {
+        /**
+         * kijkt na of dat de data beschikbaar zijn en niet al bij een andere boeking voorkomen
+         */
         $check = false;
         
         if ($beginDatumBoeking > $beginDatumGevraagd) {
@@ -181,6 +184,10 @@ class Kamer_model extends CI_Model {
     }
     
     function getAllTypesByKamers(){
+        /**
+        * haalt de types uit de database per kamers
+        * \return een array met de kamertypes
+        */
         $types = array();
         
         $this->load->model('kamer_model');

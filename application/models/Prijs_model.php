@@ -55,6 +55,9 @@ class Prijs_model extends CI_Model {
     }
 
     function getPrijs($arrangementId, $kamerTypeId, $aantal){
+        /**
+        * haalt het prijs object op dat hoort bij de bijhorende ids uit de database
+        */
         $meerdere = 0;
          
         /*
@@ -183,7 +186,7 @@ class Prijs_model extends CI_Model {
 
     function deleteByKamerTypeId($id) {
         /**
-         * verwijderd het prijs object dat bij het id hoort uit de database
+         * verwijdert het prijs object dat bij het id hoort uit de database
          * \param id het id van de geselecteerde prijs
          */
         $this->db->where('kamerTypeId', $id);
