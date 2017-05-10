@@ -52,7 +52,7 @@ class Boeking extends CI_Controller {
 
     public function berekenPrijs(){
           /**
-        * Berekend de prijs van een boeking zonder kortingen
+        * Berekent de prijs van een boeking zonder kortingen
         */
         $totaal=0;
         $prijs=0;
@@ -152,7 +152,7 @@ class Boeking extends CI_Controller {
 
     public function verwijderBoeking(){
         /**
-        * Verwijderdt een boeking object
+        * Verwijdert een boeking object
         */
         $id = $this->input->get('id');
         $this->load->model('boeking_model');
@@ -164,7 +164,7 @@ class Boeking extends CI_Controller {
 
     public function verwijderKamer(){
         /**
-        * Verwijderdt een kamerboeking object
+        * Verwijdert een kamerboeking object
         */
         $id = $this->input->get('id');
         $this->load->model('kamerBoeking_model');
@@ -206,7 +206,7 @@ class Boeking extends CI_Controller {
 
     public function getEmptyBoeking(){
         /*
-        *Genereerd een leeg boeking object
+        *Genereert een leeg boeking object
         *\return een leeg boeking object
         */
         $boeking = new stdClass();
@@ -348,7 +348,7 @@ class Boeking extends CI_Controller {
 
      public function setGoedkeuring(){
         /**
-        * veranderd de waarde van goedgekeurd van de boeking
+        * verandert de waarde van goedgekeurd van de boeking
         */
         
         $id = $this->input->get('id');

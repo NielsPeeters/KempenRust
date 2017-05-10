@@ -54,7 +54,7 @@ class Kamer extends CI_Controller {
 
     public function verwijderKamer(){
         /**
-        * Verwijderdt een kamer object als hieraan geen boekingen verbonden zijn
+        * Verwijdert een kamer object als hieraan geen boekingen verbonden zijn
         */
         $id = $this->input->get('id');
         $this->load->model('kamerBoeking_model');

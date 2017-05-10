@@ -71,7 +71,7 @@ class Factuur extends CI_Controller {
 
     public function verwijderboeking(){
         /**
-         * Verwijderdt een factuur object als hieraan geen boekingen verbonden zijn
+         * Verwijdert een factuur object als hieraan geen boekingen verbonden zijn
         */
         $user = $this->authex->getUserInfo();
         if($user->soort>2) {

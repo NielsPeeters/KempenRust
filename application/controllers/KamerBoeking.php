@@ -22,7 +22,7 @@ class KamerBoeking extends CI_Controller {
 
   public function verwijder($id){
         /**
-        * Verwijderdt een boeking object als hieraan geen boekingen verbonden zijn
+        * Verwijdert een boeking object als hieraan geen boekingen verbonden zijn
         *\param id het id van de te verwijderen kamer
         */
        

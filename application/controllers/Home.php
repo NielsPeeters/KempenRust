@@ -14,7 +14,7 @@ class Home extends CI_Controller {
 //
 //	public function index()
 //	{
-//	        //Laad de thuis pagina
+//	        //Laadt de thuis pagina
 //            $data['title']  = 'Dit is de $data[\'title\'] = "xxx"';
 //            $data['nobox'] = true;      // geen extra rand rond hoofdmenu
 //            $data['author'] = 'Peeters Niels';
@@ -42,7 +42,7 @@ class Home extends CI_Controller {
 
     function getAjaxLogin()
     {
-        //Beantwoord de het ajax aanmeld venster van de navigatiebalk.
+        //Beantwoordt de het ajax aanmeld venster van de navigatiebalk.
         $email = $this->input->post('email');
         $wachtwoord = sha1($this->input->post('wachtwoord'));
 
@@ -57,7 +57,7 @@ class Home extends CI_Controller {
 
     function afmelden()
     {
-        //Meld een reeds aangemelde gebruiker uit en stuurt de gebruiker terug naar de begin pagina.
+        //Meldt een reeds aangemelde gebruiker uit en stuurt de gebruiker terug naar de begin pagina.
         $this->authex->logout();
         redirect("home/index");
 

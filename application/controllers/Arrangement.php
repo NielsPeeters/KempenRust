@@ -16,8 +16,8 @@ class Arrangement extends CI_Controller {
 
     public function index() {
         /**
-        * Laadt de pagina waarop je de pensions kan beheren
-        * geeft een array van pension objecten mee
+        * Laadt de pagina waarop je de arrangementen kan beheren
+        * geeft een array van arrangement objecten mee
         */
         $data['title'] = 'Arrangementen beheren';
         $data['author'] = 'Peeters Ellen';
