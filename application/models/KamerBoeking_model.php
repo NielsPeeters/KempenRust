@@ -104,7 +104,7 @@ class kamerBoeking_model extends CI_Model {
         }
         
 
-        return $kamerboekingen;
+        return $kamerboekingen->result();
     }
 
 
