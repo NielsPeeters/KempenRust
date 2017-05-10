@@ -29,7 +29,7 @@
         function verwijderFactuur(id)
         {
             /**
-            * Verwijderd de factuur die behoort tot het meegegeven id
+            * Verwijdert de factuur die behoort tot het meegegeven id
             * \param id het id van de te verwijderen factuur als int
             * een leeg factuur object genereren als de factuur verwijderd kan worden, anders geef een foutmelding
             */
@@ -56,7 +56,7 @@
         function attach_click() {
           $(".verwijder").click(function (e) {
               /**
-              *Bij het klikken op verwijder wordt het verwijder modal getoont
+              *Bij het klikken op verwijder wordt het verwijder modal getoond
               */
             e.preventDefault();
             var id = $(this).data('id');
@@ -73,14 +73,14 @@
 
         $("#factuur").change(function() {
             /**
-            *Bij het veranderen van de geselecteerde factuur, veranderdt de info in het panel
+            *Bij het veranderen van de geselecteerde factuur, verandert de info in het panel
             */
             haalFactuur($(this).val());
         });
 
         $(".delete").click(function (e) {
             /**
-            *Bij het klikken op verwijder wordt het factuur object verwijderdt
+            *Bij het klikken op verwijder wordt het factuur object verwijderd
             */
             e.preventDefault();
             var id = $("#factuurId").html();
