@@ -386,7 +386,7 @@ private function sendmail($id) {
         $kamerBoekingen = $this->kamerBoeking_model->getWithBoekingAndInfo($boeking->id);
         foreach($kamerBoekingen as $kamerBoeking) {
                 $persoon= " persoon ";
-                $kamer = "test"; //$kamerBoeking->kamer;
+                $kamer = $kamerBoeking->kamerId;
                 $type = "test"; //$kamerBoeking->type;
                 if($kamerBoeking->aantalMensen>1){
                     $persoon = " personen ";
