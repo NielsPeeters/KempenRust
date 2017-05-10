@@ -21,7 +21,7 @@
             } else {
                 var newEvent = {
                     //Only first object of Kamerboeking (only one kamerboeking referenced in object) if more objects 'kamerBoeking' returned, funciton needs to be re-written with foreach
-                    title: boekingenEvent[i].kamerBoeking["0"].Kamer.naam,
+                    title: boekingenEvent[i].kamerBoeking["0"].Kamer.naam + " (" + boekingenEvent[i].persoon.voornaam + " " + boekingenEvent[i].persoon.naam + ")",
                     start: boekingenEvent[i]["startDatum"],
                     end: boekingenEvent[i]["eindDatum"],
                     url: baseurl + "index.php/boeking/index/" + boekingenEvent[i].kamerBoeking["0"].Boeking.id
