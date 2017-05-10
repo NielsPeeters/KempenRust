@@ -47,7 +47,7 @@ class Prijs_model extends CI_Model {
 
     function delete($id) {
         /**
-        * verwijderd het prijs object dat bij het id hoort uit de database
+        * verwijdert het prijs object dat bij het id hoort uit de database
         * \param id het id van de geselecteerde prijs
         */
         $this->db->where('id', $id);
@@ -154,7 +154,7 @@ class Prijs_model extends CI_Model {
 
     function deleteByArrangementId($id) {
         /**
-         * verwijderd het prijs object dat bij het id hoort uit de database
+         * verwijdert het prijs object dat bij het id hoort uit de database
          * \param id het id van de geselecteerde prijs
          */
         $this->db->where('arrangementId', $id);

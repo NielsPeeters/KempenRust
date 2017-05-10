@@ -16,7 +16,7 @@ class Boeking extends CI_Controller {
         $this->load->library('email');
     }
 
-    public function index() {
+    public function index($id = '') {
         /**
         * Laadt de pagina waarop je boekingen kan beheren
         * geeft een array van boeking objecten mee

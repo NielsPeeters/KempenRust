@@ -51,7 +51,7 @@ class Kamer_model extends CI_Model {
 
     function delete($id) {
         /**
-        * verwijderd het kamer object dat bij het id hoort uit de database
+        * verwijdert het kamer object dat bij het id hoort uit de database
         * \param id het id van de geselecteerde kamer
         */
         $this->db->where('id', $id);
