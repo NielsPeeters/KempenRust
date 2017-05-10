@@ -65,7 +65,7 @@ class Kamertype extends CI_Controller {
     
     public function verwijderKamertype() {
         /**
-         * verwijderdt een kamertype object als hieraan geen kamers verbonden zijn
+         * verwijdert een kamertype object als hieraan geen kamers verbonden zijn
          */
         $id = $this->input->get('id');
         $this->load->model('kamer_model');
