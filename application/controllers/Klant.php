@@ -365,7 +365,13 @@ class Klant extends CI_Controller {
     
     private function sendmail ($to, $boeking, $arrangementId, $pensionId, $kamers, $totaal)
     {
-        //verstuur een mail naar de klant met alle info
+        /**verstuur een mail naar de klant met alle info
+        *\param to naar wie de e-mail gestuurd wordt
+        *\param arrangementId het id van het gekozen arrangement
+        *\param pensionId het id van het gekozen pesnion
+        *\param kamers de userdata van de gekozen kamers
+        *\param totaal de totale prijs
+        */
         $bericht = "Beste\n\n";
         $bericht .= "U heeft een boeking gemaakt op " . toDDMMYYYY($boeking->tijdstip) . " voor volgende periode: " . toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . ".\n";
         $bericht .= "U heeft gekozen voor een ";
@@ -388,7 +394,10 @@ class Klant extends CI_Controller {
     {
         /**
         * Creërt een leeg boeking object
-        * \return boeking een leeg boeking object
+        *\param begindatum de startdatum
+        *\param einddatum de einddatum
+        *\param arrangementId het id van het gekozen arrangement of pension
+        *\return boeking een leeg boeking object
         */
         $boeking = new stdClass();
         $user = $this->authex->getUserInfo();
@@ -411,7 +420,10 @@ class Klant extends CI_Controller {
     {
         /**
         * Creërt een leeg boekingtypepersoon object
-        * \return boekingtypepersoon een leeg boekingtypepersoon object
+        *\param persoonId het id van de typePersoon
+        *\param boeking de boeking
+        *\param aantal het aantal personen
+        *\return boekingtypepersoon een leeg boekingtypepersoon object
         */
         $boekingTypePersoon = new stdClass();
         $boekingTypePersoon->typePersoonId = $persoonId;
@@ -423,6 +435,10 @@ class Klant extends CI_Controller {
     {
         /**
         * Creërt een leeg kamerBoeking object en vult het op met info
+        *\param boeking de boeking
+        *\param kamer de gekozen kamer
+        *\param totaal het totaal aantal personen in deze kamer
+        *\param vast bepaalt of dat de kamer vast staat -> voorkeur
         * \return kamerBoeking het ingevulde kamerBoeking object
         */
         $kamerBoeking = new stdClass();
@@ -464,6 +480,8 @@ class Klant extends CI_Controller {
     {
         /*
          * haalt het gekozen arrangement of pension aan de hand van de id
+         *\param arrangementId het id van het gekozen arrangement
+         *\param pensionId het id van de gekozen pension
          */
         $pensionOfArrangement = "";
         
@@ -484,6 +502,7 @@ class Klant extends CI_Controller {
     {
         /*
          * haalt de kamers die bij de boeking horen
+         *\param kamers de userdata van de gekozen kamers
          */
         $teller = 0;
         $bericht = "";
@@ -507,6 +526,7 @@ class Klant extends CI_Controller {
     {
         /*
          * haalt alle persoontypes en berekent het totaal aantal personen
+         *\param boeking de boeking
          */
         $totaal = 0;
         $personen = array();
@@ -545,6 +565,8 @@ class Klant extends CI_Controller {
     {
         /*
          * berekent de prijs
+         *\param boeking de boeking
+         *\param aantalDagen het aantal dagen dat je geboekt hebt
          */
         $aantalMensen = 0;
         $index = 0;
@@ -608,6 +630,8 @@ class Klant extends CI_Controller {
     function berekenAaantalDagen($begindatum, $einddatum){
         /*
          * berekent het aantal dagen dat je hebt geboekt indien pension
+         *\param begindatum de startdatum
+         *\param einddatum de einddatum
          */
         $date1=date_create($begindatum);
         $date2=date_create($einddatum);
