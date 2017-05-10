@@ -17,7 +17,7 @@
                 $("#resultaat").html(result);
                 // click aan opslaan en verwijderen hangen als die er zijn
                 attach_click();
-                // Geef de verwijder knop van het modalvenster het id van de te verwijderen kamer mee
+                // Geef de verwijder knop van het modalvenster het id van de te verwijderen boeking mee
                 resultaat = $(result).find("#id").attr("value");
                 $("#boekingId").html(resultaat);
              
@@ -55,7 +55,7 @@
     function attach_click() {
           $(".verwijder").click(function (e) {
               /**
-              *Bij het klikken op verwijder wordt het verwijder modal getoont
+              *Bij het klikken op verwijder wordt het verwijder modal getoond
               */
             e.preventDefault();
             var id = $(this).data('id');
@@ -158,7 +158,7 @@ foreach($boekingen as $boeking){
               </div>
               <div class="modal-body">
                   <p>
-                      Je kunt deze boeking niet verwijderen!
+                      Je kunt deze boeking niet verwijderen! Deze boeking is al goedgekeurd. Bel naar het hotel om de boeking alsnog te annuleren.
                   </p>
                 
                   </p>
