@@ -372,6 +372,7 @@ private function sendmail($id) {
        
         $this->load->model('boeking_model');
         $this->load->model('kamerBoeking_model');
+        $this->load->model('kamer_model');
         $boeking = $this->boeking_model->getBoekingWithAll($id);
         $this->email->from('r0589993@student.thomasmore.be', 'Hotel Kempenrust');
         $this->email->to($boeking->persoon->email);
@@ -383,9 +384,12 @@ private function sendmail($id) {
         $bericht .= "U koos voor de volgende formule: " . $boeking->arrangement . ",\n"; 
         $bericht .= "en onderstaande kamers:";
        
-        $kamers = $this->kamerBoeking_model->getWithBoekingAndInfo($boeking->id);
+        $kamerBoekingen = $this->kamerBoeking_model->getWithBoekingAndInfo($boeking->id);
         foreach($kamerBoekingen as $kamerBoeking) {
+                $kamer = $this->kamer_model->get($kamerBoeking->kamerId);
+                $kamer->kamerType = $this->kamerType_model->get($kamer->id);
                 $persoon= " persoon ";
+                $kamers[$kamer->id] = $kamerBoeking->id . "." . $kamer->naam . "." . $kamer->kamerType->omschrijving;
                 if($kamerBoeking->aantalMensen>1){
                     $persoon = " personen ";
                 }
