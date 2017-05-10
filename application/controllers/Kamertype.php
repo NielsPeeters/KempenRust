@@ -85,8 +85,8 @@ class Kamertype extends CI_Controller {
          * haalt de waarden van het kamertype object op en update of insert deze in de database
          */
         $object = new stdClass();
-        $object->id = $this->input->get('id');
-        $object->omschrijving = $this->input->get('omschrijving');
+        $object->id = $this->input->post('id');
+        $object->omschrijving = $this->input->post('omschrijving');
 
         $this->load->model('kamerType_model');
         if ($object->id == 0) {
