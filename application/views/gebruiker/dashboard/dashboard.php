@@ -55,8 +55,8 @@
 
 <hr>
 <h1>Kalender</h1>
-<div class="row">  
-    <div class="col-sm-12">  
+<div style="overflow-x:auto;" class="row">  
+    <div style="overflow-x:auto;" class="col-sm-12">  
         <div id="calendar"></div>
     </div>
 </div>
