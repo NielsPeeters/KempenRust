@@ -78,7 +78,7 @@ class Klant extends CI_Controller {
         }      
     }
     
-        public function haalBoeking() {
+    public function haalBoeking(){
         /**
         * Haalt een boeking object op
         */

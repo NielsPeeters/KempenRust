@@ -23,7 +23,7 @@
              
             },
             error: function (xhr, status, error) {
-                alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+                alert("-- ERROR IN AJAX --\n\n" + status + "\n" + error);
               }
           });
     }
@@ -37,7 +37,7 @@
             */
             $.ajax({type: "GET",
                 url: site_url + "/klant/verwijderBoeking",
-                data: {id: id},
+                data: {id : id},
                 dataType: "json",
                 success: function (result) {
                     if(result==0){
@@ -79,10 +79,10 @@
 
         $(".delete").click(function (e) {
             /**
-            *Bij het klikken op verwijder wordt het menu object verwijderd
+            *Bij het klikken op verwijder wordt het boeking object verwijderd
             */
             e.preventDefault();
-            var id = $("#id").val();
+            var id = $(".verwijder").data('id');
             verwijderBoeking(id);
         });
     });
@@ -96,7 +96,7 @@
 <?php 
 $options = array();
 foreach($boekingen as $boeking){
-	$options[$boeking->id] = toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . ": ";
+	$options[$boeking->id] = toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . ": " . $boeking->arrangement->naam;
 }
 ?>
 
