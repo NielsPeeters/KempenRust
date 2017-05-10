@@ -391,7 +391,7 @@ private function sendmail($id) {
                 if($kamerBoeking->aantalMensen>1){
                     $persoon = " personen ";
                 }
-                $bericht .= "$naam " . " $type " . ' met ' . $kamerBoeking->aantalMensen . $persoon . "\n";
+                $bericht .= $naam  . " " . $type  . ' met ' . $kamerBoeking->aantalMensen . $persoon . "\n";
             }
         
         $bericht .= "Gelieve een voorschot van €20 te storten op rekeningnummer BE230 026 631 772.\n\n";
