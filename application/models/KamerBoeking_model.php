@@ -100,7 +100,7 @@ class kamerBoeking_model extends CI_Model {
             $kamer = $this->kamer_model->get($kamerboeking->kamerId);
             $kamerboeking->kamer = $kamer->naam;
             $type = $this->kamerType_model->get($kamer->kamerTypeId);
-            $kamerboeking->type = $type;
+            $kamerboeking->type = $kamer->kamerTypeId;
             
         }
         
