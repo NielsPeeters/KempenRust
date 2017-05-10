@@ -15,7 +15,7 @@
             $('#algemeen').show();
             $('#kamers').hide();
         }
-    })
+    });
 
     function schrijfBoeking()
     {
