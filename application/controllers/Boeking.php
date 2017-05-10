@@ -425,27 +425,6 @@ private function sendmail($id) {
         return $bericht;
     }
 
-  public function dashboard() {
-        /**
-         * Laadt de pagina waarop je kamertypes kan beheren
-         * geeft een array van kamertype objecten mee
-         */
-        $data['title'] = 'Dashboard';
-        $data['author'] = 'Van de Voorde Tim';
-        $data['user'] = $this->authex->getUserInfo();
-        $user = $this->authex->getUserInfo();
-        if($user->soort>=2) {
-        $this->load->model('boeking_model');
-        $data['boekingen'] = $this->boeking_model->getBoekingenWith();
-        } else
-        {
-             redirect("/home/index");
-        }
-        
-        $partials = array('navbar' => 'main_navbar', 'content' => 'werknemer/dashboard/dashboard', 'footer' => 'main_footer');
-        $this->template->load('main_master', $partials, $data);
-    }
-
 
 
 
