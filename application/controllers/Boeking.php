@@ -3,9 +3,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Boeking extends CI_Controller {
-    /**
-    * 
-    */
+     /**
+      * Boeking controller
+        * Verzorgt communicatie tussen model en view
+        */
 
     public function __construct() {
          /**
@@ -385,7 +386,7 @@ class Boeking extends CI_Controller {
     public function getBericht($boeking){
         /**
         * haalt het bericht op dat hoort bij de boeking
-        *\param $boeking, de boeking waarbij het bericht hoort
+        *\param $boeking de boeking waarbij het bericht hoort
         *\return bericht
         */
         $this->load->model('kamerBoeking_model');
@@ -414,7 +415,7 @@ class Boeking extends CI_Controller {
  public function haalKamers($kamers)
     /**
     * haalt alle kamers op die bij de boeking horen
-    *\param $kamers, de kamers van de boeking
+    *\param $kamers de kamers van de boeking
     *\return bericht
     */
     {

@@ -3,6 +3,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Persoon extends CI_Controller {
+     /**
+      * Persoon controller
+        * Verzorgt communicatie tussen model en view
+        */
 
     public function __construct() {
         /**
