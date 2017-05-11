@@ -42,15 +42,14 @@
     });
 </script>
 <h1>Arrangementen</h1>
-<div class="row">   
-    
+<div class="row">
     <?php foreach ($arrangementen as $arrangement) { ?>  
-    
-        <h4><?php echo $arrangement->naam ?></h4>
-        <p><?php echo $arrangement->omschrijving ?></p>
-    <?php } ?>
+        <div class="col-sm-3">
+            <h4><?php echo $arrangement->naam ?></h4>
+            <p><?php echo $arrangement->omschrijving ?></p>
+        </div>
+    <?php } ?>  
 </div>
-
 <hr>
 <h1>Kalender</h1>
 <div style="overflow-x:auto;" class="row">  
