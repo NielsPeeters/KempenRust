@@ -92,10 +92,10 @@ class Arrangement extends CI_Controller {
 
         $object = new stdClass();
         $object->id = $this->input->post('id');
-        $object->naam = $this->input->post('naam');
-        $object->beginDag = $this->input->post('begindag');
-        $object->eindDag = $this->input->post('einddag');
-        $object->omschrijving = $this->input->post('omschrijving');
+        $object->naam = ucfirst(strtolower($this->input->post('naam')));
+        $object->beginDag = ucfirst(strtolower($this->input->post('begindag')));
+        $object->eindDag = ucfirst(strtolower($this->input->post('einddag')));
+        $object->omschrijving = ucfirst($this->input->post('omschrijving'));
         $object->isArrangement = 1;
         
         $this->load->model('arrangement_model');
