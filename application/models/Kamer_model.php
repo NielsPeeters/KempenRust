@@ -75,7 +75,7 @@ class Kamer_model extends CI_Model {
      function getAllByType($id) {
         /**
         * haalt de kamer uit de database die bij het gegeven id
-        * \param $kamertypeid het id van de geselecteerde kamer
+        * \param $id het id van de geselecteerde kamer
         * \return of kamertype bij kamer hoort
         */
         $this->db->where('kamerTypeId', $id);
