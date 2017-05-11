@@ -82,7 +82,7 @@ class Klant extends CI_Controller {
     }
     
     public function haalJSONArrangement(){
-        /*
+        /**
          * haalt de info van het gekozen arrangement
          */
         $arrangementId = $this->input->get("arrangementId");
@@ -147,9 +147,10 @@ class Klant extends CI_Controller {
     }
     
     public function arrangementGekozen() {        
-        /*
+        /**
          * laadt de pagina waar je de boeking kan vervolledigen wanneer je een begin-, einddatum en pension of arrangement hebt gekozen
          */
+        
         /*
          * haal de waarden uit de form op en set de userdata
          */
