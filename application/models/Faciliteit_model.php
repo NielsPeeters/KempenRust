@@ -22,6 +22,7 @@ class Faciliteit_model extends CI_Model {
         *Geeft een array terug met alle faciliteit objecten.
         *\return een array met faciliteit objecten
         */
+        $this->db->order_by('naam', 'asc');
         $query = $this->db->get('faciliteit');  /**< genereert SELECT * FROM persoon */
         return $query->result();             /**< een array met faciliteit-objecten */
     }
