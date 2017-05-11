@@ -82,6 +82,9 @@ class Klant extends CI_Controller {
     }
     
     public function haalJSONArrangement(){
+        /*
+         * haalt de info van het gekozen arrangement
+         */
         $arrangementId = $this->input->get("arrangementId");
         $this->load->model('arrangement_model');
         $arrangement = $this->arrangement_model->get($arrangementId);
