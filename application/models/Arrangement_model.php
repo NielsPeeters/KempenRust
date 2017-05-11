@@ -22,6 +22,7 @@ class Arrangement_model extends CI_Model {
         *Geeft een array terug met alle arrangement objecten.
         *\return een array met arrangement objecten
         */
+        $this->db->order_by('naam', 'asc');
         $query = $this->db->get('arrangement');  // genereert SELECT * FROM persoon
         return $query->result();             // een array met arrangement-objecten
     }
@@ -31,6 +32,7 @@ class Arrangement_model extends CI_Model {
         *Geeft een array terug met alle arrangement objecten die een arrangement zijn.
         *\return een array met arrangement objecten
         */
+        $this->db->order_by('naam', 'asc');
         $this->db->where('isArrangement',$isArrangement);
         $query = $this->db->get('arrangement');  // genereert SELECT * FROM persoon
         return $query->result();             // een array met arrangement-objecten
@@ -70,6 +72,7 @@ class Arrangement_model extends CI_Model {
         *\param id het id van het geselecteerde pension
         *\return een array arrangement objecten
         */
+        $this->db->order_by('naam', 'asc');
         $this->db->where('pensionId', $id);
         $query = $this->db->get('arrangement');
         return $query->row();
@@ -80,6 +83,7 @@ class Arrangement_model extends CI_Model {
         * haalt alle objecten op die een arrangement zijn (isArrangement = 1)
         *\return een array met arrangement objecten
         */
+        $this->db->order_by('naam', 'asc');
         $this->db->where('isArrangement', '1');
         $query = $this->db->get('arrangement');
         return $query->result();
@@ -90,6 +94,7 @@ class Arrangement_model extends CI_Model {
         * haalt alle objecten op die een pension zijn (isArrangement = 0)
         *\return een array met arrangement objecten
         */
+        $this->db->order_by('naam', 'asc');
         $this->db->where('isArrangement', '0');
         $query = $this->db->get('arrangement');
         return $query->result();
