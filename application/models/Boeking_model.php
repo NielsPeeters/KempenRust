@@ -159,7 +159,7 @@ class Boeking_model extends CI_Model {
     function getAllByPersoon($id) {
         /**
         * haalt de boeking uit de database die bij het gegeven id hoort
-        * \param $persoonid het id van de geselecteerde boeking
+        * \param $id het id van de geselecteerde boeking
         * \return of persoon bij boeking hoort
         */
         $this->db->where('persoonId', $id);
@@ -170,7 +170,7 @@ class Boeking_model extends CI_Model {
      function getAllByPersoonOrderByStartDatum($id) {
         /**
         * haalt de boeking uit de database die bij het gegeven id hoort
-        * \param $persoonid het id van de geselecteerde boeking
+        * \param $id het id van de geselecteerde boeking
         * \return of persoon bij boeking hoort
         */
         $this->db->where('persoonId', $id);

@@ -71,6 +71,11 @@ class Authex {
     }
 
     function register($email, $persoon) {
+        /**
+         * registreren van een persoon
+         * \peram $email e-mailaddres gebruikt voor registreren
+         * \param $persoon persoon met alle bijgevoegde informatie
+         */
         // nieuwe gebruiker registreren als email nog niet bestaat
         $CI = & get_instance();
         if ($CI->persoon_model->emailVrij($email)) {
