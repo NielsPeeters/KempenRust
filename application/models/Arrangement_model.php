@@ -9,7 +9,7 @@ class Arrangement_model extends CI_Model {
     function get($id) {
         /**
         *Geeft het arrangement object terug dat bij het id hoort.
-        *\param id het id van het te halen arrangement object
+        *\param $id het id van het te halen arrangement object
         *\return een arrangement object
         */
         $this->db->where('id', $id);
@@ -60,7 +60,7 @@ class Arrangement_model extends CI_Model {
     function delete($id) {
         /**
         * verwijdert het arrangement object dat bij het id hoort uit de database
-        * \param id het id van de geselecteerde arrangement
+        * \param $id het id van de geselecteerde arrangement
         */
         $this->db->where('id', $id);
         $this->db->delete('arrangement');
@@ -69,7 +69,7 @@ class Arrangement_model extends CI_Model {
     function getAllByPension($id) {
         /**
         * gaat na of er een arrangement is met het geselecteerde pension
-        *\param id het id van het geselecteerde pension
+        *\param $id het id van het geselecteerde pension
         *\return een array arrangement objecten
         */
         $this->db->order_by('naam', 'asc');

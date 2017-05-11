@@ -14,7 +14,7 @@ class Persoon_model extends CI_Model {
     {
         /**
         *Geeft het persoon object terug dat bij het id hoort.
-        *\param id het id van het te halen persoon object
+        *\param $id het id van het te halen persoon object
         *\return een persoon object
         */
         $this->db->where('id', $id);
@@ -58,7 +58,7 @@ class Persoon_model extends CI_Model {
     {
         /**
         *Verwijdert een persoon object uit de database.
-        *\param id het id van het te verwijderen persoon object
+        *\param $id het id van het te verwijderen persoon object
         */
         $this->db->where('id', $id);
         $this->db->delete('persoon');
