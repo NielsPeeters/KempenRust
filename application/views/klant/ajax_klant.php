@@ -79,8 +79,8 @@ echo form_open('klant/schrijfJSONObject', $attributes);
     <?php echo form_input(array('type' => 'hidden', 'name' => 'id', 'id' => 'id', 'value' => $user->id, 'class' => 'form-control', 'placeholder' => 'id')) ?>
 
     <div class="help-block with-errors"></div>
-
-    <button type="button" href="javascript:history.go(-1);">Annuleren</button>
+    
     <button type="submit" data-id="' . $type->id . '" class="btn btn-primary opslaan">Opslaan</button>
+    <a id="terug" class="btn btn-secondary" href="javascript:history.go(-1);">Terug</a>
 </div>
 </form>
