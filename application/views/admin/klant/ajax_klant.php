@@ -62,7 +62,7 @@ echo form_open('persoon/schrijfJSONObject', $attributes);
 
     <div class="form-group">
         <label for="email" class="control-label">E-mail</label>
-        <?php echo form_input(array('data-error' => 'This e-mail address is invalid', 'type' => 'email', 'name' => 'email', 'id' => 'email', 'value' => $klant->email, 'class' => 'form-control', 'placeholder' => 'Email', 'required' => 'required', 'data-error' => 'Dit is geen correct email adres.')); ?>
+        <?php echo form_input(array('data-error' => 'This e-mail address is invalid', 'type' => 'email', 'name' => 'email', 'id' => 'email', 'value' => $klant->email, 'class' => 'form-control', 'placeholder' => 'E-mail', 'required' => 'required', 'data-error' => 'Dit is geen correct email adres.')); ?>
         <div class="help-block with-errors"></div>
 
     </div>
