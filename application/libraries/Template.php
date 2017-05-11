@@ -46,6 +46,7 @@ class Template {
          * \param $template template
          * \param $view view
          * \param $vars variabelen
+         * \param $return return
          * \return return
          */
         $this->CI = & get_instance();
