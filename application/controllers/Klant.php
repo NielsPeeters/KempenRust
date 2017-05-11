@@ -196,7 +196,7 @@ class Klant extends CI_Controller {
     }
 
     public function nieuweKamer() {
-        /*
+        /**
          * haalt de pagina op waar je een nieuwe kamer aan je boeking kunt toevoegen
          */
         $this->load->model('typePersoon_model');
@@ -459,7 +459,7 @@ class Klant extends CI_Controller {
     }
 
     function genereerKamer($typeId) {
-        /*
+        /**
          * genereert een random kamer van een bepaalt type
          * \param $typeId het id van de type
          * \return de kamerId van de gegenereerde kamer
@@ -481,7 +481,7 @@ class Klant extends CI_Controller {
     }
 
     function haalPensionOfArrangement($arrangementId, $pensionId) {
-        /*
+        /**
          * haalt het gekozen arrangement of pension aan de hand van de id
          * \param $arrangementId het id van het gekozen arrangement
          * \param $pensionId het id van de gekozen pension
@@ -502,7 +502,7 @@ class Klant extends CI_Controller {
     }
 
     function haalKamers($kamers) {
-        /*
+        /**
          * haalt de kamers die bij de boeking horen
          * \param $kamers de userdata van de gekozen kamers
          */
@@ -525,7 +525,7 @@ class Klant extends CI_Controller {
     }
 
     function haalPersoonTypes($boeking) {
-        /*
+        /**
          * haalt alle persoontypes en berekent het totaal aantal personen
          * \param $boeking de boeking
          */
