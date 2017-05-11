@@ -93,7 +93,6 @@ class Factuur extends CI_Controller {
     function newFactuur() {
         /**
          * Creërt een leeg factuur object
-         * \return factuur een leeg factuur object
          */
 
         $data['factuur']=$this->getEmptyFactuur();
