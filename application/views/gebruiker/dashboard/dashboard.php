@@ -1,4 +1,5 @@
 <script>
+     if(window.onload) {
     $.getScript('../../assets/js/kalender.js', function () {
 
         ///GetAllBoekingsFromPHP
@@ -40,6 +41,7 @@
             events: eventArray
         });
     });
+    };
 
 
 </script>

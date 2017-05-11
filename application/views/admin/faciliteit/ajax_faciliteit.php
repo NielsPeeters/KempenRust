@@ -19,7 +19,11 @@ echo form_open('faciliteit/schrijfFaciliteit', $attributes);
 
     <div class="form-group">
         <label for="prijs" class="control-label">Prijs</label>
+<<<<<<< HEAD
         <?php echo form_input(array('type' => 'number', 'step' => '0.01', 'name' => 'prijs', 'id' => 'prijs', 'value' => $faciliteit->prijs, 'class' => 'form-control', 'placeholder' => 'Max. aantal personen', 'required' => 'required'));?>
+=======
+        <?php echo form_input(array('type' => 'number','step' => '0.01', 'name' => 'prijs', 'id' => 'prijs', 'value' => toKomma($faciliteit->prijs), 'class' => 'form-control', 'placeholder' => '0,00', 'required' => 'required'));?>
+>>>>>>> 072f6d6afb4e4e74295e9045c53e2654595858d2
         </br>
     </div>
 
