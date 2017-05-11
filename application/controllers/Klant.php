@@ -167,7 +167,7 @@ class Klant extends CI_Controller {
             $pensionId = $this->input->get('pension');
             $this->session->set_userdata('pensionId', $pensionId);
 
-            /*
+            /**
              * haal arrangement aan de hand van het pensionId in de tabel arrangement
              */
             $this->load->model('arrangement_model');
@@ -177,13 +177,13 @@ class Klant extends CI_Controller {
 
         $this->session->set_userdata('arrangementId', $arrangementId);
 
-        /*
+        /**
          * maak boeking aan
          */
         $boeking = $this->getEmptyBoeking($begindatum, $einddatum, $arrangementId);
         $this->session->set_userdata('boeking', $boeking);
 
-        /*
+        /**
          * laad de pagina om boeking te vervolledigen
          */
         $data['title'] = 'Boeking maken';
@@ -224,31 +224,31 @@ class Klant extends CI_Controller {
         $vast = 0;
         $kamers = array();
 
-        //haal alle persoontypes op en haal per persoontype het opgegeven aantal op
+        ///haal alle persoontypes op en haal per persoontype het opgegeven aantal op
         $totaal = $this->haalPersoonTypes($boeking);
 
-        //heeft klant een voorkeur voor een specifieke kamer aangeduid?
+        ///heeft klant een voorkeur voor een specifieke kamer aangeduid?
         if ($voorkeur == "ja") {
-            /*
+            /**
              * indien voorkeur, zet de kamerId = id van de gekozen kamer
              */
             $kamerId = $this->input->post('kamer');
             $vast = 1;
         } else {
-            /*
+            /**
              * indien geen voorkeur, genereer een random kamer van het gekozen type
              */
             $kamerId = $this->genereerKamer($typeId);
         }
 
-        /*
+        /**
          * lees userdata kamers indien dit bestaat
          */
         if ($this->session->has_userdata('kamers')) {
             $kamers = $this->session->userdata('kamers');
         }
 
-        /*
+        /**
          * haal kamer op adhv het gekozen/gegenereerde kamerId en voeg kamer toe aan tabel kamerBoeking
          */
         $this->load->model('kamer_model');
@@ -257,7 +257,7 @@ class Klant extends CI_Controller {
         $kamer->kamerType = $this->kamerType_model->get($kamer->kamerTypeId);
         $kamerBoeking = $this->maakKamerBoeking($boeking, $kamer, $totaal, $vast);
 
-        /*
+        /**
          * update userdata kamers
          */
         $kamers[$kamer->id] = $kamerBoeking->id . "." . $kamer->naam . "." . $kamer->kamerType->omschrijving;
@@ -315,7 +315,7 @@ class Klant extends CI_Controller {
         $aantalDagen = 1;
         $user = $this->authex->getUserInfo();
 
-        /*
+        /**
          * lees userdata en unset daarna userdata
          */
         $boeking = $this->session->userdata('boeking');
@@ -338,7 +338,7 @@ class Klant extends CI_Controller {
             $arrangementId = 0;
             $data['pension'] = $arrangement;
 
-            /*
+            /**
              * bereken aantal dagen dat verblijf duurt
              */
             $aantalDagen = $this->berekenAaantalDagen($begindatum, $einddatum);
@@ -348,18 +348,18 @@ class Klant extends CI_Controller {
 
         $this->unsetUserdata();
 
-        /*
+        /**
          * prijs berekenen
          */
         $totaal = $this->berekenPrijs($boeking, $aantalDagen);
         $data['prijs'] = $totaal;
 
-        /*
+        /**
          * stuur mail
          */
         $this->sendmail($user->email, $boeking, $arrangementId, $pensionId, $kamers, $totaal);
 
-        /*
+        /**
          * laad de pagina waar bevestiging wordt getoond
          */
         $data['title'] = 'Boeking maken';
@@ -535,14 +535,14 @@ class Klant extends CI_Controller {
         $this->load->model('typePersoon_model');
         $persoontypes = $this->typePersoon_model->getAll();
 
-        /*
+        /**
          * haal per type het opgegeven aantal op
          */
         foreach ($persoontypes as $type) {
             $aantal = $this->input->post('persoon' . $type->id);
             $personen[$type->id] = $aantal;
 
-            /*
+            /**
              * voeg data toe aan tabel boekingtypepersoon
              */
             if ($aantal != 0) {
@@ -572,20 +572,20 @@ class Klant extends CI_Controller {
         $index = 0;
         $totaal = 0;
 
-        /*
+        /**
          * haal alle kamerboekingen van de boeking op
          */
         $this->load->model('kamerBoeking_model');
         $kamerBoekingen = $this->kamerBoeking_model->getWithBoeking($boeking->id);
 
-        /*
+        /**
          * haal alle type personen op
          */
         $this->load->model('boekingTypePersoon_model');
         $typePersonen = $this->boekingTypePersoon_model->getByBoeking($boeking->id);
 
         foreach ($typePersonen as $typePersoon) {
-            /*
+            /**
              * vergellijk aantal van dit type persoon met totaal in geboekte kamer
              */
             if ($aantalMensen >= $kamerBoekingen[$index]->aantalMensen) {
@@ -593,30 +593,30 @@ class Klant extends CI_Controller {
                 $aantalMensen = 0;
             }
 
-            /*
+            /**
              * haal kamertype van de geboekte kamer
              */
             $this->load->model('kamer_model');
             $kamerBoeking = $this->kamer_model->get($kamerBoekingen[$index]->kamerId);
 
-            /*
+            /**
              * bereken prijs voor geboekte kamer voor dit type persoon
              */
             $this->load->model('prijs_model');
             $prijs = $this->prijs_model->getPrijsTotaal($boeking->arrangementId, $kamerBoeking->kamerTypeId, $kamerBoekingen[$index]->aantalMensen);
 
-            /*
+            /**
              * haal korting voor type persoon op
              */
             $this->load->model('typePersoon_model');
             $type = $this->typePersoon_model->get($typePersoon->typePersoonId);
 
-            /*
+            /**
              * totaal omhoog doen
              */
             $totaal += (floatval($prijs->actuelePrijs) - (floatval($prijs->actuelePrijs) * floatval($type->korting))) * $typePersoon->aantal;
 
-            /*
+            /**
              * aantal mensen omhoog doen
              */
             $aantalMensen = $aantalMensen + $typePersoon->aantal;
