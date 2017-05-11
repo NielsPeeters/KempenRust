@@ -373,11 +373,11 @@ class Klant extends CI_Controller {
     private function sendmail ($to, $boeking, $arrangementId, $pensionId, $kamers, $totaal)
     {
         /**verstuur een mail naar de klant met alle info
-        *\param to naar wie de e-mail gestuurd wordt
-        *\param arrangementId het id van het gekozen arrangement
-        *\param pensionId het id van het gekozen pesnion
-        *\param kamers de userdata van de gekozen kamers
-        *\param totaal de totale prijs
+        * \param to naar wie de e-mail gestuurd wordt
+        * \param arrangementId het id van het gekozen arrangement
+        * \param pensionId het id van het gekozen pesnion
+        * \param kamers de userdata van de gekozen kamers
+        * \param totaal de totale prijs
         */
         $bericht = "Beste\n\n";
         $bericht .= "U heeft een boeking gemaakt op " . toDDMMYYYY($boeking->tijdstip) . " voor volgende periode: " . toDDMMYYYY($boeking->startDatum) . " - " . toDDMMYYYY($boeking->eindDatum) . ".\n";
@@ -401,10 +401,10 @@ class Klant extends CI_Controller {
     {
         /**
         * Creërt een leeg boeking object
-        *\param begindatum de startdatum
-        *\param einddatum de einddatum
-        *\param arrangementId het id van het gekozen arrangement of pension
-        *\return boeking een leeg boeking object
+        * \param begindatum de startdatum
+        * \param einddatum de einddatum
+        * \param arrangementId het id van het gekozen arrangement of pension
+        * \return boeking een leeg boeking object
         */
         $boeking = new stdClass();
         $user = $this->authex->getUserInfo();
@@ -427,10 +427,10 @@ class Klant extends CI_Controller {
     {
         /**
         * Creërt een leeg boekingtypepersoon object
-        *\param persoonId het id van de typePersoon
-        *\param boeking de boeking
-        *\param aantal het aantal personen
-        *\return boekingtypepersoon een leeg boekingtypepersoon object
+        * \param persoonId het id van de typePersoon
+        * \param boeking de boeking
+        * \param aantal het aantal personen
+        * \return boekingtypepersoon een leeg boekingtypepersoon object
         */
         $boekingTypePersoon = new stdClass();
         $boekingTypePersoon->typePersoonId = $persoonId;
@@ -442,10 +442,10 @@ class Klant extends CI_Controller {
     {
         /**
         * Creërt een leeg kamerBoeking object en vult het op met info
-        *\param boeking de boeking
-        *\param kamer de gekozen kamer
-        *\param totaal het totaal aantal personen in deze kamer
-        *\param vast bepaalt of dat de kamer vast staat -> voorkeur
+        * \param boeking de boeking
+        * \param kamer de gekozen kamer
+        * \param totaal het totaal aantal personen in deze kamer
+        * \param vast bepaalt of dat de kamer vast staat -> voorkeur
         * \return kamerBoeking het ingevulde kamerBoeking object
         */
         $kamerBoeking = new stdClass();

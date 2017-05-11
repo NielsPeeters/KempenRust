@@ -160,7 +160,7 @@ class Persoon extends CI_Controller {
     public function emailVrij($persoon) {
         /**
          * gaat terug naar registreerpagina
-         * \id $persoon persoon dat ingelogd is
+         * \param $persoon persoon dat ingelogd is
          */
         if ($persoon->id == 0) {
             //email adres is al in gebruik
@@ -175,8 +175,8 @@ class Persoon extends CI_Controller {
     public function naarRegistreer($persoon, $emailVrij) {
         /**
          * gaat terug naar registreerpagina
-         * \id $persoon persoon dat ingelogd is
-         * \emailVrij is email nog vrij of niet
+         * \param $persoon persoon dat ingelogd is
+         * \param $emailVrij is email nog vrij of niet
          */
         $data['emailVrij'] = $emailVrij;
         $data['persoon'] = $persoon;
