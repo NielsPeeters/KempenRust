@@ -6,8 +6,6 @@
  */
 ?>
 <script>
-    $(document.body).ready(
-    $(function() {
  $.getScript('../../assets/js/kalender.js', function () {
 
         ///Get All Boekingen From PHP
@@ -47,7 +45,6 @@
             events: eventArray
         });
     });
-    }));
 </script>
 
 <hr>
