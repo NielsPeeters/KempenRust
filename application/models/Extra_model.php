@@ -29,7 +29,7 @@ class Extra_model extends CI_Model {
     function insert($extra) {
         /**
         *Insert een extra object in de database.
-        *\param extra een extra object
+        *\param $extra een extra object
         *\return een extra object
         */
         $this->db->insert('extra', $extra);
@@ -39,7 +39,7 @@ class Extra_model extends CI_Model {
     function update($extra) {
          /**
         *Update een extra object in de database.
-        *\param extra een extra object
+        *\param $extra een extra object
         */
         $this->db->where('id', $extra->id);
         $this->db->update('extra', $extra);
@@ -57,7 +57,7 @@ class Extra_model extends CI_Model {
     function getAllByFaciliteit($faciliteitId) {
         /**
         *Geeft het extra object terug dat bij het id hoort.
-        *\param faciliteitId het id van de geselecteerde faciliteit
+        *\param $faciliteitId het id van de geselecteerde faciliteit
         *\return een extra object
         */
         $this->db->where('faciliteitId', $faciliteitId);

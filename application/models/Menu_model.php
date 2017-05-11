@@ -30,7 +30,7 @@ class Menu_model extends CI_Model {
     function insert($menu) {
         /**
         *Insert een menu object in de database.
-        *\param menu een menu object
+        *\param $menu een menu object
         *\return een menu object
         */
         $this->db->insert('menu', $menu);
@@ -40,7 +40,7 @@ class Menu_model extends CI_Model {
     function update($menu) {
          /**
         *Update een menu object in de database.
-        *\param menu een menu object
+        *\param $menu een menu object
         */
         $this->db->where('id', $menu->id);
         $this->db->update('menu', $menu);
@@ -58,7 +58,7 @@ class Menu_model extends CI_Model {
     function getWithArrangementen($menuId) {
         /**
         * kijkt of dat er arrangementen aan het menu hangen
-        * \param menuId het id van de geselecteerde menu
+        * \param $menuId het id van de geselecteerde menu
         */
         $this->db->where('menuId', $menuId);
         $query = $this->db->get('menuArrangement');
@@ -68,7 +68,7 @@ class Menu_model extends CI_Model {
     function getWithBoekingen($menuId) {
         /**
         * kijkt of dat er boekingen aan het menu hangen
-        * \param menuId het id van de geselecteerde menu
+        * \param $menuId het id van de geselecteerde menu
         */
         $this->db->where('menuId', $menuId);
         $query = $this->db->get('menuBoeking');

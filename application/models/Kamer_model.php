@@ -33,7 +33,7 @@ class Kamer_model extends CI_Model {
     function insert($kamer) {
         /**
         * voegt een nieuw kamer object toe aan de database
-        * \param kamer het kamer object
+        * \param $kamer het kamer object
         * \return het id van het nieuwe kamer object
         */
         $this->db->insert('kamer', $kamer);
@@ -43,7 +43,7 @@ class Kamer_model extends CI_Model {
     function update($kamer) {
         /**
         * update de kamer uit de database die bij het gegeven id hoort.
-        * \param kamer het kamer object
+        * \param $kamer het kamer object
         */
         $this->db->where('id', $kamer->id);
         $this->db->update('kamer', $kamer);
@@ -84,7 +84,6 @@ class Kamer_model extends CI_Model {
     function getAllWithKamerType(){
         /**
         * haalt de kamer uit de database die bij het gegeven id hoort met het bijbehorende kamertype
-        * \param $id het id van de geselecteerde kamer
         * \return een kamer object
         */
          $query = $this->db->get('kamer');
@@ -104,6 +103,8 @@ class Kamer_model extends CI_Model {
     function getAllBeschikbaar($begindatum, $einddatum) {
          /**
         * haalt alle kamers uit de database die beschikbaar zijn voor die periode
+        *\param $begindatum
+        *\param $einddatum
         * \return een array met kamer objecten
         */
         $kamers = array();
@@ -135,6 +136,8 @@ class Kamer_model extends CI_Model {
      function getAllBeschikbaarWithType($begindatum, $einddatum) {
          /**
         * haalt alle kamers uit de database die beschikbaar zijn voor die periode
+        *\param $begindatum
+        *\param $einddatum
         * \return een array met kamer objecten
         */
         $kamers = array();
@@ -167,6 +170,11 @@ class Kamer_model extends CI_Model {
     function checkData($beginDatumGevraagd, $beginDatumBoeking, $eindDatumGevraagd, $eindDatumBoeking) {
         /**
          * kijkt na of dat de data beschikbaar zijn en niet al bij een andere boeking voorkomen
+        *\param $beginDatumBoeking
+        *\param $eindDatumGevraagd
+        *\param $beginDatumGevraagd
+        *\param $eindDatumBoeking
+        *\return $check, boolean die beschrijft of datums beschikbaar zijn of niet.
          */
         $check = false;
         

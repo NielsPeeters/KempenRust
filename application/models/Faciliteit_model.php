@@ -30,7 +30,7 @@ class Faciliteit_model extends CI_Model {
     function insert($faciliteit) {
         /**
         *Insert een faciliteit object in de database.
-        *\param faciliteit een faciliteit object
+        *\param $faciliteit een faciliteit object
         *\return een faciliteit object
         */
         $this->db->insert('faciliteit', $faciliteit);
@@ -40,7 +40,7 @@ class Faciliteit_model extends CI_Model {
     function update($faciliteit) {
          /**
         *Update een faciliteit object in de database.
-        *\param faciliteit een faciliteit object
+        *\param $faciliteit een faciliteit object
         */
         $this->db->where('id', $faciliteit->id);
         $this->db->update('faciliteit', $faciliteit);

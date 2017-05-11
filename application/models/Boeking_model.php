@@ -30,7 +30,7 @@ class Boeking_model extends CI_Model {
     function insert($boeking) {
         /**
         *Insert een boeking object in de database.
-        *\param boeking een boeking object
+        *\param $boeking een boeking object
         *\return een boeking object
         */
         $this->db->insert('boeking', $boeking);
@@ -40,7 +40,7 @@ class Boeking_model extends CI_Model {
     function update($boeking) {
          /**
         *Update een boeking object in de database.
-        *\param boeking een boeking object
+        *\param $boeking een boeking object
         */
         
         $this->db->where('id', $boeking->id);
@@ -157,7 +157,7 @@ class Boeking_model extends CI_Model {
     function getAllByPersoon($id) {
         /**
         * haalt de boeking uit de database die bij het gegeven id hoort
-        * \param persoonid het id van de geselecteerde boeking
+        * \param $persoonid het id van de geselecteerde boeking
         * \return of persoon bij boeking hoort
         */
         $this->db->where('persoonId', $id);
@@ -168,7 +168,7 @@ class Boeking_model extends CI_Model {
      function getAllByPersoonOrderByStartDatum($id) {
         /**
         * haalt de boeking uit de database die bij het gegeven id hoort
-        * \param persoonid het id van de geselecteerde boeking
+        * \param $persoonid het id van de geselecteerde boeking
         * \return of persoon bij boeking hoort
         */
         $this->db->where('persoonId', $id);
@@ -181,7 +181,7 @@ class Boeking_model extends CI_Model {
     function getAllByArrangement($arrangementId){
         /**
         * haalt de boeking uit de database die bij het gegeven arrangementId horen
-        * \param arrangementId het id van de geselecteerde boeking
+        * \param $arrangementId het id van de geselecteerde boeking
         * \return of arrangement bij boeking hoort
         */
         $this->db->where('arrangementId', $arrangementId);
