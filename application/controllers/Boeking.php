@@ -245,7 +245,7 @@ class Boeking extends CI_Controller {
         $boeking->eindDatum = $this->input->post('eindDatum');
         $boeking->arrangementId = $arrangement;
         $boeking->tijdstip = date('Y-m-d H:i:s',$_SERVER['REQUEST_TIME']);
-        $boeking->opmerking = $this->input->post('opmerking');
+        $boeking->opmerking = ucfirst( $this->input->post('opmerking'));
         $this->load->model('boeking_model');
         $this->session->set_userdata('einddatum', $boeking->eindDatum);
         $this->session->set_userdata('startdatum', $boeking->startDatum);
