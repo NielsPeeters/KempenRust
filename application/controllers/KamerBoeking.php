@@ -3,11 +3,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class KamerBoeking extends CI_Controller {
-     /**
-      * KamerBoeking controller
-        * Verzorgt communicatie tussen model en view
-        */
 
+    /**
+     * KamerBoeking controller
+     * Verzorgt communicatie tussen model en view
+     */
     public function __construct() {
         /**
          * standaard controller constructor

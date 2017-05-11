@@ -3,16 +3,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Prijs extends CI_Controller {
-     /**
-      * Prijs controller
-        * Verzorgt communicatie tussen model en view
-        */
 
+    /**
+     * Prijs controller
+     * Verzorgt communicatie tussen model en view
+     */
     public function __construct() {
-         /**
-        * standaard controller constructor
-        * laadt helpers
-        */
+        /**
+         * standaard controller constructor
+         * laadt helpers
+         */
         parent::__construct();
         $this->load->helper('form');
         $this->load->helper('notation');
@@ -20,14 +20,14 @@ class Prijs extends CI_Controller {
 
     public function index() {
         /**
-        * Laadt de pagina waarop je prijzen kan beheren
-        * geeft een array van prijs objecten mee
-        */
+         * Laadt de pagina waarop je prijzen kan beheren
+         * geeft een array van prijs objecten mee
+         */
         $data['title'] = 'Prijzen beheren';
         $data['author'] = 'Peeters Niels';
         $data['user'] = $this->authex->getUserInfo();
         $user = $this->authex->getUserInfo();
-        if($user->soort==3) {
+        if ($user->soort == 3) {
             $this->load->model('Arrangement_model');
             $data['arrangementen'] = $this->Arrangement_model->getAll();
 
@@ -38,13 +38,13 @@ class Prijs extends CI_Controller {
             $this->template->load('main_master', $partials, $data);
         } else {
             redirect("/home/index");
-        }       
+        }
     }
 
     public function haalprijs() {
         /**
-        * Haalt een prijs object en alle prijstypes op
-        */
+         * Haalt een prijs object en alle prijstypes op
+         */
         $arrangementId = $this->input->get('arrangementId');
         $kamerTypeId = $this->input->get('kamerTypeId');
 
@@ -53,10 +53,10 @@ class Prijs extends CI_Controller {
         $this->load->view("admin/prijs/ajax_prijs", $data);
     }
 
-    public function schrijfprijs(){
+    public function schrijfprijs() {
         /**
-        * Haalt de waarden van het prijs object op en update of insert deze in de database
-        */
+         * Haalt de waarden van het prijs object op en update of insert deze in de database
+         */
         $prijs0 = new stdClass();
         $prijs1 = new stdClass();
 

@@ -3,16 +3,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Arrangement extends CI_Controller {
-     /**
-      * Arrangement controller
-        * Verzorgt communicatie tussen model en view
-        */
 
+    /**
+     * Arrangement controller
+     * Verzorgt communicatie tussen model en view
+     */
     public function __construct() {
         /**
-        * standaard controller constructor
-        * laadt helpers
-        */
+         * standaard controller constructor
+         * laadt helpers
+         */
         parent::__construct();
         $this->load->helper('form');
         $this->load->helper('notation');
@@ -20,14 +20,14 @@ class Arrangement extends CI_Controller {
 
     public function index() {
         /**
-        * Laadt de pagina waarop je de arrangementen kan beheren
-        * geeft een array van arrangement objecten mee
-        */
+         * Laadt de pagina waarop je de arrangementen kan beheren
+         * geeft een array van arrangement objecten mee
+         */
         $data['title'] = 'Arrangementen beheren';
         $data['author'] = 'Peeters Ellen';
         $data['user'] = $this->authex->getUserInfo();
         $user = $this->authex->getUserInfo();
-        if($user->soort>=3) {
+        if ($user->soort >= 3) {
             $this->load->model('arrangement_model');
             $data['arrangementen'] = $this->arrangement_model->getAllArrangementen();
 
@@ -35,33 +35,32 @@ class Arrangement extends CI_Controller {
             $this->template->load('main_master', $partials, $data);
         } else {
             redirect("/home/index");
-        }       
+        }
     }
 
     public function haalArrangement() {
         /**
-        * Haalt een arrangement object op
-        */
+         * Haalt een arrangement object op
+         */
         $arrangementId = $this->input->get('arrangementId');
-        if($arrangementId<0){
+        if ($arrangementId < 0) {
             $data['arrangement'] = $this->getEmptyArrangement();
-        }
-        else{
+        } else {
             $this->load->model('arrangement_model');
             $data['arrangement'] = $this->arrangement_model->get($arrangementId);
         }
         $this->load->view("admin/arrangement/ajax_arrangement", $data);
     }
 
-    public function verwijderArrangement(){
+    public function verwijderArrangement() {
         /**
-        * Verwijdert een arrangement object
-        */
+         * Verwijdert een arrangement object
+         */
         $id = $this->input->get('id');
         $this->load->model('boeking_model');
         $result = $this->boeking_model->getAllByArrangement($id);
         $size = count($result);
-        if ($size==0){
+        if ($size == 0) {
             $this->load->model('arrangement_model');
             $this->arrangement_model->delete($id);
             $this->load->model('prijs_model');
@@ -74,9 +73,9 @@ class Arrangement extends CI_Controller {
 
     function getEmptyArrangement() {
         /**
-        * Creërt een leeg arrangement object
-        * \return arrangement een leeg arrangement object
-        */
+         * Creërt een leeg arrangement object
+         * \return arrangement een leeg arrangement object
+         */
         $arrangement = new stdClass();
 
         $arrangement->id = '0';
@@ -85,15 +84,14 @@ class Arrangement extends CI_Controller {
         $arrangement->eindDag = '';
         $arrangement->omschrijving = '';
         $arrangement->isArrangement = 1;
-        
+
         return $arrangement;
     }
 
-    public function schrijfArrangement(){
+    public function schrijfArrangement() {
         /**
-        * Haalt de waarden van het arrangement object op en update of insert deze in de database
-        */
-
+         * Haalt de waarden van het arrangement object op en update of insert deze in de database
+         */
         $object = new stdClass();
         $object->id = $this->input->post('id');
         $object->naam = ucfirst(strtolower($this->input->post('naam')));
@@ -101,7 +99,7 @@ class Arrangement extends CI_Controller {
         $object->eindDag = ucfirst(strtolower($this->input->post('einddag')));
         $object->omschrijving = ucfirst($this->input->post('omschrijving'));
         $object->isArrangement = 1;
-        
+
         $this->load->model('arrangement_model');
         $this->load->model('prijs_model');
         if ($object->id == 0) {
@@ -110,7 +108,8 @@ class Arrangement extends CI_Controller {
         } else {
             $this->arrangement_model->update($object);
         }
-        
+
         redirect('arrangement/index');
     }
+
 }
