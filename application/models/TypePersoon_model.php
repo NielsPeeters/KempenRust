@@ -11,7 +11,7 @@ class TypePersoon_model extends CI_Model {
     {
         /**
         *Geeft het typepersoon object terug dat bij het id hoort.
-        *\param id het id van het te halen typepersoon object
+        *\param $id het id van het te halen typepersoon object
         *\return een typepersoon object
         */
       $this->db->where('id', $id);
@@ -33,7 +33,7 @@ class TypePersoon_model extends CI_Model {
     {
         /**
         *Insert een typepersoon object in de database.
-        *\param typepersoon een typepersoon object
+        *\param $typepersoon een typepersoon object
         *\return een typepersoon object
         */
         $this->db->insert('typePersoon', $typepersoon);
@@ -44,7 +44,7 @@ class TypePersoon_model extends CI_Model {
     {
          /**
         *Update een typepersoon object in de database.
-        *\param typepersoon een typepersoon object
+        *\param $typepersoon een typepersoon object
         */
         $this->db->where('id', $typepersoon->id);
         $this->db->update('typePersoon', $typepersoon);
@@ -54,7 +54,7 @@ class TypePersoon_model extends CI_Model {
     {
         /**
         * verwijdert het typepersoon object dat bij het id hoort uit de database
-        * \param id het id van de geselecteerde typepersoon
+        * \param $id het id van de geselecteerde typepersoon
         */
         $this->db->where('id', $id);
         $this->db->delete('typePersoon');
@@ -64,7 +64,7 @@ class TypePersoon_model extends CI_Model {
     {
         /**
          * haalt het typepersoon object op dat bij het id hoort uit de database
-         * \param id het id van de geselecteerde typepersoon
+         * \param $id het id van de geselecteerde typepersoon
          *\return een typepersoon object
          */
         $this->db->where('id', $id);
@@ -76,7 +76,7 @@ class TypePersoon_model extends CI_Model {
     {
         /**
          * haalt het typepersoon object op dat bij het id hoort uit de database
-         * \param id het id van de geselecteerde boeking
+         * \param $id het id van de geselecteerde boeking
          *\return een typepersoon object
          */
         $this->db->where('boekingId', $id);
