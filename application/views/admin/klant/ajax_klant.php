@@ -32,7 +32,7 @@ echo form_open('persoon/schrijfJSONObject', $attributes);
 
     <div class="form-group">
         <label for="gemeente" class="control-label">Gemeente</label>
-        <?php echo form_input(array('type' => 'text', 'name' => 'gemeente', 'id' => 'gemeente', 'value' => $klant->gemeente, 'class' => 'form-control', 'placeholder' => 'gemeente', 'required' => 'required')); ?>
+        <?php echo form_input(array('type' => 'text', 'name' => 'gemeente', 'id' => 'gemeente', 'value' => $klant->gemeente, 'class' => 'form-control', 'placeholder' => 'Gemeente', 'required' => 'required')); ?>
     </div>
 
     <div class="form-group">
