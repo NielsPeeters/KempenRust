@@ -8,7 +8,7 @@ class kamerBoeking_model extends CI_Model {
     function get($id) {
         /**
         *Geeft het kamerBoeking object terug dat bij het id hoort.
-        *\param id het id van het te halen kamerBoeking object
+        *\param $id het id van het te halen kamerBoeking object
         *\return een kamerBoeking object
         */
         $this->db->where('id', $id);
@@ -28,7 +28,7 @@ class kamerBoeking_model extends CI_Model {
     function insert($kamerBoeking) {
         /**
         *Insert een kamerBoeking object in de database.
-        *\param kamerBoeking een kamerBoeking object
+        *\param $kamerBoeking een kamerBoeking object
         *\return een kamerBoeking object
         */
         $this->db->insert('kamerBoeking', $kamerBoeking);
@@ -38,7 +38,7 @@ class kamerBoeking_model extends CI_Model {
     function update($kamerBoeking) {
          /**
         *Update een kamerBoeking object in de database.
-        *\param kamerBoeking een kamerBoeking object
+        *\param $kamerBoeking een kamerBoeking object
         */
         $this->db->where('id', $kamerBoeking->id);
         $this->db->update('kamerBoeking', $kamerBoeking);
@@ -47,7 +47,7 @@ class kamerBoeking_model extends CI_Model {
     function delete($id) {
         /**
         * verwijdert het kamerBoeking object dat bij het id hoort uit de database
-        * \param id het id van de geselecteerde kamerBoeking
+        * \param $id het id van de geselecteerde kamerBoeking
         */
         $this->db->where('id', $id);
         $this->db->delete('kamerBoeking');
@@ -56,7 +56,7 @@ class kamerBoeking_model extends CI_Model {
     function getAllByKamer($id) {
         /**
         * gaat na of er een kamerboeking is met de geselecteerde kamer
-        *\param id het id van de geselecteerde kamer
+        *\param $id het id van de geselecteerde kamer
         *\return een array kamerboeking objecten
         */
         $this->db->where('kamerId', $id);
@@ -67,7 +67,7 @@ class kamerBoeking_model extends CI_Model {
     function getAllByBoeking($id) {
         /**
         * gaat na of er een kamerboeking is met de geselecteerde boeking
-        *\param id het id van de geselecteerde boeking
+        *\param $id het id van de geselecteerde boeking
         *\return een array kamerboeking objecten
         */
         $this->db->where('boekingId', $id);
@@ -78,7 +78,7 @@ class kamerBoeking_model extends CI_Model {
     function getWithBoeking($id){
         /**
         *
-        *\param id
+        *\param $id
         *\return een array kamerboeking objecten
         */
         $this->db->where('boekingId', $id);

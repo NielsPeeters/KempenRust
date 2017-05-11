@@ -8,7 +8,7 @@ class Factuur_model extends CI_Model {
     function get($id) {
         /**
         *Geeft het factuur object terug dat bij het id hoort.
-        *\param id het id van het te halen factuur object
+        *\param $id het id van het te halen factuur object
         *\return een factuur object
         */
         $this->db->where('id', $id);
@@ -28,7 +28,7 @@ class Factuur_model extends CI_Model {
     function insert($factuur) {
         /**
         *Insert een factuur object in de database.
-        *\param factuur een factuur object
+        *\param $factuur een factuur object
         *\return een factuur object
         */
         $this->db->insert('factuur', $factuur);
@@ -38,7 +38,7 @@ class Factuur_model extends CI_Model {
     function update($factuur) {
          /**
         *Update een factuur object in de database.
-        *\param factuur een factuur object
+        *\param $factuur een factuur object
         */
         $this->db->where('id', $factuur->id);
         $this->db->update('factuur', $factuur);
@@ -47,7 +47,7 @@ class Factuur_model extends CI_Model {
     function delete($id) {
         /**
         * verwijdert het factuur object dat bij het id hoort uit de database
-        * \param id het id van de geselecteerde factuur
+        * \param $id het id van de geselecteerde factuur
         */
         $this->db->where('id', $id);
         $this->db->delete('factuur');

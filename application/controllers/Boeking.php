@@ -20,6 +20,7 @@ class Boeking extends CI_Controller {
         /***
         * Laadt de pagina waarop je boekingen kan beheren
         * geeft een array van boeking objecten mee
+         * \param $id id van boeking
         */
     
         if($id != ''){
@@ -364,7 +365,7 @@ class Boeking extends CI_Controller {
     public function sendmail($id) {
     /**
     *verzend een email naar het email adres van de klant
-    *\param id het id van de betrokken boeking
+    *\param $id het id van de betrokken boeking
     */
         $this->load->model('boeking_model');
         $boeking = $this->boeking_model->getBoekingWithAll($id);
@@ -381,7 +382,7 @@ class Boeking extends CI_Controller {
     public function getBericht($boeking){
         /**
         * haalt het bericht op dat hoort bij de boeking
-        *\param boeking, de boeking waarbij het bericht hoort
+        *\param $boeking, de boeking waarbij het bericht hoort
         *\return bericht
         */
         $this->load->model('kamerBoeking_model');
@@ -410,7 +411,7 @@ class Boeking extends CI_Controller {
  public function haalKamers($kamers)
     /**
     * haalt alle kamers op die bij de boeking horen
-    *\param kamers, de kamers van de boeking
+    *\param $kamers, de kamers van de boeking
     *\return bericht
     */
     {

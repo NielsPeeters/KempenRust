@@ -9,7 +9,7 @@ class kamerType_model extends CI_Model {
     function get($id) {
         /**
         *Geeft het kamertype object terug dat bij het id hoort.
-        *\param id het id van het te halen kamertype object
+        *\param $id het id van het te halen kamertype object
         *\return een kamertype object
         */
         $this->db->where('id', $id);
@@ -30,7 +30,7 @@ class kamerType_model extends CI_Model {
     function insert($kamerType) {
         /**
         *Insert een kamertype object in de database.
-        *\param kamertype een kamertype object
+        *\param $kamertype een kamertype object
         *\return een kamertype object
         */
         $this->db->insert('kamerType', $kamerType);
@@ -40,7 +40,7 @@ class kamerType_model extends CI_Model {
     function update($kamerType) {
         /**
         *Update een kamertype object in de database.
-        *\param kamertype een kamertype object
+        *\param $kamertype een kamertype object
         */
         $this->db->where('id', $kamerType->id);
         $this->db->update('kamerType', $kamerType);
@@ -49,7 +49,7 @@ class kamerType_model extends CI_Model {
     function delete($id) {
         /**
         *Verwijdert een kamertype object uit de database.
-        *\param id het id van het te verwijderen kamertype object
+        *\param $id het id van het te verwijderen kamertype object
         */
         $this->db->where('id', $id);
         $this->db->delete('kamerType');

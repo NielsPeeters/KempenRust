@@ -9,7 +9,7 @@ class Prijs_model extends CI_Model {
     function get($id) {
         /**
         *Geeft het prijs object terug dat bij het id hoort.
-        *\param id het id van het te halen prijs object
+        *\param $id het id van het te halen prijs object
         *\return een prijs object
         */
         $this->db->where('id', $id);
@@ -29,7 +29,7 @@ class Prijs_model extends CI_Model {
     function insert($prijs) {
         /**
         *Insert een prijs object in de database.
-        *\param prijs een prijs object
+        *\param $prijs een prijs object
         *\return een prijs object
         */
         $this->db->insert('prijs', $prijs);
@@ -39,7 +39,7 @@ class Prijs_model extends CI_Model {
     function update($prijs) {
          /**
         *Update een prijs object in de database.
-        *\param prijs een prijs object
+        *\param $prijs een prijs object
         */
         $this->db->where('id', $prijs->id);
         $this->db->update('prijs', $prijs);
@@ -48,7 +48,7 @@ class Prijs_model extends CI_Model {
     function delete($id) {
         /**
         * verwijdert het prijs object dat bij het id hoort uit de database
-        * \param id het id van de geselecteerde prijs
+        * \param $id het id van de geselecteerde prijs
         */
         $this->db->where('id', $id);
         $this->db->delete('prijs');
@@ -57,6 +57,9 @@ class Prijs_model extends CI_Model {
     function getPrijs($arrangementId, $kamerTypeId, $aantal){
         /**
         * haalt het prijs object op dat hoort bij de bijhorende ids uit de database
+        *\param $arrangementId
+        *\param $kamerTypeId
+        *\param $aantal 
         */
         $meerdere = 0;
          
@@ -86,6 +89,9 @@ class Prijs_model extends CI_Model {
      function getPrijsTotaal($arrangementId, $kamerTypeId, $meerdere) {
         /**
         * haalt het prijs object op dat hoort bij de bijhorende ids uit de database
+        *\param $arrangementId
+        *\param $kamerTypeId
+        *\param $meerdere 
         */
 
          
@@ -110,7 +116,8 @@ class Prijs_model extends CI_Model {
     function getPrijsByArrangementAndKamerType($arrangementId, $kamerTypeId) {
         /**
          * haalt het prijs object op dat hoort bij de bijhorende ids uit de database
-         * \param id het id van de geselecteerde prijs
+         *\param $kamerTypeId
+         *\param $arrangementId
          */
         $this->db->where('arrangementId', $arrangementId);
         $this->db->where('kamerTypeId', $kamerTypeId);
@@ -138,6 +145,7 @@ class Prijs_model extends CI_Model {
     public function insertPrijsByArrangemantId($id){
         /**
          * Voegt dynamisch prijzen toe als er een Arrangement is toegevoegd.
+         *\param $id
          */
         $prijs = $this->getEmptyPrijs();
 
@@ -158,7 +166,7 @@ class Prijs_model extends CI_Model {
     function deleteByArrangementId($id) {
         /**
          * verwijdert het prijs object dat bij het id hoort uit de database
-         * \param id het id van de geselecteerde prijs
+         * \param $id het id van de geselecteerde prijs
          */
         $this->db->where('arrangementId', $id);
         $this->db->delete('prijs');
@@ -167,6 +175,7 @@ class Prijs_model extends CI_Model {
     public function insertPrijsByKamerTypeId($id){
         /**
          * Voegt dynamisch prijzen toe als er een Kamertype is toegevoegd.
+         *\param $id
          */
         $prijs = $this->getEmptyPrijs();
 
@@ -187,7 +196,7 @@ class Prijs_model extends CI_Model {
     function deleteByKamerTypeId($id) {
         /**
          * verwijdert het prijs object dat bij het id hoort uit de database
-         * \param id het id van de geselecteerde prijs
+         * \param $id het id van de geselecteerde prijs
          */
         $this->db->where('kamerTypeId', $id);
         $this->db->delete('prijs');

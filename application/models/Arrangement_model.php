@@ -9,7 +9,7 @@ class Arrangement_model extends CI_Model {
     function get($id) {
         /**
         *Geeft het arrangement object terug dat bij het id hoort.
-        *\param id het id van het te halen arrangement object
+        *\param $id het id van het te halen arrangement object
         *\return een arrangement object
         */
         $this->db->where('id', $id);
@@ -41,7 +41,7 @@ class Arrangement_model extends CI_Model {
     function insert($arrangement) {
         /**
         *Insert een arrangement object in de database.
-        *\param arrangement een arrangement object
+        *\param $arrangement een arrangement object
         *\return een arrangement object
         */
         $this->db->insert('arrangement', $arrangement);
@@ -51,7 +51,7 @@ class Arrangement_model extends CI_Model {
     function update($arrangement) {
          /**
         *Update een arrangement object in de database.
-        *\param arrangement een arrangement object
+        *\param $arrangement een arrangement object
         */
         $this->db->where('id', $arrangement->id);
         $this->db->update('arrangement', $arrangement);
@@ -60,7 +60,7 @@ class Arrangement_model extends CI_Model {
     function delete($id) {
         /**
         * verwijdert het arrangement object dat bij het id hoort uit de database
-        * \param id het id van de geselecteerde arrangement
+        * \param $id het id van de geselecteerde arrangement
         */
         $this->db->where('id', $id);
         $this->db->delete('arrangement');
@@ -69,7 +69,7 @@ class Arrangement_model extends CI_Model {
     function getAllByPension($id) {
         /**
         * gaat na of er een arrangement is met het geselecteerde pension
-        *\param id het id van het geselecteerde pension
+        *\param $id het id van het geselecteerde pension
         *\return een array arrangement objecten
         */
         $this->db->order_by('naam', 'asc');
@@ -103,7 +103,7 @@ class Arrangement_model extends CI_Model {
     function getByOmschrijving($omschrijving){
         /**
         *Geeft een arrangement object terug met de omschrijving
-        *\param omschrijving de omschrijving van het arrangement
+        *\param $omschrijving de omschrijving van het arrangement
         *\return arrangement object
         */
         $this->db->where('omschrijving', $omschrijving);

@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class prijs extends CI_Controller {
+class Prijs extends CI_Controller {
 
     public function __construct() {
          /**

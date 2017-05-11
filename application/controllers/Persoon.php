@@ -5,6 +5,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Persoon extends CI_Controller {
 
     public function __construct() {
+        /**
+        * standaard controller constructor
+        * laadt helpers
+        */
         parent::__construct();
         $this->load->helper('form');
         $this->load->helper('notation');
@@ -48,6 +52,9 @@ class Persoon extends CI_Controller {
     }
 
     function getEmptyPersoon() {
+        /**
+         * haalt een leeg persoonobject op
+         */
         $persoon = new stdClass();
 
         $persoon->id = 0;
@@ -129,6 +136,9 @@ class Persoon extends CI_Controller {
     }
 
     public function registreer() {
+        /**
+         * registreert een persoon
+         */
         $persoon = new stdClass();
 
         $persoon->naam = $this->input->post('naam');
@@ -148,6 +158,10 @@ class Persoon extends CI_Controller {
     }
 
     public function emailVrij($persoon) {
+        /**
+         * gaat terug naar registreerpagina
+         * \id $persoon persoon dat ingelogd is
+         */
         if ($persoon->id == 0) {
             //email adres is al in gebruik
             $emailVrij = "0";
@@ -159,6 +173,11 @@ class Persoon extends CI_Controller {
     }
 
     public function naarRegistreer($persoon, $emailVrij) {
+        /**
+         * gaat terug naar registreerpagina
+         * \id $persoon persoon dat ingelogd is
+         * \emailVrij is email nog vrij of niet
+         */
         $data['emailVrij'] = $emailVrij;
         $data['persoon'] = $persoon;
         $data['title'] = 'Registeer';
@@ -169,6 +188,9 @@ class Persoon extends CI_Controller {
     }
 
     public function nieuw() {
+        /**
+         * gaat naar registreren
+         */
         $data['title'] = 'Registreer';
         $data['persoon'] = $this->getEmptyPersoon();
         $data['emailVrij'] = "1"; //email niet in gebruik

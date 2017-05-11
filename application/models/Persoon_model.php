@@ -14,7 +14,7 @@ class Persoon_model extends CI_Model {
     {
         /**
         *Geeft het persoon object terug dat bij het id hoort.
-        *\param id het id van het te halen persoon object
+        *\param $id het id van het te halen persoon object
         *\return een persoon object
         */
         $this->db->where('id', $id);
@@ -37,7 +37,7 @@ class Persoon_model extends CI_Model {
     {
         /**
         *Insert een persoon object in de database.
-        *\param persoon een persoon object
+        *\param $persoon een persoon object
         *\return een persoon object
         */
         $this->db->insert('persoon', $persoon);
@@ -48,7 +48,7 @@ class Persoon_model extends CI_Model {
     {
         /**
         *Update een persoon object in de database.
-        *\param persoon een persoon object
+        *\param $persoon een persoon object
         */
         $this->db->where('id', $persoon->id);
         $this->db->update('persoon', $persoon);
@@ -58,7 +58,7 @@ class Persoon_model extends CI_Model {
     {
         /**
         *Verwijdert een persoon object uit de database.
-        *\param id het id van het te verwijderen persoon object
+        *\param $id het id van het te verwijderen persoon object
         */
         $this->db->where('id', $id);
         $this->db->delete('persoon');
@@ -68,7 +68,7 @@ class Persoon_model extends CI_Model {
     {
         /**
         *Gaat na of het meegegeven email adres al in de database voorkomt.
-        *\param email het te controleren email adres
+        *\param $email het te controleren email adres
         *\return true als de email vrij is, anders false
         */
         $this->db->where('email', $email);
@@ -84,8 +84,8 @@ class Persoon_model extends CI_Model {
     {
         /**
         *Gaat na of er een persoon object bestaat met de meegegeven waarden.
-        *\param email het ingegeven email adres
-        *\param password het ingegeven wachtwoord.
+        *\param $email het ingegeven email adres
+        *\param $password het ingegeven wachtwoord.
         *\return een persoon object als deze bestaat, anders false.
         */
         $this->db->where('email', $email);
@@ -102,8 +102,8 @@ class Persoon_model extends CI_Model {
     {
         /**
         *Geeft een persoon object met de naam
-        *\param naam de familienaam van de persoon
-        *\param voornaam de voornaam van de persoon
+        *\param $naam de familienaam van de persoon
+        *\param $voornaam de voornaam van de persoon
         *\return een persoon object
         */
         $this->db->where('naam', $naam);
