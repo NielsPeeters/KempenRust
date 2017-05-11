@@ -10,18 +10,8 @@
             </button>
 
             <?php // iedereen
-            if ($user == null) { // niet aangemeld
-            } else { // wel aangemeld
-                switch ($user->soort) {
-                    case 1: // gewone geregistreerde gebruiker
-                        echo  anchor('/home/index', image("logo.PNG",'class="navbar-brand-img"'),'class="navbar-brand"');
-                        break;
-                    default:
-                        echo  anchor('/boeking/dashboard', image("logo.PNG",'class="navbar-brand-img"'),'class="navbar-brand"');
-                        break;
-
-                }
-            }?>
+            echo  anchor('/home/index', image("logo.PNG",'class="navbar-brand-img"'),'class="navbar-brand"');
+            ?>
 
 
         </div>

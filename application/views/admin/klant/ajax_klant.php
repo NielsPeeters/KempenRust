@@ -5,6 +5,10 @@
         $('.pause').click(function (e) {
             $('#myForm').validator();
         });
+
+        
+        var soort = parseInt($('#soort').val())-1;
+        $('.soort option:eq('+soort+')').prop('selected', true)
     });
 
 
@@ -57,8 +61,8 @@ echo form_open('persoon/schrijfJSONObject', $attributes);
     </div>
 
     <div class="form-group">
-        <label for="email" class="control-label">Email</label>
-        <?php echo form_input(array('data-error' => 'This email address is invalid', 'type' => 'email', 'name' => 'email', 'id' => 'email', 'value' => $klant->email, 'class' => 'form-control', 'placeholder' => 'Email', 'required' => 'required', 'data-error' => 'Dit is geen correct email adres.')); ?>
+        <label for="email" class="control-label">E-mail</label>
+        <?php echo form_input(array('data-error' => 'This e-mail address is invalid', 'type' => 'email', 'name' => 'email', 'id' => 'email', 'value' => $klant->email, 'class' => 'form-control', 'placeholder' => 'Email', 'required' => 'required', 'data-error' => 'Dit is geen correct email adres.')); ?>
         <div class="help-block with-errors"></div>
 
     </div>
@@ -76,13 +80,18 @@ echo form_open('persoon/schrijfJSONObject', $attributes);
             </div>
         </div>
     </div>
-
-    <div class="form-group">
-        <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="right" title="1 = Gebruiker, 2 = Werknemer, 3 = Administrator"></span>
-        <label for="soort" class="control-label">Soort</label>
-        <?php echo form_input(array('type' => 'text', 'name' => 'soort', 'id' => 'soort', 'value' => $klant->soort, 'class' => 'form-control', 'placeholder' => 'Soort', 'required' => 'required')); ?>
-    </div>
     
+    <div class=" form-group">
+        <label for="soort" class="control-label">Soort</label>
+        <select name="soort" class="soort form-control"> 
+            <option value="1">Klant</option>
+            <option value="2">Werknemer</option>
+            <option value="3">Eigenaar</option>
+        </select>
+    </div>  
+    </br>
+
+    <?php echo form_input(array('type' => 'hidden', 'name' => 'hiddensoort', 'id' => 'soort', 'value' => $klant->soort, 'class' => 'form-control', 'placeholder' => 'id')) ?>
     <?php echo form_input(array('type' => 'hidden', 'name' => 'id', 'id' => 'id', 'value' => $klant->id, 'class' => 'form-control', 'placeholder' => 'id')) ?>
 
     <div class="help-block with-errors"></div>
