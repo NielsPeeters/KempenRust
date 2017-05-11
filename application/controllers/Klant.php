@@ -81,6 +81,13 @@ class Klant extends CI_Controller {
         }      
     }
     
+    public function haalJSONArrangement(){
+        $arrangementId = $this->input->get("arrangementId");
+        $this->load->model('arrangement_model');
+        $arrangement = $this->arrangement_model->get($arrangementId);
+        echo json_encode($arrangement);
+    }
+    
     public function haalBoeking(){
         /**
         * Haalt een boeking object op
