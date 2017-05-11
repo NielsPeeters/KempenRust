@@ -90,7 +90,7 @@ class Boeking extends CI_Controller {
               $totaal = (float)$totaal*$dagen;
           }
 
-        echo $totaal;
+        echo toKomma($totaal);
         
     }
 
