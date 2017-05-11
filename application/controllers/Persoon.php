@@ -71,10 +71,14 @@ class Persoon extends CI_Controller {
          * Verwijdert een persoon object als hieraan geen boekingen verbonden zijn
          */
         $id = $this->input->get('id');
+        
+        $this->load->model('persoon_model');
+        $persoon = $this->persoon_model->get($id);
+        
         $this->load->model('boeking_model');
         $result = $this->boeking_model->getAllByPersoon($id);
         $size = count($result);
-        if ($size == 0) {
+        if ($size == 0 && $persoon->soort != 3) {
             $this->load->model('persoon_model');
             $this->persoon_model->delete($id);
             echo 0;
