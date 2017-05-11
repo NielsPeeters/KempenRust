@@ -3,9 +3,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Boeking extends CI_Controller {
+    /**
+    * 
+    */
 
     public function __construct() {
-         /***
+         /**
         * standaard controller constructor
         * laadt helpers
         */
@@ -17,7 +20,7 @@ class Boeking extends CI_Controller {
     }
 
     public function index($id = '') {
-        /***
+        /**
         * Laadt de pagina waarop je boekingen kan beheren
         * geeft een array van boeking objecten mee
          * \param $id id van boeking
@@ -51,7 +54,7 @@ class Boeking extends CI_Controller {
     }
 
     public function berekenPrijs(){
-          /***
+          /**
         * Berekent de prijs van een boeking zonder kortingen
         */
         $totaal=0;
@@ -123,7 +126,7 @@ class Boeking extends CI_Controller {
     }
 
     public function haalboeking() {
-        /***
+        /**
         * Haalt een boeking object op
         */
         $boekingId = $this->input->get('boekingId');
@@ -151,7 +154,7 @@ class Boeking extends CI_Controller {
     }
 
     public function verwijderBoeking(){
-        /***
+        /**
         * Verwijdert een boeking object
         */
         $id = $this->input->get('id');
@@ -163,7 +166,7 @@ class Boeking extends CI_Controller {
     }
 
     public function verwijderKamer(){
-        /***
+        /**
         * Verwijdert een kamerboeking object
         */
         $id = $this->input->get('id');
@@ -175,7 +178,7 @@ class Boeking extends CI_Controller {
     }
 
     public function newBoeking() {
-        /***
+        /**
         * Creërt een leeg boeking object
         * \return boeking een leeg boeking object
         */
@@ -225,7 +228,7 @@ class Boeking extends CI_Controller {
     }
 
     public function schrijfBoeking(){
-        /***
+        /**
         * Haalt de waarden van het boeking object op en update of insert deze in de database
         */
  
@@ -344,7 +347,7 @@ class Boeking extends CI_Controller {
     
 
      public function setGoedkeuring(){
-        /***
+        /**
         * verandert de waarde van goedgekeurd van de boeking
         */
         
