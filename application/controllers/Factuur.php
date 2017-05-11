@@ -3,6 +3,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Factuur extends CI_Controller {
+     /**
+      * Factuur controller
+        * Verzorgt communicatie tussen model en view
+        */
 
     public function __construct() {
         /**

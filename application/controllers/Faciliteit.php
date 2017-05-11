@@ -3,6 +3,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Faciliteit extends CI_Controller {
+     /**
+      * Faciliteit controller
+        * Verzorgt communicatie tussen model en view
+        */
     public function __construct() {
          /**
         * standaard controller constructor

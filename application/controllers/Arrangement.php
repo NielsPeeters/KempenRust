@@ -3,6 +3,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Arrangement extends CI_Controller {
+     /**
+      * Arrangement controller
+        * Verzorgt communicatie tussen model en view
+        */
 
     public function __construct() {
         /**
