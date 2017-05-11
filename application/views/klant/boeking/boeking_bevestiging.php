@@ -38,5 +38,5 @@
 <?php echo "</tbody></table>"; ?>
 
 <p>
-  <?php echo anchor("/klant/index", "Terug naar de startpagina", 'id="terug" class="btn btn-secondary"')?>
+  <?php echo anchor("/home/index", "Terug naar de startpagina", 'id="terug" class="btn btn-secondary"')?>
 </p>
