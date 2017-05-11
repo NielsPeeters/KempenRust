@@ -3,11 +3,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Factuur extends CI_Controller {
-     /**
-      * Factuur controller
-        * Verzorgt communicatie tussen model en view
-        */
 
+    /**
+     * Factuur controller
+     * Verzorgt communicatie tussen model en view
+     */
     public function __construct() {
         /**
          * standaard controller constructor
@@ -27,7 +27,7 @@ class Factuur extends CI_Controller {
         $data['author'] = 'Peeters Niels';
         $data['user'] = $this->authex->getUserInfo();
         $user = $this->authex->getUserInfo();
-        if($user->soort>1) {
+        if ($user->soort > 1) {
             $this->load->model('Factuur_model');
             $this->load->model('Boeking_model');
             $data['facturen'] = $this->Factuur_model->getAllWithBoekingWithPersoon();
@@ -45,14 +45,13 @@ class Factuur extends CI_Controller {
          * Haalt een factuur object op
          */
         $factuurId = $this->input->get('factuurId');
-        if($factuurId<0){
+        if ($factuurId < 0) {
             $this->newFactuur();
-        }
-        else{
+        } else {
             $this->load->model('Factuur_model');
-            $data['factuur']= $this->Factuur_model->getFactuurWithBooking($factuurId);
+            $data['factuur'] = $this->Factuur_model->getFactuurWithBooking($factuurId);
             $this->load->model('Boeking_model');
-            $data['boeking']= $this->Boeking_model->getBoekingWithAll($data['factuur']->boekingId);
+            $data['boeking'] = $this->Boeking_model->getBoekingWithAll($data['factuur']->boekingId);
             $this->load->model('BoekingTypePersoon_model');
             $data['boekingTypePersonen'] = $this->BoekingTypePersoon_model->getByBoeking($data['factuur']->boekingId);
             $this->load->model('arrangement_model');
@@ -68,17 +67,15 @@ class Factuur extends CI_Controller {
 
 
             $this->load->view("werknemer/factuur/ajax_factuur", $data);
-
         }
     }
 
-
-    public function verwijderboeking(){
+    public function verwijderboeking() {
         /**
          * Verwijdert een factuur object als hieraan geen boekingen verbonden zijn
-        */
+         */
         $user = $this->authex->getUserInfo();
-        if($user->soort>2) {
+        if ($user->soort > 2) {
             $id = $this->input->get('id');
             $this->load->model('boekingboeking_model');
             $result = $this->boekingboeking_model->getAllByboeking($id);
@@ -93,19 +90,17 @@ class Factuur extends CI_Controller {
         }
     }
 
-
     function newFactuur() {
         /**
          * Creërt een leeg factuur object
          */
-
-        $data['factuur']=$this->getEmptyFactuur();
+        $data['factuur'] = $this->getEmptyFactuur();
 
         $this->load->model('kamerType_model');
         $data['kamerTypes'] = $this->kamerType_model->getAll();
 
         $this->load->model('Boeking_model');
-        $data['boeking']= $this->Boeking_model->getAll();
+        $data['boeking'] = $this->Boeking_model->getAll();
 
         $this->load->model('arrangement_model');
         $data['arrangementen'] = $this->arrangement_model->getAll();
@@ -119,7 +114,7 @@ class Factuur extends CI_Controller {
         $this->load->view("werknemer/factuur/ajax_factuur", $data);
     }
 
-    public function getEmptyFactuur(){
+    public function getEmptyFactuur() {
         /**
          * Ophalen en invullen van een niew factuur object
          * \return factuur een leef factuur object
@@ -127,16 +122,16 @@ class Factuur extends CI_Controller {
         $factuur = new stdClass();
 
         $factuur->id = '0';
-        $factuur->boekingId='0';
+        $factuur->boekingId = '0';
         $factuur->betaald = False;
-        $factuur->datumFactuur= date('Y/m/D H:M:S');
-        $factuur->datumBetaling= null;
-        $factuur->voorschotBetaald= False;
+        $factuur->datumFactuur = date('Y/m/D H:M:S');
+        $factuur->datumBetaling = null;
+        $factuur->voorschotBetaald = False;
 
         return $factuur;
     }
 
-    public function schrijfFactuur(){
+    public function schrijfFactuur() {
         /**
          * Haalt de waarden van het factuur object op en update of insert deze in de database
          */
@@ -152,11 +147,5 @@ class Factuur extends CI_Controller {
         }
         echo 0;
     }
-
-
-
-
-
-
 
 }

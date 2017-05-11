@@ -3,16 +3,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Kamertype extends CI_Controller {
-     /**
-      * Kamertype controller
-        * Verzorgt communicatie tussen model en view
-        */
 
+    /**
+     * Kamertype controller
+     * Verzorgt communicatie tussen model en view
+     */
     public function __construct() {
         /**
-        * standaard controller constructor
-        * laadt helpers
-        */
+         * standaard controller constructor
+         * laadt helpers
+         */
         parent::__construct();
         $this->load->helper('form');
         $this->load->helper('notation');
@@ -28,17 +28,17 @@ class Kamertype extends CI_Controller {
         $data['author'] = 'Van de Voorde Tim';
         $data['user'] = $this->authex->getUserInfo();
         $user = $this->authex->getUserInfo();
-        
-        if($user->soort==3) {
-        $this->load->model('kamerType_model');
-        $data['types'] = $this->kamerType_model->getAll();
-        
 
-        $partials = array('navbar' => 'main_navbar', 'content' => 'admin/kamertype/kamertype_beheren', 'footer' => 'main_footer');
-        $this->template->load('main_master', $partials, $data);
-         } else {
+        if ($user->soort == 3) {
+            $this->load->model('kamerType_model');
+            $data['types'] = $this->kamerType_model->getAll();
+
+
+            $partials = array('navbar' => 'main_navbar', 'content' => 'admin/kamertype/kamertype_beheren', 'footer' => 'main_footer');
+            $this->template->load('main_master', $partials, $data);
+        } else {
             redirect("/home/index");
-        }     
+        }
     }
 
     public function haalKamertype() {
@@ -46,23 +46,22 @@ class Kamertype extends CI_Controller {
          * haalt een kamertype object op
          */
         $kamerTypeId = $this->input->get('kamerTypeId');
-        if($kamerTypeId<0){
+        if ($kamerTypeId < 0) {
             $data['type'] = $this->getEmptyKamertype();
-        }
-        else{
+        } else {
             $this->load->model('kamerType_model');
             $data['type'] = $this->kamerType_model->get($kamerTypeId);
         }
-        
-        
+
+
         $this->load->view("admin/kamertype/ajax_kamertype", $data);
     }
 
     function getEmptyKamertype() {
         /**
-        * Creërt een leeg kamer object
-        * \return kamer een leeg kamer object
-        */
+         * Creërt een leeg kamer object
+         * \return kamer een leeg kamer object
+         */
         $kamertype = new stdClass();
 
         $kamertype->id = '0';
@@ -70,7 +69,7 @@ class Kamertype extends CI_Controller {
 
         return $kamertype;
     }
-    
+
     public function verwijderKamertype() {
         /**
          * verwijdert een kamertype object als hieraan geen kamers verbonden zijn

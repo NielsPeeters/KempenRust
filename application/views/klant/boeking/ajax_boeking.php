@@ -14,42 +14,41 @@
         <tr>
             <td><?php echo toDDMMYYYY($boeking->startDatum); ?></td>
             <td><?php echo toDDMMYYYY($boeking->eindDatum); ?></td>
-            <td><?php echo $boeking->arrangement->naam;?></td>
+            <td><?php echo $boeking->arrangement->naam; ?></td>
             <td>
-                <?php 
-                    $teller = 0;
-                
-                    foreach ($kamers as $id => $kamer) {            
-                        if($teller == 0) {
-                            echo $kamer->naam . " (" . $kamer->kamerType->omschrijving . ")";
-                        } else {
-                            echo ", " . $kamer->naam . " (" . $kamer->kamerType->omschrijving . ")";
-                        }
-            
-                        $teller++;
+                <?php
+                $teller = 0;
+
+                foreach ($kamers as $id => $kamer) {
+                    if ($teller == 0) {
+                        echo $kamer->naam . " (" . $kamer->kamerType->omschrijving . ")";
+                    } else {
+                        echo ", " . $kamer->naam . " (" . $kamer->kamerType->omschrijving . ")";
                     }
+
+                    $teller++;
+                }
                 ?>    
             </td>
             <td>
-                <?php 
-                    $aantal="persoon"; 
-                
-                    if($boeking->aantalPersonen>1){
-                        $aantal="personen";
-                    } 
-                    
-                    echo "$boeking->aantalPersonen $aantal"; 
+                <?php
+                $aantal = "persoon";
+
+                if ($boeking->aantalPersonen > 1) {
+                    $aantal = "personen";
+                }
+
+                echo "$boeking->aantalPersonen $aantal";
                 ?>
             </td>
             <td class="text-center">
-            <?php 
-                if($boeking->goedgekeurd==1){
-                    echo '<button type="button"' . "id= $boeking->id" .' class="btn btn-success btn-xs btn-round"><span class="glyphicon glyphicon-thumbs-up"></span></button>';
+                <?php
+                if ($boeking->goedgekeurd == 1) {
+                    echo '<button type="button"' . "id= $boeking->id" . ' class="btn btn-success btn-xs btn-round"><span class="glyphicon glyphicon-thumbs-up"></span></button>';
+                } else {
+                    echo '<button type="button"' . "id= $boeking->id" . ' class="btn btn-danger btn-xs btn-round"><span class="glyphicon glyphicon-thumbs-down"></span></button>';
                 }
-                else{
-                    echo '<button type="button"' . "id= $boeking->id" .' class="btn btn-danger btn-xs btn-round"><span class="glyphicon glyphicon-thumbs-down"></span></button>';
-                }
-            ?>
+                ?>
             </td>
         </tr>
         </hr>
@@ -57,4 +56,4 @@
 </div>
 
 <button type="button" class="btn btn-secondary annuleren">Annuleren</button>
-<button type="button" data-id="<?php echo $boeking->id;?>" class="btn btn-warning verwijder" id="annuleerBoeking">Annuleer boeking</button>
+<button type="button" data-id="<?php echo $boeking->id; ?>" class="btn btn-warning verwijder" id="annuleerBoeking">Annuleer boeking</button>

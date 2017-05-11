@@ -2,11 +2,12 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class TypePersoon extends CI_Controller{
-     /**
-      * TypePersoon controller
-        * Verzorgt communicatie tussen model en view
-        */
+class TypePersoon extends CI_Controller {
+
+    /**
+     * TypePersoon controller
+     * Verzorgt communicatie tussen model en view
+     */
     public function __construct() {
         /**
          * standaard controller constructor
@@ -26,7 +27,7 @@ class TypePersoon extends CI_Controller{
         $data['author'] = 'Peeters Niels';
         $data['user'] = $this->authex->getUserInfo();
         $user = $this->authex->getUserInfo();
-        if($user->soort==3) {
+        if ($user->soort == 3) {
             $this->load->model('TypePersoon_model');
             $data['typePersonen'] = $this->TypePersoon_model->getAll();
 
@@ -42,10 +43,9 @@ class TypePersoon extends CI_Controller{
          * Haalt een typepersoon object en alle Types op
          */
         $typePersoonId = $this->input->get('typePersoon');
-        if($typePersoonId<0){
+        if ($typePersoonId < 0) {
             $data['typePersoon'] = $this->getEmptyTypePersoon();
-        }
-        else{
+        } else {
             $this->load->model('TypePersoon_model');
             $data['typePersoon'] = $this->TypePersoon_model->getWithTypePersoon($typePersoonId);
         }
@@ -53,7 +53,7 @@ class TypePersoon extends CI_Controller{
         $this->load->view("admin/typePersoon/ajax_typePersoon", $data);
     }
 
-    public function verwijderTypePersoon(){
+    public function verwijderTypePersoon() {
         /**
          * Verwijdert een TypePersoon object als hieraan geen boekingen verbonden zijn
          */
@@ -61,14 +61,13 @@ class TypePersoon extends CI_Controller{
         $this->load->model('BoekingTypePersoon_model');
         $result = $this->BoekingTypePersoon_model->getAllByTypePersoon($id);
         $size = count($result);
-        if ($size==0){
+        if ($size == 0) {
             $this->load->model('TypePersoon_model');
             $this->TypePersoon_model->delete($id);
             echo 0;
+        } else {
+            echo 1;
         }
-        else {echo 1;}
-
-
     }
 
     function getEmptyTypePersoon() {
@@ -86,7 +85,7 @@ class TypePersoon extends CI_Controller{
         return $typePersoon;
     }
 
-    public function schrijfTypePersoon(){
+    public function schrijfTypePersoon() {
         /**
          * Haalt de waarden van het typepersoon object op en update of insert deze in de database
          */
@@ -103,4 +102,5 @@ class TypePersoon extends CI_Controller{
         }
         redirect('TypePersoon/index');
     }
+
 }

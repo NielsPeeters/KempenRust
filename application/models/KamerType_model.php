@@ -1,8 +1,9 @@
 <?php
 
 class kamerType_model extends CI_Model {
+
     /**
-     *Voorziet de communicatie tussen de webapplicatie en de SQL server voor alle gegevens uit de KamerType tabel te halen.
+     * Voorziet de communicatie tussen de webapplicatie en de SQL server voor alle gegevens uit de KamerType tabel te halen.
      */
     function __construct() {
         parent::__construct();
@@ -10,10 +11,10 @@ class kamerType_model extends CI_Model {
 
     function get($id) {
         /**
-        *Geeft het kamertype object terug dat bij het id hoort.
-        *\param $id het id van het te halen kamertype object
-        *\return een kamertype object
-        */
+         * Geeft het kamertype object terug dat bij het id hoort.
+         * \param $id het id van het te halen kamertype object
+         * \return een kamertype object
+         */
         $this->db->where('id', $id);
         $query = $this->db->get('kamerType');
         return $query->row();                 // genereert een kamertype object
@@ -21,9 +22,9 @@ class kamerType_model extends CI_Model {
 
     function getAll() {
         /**
-        *Geeft een array terug met alle kamertype objecten.
-        *\return een array met kamertype objecten
-        */
+         * Geeft een array terug met alle kamertype objecten.
+         * \return een array met kamertype objecten
+         */
         $this->db->order_by("omschrijving", "asc");
         $query = $this->db->get('kamerType');  // genereert SELECT * FROM persoon
         return $query->result();             // een array met kamertype-objecten
@@ -31,33 +32,31 @@ class kamerType_model extends CI_Model {
 
     function insert($kamerType) {
         /**
-        *Insert een kamertype object in de database.
-        *\param $kamerType een kamertype object
-        *\return een kamertype object
-        */
+         * Insert een kamertype object in de database.
+         * \param $kamerType een kamertype object
+         * \return een kamertype object
+         */
         $this->db->insert('kamerType', $kamerType);
         return $this->db->insert_id();
     }
 
     function update($kamerType) {
         /**
-        *Update een kamertype object in de database.
-        *\param $kamerType een kamertype object
-        */
+         * Update een kamertype object in de database.
+         * \param $kamerType een kamertype object
+         */
         $this->db->where('id', $kamerType->id);
         $this->db->update('kamerType', $kamerType);
     }
 
     function delete($id) {
         /**
-        *Verwijdert een kamertype object uit de database.
-        *\param $id het id van het te verwijderen kamertype object
-        */
+         * Verwijdert een kamertype object uit de database.
+         * \param $id het id van het te verwijderen kamertype object
+         */
         $this->db->where('id', $id);
         $this->db->delete('kamerType');
     }
-    
-
 
 }
 

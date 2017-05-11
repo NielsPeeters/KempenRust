@@ -6,16 +6,16 @@
             $('#myForm').validator();
         });
 
-        
-        var soort = parseInt($('#soort').val())-1;
-        $('.soort option:eq('+soort+')').prop('selected', true)
+
+        var soort = parseInt($('#soort').val()) - 1;
+        $('.soort option:eq(' + soort + ')').prop('selected', true)
     });
 
 
 </script>
 <?php
 echo javascript("validator.js");
-$attributes = array('name' => 'myform','id'=>'JqAjaxForm', 'data-toggle'=>'validator','role'=>'form');
+$attributes = array('name' => 'myform', 'id' => 'JqAjaxForm', 'data-toggle' => 'validator', 'role' => 'form');
 echo form_open('persoon/schrijfJSONObject', $attributes);
 ?>
 
@@ -80,7 +80,7 @@ echo form_open('persoon/schrijfJSONObject', $attributes);
             </div>
         </div>
     </div>
-    
+
     <div class=" form-group">
         <label for="soort" class="control-label">Soort</label>
         <select name="soort" class="soort form-control"> 

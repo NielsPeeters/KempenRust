@@ -3,16 +3,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Persoon extends CI_Controller {
-     /**
-      * Persoon controller
-        * Verzorgt communicatie tussen model en view
-        */
 
+    /**
+     * Persoon controller
+     * Verzorgt communicatie tussen model en view
+     */
     public function __construct() {
         /**
-        * standaard controller constructor
-        * laadt helpers
-        */
+         * standaard controller constructor
+         * laadt helpers
+         */
         parent::__construct();
         $this->load->helper('form');
         $this->load->helper('notation');
@@ -82,10 +82,10 @@ class Persoon extends CI_Controller {
          * Verwijdert een persoon object als hieraan geen boekingen verbonden zijn
          */
         $id = $this->input->get('id');
-        
+
         $this->load->model('persoon_model');
         $persoon = $this->persoon_model->get($id);
-        
+
         $this->load->model('boeking_model');
         $result = $this->boeking_model->getAllByPersoon($id);
         $size = count($result);
@@ -116,7 +116,7 @@ class Persoon extends CI_Controller {
         $object->email = strtolower($this->input->post('email'));
         //$object->wachtwoord = $this->input->post('wachtwoord');  
         $wachtwoord = $this->input->post('wachtwoord');
-        if($this->input->post('wachtwoord') != "" || $this->input->post('wachtwoord') != null){
+        if ($this->input->post('wachtwoord') != "" || $this->input->post('wachtwoord') != null) {
             $object->wachtwoord = sha1($wachtwoord);
         }
         $object->soort = $this->input->post('soort');

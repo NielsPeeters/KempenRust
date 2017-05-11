@@ -5,8 +5,9 @@
 </script>
 
 <div class="col-sm-6 col-lg-6">
-    <?php // iedereen
-    echo  image("logo.PNG",'class="navbar-brand-img"');
+    <?php
+    // iedereen
+    echo image("logo.PNG", 'class="navbar-brand-img"');
     ?>
     <ul>
         <li><?php echo $boeking->persoon->naam . " " . $boeking->persoon->voornaam; ?></li>
@@ -23,13 +24,13 @@
         <li>2460 Kasterlee</li>
         <li>+32/14.85.04.53</li>
         <li>+32/14.85.33.26</li>
-        <li><?php echo anchor('http://www.kempenrust.be')?></li>
+        <li><?php echo anchor('http://www.kempenrust.be') ?></li>
     </ul>
 </div>
 
 
 <div class="col-sm-12 col-lg-12">
-<h2 >Factuur</h2>
+    <h2 >Factuur</h2>
     <ul>
         <li><strong>Factuurnummer: </strong><?php echo $factuur->id; ?></li>
         <li><strong>Factuurdatum: </strong><?php echo toDDMMYYYY($factuur->datumFactuur); ?></li>
@@ -50,23 +51,25 @@ echo form_open('factuur/schrijfFactuur', $attributes);
 
 <div class="form-group">
     <label for="persoon" class="control-label">Gast</label>
-    <?php if (!$boeking->persoonId == 0) {
+    <?php
+    if (!$boeking->persoonId == 0) {
         $naam = $boeking->persoon->naam . " " . $boeking->persoon->voornaam;
         echo form_input(array('disabled' => 'disabled', 'name' => 'persoon', 'id' => 'persoon', 'value' => $naam, 'class' => 'form-control', 'placeholder' => 'Gast', 'required' => 'required'));
     } else {
         echo "TODO: gast selecteren of nieuwe gast maken";
-    } ?>
+    }
+    ?>
     </br>
 </div>
 
 <div class="form-group">
     <label for="arrangement" class="control-label">Arrangement</label>
     <select id="dropDown" name="arrangement" class="form-control">
-        <?php
-        $value = $boeking->arrangementId; ?>
+        <?php $value = $boeking->arrangementId; ?>
         <option value="Geen arrangement">Geen arrangement</option><?php
         foreach ($arrangementen as $arrangement) {
-            $type = $arrangement->id; ?>
+            $type = $arrangement->id;
+            ?>
             <option value="<?php echo $arrangement->omschrijving; ?>" <?php echo set_select('arrangement', $type, $type === $value); ?>>
                 <?php echo "$arrangement->naam"; ?>
             </option>
@@ -89,7 +92,8 @@ echo form_open('factuur/schrijfFactuur', $attributes);
     ?>
     <select name="pension" class="form-control"><?php
         foreach ($pensions as $pension) {
-            $type = $pension->id; ?>
+            $type = $pension->id;
+            ?>
             <option value="<?php echo $pension->naam; ?>" <?php echo set_select('pension', $type, $type === $pensionId); ?>>
                 <?php echo "$pension->naam"; ?>
             </option>
@@ -128,13 +132,11 @@ echo form_open('factuur/schrijfFactuur', $attributes);
                 ?>
                 <option selected><?php echo $kamer->naam . " " . $kamer->type->omschrijving; ?></option>
                 <?php
-
             } else {
                 ?>
                 <option><?php echo $kamer->naam . " " . $kamer->type->omschrijving; ?></option>
                 <?php
             }
-
         }
         ?>
     </select>
@@ -142,7 +144,8 @@ echo form_open('factuur/schrijfFactuur', $attributes);
 
 
 <div class="form-group row">
-    <?php $totaal = 0;
+    <?php
+    $totaal = 0;
     foreach ($typePersonen as $typePersoon) {
         //echo $typePersoon->id;
         //echo "test typepersoon </br>";
@@ -152,12 +155,13 @@ echo form_open('factuur/schrijfFactuur', $attributes);
 
             if ($boekingTypePersoon->typePersoonId == $typePersoon->id) {
                 //echo "test ze zijn gelijk";
-                $totaal += $boekingTypePersoon->aantal; ?>
+                $totaal += $boekingTypePersoon->aantal;
+                ?>
                 <div class="col-xs-3">
-                <label for="typePersoon" id="typePersoon"
-                       class="control-label"><?php echo $typePersoon->soort; ?></label>
-                <input class="form-control" type="number" id="to" name="to"
-                       value="<?php echo $boekingTypePersoon->aantal; ?>" required>
+                    <label for="typePersoon" id="typePersoon"
+                           class="control-label"><?php echo $typePersoon->soort; ?></label>
+                    <input class="form-control" type="number" id="to" name="to"
+                           value="<?php echo $boekingTypePersoon->aantal; ?>" required>
                 </div><?php
             }
         }
@@ -184,7 +188,8 @@ echo form_open('factuur/schrijfFactuur', $attributes);
     } else {
         echo "<div><input type='radio' name='goedgekeurd' id='goedgekeurd' value='1' >Ja";
         echo "</div><div><input type='radio' name='goedgekeurd' id='goedgekeurd' value='0' checked>Nee</div>";
-    } ?>
+    }
+    ?>
 </div>
 </br>
 

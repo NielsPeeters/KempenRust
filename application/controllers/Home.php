@@ -3,11 +3,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
-     /**
-      * Home controller
-        * Verzorgt communicatie tussen model en view
-        */
 
+    /**
+     * Home controller
+     * Verzorgt communicatie tussen model en view
+     */
     public function __construct() {
         /**
          * standaard controller constructor
@@ -65,18 +65,18 @@ class Home extends CI_Controller {
     }
 
     function afmelden() {
-           /**
-        * afmelden controller 
-        */
+        /**
+         * afmelden controller 
+         */
         //Meldt een reeds aangemelde gebruiker uit en stuurt de gebruiker terug naar de begin pagina.
         $this->authex->logout();
         redirect("home/index");
     }
 
     function index() {
-   /**
-        * index van controller
-        */
+        /**
+         * index van controller
+         */
         $data['title'] = 'Overzicht';
         $data['author'] = 'Van de Voorde Tim';
         $data['user'] = $this->authex->getUserInfo();

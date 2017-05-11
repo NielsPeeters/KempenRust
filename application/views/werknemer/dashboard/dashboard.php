@@ -6,11 +6,11 @@
  */
 ?>
 <script>
- $.getScript('../../assets/js/kalender.js', function () {
+    $.getScript('../../assets/js/kalender.js', function () {
 
         ///Get All Boekingen From PHP
         var boekingenEvent = <?php echo json_encode($boekingen); ?>;
-        var baseurl = "<?php echo base_url();?>";
+        var baseurl = "<?php echo base_url(); ?>";
         ///CreateArrayWithObjectsForEvents
         var eventArray = new Array();
         for (var i = 0; i < boekingenEvent.length; i++) {

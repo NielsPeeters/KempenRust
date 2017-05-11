@@ -1,9 +1,9 @@
 <div class="row">
     <video width="400" controls>
-	<source src="<?php echo base_url() . "assets/videos/demo.mp4";?>" type="video/mp4"/>
-	Helaas...
+        <source src="<?php echo base_url() . "assets/videos/demo.mp4"; ?>" type="video/mp4"/>
+        Helaas...
     </video>
-    
+
     <p>
         In deze video wordt getoond hoe je een boeking moet maken. Klik eerst op het menu-item 'Boeking maken' bovenaan in het menu. 
         <br /><br />
@@ -19,8 +19,8 @@
     </p>
 </div>
 
-<?php echo "</tbody></table>";?>
+<?php echo "</tbody></table>"; ?>
 
 <p>
-  <a id="terug" class="btn btn-secondary" href="javascript:history.go(-1);">Terug</a>
+    <a id="terug" class="btn btn-secondary" href="javascript:history.go(-1);">Terug</a>
 </p>

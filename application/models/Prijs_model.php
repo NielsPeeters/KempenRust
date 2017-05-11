@@ -1,8 +1,9 @@
 <?php
 
 class Prijs_model extends CI_Model {
+
     /**
-     *Voorziet de communicatie tussen de webapplicatie en de SQL server voor alle gegevens uit de Prijs tabel te halen.
+     * Voorziet de communicatie tussen de webapplicatie en de SQL server voor alle gegevens uit de Prijs tabel te halen.
      */
     function __construct() {
         parent::__construct();
@@ -10,10 +11,10 @@ class Prijs_model extends CI_Model {
 
     function get($id) {
         /**
-        *Geeft het prijs object terug dat bij het id hoort.
-        *\param $id het id van het te halen prijs object
-        *\return een prijs object
-        */
+         * Geeft het prijs object terug dat bij het id hoort.
+         * \param $id het id van het te halen prijs object
+         * \return een prijs object
+         */
         $this->db->where('id', $id);
         $query = $this->db->get('prijs');
         return $query->row();                 // genereert een prijs object
@@ -21,65 +22,64 @@ class Prijs_model extends CI_Model {
 
     function getAll() {
         /**
-        *Geeft een array terug met alle prijs objecten.
-        *\return een array met prijs objecten
-        */
+         * Geeft een array terug met alle prijs objecten.
+         * \return een array met prijs objecten
+         */
         $query = $this->db->get('prijs');  // genereert SELECT * FROM persoon
         return $query->result();             // een array met prijs-objecten
     }
 
     function insert($prijs) {
         /**
-        *Insert een prijs object in de database.
-        *\param $prijs een prijs object
-        *\return een prijs object
-        */
+         * Insert een prijs object in de database.
+         * \param $prijs een prijs object
+         * \return een prijs object
+         */
         $this->db->insert('prijs', $prijs);
         return $this->db->insert_id();
     }
 
     function update($prijs) {
-         /**
-        *Update een prijs object in de database.
-        *\param $prijs een prijs object
-        */
+        /**
+         * Update een prijs object in de database.
+         * \param $prijs een prijs object
+         */
         $this->db->where('id', $prijs->id);
         $this->db->update('prijs', $prijs);
     }
 
     function delete($id) {
         /**
-        * verwijdert het prijs object dat bij het id hoort uit de database
-        * \param $id het id van de geselecteerde prijs
-        */
+         * verwijdert het prijs object dat bij het id hoort uit de database
+         * \param $id het id van de geselecteerde prijs
+         */
         $this->db->where('id', $id);
         $this->db->delete('prijs');
     }
 
-    function getPrijs($arrangementId, $kamerTypeId, $aantal){
+    function getPrijs($arrangementId, $kamerTypeId, $aantal) {
         /**
-        * haalt het prijs object op dat hoort bij de bijhorende ids uit de database
-        *\param $arrangementId
-        *\param $kamerTypeId
-        *\param $aantal 
-        */
+         * haalt het prijs object op dat hoort bij de bijhorende ids uit de database
+         * \param $arrangementId
+         * \param $kamerTypeId
+         * \param $aantal 
+         */
         $meerdere = 0;
-         
+
         /*
-        * check if aantal is meer dan 1
-        */
-        if($aantal > 1)
-        {
+         * check if aantal is meer dan 1
+         */
+        if ($aantal > 1) {
             $meerdere = 1;
         }
-        
+
         $this->db->where('arrangementId', $arrangementId);
         $query = $this->db->get('prijs');
         $prijzenPerArrangement = $query->result();
-        
-        foreach($prijzenPerArrangement as $prijs) {
-            if($prijs->kamertypeId == $kamerTypeId) {
-                if($prijs->meerderePersonen == $meerdere){
+
+        foreach ($prijzenPerArrangement as $prijs) {
+            if ($prijs->kamertypeId == $kamerTypeId) {
+                if ($prijs->meerderePersonen == $meerdere) {
                     $this->db->where('id', $prijs->id);
                     $query = $this->db->get('prijs');
                     return $query->row();
@@ -88,25 +88,22 @@ class Prijs_model extends CI_Model {
         }
     }
 
-     function getPrijsTotaal($arrangementId, $kamerTypeId, $meerdere) {
+    function getPrijsTotaal($arrangementId, $kamerTypeId, $meerdere) {
         /**
-        * haalt het prijs object op dat hoort bij de bijhorende ids uit de database
-        *\param $arrangementId
-        *\param $kamerTypeId
-        *\param $meerdere 
-        */
-
-         
+         * haalt het prijs object op dat hoort bij de bijhorende ids uit de database
+         * \param $arrangementId
+         * \param $kamerTypeId
+         * \param $meerdere 
+         */
         /*
-        * check if aantal is meer dan 1
-        */
-        if($meerdere > 1)
-        {
+         * check if aantal is meer dan 1
+         */
+        if ($meerdere > 1) {
             $meerdere = 1;
-        }else{
+        } else {
             $meerdere = 0;
         }
-         
+
         $this->db->where('arrangementId', $arrangementId);
         $this->db->where('kamerTypeId', $kamerTypeId);
         $this->db->where('meerderePersonen', $meerdere);
@@ -114,18 +111,17 @@ class Prijs_model extends CI_Model {
         return $query->row();
     }
 
-
     function getPrijsByArrangementAndKamerType($arrangementId, $kamerTypeId) {
         /**
          * haalt het prijs object op dat hoort bij de bijhorende ids uit de database
-         *\param $kamerTypeId
-         *\param $arrangementId
+         * \param $kamerTypeId
+         * \param $arrangementId
          */
         $this->db->where('arrangementId', $arrangementId);
         $this->db->where('kamerTypeId', $kamerTypeId);
         $query = $this->db->get('prijs');
         return $query->result();
-}
+    }
 
     function getEmptyPrijs() {
         /**
@@ -144,10 +140,10 @@ class Prijs_model extends CI_Model {
         return $prijs;
     }
 
-    public function insertPrijsByArrangemantId($id){
+    public function insertPrijsByArrangemantId($id) {
         /**
          * Voegt dynamisch prijzen toe als er een Arrangement is toegevoegd.
-         *\param $id
+         * \param $id
          */
         $prijs = $this->getEmptyPrijs();
 
@@ -156,9 +152,9 @@ class Prijs_model extends CI_Model {
         $this->load->model('kamerType_model');
         $kamerTypes = $this->kamerType_model->getAll();
 
-        foreach($kamerTypes as $kamerType){
+        foreach ($kamerTypes as $kamerType) {
             $prijs->kamerTypeId = $kamerType->id;
-            for($i = 0 ; $i < 2 ; $i++){
+            for ($i = 0; $i < 2; $i++) {
                 $prijs->meerderePersonen = $i;
                 $this->prijs_model->insert($prijs);
             }
@@ -174,10 +170,10 @@ class Prijs_model extends CI_Model {
         $this->db->delete('prijs');
     }
 
-    public function insertPrijsByKamerTypeId($id){
+    public function insertPrijsByKamerTypeId($id) {
         /**
          * Voegt dynamisch prijzen toe als er een Kamertype is toegevoegd.
-         *\param $id
+         * \param $id
          */
         $prijs = $this->getEmptyPrijs();
 
@@ -186,9 +182,9 @@ class Prijs_model extends CI_Model {
         $this->load->model('arrangement_model');
         $arrangementen = $this->arrangement_model->getAll();
 
-        foreach($arrangementen as $arangement){
+        foreach ($arrangementen as $arangement) {
             $prijs->arrangementId = $arangement->id;
-            for($i = 0 ; $i < 2 ; $i++){
+            for ($i = 0; $i < 2; $i++) {
                 $prijs->meerderePersonen = $i;
                 $this->prijs_model->insert($prijs);
             }
@@ -203,6 +199,7 @@ class Prijs_model extends CI_Model {
         $this->db->where('kamerTypeId', $id);
         $this->db->delete('prijs');
     }
+
 }
 
 ?>

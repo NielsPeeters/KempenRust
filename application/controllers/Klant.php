@@ -1,11 +1,11 @@
 <?php
 
 class Klant extends CI_Controller {
-     /**
-      * Klant controller
-        * Verzorgt communicatie tussen model en view
-        */
 
+    /**
+     * Klant controller
+     * Verzorgt communicatie tussen model en view
+     */
     public function __construct() {
         /**
          * standaard controller constructor

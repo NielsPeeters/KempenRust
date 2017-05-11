@@ -1,8 +1,9 @@
 <?php
 
 class BoekingTypePersoon_model extends CI_Model {
+
     /**
-     *Voorziet de communicatie tussen de webapplicatie en de SQL server voor alle gegevens uit de BoekingTypePersoon tabel te halen.
+     * Voorziet de communicatie tussen de webapplicatie en de SQL server voor alle gegevens uit de BoekingTypePersoon tabel te halen.
      */
     function __construct() {
         parent::__construct();
@@ -10,9 +11,9 @@ class BoekingTypePersoon_model extends CI_Model {
 
     function get($id) {
         /**
-         *Geeft het boekingTypePersoon object terug dat bij het id hoort.
-         *\param $id het id van het te halen boekingTypePersoon object
-         *\return een boekingTypePersoon object
+         * Geeft het boekingTypePersoon object terug dat bij het id hoort.
+         * \param $id het id van het te halen boekingTypePersoon object
+         * \return een boekingTypePersoon object
          */
         $this->db->where('id', $id);
         $query = $this->db->get('boekingTypePersoon');
@@ -21,8 +22,8 @@ class BoekingTypePersoon_model extends CI_Model {
 
     function getAll() {
         /**
-         *Geeft een array terug met alle boekingTypePersoon objecten.
-         *\return een array met boekingTypePersoon objecten
+         * Geeft een array terug met alle boekingTypePersoon objecten.
+         * \return een array met boekingTypePersoon objecten
          */
         $query = $this->db->get('boeking');  // genereert SELECT * FROM persoon
         return $query->result();             // een array met boekingTypePersoon-objecten
@@ -30,9 +31,9 @@ class BoekingTypePersoon_model extends CI_Model {
 
     function insert($boekingTypePersoon) {
         /**
-         *Insert een boekingTypePersoon object in de database.
-         *\param $boekingTypePersoon een boeking object
-         *\return een boekingTypePersoon object
+         * Insert een boekingTypePersoon object in de database.
+         * \param $boekingTypePersoon een boeking object
+         * \return een boekingTypePersoon object
          */
         $this->db->insert('boekingTypePersoon', $boekingTypePersoon);
         return $this->db->insert_id();
@@ -40,10 +41,9 @@ class BoekingTypePersoon_model extends CI_Model {
 
     function update($boekingTypePersoon) {
         /**
-         *Update een boekingTypePersoon object in de database.
-         *\param $boekingTypePersoon een boekingTypePersoon object
+         * Update een boekingTypePersoon object in de database.
+         * \param $boekingTypePersoon een boekingTypePersoon object
          */
-
         $this->db->where('boekingId', $boekingTypePersoon->boekingId);
         $this->db->where('typePersoonId', $boekingTypePersoon->typePersoonId);
         $this->db->update('boekingTypePersoon', $boekingTypePersoon);
@@ -60,20 +60,20 @@ class BoekingTypePersoon_model extends CI_Model {
 
     function getAllByTypePersoon($id) {
         /**
-         *Geeft een array terug met een specifiek boekingTypePersoon object gefilterd op megekregen TypePersoonId.
-         *\param $id het TypePersoonId van het te halen TypePersoon object
-         *\return een array boekingTypePersoon objecten
+         * Geeft een array terug met een specifiek boekingTypePersoon object gefilterd op megekregen TypePersoonId.
+         * \param $id het TypePersoonId van het te halen TypePersoon object
+         * \return een array boekingTypePersoon objecten
          */
         $this->db->where('typePersoonId', $id);
         $query = $this->db->get('boekingTypePersoon');
         return $query->result();
     }
 
-    function getByBoeking($id){
+    function getByBoeking($id) {
         /**
-         *Geeft een array terug met een specifiek boekingTypePersoon object gefilterd op megekregen boekingId.
-         *\param $id het boekingId van het te halen TypePersoon object
-         *\return een array  boekingTypePersoon objecten
+         * Geeft een array terug met een specifiek boekingTypePersoon object gefilterd op megekregen boekingId.
+         * \param $id het boekingId van het te halen TypePersoon object
+         * \return een array  boekingTypePersoon objecten
          */
         $this->db->where('boekingId', $id);
         $query = $this->db->get('boekingTypePersoon');
