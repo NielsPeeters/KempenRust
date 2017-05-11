@@ -44,7 +44,7 @@ class TypePersoon_model extends CI_Model {
     {
          /**
         *Update een typepersoon object in de database.
-        *\param kamertype een typepersoon object
+        *\param typepersoon een typepersoon object
         */
         $this->db->where('id', $typepersoon->id);
         $this->db->update('typePersoon', $typepersoon);
@@ -65,6 +65,7 @@ class TypePersoon_model extends CI_Model {
         /**
          * haalt het typepersoon object op dat bij het id hoort uit de database
          * \param id het id van de geselecteerde typepersoon
+         *\return een typepersoon object
          */
         $this->db->where('id', $id);
         $query = $this->db->get('typePersoon');
@@ -76,6 +77,7 @@ class TypePersoon_model extends CI_Model {
         /**
          * haalt het typepersoon object op dat bij het id hoort uit de database
          * \param id het id van de geselecteerde boeking
+         *\return een typepersoon object
          */
         $this->db->where('boekingId', $id);
         $query = $this->db->get('typePersoon');
