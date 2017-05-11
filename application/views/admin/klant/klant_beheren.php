@@ -129,7 +129,7 @@
 <?php 
 $options = array();
 foreach($klanten as $klant){
-	$options[$klant->id] ="$klant->voornaam $klant->naam";
+	$options[$klant->id] ="$klant->naam $klant->voornaam";
 }
 ?>
 
