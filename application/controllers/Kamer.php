@@ -92,7 +92,7 @@ class Kamer extends CI_Controller {
         */
         $object = new stdClass();
         $object->id = $this->input->post('id');
-        $object->naam = $this->input->post('naam');
+        $object->naam = ucfirst(strtolower($this->input->post('naam')));
         $object->aantalPersonen = $this->input->post('aantalPersonen');
         $object->kamerTypeId = $this->input->post('kamerType');
         $object->beschikbaar = $this->input->post('beschikbaar');

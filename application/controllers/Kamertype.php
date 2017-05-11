@@ -88,7 +88,7 @@ class Kamertype extends CI_Controller {
          */
         $object = new stdClass();
         $object->id = $this->input->post('id');
-        $object->omschrijving = $this->input->post('omschrijving');
+        $object->omschrijving = ucfirst($this->input->post('omschrijving'));
 
         $this->load->model('kamerType_model');
         $this->load->model('prijs_model');

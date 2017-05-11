@@ -692,15 +692,15 @@ class Klant extends CI_Controller {
         $object = new stdClass();
 
         $object->id = $this->input->post('id');
-        $object->naam = $this->input->post('naam');
-        $object->voornaam = $this->input->post('voornaam');
+        $object->naam = ucfirst(strtolower($this->input->post('naam')));
+        $object->voornaam = ucfirst(strtolower( $this->input->post('voornaam')));
         $object->postcode = $this->input->post('postcode');
-        $object->gemeente = $this->input->post('gemeente');
-        $object->straat = $this->input->post('straat');
+        $object->gemeente = ucfirst(strtolower($this->input->post('gemeente')));
+        $object->straat = ucfirst(strtolower( $this->input->post('straat')));
         $object->huisnummer = $this->input->post('huisnummer');
         $object->bus = $this->input->post('bus');
         $object->telefoon = $this->input->post('telefoon');
-        $object->email = $this->input->post('email');
+        $object->email = strtolower($this->input->post('email'));
       
         $wachtwoord = $this->input->post('wachtwoord');
         if ($wachtwoord != "" && $wachtwoord != null) {

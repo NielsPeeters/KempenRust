@@ -92,10 +92,10 @@ class Pension extends CI_Controller {
         */
         $object = new stdClass();
         $object->id = $this->input->post('id');
-        $object->naam = $this->input->post('naam');
+        $object->naam = ucfirst(strtolower($this->input->post('naam')));
         $object->beginDag = null;
         $object->eindDag = null;
-        $object->omschrijving = $object->naam;
+        $object->omschrijving = ucfirst($this->input->post('omschrijving'));
         $object->isArrangement = 0;
             
         $this->load->model('arrangement_model');
