@@ -85,7 +85,7 @@ class Menu extends CI_Controller {
         */
         $object = new stdClass();
         $object->id = $this->input->post('id');
-        $object->naam = $this->input->post('naam');
+        $object->naam = ucfirst(strtolower($this->input->post('naam')));
 
         $this->load->model('menu_model');
         if ($object->id == 0) {

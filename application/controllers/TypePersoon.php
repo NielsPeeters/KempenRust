@@ -88,7 +88,7 @@ class TypePersoon extends CI_Controller{
          */
         $object = new stdClass();
         $object->id = $this->input->post('id');
-        $object->soort = $this->input->post('soort');
+        $object->soort = ucfirst(strtolower($this->input->post('soort')));
         $object->korting = $this->input->post('korting');
 
         $this->load->model('TypePersoon_model');
