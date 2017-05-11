@@ -103,7 +103,7 @@
 <?php 
 $options = array();
 foreach($pensions as $pension){
-	$options[$pension->id] ="$pension->naam";
+	$options[$pension->id] ="$pension->naam $pension->omschrijving" ;
 }
 ?>
 
