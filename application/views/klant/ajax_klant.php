@@ -11,7 +11,7 @@
 </script>
 <?php
 echo javascript("validator.js");
-$attributes = array('name' => 'myform','id'=>'JqAjaxForm', 'data-toggle'=>'validator','role'=>'form');
+$attributes = array('name' => 'myform', 'id' => 'JqAjaxForm', 'data-toggle' => 'validator', 'role' => 'form');
 echo form_open('klant/schrijfJSONObject', $attributes);
 ?>
 <form name='myform' id='JqAjaxForm'>

@@ -2,7 +2,7 @@
     /**
      * \file
      */
-    function haalPrijs(arrangementId,kamerTypeId) {
+    function haalPrijs(arrangementId, kamerTypeId) {
         /**
          * haalt het prijs object op dat behoort tot het meegegeven id
          * \param prijsId het id van de geselecteerde prijs
@@ -11,7 +11,7 @@
         $.ajax({
             type: "GET",
             url: site_url + "/prijs/haalPrijs",
-            data: {arrangementId: arrangementId,kamerTypeId: kamerTypeId},
+            data: {arrangementId: arrangementId, kamerTypeId: kamerTypeId},
             success: function (result) {
                 $("#panel").show();
                 $("#resultaat").html(result);
@@ -40,32 +40,32 @@
     $(document).ready(function () {
         $("#panel").hide();
 
-        $("#opslaan").on('click', function(){
+        $("#opslaan").on('click', function () {
 
 
 
         });
 
-        $('#arrangementen').on( "change", function(){
-            if ($(this).val() == 0){
+        $('#arrangementen').on("change", function () {
+            if ($(this).val() == 0) {
                 $('#pension').show();
-                haalPrijs($("#pension option:selected").val(),$("#kamerType option:selected").val());
+                haalPrijs($("#pension option:selected").val(), $("#kamerType option:selected").val());
             } else {
                 $('#pension').hide();
-                haalPrijs($(this).val(),$("#kamerType option:selected").val());
+                haalPrijs($(this).val(), $("#kamerType option:selected").val());
             }
         });
 
-        $('#pensions').on( "change", function(){
+        $('#pensions').on("change", function () {
 
-                haalPrijs($(this).val(),$("#kamerType option:selected").val());
+            haalPrijs($(this).val(), $("#kamerType option:selected").val());
         });
 
-        $('#kamerTypes').on( "change", function(){
-            if($("#arrangementen option:selected").val() == 0){
-                haalPrijs($("#pension option:selected").val(),$(this).val());
-            } else{
-                haalPrijs($("#arrangementen option:selected").val(),$(this).val());
+        $('#kamerTypes').on("change", function () {
+            if ($("#arrangementen option:selected").val() == 0) {
+                haalPrijs($("#pension option:selected").val(), $(this).val());
+            } else {
+                haalPrijs($("#arrangementen option:selected").val(), $(this).val());
             }
         });
     });
@@ -81,13 +81,13 @@ $options0[0] = "Geen arranement";
 foreach ($arrangementen as $arrangement) {
     if ($arrangement->isArrangement == 1) {
         $options0[$arrangement->id] = "$arrangement->naam";
-    }   else{
+    } else {
         $options1[$arrangement->id] = "$arrangement->naam";
     }
 }
 
 $options2 = array();
-foreach ($kamerTypes as $kamerType){
+foreach ($kamerTypes as $kamerType) {
     $options2[$kamerType->id] = "$kamerType->omschrijving";
 }
 ?>
