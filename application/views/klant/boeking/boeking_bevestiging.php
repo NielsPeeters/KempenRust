@@ -38,5 +38,5 @@
 <?php echo "</tbody></table>"; ?>
 
 <p>
-    <a id="terug" class="btn btn-secondary" href="javascript:history.go(-1);">Terug</a>
+  <?php echo anchor("/klant/index", "Terug naar de startpagina", 'id="terug" class="btn btn-secondary"')?>
 </p>
