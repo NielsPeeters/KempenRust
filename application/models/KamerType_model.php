@@ -22,6 +22,7 @@ class kamerType_model extends CI_Model {
         *Geeft een array terug met alle kamertype objecten.
         *\return een array met kamertype objecten
         */
+        $this->db->order_by("omschrijving", "asc");
         $query = $this->db->get('kamerType');  // genereert SELECT * FROM persoon
         return $query->result();             // een array met kamertype-objecten
     }
