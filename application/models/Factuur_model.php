@@ -28,7 +28,7 @@ class Factuur_model extends CI_Model {
     function insert($factuur) {
         /**
         *Insert een factuur object in de database.
-        *\param factuur een factuur object
+        *\param $factuur een factuur object
         *\return een factuur object
         */
         $this->db->insert('factuur', $factuur);
@@ -38,7 +38,7 @@ class Factuur_model extends CI_Model {
     function update($factuur) {
          /**
         *Update een factuur object in de database.
-        *\param factuur een factuur object
+        *\param $factuur een factuur object
         */
         $this->db->where('id', $factuur->id);
         $this->db->update('factuur', $factuur);

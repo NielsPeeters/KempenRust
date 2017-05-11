@@ -41,7 +41,7 @@ class Arrangement_model extends CI_Model {
     function insert($arrangement) {
         /**
         *Insert een arrangement object in de database.
-        *\param arrangement een arrangement object
+        *\param $arrangement een arrangement object
         *\return een arrangement object
         */
         $this->db->insert('arrangement', $arrangement);
@@ -51,7 +51,7 @@ class Arrangement_model extends CI_Model {
     function update($arrangement) {
          /**
         *Update een arrangement object in de database.
-        *\param arrangement een arrangement object
+        *\param $arrangement een arrangement object
         */
         $this->db->where('id', $arrangement->id);
         $this->db->update('arrangement', $arrangement);
@@ -103,7 +103,7 @@ class Arrangement_model extends CI_Model {
     function getByOmschrijving($omschrijving){
         /**
         *Geeft een arrangement object terug met de omschrijving
-        *\param omschrijving de omschrijving van het arrangement
+        *\param $omschrijving de omschrijving van het arrangement
         *\return arrangement object
         */
         $this->db->where('omschrijving', $omschrijving);
