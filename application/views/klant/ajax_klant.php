@@ -80,7 +80,7 @@ echo form_open('klant/schrijfJSONObject', $attributes);
 
     <div class="help-block with-errors"></div>
 
-    <button type="button" class="btn btn-secondary annuleren">Annuleren</button>
+    <button type="button" href="javascript:history.go(-1);">Annuleren</button>
     <button type="submit" data-id="' . $type->id . '" class="btn btn-primary opslaan">Opslaan</button>
 </div>
 </form>
