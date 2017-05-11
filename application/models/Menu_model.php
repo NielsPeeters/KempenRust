@@ -22,6 +22,7 @@ class Menu_model extends CI_Model {
         *Geeft een array terug met alle menu objecten.
         *\return een array met menu objecten
         */
+        $this->db->order_by('naam', 'asc');
         $query = $this->db->get('menu');  // genereert SELECT * FROM persoon
         return $query->result();             // een array met menu-objecten
     }
