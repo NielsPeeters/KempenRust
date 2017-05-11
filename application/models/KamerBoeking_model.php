@@ -28,7 +28,7 @@ class kamerBoeking_model extends CI_Model {
     function insert($kamerBoeking) {
         /**
         *Insert een kamerBoeking object in de database.
-        *\param kamerBoeking een kamerBoeking object
+        *\param $kamerBoeking een kamerBoeking object
         *\return een kamerBoeking object
         */
         $this->db->insert('kamerBoeking', $kamerBoeking);
@@ -38,7 +38,7 @@ class kamerBoeking_model extends CI_Model {
     function update($kamerBoeking) {
          /**
         *Update een kamerBoeking object in de database.
-        *\param kamerBoeking een kamerBoeking object
+        *\param $kamerBoeking een kamerBoeking object
         */
         $this->db->where('id', $kamerBoeking->id);
         $this->db->update('kamerBoeking', $kamerBoeking);
