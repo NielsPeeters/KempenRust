@@ -8,7 +8,7 @@ class Boeking_model extends CI_Model {
 
     function get($id) {
         /**
-        *Geeft het boeking object terug dat bij het id hoort.
+        * Geeft het boeking object terug dat bij het id hoort.
         *\param $id het id van het te halen boeking object
         *\return een boeking object
         */
