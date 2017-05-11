@@ -9,7 +9,7 @@ class Extra_model extends CI_Model {
     function get($id) {
         /**
         *Geeft het extra object terug dat bij het id hoort.
-        *\param id het id van het te halen extra object
+        *\param $id het id van het te halen extra object
         *\return een extra object
         */
         $this->db->where('id', $id);
@@ -48,7 +48,7 @@ class Extra_model extends CI_Model {
     function delete($id) {
         /**
         * verwijdert het extra object dat bij het id hoort uit de database
-        * \param id het id van de geselecteerde extra
+        * \param $id het id van de geselecteerde extra
         */
         $this->db->where('id', $id);
         $this->db->delete('extra');

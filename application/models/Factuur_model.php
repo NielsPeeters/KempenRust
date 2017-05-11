@@ -8,7 +8,7 @@ class Factuur_model extends CI_Model {
     function get($id) {
         /**
         *Geeft het factuur object terug dat bij het id hoort.
-        *\param id het id van het te halen factuur object
+        *\param $id het id van het te halen factuur object
         *\return een factuur object
         */
         $this->db->where('id', $id);
@@ -47,7 +47,7 @@ class Factuur_model extends CI_Model {
     function delete($id) {
         /**
         * verwijdert het factuur object dat bij het id hoort uit de database
-        * \param id het id van de geselecteerde factuur
+        * \param $id het id van de geselecteerde factuur
         */
         $this->db->where('id', $id);
         $this->db->delete('factuur');

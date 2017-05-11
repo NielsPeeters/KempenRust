@@ -9,7 +9,7 @@ class Boeking_model extends CI_Model {
     function get($id) {
         /**
         *Geeft het boeking object terug dat bij het id hoort.
-        *\param id het id van het te halen boeking object
+        *\param $id het id van het te halen boeking object
         *\return een boeking object
         */
         $this->db->where('id', $id);
@@ -50,7 +50,7 @@ class Boeking_model extends CI_Model {
     function delete($id) {
         /**
         * verwijdert het boeking object dat bij het id hoort uit de database
-        * \param id het id van de geselecteerde boeking
+        * \param $id het id van de geselecteerde boeking
         */
         $this->db->where('id', $id);
         $this->db->delete('boeking');
@@ -138,7 +138,7 @@ class Boeking_model extends CI_Model {
     function getBoekingWithAll($id){
         /**
         * geeft een boeking object terug met alle geassocieerde eigenschappen
-        * \param id het id van de geselecteerde boeking
+        * \param $id het id van de geselecteerde boeking
         * \return een boeking object
         */
         

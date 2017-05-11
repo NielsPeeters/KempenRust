@@ -12,7 +12,7 @@ class Kamer_model extends CI_Model {
     function get($id) {
         /**
         * haalt de kamer uit de database die bij het gegeven id hoort.
-        * \param id het id van de geselecteerde kamer
+        * \param $id het id van de geselecteerde kamer
         * \return een kamer object
         */
         $this->db->where('id', $id);
@@ -52,7 +52,7 @@ class Kamer_model extends CI_Model {
     function delete($id) {
         /**
         * verwijdert het kamer object dat bij het id hoort uit de database
-        * \param id het id van de geselecteerde kamer
+        * \param $id het id van de geselecteerde kamer
         */
         $this->db->where('id', $id);
         $this->db->delete('kamer');
@@ -61,7 +61,7 @@ class Kamer_model extends CI_Model {
     function getWithKamerType($id){
         /**
         * haalt de kamer uit de database die bij het gegeven id hoort met het bijbehorende kamertype
-        * \param id het id van de geselecteerde kamer
+        * \param $id het id van de geselecteerde kamer
         * \return een kamer object
         */
         $kamer = $this->get($id);
@@ -84,7 +84,7 @@ class Kamer_model extends CI_Model {
     function getAllWithKamerType(){
         /**
         * haalt de kamer uit de database die bij het gegeven id hoort met het bijbehorende kamertype
-        * \param id het id van de geselecteerde kamer
+        * \param $id het id van de geselecteerde kamer
         * \return een kamer object
         */
          $query = $this->db->get('kamer');

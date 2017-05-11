@@ -9,7 +9,7 @@ class Faciliteit_model extends CI_Model {
     function get($id) {
         /**
         *Geeft het faciliteit object terug dat bij het id hoort.
-        *\param id het id van het te halen faciliteit object
+        *\param $id het id van het te halen faciliteit object
         *\return een faciliteit object
         */
         $this->db->where('id', $id);
@@ -49,7 +49,7 @@ class Faciliteit_model extends CI_Model {
     function delete($id) {
         /**
         * verwijdert het faciliteit object dat bij het id hoort uit de database
-        * \param id het id van de geselecteerde faciliteit
+        * \param $id het id van de geselecteerde faciliteit
         */
         $this->db->where('id', $id);
         $this->db->delete('faciliteit');
