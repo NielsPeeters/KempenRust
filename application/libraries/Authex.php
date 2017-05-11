@@ -5,26 +5,22 @@ if (!defined('BASEPATH'))
 
 class Authex {
 
-    // +----------------------------------------------------------
-    // | TV Shop
-    // +----------------------------------------------------------
-    // | 2ITF - 201x-201x
-    // +----------------------------------------------------------
-    // | Authex library
-    // |
-    // +----------------------------------------------------------
-    // | Nelson Wells
-    // | 
-    // | aangepast door Thomas More
-    // +----------------------------------------------------------
-
+    /**
+     * Authex Library
+     */
     public function __construct() {
+        /**
+         * Constructor
+         */
         $CI = & get_instance();
 
         $CI->load->model('persoon_model');
     }
 
     function loggedIn() {
+        /**
+         * inloggen
+         */
         // gebruiker is aangemeld als sessievariabele user_id bestaat
         $CI = & get_instance();
         if ($CI->session->has_userdata('user_id')) {
@@ -35,6 +31,9 @@ class Authex {
     }
 
     function getUserInfo() {
+        /**
+         * info over gebruiker halen
+         */
         // geef user-object als gebruiker aangemeld is
         $CI = & get_instance();
         if (!$this->loggedIn()) {
@@ -46,6 +45,11 @@ class Authex {
     }
 
     function login($email, $password) {
+        /**
+         * inloggen
+         * \param $email e-mailadres gebruikt voor in te loggen
+         * \param $password paswoord gebruikt om in te loggen
+         */
         // gebruiker aanmelden met opgegeven email en wachtwoord
         $CI = & get_instance();
         $user = $CI->persoon_model->getAccount($email, $password);
@@ -58,12 +62,15 @@ class Authex {
     }
 
     function logout() {
+        /**
+         * uitloggen
+         */
         // uitloggen, dus sessievariabele wegdoen
         $CI = & get_instance();
         $CI->session->unset_userdata('user_id');
     }
 
-    function register( $email, $persoon) {
+    function register($email, $persoon) {
         // nieuwe gebruiker registreren als email nog niet bestaat
         $CI = & get_instance();
         if ($CI->persoon_model->emailVrij($email)) {
@@ -75,11 +82,12 @@ class Authex {
     }
 
     function activate($id) {
+        /**
+         * account activeren
+         */
         // nieuwe gebruiker activeren
         $CI = & get_instance();
         $CI->persoon_model->activeer($id);
     }
-
-
 
 }

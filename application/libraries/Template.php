@@ -19,6 +19,9 @@ class Template {
      */
     function __construct()
     {
+                /**
+         * constructor
+         */
         log_message('debug', "Template Class Initialized");
     }
 
@@ -36,6 +39,13 @@ class Template {
      */
     function load($template = '', $view = array(), $vars = array(), $return = FALSE)
     {
+                /**
+         * template loader
+                 * \param $template template
+                 * \param $view view
+                 * \param $vars variabelen
+                 * $return return
+         */
         $this->CI =& get_instance();
         $tpl = array();
 
