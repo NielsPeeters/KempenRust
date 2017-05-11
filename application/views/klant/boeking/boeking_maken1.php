@@ -2,19 +2,41 @@
 /**
 * \file
 */
+    function haalArrangement(arrangementId){
+        $.ajax({type: "GET",
+            url: site_url + "/klant/haalJSONArrangement",
+            data: {arrangementId : arrangementId},
+            success: function (result) {
+                try {
+                    var arrangement = jQuery.parseJSON(result);
+		    $('#arrangementOmschrijving').html(arrangement.omschrijving);
+                } catch (error) {
+                    alert("-- ERROR IN JSON --\n" + result);
+                }    
+            },
+            error: function (xhr, status, error) {
+                alert("-- ERROR IN AJAX --\n\n" + xhr.responseText);
+            }
+        });
+    }
+
     $(document).ready(function(){
         var arrangementId;
+        $("#arrangementOmschrijving").html("Nog geen arrangement gekozen");
         $("#geenArrangement").hide();
 
         $("#arrangement").change(function() {
             /**
             *Bij het veranderen van de geselecteerde arrangement, kijkt het systeem of er een arrangement is geselecteerd of de optie 'Geen arrangement' is geselecteerd
             */
+            $("#arrangementOmschrijving").html("");
             arrangementId = $(this).val();
             
             if(arrangementId == 0) {
+                $("#arrangementOmschrijving").html("Geen arrangement");
                 $("#geenArrangement").show();
             } else {
+                haalArrangement(arrangementId);
                 $("#geenArrangement").hide();
             }
         });
@@ -101,7 +123,7 @@
     
     $optionsPensions = array();
     foreach($pensions as $pension) {
-        $optionsPensions[$pension->id] = $pension->naam;
+        $optionsPensions[$pension->id] = $pension->naam . " " . $pension->omschrijving;
     }
 ?>
 
@@ -136,6 +158,13 @@
             <div class="col-md-8"></div>
         </div>
         <div class="help-block with-errors"></div>  
+    </div>
+    
+    <p>&nbsp;</p>
+    
+    <div class="col-lg-12">
+        <div class="alert alert-success col-md-4" id="arrangementOmschrijving"></div>
+        <div class="col-md-8"></div>
     </div>
     
     <p>&nbsp;</p>
