@@ -102,7 +102,7 @@
 <?php 
 $options = array();
 foreach($typePersonen as $typePersoon){
-	$options[$typePersoon->id] ="$typePersoon->soort" . "  |  " . "$typePersoon->korting";
+	$options[$typePersoon->id] =$typePersoon->soort . "  |  " . toKomma( $typePersoon->korting);
 }
 ?>
 

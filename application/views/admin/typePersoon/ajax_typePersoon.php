@@ -23,7 +23,7 @@ echo form_open('TypePersoon/schrijfTypePersoon', $attributes);
 
     <div class="form-group">
         <label for="omschrijving" class="control-label">Korting</label>
-        <?php echo form_input(array('type' => 'text', 'name' => 'korting', 'id' => 'korting', 'value' => $typePersoon->korting, 'class' => 'form-control', 'placeholder' => 'Korting', 'required' => 'required')); ?>
+        <?php echo form_input(array('type' => 'number', 'step' => '0.10', 'name' => 'korting', 'id' => 'korting', 'value' => $typePersoon->korting, 'class' => 'form-control', 'placeholder' => 'Korting', 'required' => 'required')); ?>
     </div>
     </br>
 

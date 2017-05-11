@@ -457,11 +457,13 @@ function zoek() {
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#nietgoedgekeurd">Niet goedgekeurd</a></li>
   <li><a data-toggle="tab" href="#goedgekeurd">Goedgekeurd</a></li>
+  <li style="position:relative; left:20px"><button type="button"  class="btn btn-primary nieuw">Nieuw</button></a></li>
 </ul>
 
  
 
 <div class="tab-content">
+
   <div id="nietgoedgekeurd" class="tab-pane fade in active">
     <div class="zoek">
     </br>
@@ -521,7 +523,6 @@ function zoek() {
     ?>
     </table>
 </div>
-     <button type="button"  class="btn btn-primary nieuw">Nieuw</button>
     </div>
     
   </div>
@@ -584,7 +585,6 @@ function zoek() {
     ?>
     </table>
     </div>
-     <button type="button"  class="btn btn-primary nieuw">Nieuw</button>
     </div>
     
   </div>
@@ -617,7 +617,7 @@ function zoek() {
 
 </div>
 
-
+</br>
 <p>
     <a id="terug" href="javascript:history.go(-1);">Terug</a>
 </p>

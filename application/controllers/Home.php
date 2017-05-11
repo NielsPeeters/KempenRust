@@ -76,7 +76,7 @@ class Home extends CI_Controller {
         $this->load->model('boeking_model');
         $data['boekingen'] = $this->boeking_model->getBoekingenWith();
         
-        if($data['user']->soort > 1){
+        if($data['user'] != null && $data['user']->soort > 1){
             $partials = array('navbar' => 'main_navbar', 'content' => 'werknemer/dashboard/dashboard', 'footer' => 'main_footer');
         } else {
             $partials = array('navbar' => 'main_navbar', 'content' => 'gebruiker/dashboard/dashboard', 'footer' => 'main_footer');

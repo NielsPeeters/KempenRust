@@ -195,7 +195,7 @@ foreach($klanten as $klant){
               </div>
               <div class="modal-body">
                   <p>
-                      Je kan dit account niet verwijderen omdat er nog boekingen aan verbonden zijn.
+                      Je kan dit account niet verwijderen.
                   </p>
                 
                   </p>
