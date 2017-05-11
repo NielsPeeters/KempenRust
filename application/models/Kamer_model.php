@@ -1,7 +1,9 @@
 <?php
 
 class Kamer_model extends CI_Model {
-
+    /**
+     *Voorziet de communicatie tussen de webapplicatie en de SQL server voor alle gegevens uit de Kamer tabel te halen.
+     */
     function __construct() {
          /**
         * standaard model constructor
@@ -73,7 +75,7 @@ class Kamer_model extends CI_Model {
      function getAllByType($id) {
         /**
         * haalt de kamer uit de database die bij het gegeven id
-        * \param kamertypeid het id van de geselecteerde kamer
+        * \param $kamertypeid het id van de geselecteerde kamer
         * \return of kamertype bij kamer hoort
         */
         $this->db->where('kamerTypeId', $id);

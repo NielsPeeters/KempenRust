@@ -1,7 +1,9 @@
 <?php
 
 class kamerType_model extends CI_Model {
-
+    /**
+     *Voorziet de communicatie tussen de webapplicatie en de SQL server voor alle gegevens uit de KamerType tabel te halen.
+     */
     function __construct() {
         parent::__construct();
     }

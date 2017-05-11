@@ -1,7 +1,9 @@
 <?php
 
 class Arrangement_model extends CI_Model {
-
+    /**
+     *Voorziet de communicatie tussen de webapplicatie en de SQL server voor alle gegevens uit de Arrangement tabel te halen.
+     */
     function __construct() {
         parent::__construct();
     }

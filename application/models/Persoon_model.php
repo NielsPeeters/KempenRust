@@ -1,7 +1,9 @@
 <?php
 
 class Persoon_model extends CI_Model {
-
+    /**
+     *Voorziet de communicatie tussen de webapplicatie en de SQL server voor alle gegevens uit de Persoon tabel te halen.
+     */
     function __construct()
     {
         /**

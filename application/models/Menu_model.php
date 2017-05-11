@@ -1,7 +1,9 @@
 <?php
 
 class Menu_model extends CI_Model {
-
+    /**
+     *Voorziet de communicatie tussen de webapplicatie en de SQL server voor alle gegevens uit de Manu tabel te halen.
+     */
     function __construct() {
         parent::__construct();
     }
