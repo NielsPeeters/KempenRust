@@ -1,6 +1,6 @@
 # Project Kempen rust
 
-This is an project developed under [Thomas More's](http://http://www.thomasmore.be/)[applied computer science](http://www.thomasmore.be/ons-aanbod/toegepaste-informatica/maak-kennis-met-it-factory) "semester project" course. 
+This is an project developed under [Thomas More's](http://http://www.thomasmore.be/) [applied computer science](http://www.thomasmore.be/ons-aanbod/toegepaste-informatica/maak-kennis-met-it-factory) "semester project" course. 
 With goal on training our development skills in a professional team environment.
 We had to learn GIT for the first time as well to keep up with underlying deadlines.
 We also kept contact with our client to ensure the the project (and our vision) was equal with our client's wishes.
